@@ -1,0 +1,22 @@
+{
+  "name": "chessfull",
+  "version": "1.0.0",
+  "description": "front end",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DasMoge124/Chessfull.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DasMoge124/Chessfull/issues"
+  },
+  "homepage": "https://github.com/DasMoge124/Chessfull#readme",
+  "dependencies": {
+    "vite": "^7.1.6"
+  }
+}
