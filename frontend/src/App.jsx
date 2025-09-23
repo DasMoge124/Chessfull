@@ -1,56 +1,52 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import React from "react";
 
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Login from "./pages/login";
+import Signup from "./pages/signup"; // ensure the file exists
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-      <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
-      <body>
-        <header class="nav_header">
-          <nav>
-            <ul class="nav_links">
-              <li class="nav_list">
-                <a class="nav_a" href="index.html">
-                  Home
-                </a>
-              </li>
-              <li class="nav_list">
-                <a class="nav_a" href="/Login">
-                  Login
-                </a>
-              </li>
-              <li class="nav_list">
-                <a class="nav_a" href="learn.html">
-                  Learn
-                </a>
-              </li>
-              <li class="nav_list">
-                <a class="nav_a" href="/chessfull/connect/">
-                  Connect
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </header>
-      </body>
-    </>
+    <BrowserRouter>
+      <header className="nav_header">
+        <nav>
+          <ul className="nav_links">
+            <li className="nav_list">
+              <Link className="nav_a" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="nav_list">
+              <Link className="nav_a" to="/login">
+                Login
+              </Link>
+            </li>
+            <li className="nav_list">
+              <Link className="nav_a" to="/signup">
+                Sign Up
+              </Link>
+            </li>
+            <li className="nav_list">
+              <a className="nav_a" href="learn.html">
+                Learn
+              </a>
+            </li>
+            <li className="nav_list">
+              <a className="nav_a" href="/chessfull/connect/">
+                Connect
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <Routes>
+        {/* Add a real Home component later if needed */}
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
