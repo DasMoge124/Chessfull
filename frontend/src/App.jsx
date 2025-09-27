@@ -5,6 +5,7 @@ import "./App.css";
 import Login from "./pages/login";
 import Signup from "./pages/signup"; // ensure the file exists
 import Learn from "./pages/Learn"; // ensure the file exists
+import Chessboard from "./pages/Chessboard";
 
 function App() {
   return (
@@ -33,9 +34,9 @@ function App() {
               </Link>
             </li>
             <li className="nav_list">
-              <a className="nav_a" href="/chessfull/connect/">
-                Connect
-              </a>
+              <Link className="nav_a" to="/chessboard">
+                Chessboard
+              </Link>
             </li>
           </ul>
         </nav>
@@ -47,6 +48,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/learn" element={<Learn />} />
+        <Route path="/chessboard" element={<Chessboard />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,26 @@
+/* Chessboard.css */
+.chessboard {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px; /* Adjust as needed */
+  height: 400px; /* Adjust as needed */
+  border: 1px solid black;
+}
+
+.board-row {
+  display: flex;
+  width: 100%;
+}
+
+.square {
+  width: 50px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+}
+
+.light {
+  background-color: #f0d9b5; /* Light square color */
+}
+
+.dark {
+  background-color: #b58863; /* Dark square color */
+}
