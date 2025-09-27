@@ -1,12 +1,12 @@
-import React from 'react';
-import './Login.css';
+import React from "react";
+import "./login.css";
 
 function Login() {
   const loginUser = () => {
     // Placeholder login logic — replace with real auth
-    const email = document.getElementById('signInEmailInput').value;
-    const password = document.getElementById('signInPasswordInput').value;
-    console.log('Logging in with:', email, password);
+    const email = document.getElementById("signInEmailInput").value;
+    const password = document.getElementById("signInPasswordInput").value;
+    console.log("Logging in with:", email, password);
     // You can add real authentication logic here
   };
 
