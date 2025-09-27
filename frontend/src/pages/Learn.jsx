@@ -3,13 +3,13 @@
 function Learn() { // learn component
 return(
     <>  
-    <div class = "Button">
+    <div class = "Container">
         <button>Beginner</button>
         </div>
-    <div class = "Button">
+    <div class = "Container">
         <button>Intermediate</button>
         </div>
-    <div class = "Button">
+    <div class = "Container">
         <button>Advanced</button>
         </div>
     </>
