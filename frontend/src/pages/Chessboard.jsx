@@ -15,58 +15,74 @@ const Chessboard = () => {
 
   const handleSquareClick = (r, c) => {
     const square = toSquare(r, c); // convert indexes → "e4"
+    const piece = game.get(square);
 
-    if (selected) {
-      // Try to move
+    // Case 1: If there's a selection and clicking on a legal target → move
+    if (selected && legalMoves.includes(square)) {
       const move = game.move({ from: selected, to: square, promotion: "q" });
       if (move) {
         updateBoard();
       }
       setSelected(null);
       setLegalMoves([]);
-    } else {
-      // Select piece only if it's that player's turn
-      const piece = game.get(square);
-      if (piece && piece.color === game.turn()) {
-        setSelected(square);
-        // Get legal moves for highlighting
-        const moves = game.moves({ square, verbose: true }).map((m) => m.to);
-        setLegalMoves(moves);
-      }
+      return;
     }
+
+    // Case 2: Clicking the same square again → deselect
+    if (selected === square) {
+      setSelected(null);
+      setLegalMoves([]);
+      return;
+    }
+
+    // Case 3: Clicking another piece of the same color → reselect
+    if (piece && piece.color === game.turn()) {
+      setSelected(square);
+      const moves = game.moves({ square, verbose: true }).map((m) => m.to);
+      setLegalMoves(moves);
+      return;
+    }
+
+    // Case 4: Clicking elsewhere → clear selection
+    setSelected(null);
+    setLegalMoves([]);
   };
 
   return (
-    <div className="chessboard">
-      {board.map((row, rIndex) => (
-        <div className="board-row" key={rIndex}>
-          {row.map((piece, cIndex) => {
-            const squareName = toSquare(rIndex, cIndex);
-            const isSelected = selected === squareName;
-            const isLegal = legalMoves.includes(squareName);
+    <div className="page-container">
+      <div className="page-content">
+        <div className="chessboard">
+          {board.map((row, rIndex) => (
+            <div className="board-row" key={rIndex}>
+              {row.map((piece, cIndex) => {
+                const squareName = toSquare(rIndex, cIndex);
+                const isSelected = selected === squareName;
+                const isLegal = legalMoves.includes(squareName);
 
-            return (
-              <div
-                key={cIndex}
-                className={`square ${(rIndex + cIndex) % 2 === 0 ? "light" : "dark"} 
-                  ${isSelected ? "selected" : ""}`}
-                onClick={() => handleSquareClick(rIndex, cIndex)}
-              >
-                {piece && (
-                  <span
-                    className={`piece ${piece.color === "w" ? "white" : "black"}`}
+                return (
+                  <div
+                    key={cIndex}
+                    className={`square ${(rIndex + cIndex) % 2 === 0 ? "light" : "dark"} 
+                      ${isSelected ? "selected" : ""}`}
+                    onClick={() => handleSquareClick(rIndex, cIndex)}
                   >
-                    {unicodePiece(piece)}
-                  </span>
-                )}
-                {/* Highlight legal moves with a dot */}
-                {!piece && isLegal && <div className="legal-move"></div>}
-                {piece && isLegal && <div className="legal-capture"></div>}
-              </div>
-            );
-          })}
+                    {piece && (
+                      <span
+                        className={`piece ${piece.color === "w" ? "white" : "black"}`}
+                      >
+                        {unicodePiece(piece)}
+                      </span>
+                    )}
+                    {/* Highlight legal moves */}
+                    {!piece && isLegal && <div className="legal-move"></div>}
+                    {piece && isLegal && <div className="legal-capture"></div>}
+                  </div>
+                );
+              })}
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 };

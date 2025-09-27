@@ -1,18 +1,24 @@
+import React from "react";
+import "../App.css"; // if using shared styles like ButtonElements, etc.
 
-// defines the learn page. This will be exported to App.jsx and rendered when the user navigates to /learn
-function Learn() { // learn component
-return(
-    <>  
-    <div class = "Container">
-        <button>Beginner</button>
+function Learn() {
+  return (
+    <div className="page-container">
+      <div className="page-content">
+        <h2>Select Your Level</h2>
+
+        <div className="ButtonElements">
+          <button>Beginner</button>
         </div>
-    <div class = "Container">
-        <button>Intermediate</button>
+        <div className="ButtonElements">
+          <button>Intermediate</button>
         </div>
-    <div class = "Container">
-        <button>Advanced</button>
+        <div className="ButtonElements">
+          <button>Advanced</button>
         </div>
-    </>
-)
+      </div>
+    </div>
+  );
 }
+
 export default Learn;

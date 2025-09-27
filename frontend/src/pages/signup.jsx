@@ -23,27 +23,31 @@ function Signup() {
   };
 
   return (
-    <div className="CONTAINER">
-      <div className="CARD">
-        <h3>Sign Up</h3>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="input"
-          placeholder="Username"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="input"
-          placeholder="Password"
-        />
-        <button className="signInButton" onClick={handleSignup}>
-          Sign Up
-        </button>
-        {message && <p>{message}</p>}
+    <div className="page-container">
+      <div className="page-content">
+        <div className="CONTAINER">
+          <div className="CARD">
+            <h3>Sign Up</h3>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="input"
+              placeholder="Username"
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="input"
+              placeholder="Password"
+            />
+            <button className="signInButton" onClick={handleSignup}>
+              Sign Up
+            </button>
+            {message && <p>{message}</p>}
+          </div>
+        </div>
       </div>
     </div>
   );
