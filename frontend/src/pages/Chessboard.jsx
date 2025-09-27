@@ -49,36 +49,40 @@ const Chessboard = () => {
   };
 
   return (
-    <div className="chessboard">
-      {board.map((row, rIndex) => (
-        <div className="board-row" key={rIndex}>
-          {row.map((piece, cIndex) => {
-            const squareName = toSquare(rIndex, cIndex);
-            const isSelected = selected === squareName;
-            const isLegal = legalMoves.includes(squareName);
+    <div className="page-container">
+      <div className="page-content">
+        <div className="chessboard">
+          {board.map((row, rIndex) => (
+            <div className="board-row" key={rIndex}>
+              {row.map((piece, cIndex) => {
+                const squareName = toSquare(rIndex, cIndex);
+                const isSelected = selected === squareName;
+                const isLegal = legalMoves.includes(squareName);
 
-            return (
-              <div
-                key={cIndex}
-                className={`square ${(rIndex + cIndex) % 2 === 0 ? "light" : "dark"} 
-                  ${isSelected ? "selected" : ""}`}
-                onClick={() => handleSquareClick(rIndex, cIndex)}
-              >
-                {piece && (
-                  <span
-                    className={`piece ${piece.color === "w" ? "white" : "black"}`}
+                return (
+                  <div
+                    key={cIndex}
+                    className={`square ${(rIndex + cIndex) % 2 === 0 ? "light" : "dark"} 
+                      ${isSelected ? "selected" : ""}`}
+                    onClick={() => handleSquareClick(rIndex, cIndex)}
                   >
-                    {unicodePiece(piece)}
-                  </span>
-                )}
-                {/* Highlight legal moves */}
-                {!piece && isLegal && <div className="legal-move"></div>}
-                {piece && isLegal && <div className="legal-capture"></div>}
-              </div>
-            );
-          })}
+                    {piece && (
+                      <span
+                        className={`piece ${piece.color === "w" ? "white" : "black"}`}
+                      >
+                        {unicodePiece(piece)}
+                      </span>
+                    )}
+                    {/* Highlight legal moves */}
+                    {!piece && isLegal && <div className="legal-move"></div>}
+                    {piece && isLegal && <div className="legal-capture"></div>}
+                  </div>
+                );
+              })}
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 };

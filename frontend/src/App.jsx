@@ -14,42 +14,33 @@ function App() {
         <nav>
           <ul className="nav_links">
             <li className="nav_list">
-              <Link className="nav_a" to="/">
-                Home
-              </Link>
+              <Link className="nav_a" to="/">Home</Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/login">
-                Login
-              </Link>
+              <Link className="nav_a" to="/login">Login</Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/signup">
-                Sign Up
-              </Link>
+              <Link className="nav_a" to="/signup">Sign Up</Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/learn">
-                Learn
-              </Link>
+              <Link className="nav_a" to="/learn">Learn</Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/chessboard">
-                Chessboard
-              </Link>
+              <Link className="nav_a" to="/chessboard">Chessboard</Link>
             </li>
           </ul>
         </nav>
       </header>
 
-      <Routes>
-        {/* Add a real Home component later if needed */}
-        {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/learn" element={<Learn />} />
-        <Route path="/chessboard" element={<Chessboard />} />
-      </Routes>
+      <main className="page-container">
+        <Routes>
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/learn" element={<Learn />} />
+          <Route path="/chessboard" element={<Chessboard />} />
+        </Routes>
+      </main>
     </BrowserRouter>
   );
 }
