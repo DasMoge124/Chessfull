@@ -15,25 +15,37 @@ const Chessboard = () => {
 
   const handleSquareClick = (r, c) => {
     const square = toSquare(r, c); // convert indexes → "e4"
+    const piece = game.get(square);
 
-    if (selected) {
-      // Try to move
+    // Case 1: If there's a selection and clicking on a legal target → move
+    if (selected && legalMoves.includes(square)) {
       const move = game.move({ from: selected, to: square, promotion: "q" });
       if (move) {
         updateBoard();
       }
       setSelected(null);
       setLegalMoves([]);
-    } else {
-      // Select piece only if it's that player's turn
-      const piece = game.get(square);
-      if (piece && piece.color === game.turn()) {
-        setSelected(square);
-        // Get legal moves for highlighting
-        const moves = game.moves({ square, verbose: true }).map((m) => m.to);
-        setLegalMoves(moves);
-      }
+      return;
     }
+
+    // Case 2: Clicking the same square again → deselect
+    if (selected === square) {
+      setSelected(null);
+      setLegalMoves([]);
+      return;
+    }
+
+    // Case 3: Clicking another piece of the same color → reselect
+    if (piece && piece.color === game.turn()) {
+      setSelected(square);
+      const moves = game.moves({ square, verbose: true }).map((m) => m.to);
+      setLegalMoves(moves);
+      return;
+    }
+
+    // Case 4: Clicking elsewhere → clear selection
+    setSelected(null);
+    setLegalMoves([]);
   };
 
   return (
@@ -59,7 +71,7 @@ const Chessboard = () => {
                     {unicodePiece(piece)}
                   </span>
                 )}
-                {/* Highlight legal moves with a dot */}
+                {/* Highlight legal moves */}
                 {!piece && isLegal && <div className="legal-move"></div>}
                 {piece && isLegal && <div className="legal-capture"></div>}
               </div>
