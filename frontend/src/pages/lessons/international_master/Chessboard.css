@@ -1,0 +1,60 @@
+.chessboard {
+  display: inline-block;
+  border: 2px solid black;
+}
+
+.board-row {
+  display: flex;
+}
+
+.square {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  cursor: pointer;
+  position: relative; /* for legal-move overlays */
+}
+
+.light {
+  background-color: #f0d9b5;
+}
+
+.dark {
+  background-color: #b58863;
+}
+
+.selected {
+  outline: 3px solid yellow;
+}
+
+/* White pieces */
+.piece.white {
+  color: #ffffff;
+  text-shadow:
+    0 0 2px #000000,
+    0 0 3px #000000;
+}
+
+/* Black pieces */
+.piece.black {
+  color: #000000;
+}
+
+/* Highlight circles for legal moves */
+.legal-move {
+  width: 20px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+
+.legal-capture {
+  width: 55px;
+  height: 55px;
+  border: 3px solid rgba(255, 0, 0, 0.6);
+  border-radius: 50%;
+  position: absolute;
+}
