@@ -4,6 +4,7 @@ import React from "react";
 import "./App.css";
 import Login from "./pages/login";
 import Signup from "./pages/signup"; // ensure the file exists
+import Learn from "./pages/Learn"; // ensure the file exists
 
 function App() {
   return (
@@ -27,9 +28,9 @@ function App() {
               </Link>
             </li>
             <li className="nav_list">
-              <a className="nav_a" href="learn.html">
+              <Link className="nav_a" to="/learn">
                 Learn
-              </a>
+              </Link>
             </li>
             <li className="nav_list">
               <a className="nav_a" href="/chessfull/connect/">
@@ -45,6 +46,7 @@ function App() {
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/learn" element={<Learn />} />
       </Routes>
     </BrowserRouter>
   );
