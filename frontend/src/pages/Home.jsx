@@ -4,7 +4,7 @@ import "./Home.css";
 
 function Home() {
   return (
-    <div className="page-container">
+    <div className="home-page-container">
       <div className="page-content">
         <h1>Welcome to Chessfull</h1>
         <p>Your journey to mastering chess starts here!</p>
