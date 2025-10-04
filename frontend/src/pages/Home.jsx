@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import chessImage from "./image.png";
+import "./Home.css";
 
 function Home() {
   return (
