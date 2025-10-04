@@ -1,133 +1,146 @@
-import React, { useState } from "react";
+// src/components/Chessboard.jsx
+import React, { useState, useRef, useEffect } from "react";
 import { Chess } from "chess.js";
 import "./Chessboard.css";
 
-// Utility functions (toSquare, unicodePiece) remain the same
-// ... (Your toSquare and unicodePiece functions)
+const files = ["a","b","c","d","e","f","g","h"];
 
-const toSquare = (r, c) => {
-  const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
-  return files[c] + (8 - r);
+// Convert row, col indices to square name (e.g. row 0, col 0 → "a8")
+const toSquare = (row, col) => {
+  return files[col] + (8 - row);
 };
 
-const unicodePiece = (piece) => {
-  const unicodeMap = {
-    pw: "♙",
-    rw: "♖",
-    nw: "♘",
-    bw: "♗",
-    qw: "♕",
-    kw: "♔",
-    pb: "♟",
-    rb: "♜",
-    nb: "♞",
-    bb: "♝",
-    qb: "♛",
-    kb: "♚",
-  };
-  return unicodeMap[piece.type + piece.color] ?? "";
+// Map chess.js piece to the SVG filename (e.g. “wP”, “bK”, etc.)
+const pieceToFilename = (piece) => {
+  if (!piece) return null;
+  const color = piece.color === "w" ? "w" : "b";
+  const type = piece.type.toUpperCase(); // “P”, “N”, “B”, “R”, “Q”, “K”
+  return `${color}${type}.svg`;
 };
 
-const Chessboard = () => {
+const Chessboard = ({ boardWidth = 600 }) => {
   const [game, setGame] = useState(new Chess());
   const [board, setBoard] = useState(game.board());
-  const [dragging, setDragging] = useState(null); // Stores the 'from' square of the piece being dragged
+  const [dragging, setDragging] = useState(null); // source square string
+  const [legalMoves, setLegalMoves] = useState([]);
+  const [lastMove, setLastMove] = useState({ from: null, to: null });
 
-  // Update the board from chess.js
+  // A ref to track piece movement animations
+  const pieceLayerRef = useRef(null);
+
+  // Re-render board state
   const updateBoard = () => {
-    // A simple way to trigger a re-render with the new board state
-    setBoard([...game.board()]);
+    setBoard(game.board());
   };
 
-  // 1. DRAG START: Start dragging a piece
+  // Get legal moves from a source square
+  const computeLegalMoves = (source) => {
+    if (!source) return [];
+    return game.moves({ square: source, verbose: true }).map(m => m.to);
+  };
+
+  // Handle drag start
   const handleDragStart = (e, square) => {
     const piece = game.get(square);
-
-    // Only allow dragging if it's the current player's turn
-    if (piece && piece.color === game.turn()) {
-      setDragging(square); // Set the 'from' square
-
-      // Set a dummy data payload for Firefox/IE compatibility
-      e.dataTransfer.setData("square", square);
-
-      // Optional: Visually indicate a drag by adding a class
-      // document.getElementById(`square-${square}`).classList.add('dragging-source');
-    } else {
-      // Prevent dragging if it's not a piece or not the current player's turn
+    if (!piece || piece.color !== game.turn()) {
       e.preventDefault();
+      return;
     }
+    setDragging(square);
+    setLegalMoves(computeLegalMoves(square));
+    // Visual hints: you could add a CSS class to the source square
   };
 
-  // 2. DRAG OVER: Allow dropping on any square
+  // Handle drag over (allow drop)
   const handleDragOver = (e) => {
-    // Must prevent default to allow a drop
     e.preventDefault();
   };
 
-  // 3. DROP: Attempt to move the piece
-  const handleDrop = (e, targetSquare) => {
+  // Handle drop
+  const handleDrop = (e, target) => {
     e.preventDefault();
+    if (!dragging) return;
 
-    const fromSquare = dragging; // Get the source square
+    const from = dragging;
+    const to = target;
 
-    // Clear dragging state
+    // Clear dragging & legal moves state
     setDragging(null);
-    // document.getElementById(`square-${fromSquare}`).classList.remove('dragging-source');
+    setLegalMoves([]);
 
-    if (!fromSquare) return; // No piece was dragging
-
+    // Try the move
     const move = game.move({
-      from: fromSquare,
-      to: targetSquare,
-      promotion: "q", // Default to Queen promotion
+      from,
+      to,
+      promotion: "q",
     });
-
-    // If the move was legal, update the board state
     if (move) {
+      setLastMove({ from: move.from, to: move.to });
       updateBoard();
+      // Play sound
+      const soundSrc = move.captured ? "/assets/sounds/capture.mp3" : "/assets/sounds/move.mp3";
+      const audio = new Audio(soundSrc);
+      audio.play();
     }
   };
 
-  // Helper to get legal moves for visual feedback (optional but useful)
-  const getLegalMoves = (sourceSquare) => {
-    if (!sourceSquare) return [];
-    return game.moves({ square: sourceSquare, verbose: true }).map((m) => m.to);
+  // Optionally handle drag end (if drop outside)
+  const handleDragEnd = (e) => {
+    setDragging(null);
+    setLegalMoves([]);
   };
-  const legalMoves = getLegalMoves(dragging);
+
+  // For animation: when board updates, animate piece movement
+  // (This is a simplistic approach)
+  useEffect(() => {
+    // You can add a more complex animation logic here
+    // For example, find difference between old and new board and animate that piece
+  }, [board]);
+
+  // Render squares
+  const squareSize = boardWidth / 8;
 
   return (
-    <div className="chessboard">
-      {board.map((row, rIndex) => (
-        <div className="board-row" key={rIndex}>
-          {row.map((piece, cIndex) => {
-            const squareName = toSquare(rIndex, cIndex);
-            const isLegal = legalMoves.includes(squareName);
+    <div
+      className="chessboard-wrapper"
+      style={{ width: boardWidth, height: boardWidth }}
+    >
+      <div className="board-grid">
+        {board.map((rowArr, rowIdx) =>
+          rowArr.map((piece, colIdx) => {
+            const square = toSquare(rowIdx, colIdx);
+            const isLegal = legalMoves.includes(square);
+            const isLast =
+              (lastMove.from === square) || (lastMove.to === square);
 
             return (
               <div
-                key={cIndex}
-                id={`square-${squareName}`} // Added ID for optional styling
-                className={`square ${(rIndex + cIndex) % 2 === 0 ? "light" : "dark"}`}
+                key={square}
+                className={`square ${(rowIdx + colIdx) % 2 === 0 ? "light" : "dark"} ${isLast ? "last-move" : ""}`}
                 onDragOver={handleDragOver}
-                onDrop={(e) => handleDrop(e, squareName)}
+                onDrop={(e) => handleDrop(e, square)}
               >
+                {/* Legal move hint */}
+                {isLegal && !piece && <div className="legal-dot" />}
+                {isLegal && piece && <div className="legal-ring" />}
+
+                {/* Piece rendering */}
                 {piece && (
-                  <span
-                    className={`piece ${piece.color === "w" ? "white" : "black"} ${dragging === squareName ? "hidden" : ""}`}
-                    draggable={true} // MUST be true for dragging
-                    onDragStart={(e) => handleDragStart(e, squareName)}
-                  >
-                    {unicodePiece(piece)}
-                  </span>
+                  <img
+                    src={`/assets/pieces/${pieceToFilename(piece)}`}
+                    alt=""
+                    className={`piece-img ${dragging === square ? "dragging-piece" : ""}`}
+                    draggable={true}
+                    onDragStart={(e) => handleDragStart(e, square)}
+                    onDragEnd={handleDragEnd}
+                    style={{ width: squareSize, height: squareSize }}
+                  />
                 )}
-                {/* Visual Indicators for legal drop target */}
-                {!piece && isLegal && <div className="legal-move-dot"></div>}
-                {piece && isLegal && <div className="legal-capture-ring"></div>}
               </div>
             );
-          })}
-        </div>
-      ))}
+          })
+        )}
+      </div>
     </div>
   );
 };
