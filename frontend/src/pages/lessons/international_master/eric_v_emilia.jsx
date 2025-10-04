@@ -20,20 +20,27 @@ const GAME_LESSON_MOVES = [
     move: "13. ... Qe5",
     player: "Black",
     explanation: "Black plays 13...Qe5 but could have defended better.",
-    fen: "r1b2rk1/p3ppbp/1p4p1/2p1q3/8/2PBBN2/PP3PPP/R2Q1RK1 w - - 0 13",
+    fen: "r1b4r/p3kp1p/2p1pnp1/3pq3/6P1/2P1BQ2/PP1N1P1P/2KR3R w - - 0 16",
   },
   {
     move: "16. Bd4",
     player: "White",
     explanation: "Strong tactical Bd4 hitting queen + rook.",
-    fen: "r3k2r/pp2ppbp/2nn2p1/1Bpnq3/3B4/2P1BQ2/PP1N1PPP/R3K2R b KQkq - 1 16",
+    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
+  },
+  {
+    move: "17. h4",
+    player: "Black",
+    explanation:
+      "The final blow! Threatens queen, rook, knight. Black resigned.",
+    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
   },
   {
     move: "17. h4",
     player: "White",
     explanation:
       "The final blow! Threatens queen, rook, knight. Black resigned.",
-    fen: "r3k2r/pp2ppbp/2nn2p1/1Bpnq3/3B3P/2P1BQ2/PP1N1PPP/R3K2R b KQkq - 1 17",
+    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
   },
 ];
 
