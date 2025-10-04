@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import chessImage from "./image.png";
+import "./Home.css";
 
 function Home() {
   return (
-    <div className="page-container">
+    <div className="home-page-container">
       <div className="page-content">
         <h1>Welcome to Chessfull</h1>
         <p>Your journey to mastering chess starts here!</p>
