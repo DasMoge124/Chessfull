@@ -1,13 +1,23 @@
 .chessboard {
+  width: calc(70px * 8); /* 560px */
+  height: calc(70px * 8); /* 560px */
+  border: 1px solid #333;
+  box-sizing: content-box;
   display: flex;
   flex-wrap: wrap;
-  border: 2px solid #333;
-  box-sizing: content-box;
+  user-select: none;
 }
 
 .square {
   box-sizing: border-box;
   position: relative;
+  border: 2px solid black; /* thick black border between squares */
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .light {
@@ -18,16 +28,19 @@
   background-color: #b58863;
 }
 
-.last-move {
-  background-color: #f6f669 !important;
+.selected {
+  outline: 3px solid yellow;
+  z-index: 5;
 }
 
 .piece-img {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative; /* no absolute to keep centered */
+  width: 90%; /* adjust so piece fits nicely inside square */
+  height: 90%;
+  object-fit: contain;
+  user-select: none;
   pointer-events: auto;
-  z-index: 2;
+  z-index: 3;
 }
 
 .legal-dot {
