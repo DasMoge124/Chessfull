@@ -6,7 +6,7 @@ import { Chess } from "chess.js";
 // =========================================================
 
 const STARTING_FEN =
-  "r1b1k2r/ppq2p1p/2nbpnp1/1B1nN3/3P2P1/2P1B3/PP1N1P1P/R2QK2R w KQkq - 1 12";
+  "r1b1k2r/ppq2p1p/2nbpnp1/1B1pN3/3P2P1/2P1B3/PP1N1P1P/R2QK2R w KQkq - 3 12";
 
 const GAME_LESSON_MOVES = [
   {
