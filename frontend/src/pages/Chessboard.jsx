@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { Chess } from "chess.js";
 import "./Chessboard.css";
 
-// Utility functions (toSquare, unicodePiece) remain the same
-// ... (Your toSquare and unicodePiece functions)
-
 const toSquare = (r, c) => {
   const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
   return files[c] + (8 - r);
@@ -31,69 +28,82 @@ const unicodePiece = (piece) => {
 const Chessboard = () => {
   const [game, setGame] = useState(new Chess());
   const [board, setBoard] = useState(game.board());
-  const [dragging, setDragging] = useState(null); // Stores the 'from' square of the piece being dragged
+  const [dragging, setDragging] = useState(null); // Dragging from-square
+  const [selected, setSelected] = useState(null); // Click-to-move from-square
 
-  // Update the board from chess.js
   const updateBoard = () => {
-    // A simple way to trigger a re-render with the new board state
     setBoard([...game.board()]);
   };
 
-  // 1. DRAG START: Start dragging a piece
+  // --- DRAG HANDLERS ---
   const handleDragStart = (e, square) => {
     const piece = game.get(square);
-
-    // Only allow dragging if it's the current player's turn
     if (piece && piece.color === game.turn()) {
-      setDragging(square); // Set the 'from' square
-
-      // Set a dummy data payload for Firefox/IE compatibility
+      setDragging(square);
       e.dataTransfer.setData("square", square);
-
-      // Optional: Visually indicate a drag by adding a class
-      // document.getElementById(`square-${square}`).classList.add('dragging-source');
     } else {
-      // Prevent dragging if it's not a piece or not the current player's turn
       e.preventDefault();
     }
   };
 
-  // 2. DRAG OVER: Allow dropping on any square
   const handleDragOver = (e) => {
-    // Must prevent default to allow a drop
     e.preventDefault();
   };
 
-  // 3. DROP: Attempt to move the piece
   const handleDrop = (e, targetSquare) => {
     e.preventDefault();
-
-    const fromSquare = dragging; // Get the source square
-
-    // Clear dragging state
+    const fromSquare = dragging;
     setDragging(null);
-    // document.getElementById(`square-${fromSquare}`).classList.remove('dragging-source');
 
-    if (!fromSquare) return; // No piece was dragging
+    if (!fromSquare) return;
 
     const move = game.move({
       from: fromSquare,
       to: targetSquare,
-      promotion: "q", // Default to Queen promotion
+      promotion: "q",
     });
 
-    // If the move was legal, update the board state
     if (move) {
       updateBoard();
+      setSelected(null);
     }
   };
 
-  // Helper to get legal moves for visual feedback (optional but useful)
+  // --- CLICK HANDLER ---
+  const handleClickSquare = (square) => {
+    if (!selected) {
+      // First click: select if piece belongs to current player
+      const piece = game.get(square);
+      if (piece && piece.color === game.turn()) {
+        setSelected(square);
+      }
+    } else {
+      // Second click: attempt to move
+      if (square === selected) {
+        // Deselect if clicked again
+        setSelected(null);
+        return;
+      }
+
+      const move = game.move({
+        from: selected,
+        to: square,
+        promotion: "q",
+      });
+
+      if (move) {
+        updateBoard();
+      }
+      setSelected(null);
+    }
+  };
+
   const getLegalMoves = (sourceSquare) => {
     if (!sourceSquare) return [];
     return game.moves({ square: sourceSquare, verbose: true }).map((m) => m.to);
   };
-  const legalMoves = getLegalMoves(dragging);
+
+  const legalMoves = getLegalMoves(selected || dragging);
 
   return (
     <div className="chessboard">
@@ -102,25 +112,30 @@ const Chessboard = () => {
           {row.map((piece, cIndex) => {
             const squareName = toSquare(rIndex, cIndex);
             const isLegal = legalMoves.includes(squareName);
+            const isSelected = selected === squareName;
 
             return (
               <div
                 key={cIndex}
-                id={`square-${squareName}`} // Added ID for optional styling
-                className={`square ${(rIndex + cIndex) % 2 === 0 ? "light" : "dark"}`}
+                id={`square-${squareName}`}
+                className={`square ${(rIndex + cIndex) % 2 === 0 ? "light" : "dark"} ${
+                  isSelected ? "selected" : ""
+                }`}
+                onClick={() => handleClickSquare(squareName)}
                 onDragOver={handleDragOver}
                 onDrop={(e) => handleDrop(e, squareName)}
               >
                 {piece && (
                   <span
-                    className={`piece ${piece.color === "w" ? "white" : "black"} ${dragging === squareName ? "hidden" : ""}`}
-                    draggable={true} // MUST be true for dragging
+                    className={`piece ${piece.color === "w" ? "white" : "black"} ${
+                      dragging === squareName ? "hidden" : ""
+                    }`}
+                    draggable={true}
                     onDragStart={(e) => handleDragStart(e, squareName)}
                   >
                     {unicodePiece(piece)}
                   </span>
                 )}
-                {/* Visual Indicators for legal drop target */}
                 {!piece && isLegal && <div className="legal-move-dot"></div>}
                 {piece && isLegal && <div className="legal-capture-ring"></div>}
               </div>
