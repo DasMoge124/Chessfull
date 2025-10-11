@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
-import EricVEmilia from "./lessons/international_master/eric_v_emilia.jsx";
 
 function Learn() {
-  const [level, setLevel] = useState(null);
-
-  // If advanced is chosen, show the Eric vs Emilia lesson
-  if (level === "advanced") {
-    return <EricVEmilia />;
-  }
+  const navigate = useNavigate();
 
   return (
     <div className="page-container">
@@ -16,13 +11,13 @@ function Learn() {
         <h2>Select Your Level</h2>
 
         <div className="ButtonElements">
-          <button onClick={() => setLevel("beginner")}>Beginner</button>
+          <button onClick={() => navigate("/learn/beginner")}>Beginner</button>
         </div>
         <div className="ButtonElements">
-          <button onClick={() => setLevel("intermediate")}>Intermediate</button>
+          <button onClick={() => navigate("/learn/intermediate")}>Intermediate</button>
         </div>
         <div className="ButtonElements">
-          <button onClick={() => setLevel("advanced")}>Advanced</button>
+          <button onClick={() => navigate("/learn/advanced")}>Advanced</button>
         </div>
       </div>
     </div>

@@ -2,10 +2,13 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import React from "react";
 
 import "./App.css";
-import Home from "./pages/Home"; // assuming 'Home.js' is in the 'pages' directory
+import Home from "./pages/Home";
 import Login from "./pages/login";
-import Signup from "./pages/signup"; // ensure the file exists
-import Learn from "./pages/Learn"; // ensure the file exists
+import Signup from "./pages/signup";
+import Learn from "./pages/Learn";
+import Beginner from "./pages/Beginner";
+import Intermediate from "./pages/Intermediate";
+import Advanced from "./pages/Advanced";
 import Chessboard from "./pages/Chessboard";
 
 function App() {
@@ -15,29 +18,19 @@ function App() {
         <nav>
           <ul className="nav_links">
             <li className="nav_list">
-              <Link className="nav_a" to="/">
-                Home
-              </Link>
+              <Link className="nav_a" to="/">Home</Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/login">
-                Login
-              </Link>
+              <Link className="nav_a" to="/login">Login</Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/signup">
-                Sign Up
-              </Link>
+              <Link className="nav_a" to="/signup">Sign Up</Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/learn">
-                Learn
-              </Link>
+              <Link className="nav_a" to="/learn">Learn</Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/chessboard">
-                Chessboard
-              </Link>
+              <Link className="nav_a" to="/chessboard">Chessboard</Link>
             </li>
           </ul>
         </nav>
@@ -49,6 +42,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/learn" element={<Learn />} />
+          <Route path="/learn/beginner" element={<Beginner />} />
+          <Route path="/learn/intermediate" element={<Intermediate />} />
+          <Route path="/learn/advanced" element={<Advanced />} />
           <Route path="/chessboard" element={<Chessboard />} />
         </Routes>
       </main>
