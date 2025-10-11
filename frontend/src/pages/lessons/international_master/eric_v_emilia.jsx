@@ -110,7 +110,7 @@ const Chessboard = ({
       updateBoard();
       setLessonMessage({
         type: "error",
-        text: `You played ${move.san}. Expected ${expectedMove}. Try again.`,
+        text: `You played ${move.san}. Try again.`,
         explanation: lesson.hint,
         showHint: true,
         showSolution: false,
