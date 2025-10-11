@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
-import "./GameLesson.css"; // Make sure you create this CSS file or adjust path
+import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
@@ -43,8 +43,7 @@ const GAME_LESSON_MOVES = [
       "The final blow! Threatens queen, rook, knight. Black resigned.",
     fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
     hint: "Push pawns to open lines for attack.",
-    solution:
-      "h4 threatens to open lines and forces Black’s resignation.",
+    solution: "h4 threatens to open lines and forces Black’s resignation.",
   },
 ];
 
@@ -274,7 +273,12 @@ function EricVEmilia() {
       >
         <div
           className="main-title"
-          style={{ fontSize: 36, fontWeight: "bold", width: 320, lineHeight: 1.2 }}
+          style={{
+            fontSize: 36,
+            fontWeight: "bold",
+            width: 320,
+            lineHeight: 1.2,
+          }}
         >
           Eric Rosen vs.
           <br />
@@ -287,8 +291,8 @@ function EricVEmilia() {
           style={{ fontSize: 14, lineHeight: 1.4, width: 400, marginTop: 10 }}
         >
           <p>
-            This is a real game from 2020. You'll follow the moves, get hints, and
-            solutions along the way. Play the moves as White.
+            This is a real game from 2020. You'll follow the moves, get hints,
+            and solutions along the way. Play the moves as White.
           </p>
           <p>Click on a piece, then the square you want to move to.</p>
         </div>
@@ -317,8 +321,8 @@ function EricVEmilia() {
               lessonMessage.type === "error"
                 ? "#8b0000"
                 : lessonMessage.type === "success"
-                ? "#006400"
-                : "#004080",
+                  ? "#006400"
+                  : "#004080",
             borderRadius: 8,
           }}
         >
