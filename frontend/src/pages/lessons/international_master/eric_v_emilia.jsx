@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
+import "./GameLesson.css"; // Make sure you create this CSS file or adjust path
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
@@ -15,18 +16,25 @@ const GAME_LESSON_MOVES = [
     explanation:
       "Developing a piece and winning a tempo by attacking the knight on d6...",
     fen: "r1b2rk1/p1q1ppbp/1p4p1/2p1P3/8/2PBBN2/PP3PPP/R2Q1RK1 b - - 0 12",
+    hint: "Try to put pressure on the knight on d6.",
+    solution: "The correct move is Qf3, attacking the knight and developing.",
   },
   {
     move: "13. dxe5 Qxe5 14. O-O-O Ke7 15. Bxc6 bxc6",
     player: "Black",
     explanation: "Black plays 13...Qe5 but could have defended better.",
     fen: "r1b4r/p3kp1p/2p1pnp1/3pq3/6P1/2P1BQ2/PP1N1P1P/2KR3R w - - 0 16",
+    hint: "Black should look to improve king safety.",
+    solution:
+      "Black played Qe5, but a better defensive move was possible to avoid loss of material.",
   },
   {
     move: "16. Bd4",
     player: "White",
     explanation: "Strong tactical Bd4 hitting queen + rook.",
     fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
+    hint: "Look for pins and attacks on high-value pieces.",
+    solution: "Bd4 is a strong move pinning Black’s queen to the rook.",
   },
   {
     move: "17. h4",
@@ -34,16 +42,13 @@ const GAME_LESSON_MOVES = [
     explanation:
       "The final blow! Threatens queen, rook, knight. Black resigned.",
     fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
-  },
-  {
-    move: "17. h4",
-    player: "White",
-    explanation:
-      "The final blow! Threatens queen, rook, knight. Black resigned.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
+    hint: "Push pawns to open lines for attack.",
+    solution:
+      "h4 threatens to open lines and forces Black’s resignation.",
   },
 ];
 
+// Utility for chessboard squares
 const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
 const toSquare = (row, col) => files[col] + (8 - row);
 
@@ -62,21 +67,17 @@ const Chessboard = ({
   game,
   setGame,
   currentLessonIndex,
-  setCurrentLessonIndex,
   lessonMoves,
   setLessonMessage,
-  setGameEnded,
-  boardWidth = 400,
-  showContinue,
   setShowContinue,
+  showContinue,
 }) => {
   const [board, setBoard] = useState(game.board());
   const [sourceSquare, setSourceSquare] = useState(null);
-  const [dragging, setDragging] = useState(null);
   const [legalMoves, setLegalMoves] = useState([]);
   const [lastMove, setLastMove] = useState({ from: null, to: null });
 
-  const squareSize = boardWidth / 8;
+  const squareSize = 400 / 8;
   const lesson = lessonMoves[currentLessonIndex];
   const isUserTurn = game.turn() === "w" && lesson.player === "White";
 
@@ -104,30 +105,18 @@ const Chessboard = ({
         text: `Correct! ${move.san} was played.`,
         explanation: lesson.explanation,
       });
-      setShowContinue(true); // ✅ Wait for user click
+      setShowContinue(true); // Show next move button
     } else {
       game.undo();
       updateBoard();
       setLessonMessage({
         type: "error",
         text: `You played ${move.san}. Expected ${expectedMove}. Try again.`,
-        explanation: `Hint: ${lesson.explanation.split(".")[0]}`,
+        explanation: lesson.hint,
+        showHint: true,
+        showSolution: false,
       });
-    }
-  };
-
-  const advanceLesson = () => {
-    if (currentLessonIndex < lessonMoves.length - 1) {
-      setCurrentLessonIndex((i) => i + 1);
-      setLessonMessage(null);
-      setShowContinue(false);
-    } else {
-      setGameEnded(true);
-      setLessonMessage({
-        type: "info",
-        text: "Lesson Complete! Black resigned after 17. h4.",
-      });
-      setShowContinue(false);
+      setShowContinue(false); // Hide next move button
     }
   };
 
@@ -156,38 +145,10 @@ const Chessboard = ({
     }
   };
 
-  const handleDragStart = (e, square) => {
-    const piece = game.get(square);
-    if (isUserTurn && piece && piece.color === game.turn()) {
-      setDragging(square);
-      setSourceSquare(square);
-      setLegalMoves(getLegalMoves(square));
-      e.dataTransfer.setData("text/plain", square);
-    } else {
-      e.preventDefault();
-    }
-  };
-
-  const handleDrop = (e, targetSquare) => {
-    e.preventDefault();
-    const fromSquare = dragging;
-    setDragging(null);
-    setSourceSquare(null);
-    setLegalMoves([]);
-    if (fromSquare) executeMove(fromSquare, targetSquare);
-  };
-
-  const handleDragOver = (e) => e.preventDefault();
-  const handleDragEnd = () => {
-    setDragging(null);
-    setSourceSquare(null);
-    setLegalMoves([]);
-  };
-
   return (
     <div
       className="chessboard"
-      style={{ width: boardWidth, height: boardWidth }}
+      style={{ width: 400, height: 400, position: "relative" }}
     >
       {board.map((row, rIdx) =>
         row.map((piece, cIdx) => {
@@ -199,13 +160,10 @@ const Chessboard = ({
           return (
             <div
               key={square}
-              className={`square ${(rIdx + cIdx) % 2 === 0 ? "light" : "dark"}
-                ${isLegal ? "highlight-legal" : ""}
-                ${isSource ? "highlight-source" : ""}
-                ${isLast ? "last-move" : ""}`}
+              className={`square ${(rIdx + cIdx) % 2 === 0 ? "light" : "dark"} ${
+                isLegal ? "highlight-legal" : ""
+              } ${isSource ? "highlight-source" : ""} ${isLast ? "last-move" : ""}`}
               onClick={() => handleSquareClick(square)}
-              onDragOver={handleDragOver}
-              onDrop={(e) => handleDrop(e, square)}
               style={{ width: squareSize, height: squareSize }}
             >
               {isLegal && !piece && <div className="legal-dot" />}
@@ -216,34 +174,12 @@ const Chessboard = ({
                   alt={`${piece.color}${piece.type}`}
                   className="piece-img"
                   draggable={isUserTurn}
-                  onDragStart={(e) => handleDragStart(e, square)}
-                  onDragEnd={handleDragEnd}
                   style={{ width: squareSize, height: squareSize }}
                 />
               )}
             </div>
           );
         })
-      )}
-      {/* ✅ Continue Button */}
-      {showContinue && lesson.player === "White" && (
-        <button
-          onClick={advanceLesson}
-          style={{
-            position: "absolute",
-            bottom: -50,
-            right: 0,
-            backgroundColor: "#007bff",
-            color: "white",
-            border: "none",
-            padding: "10px 20px",
-            borderRadius: "6px",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
-        >
-          Continue →
-        </button>
       )}
     </div>
   );
@@ -259,6 +195,8 @@ function EricVEmilia() {
   const [lessonMessage, setLessonMessage] = useState(null);
   const [gameEnded, setGameEnded] = useState(false);
   const [showContinue, setShowContinue] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+  const [showSolution, setShowSolution] = useState(false);
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
 
@@ -271,23 +209,55 @@ function EricVEmilia() {
       });
       const tempGame = new Chess(lesson.fen);
       setGame(tempGame);
-      setShowContinue(false); // hide button on Black's turn
+      setShowContinue(false);
+      setShowHint(false);
+      setShowSolution(false);
       setTimeout(() => {
-        setCurrentLessonIndex((i) => i + 1);
+        if (currentLessonIndex < GAME_LESSON_MOVES.length - 1)
+          setCurrentLessonIndex((i) => i + 1);
       }, 4000);
     }
   }, [currentLessonIndex, gameEnded, lesson]);
+
+  const advanceLesson = () => {
+    if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
+      setCurrentLessonIndex((i) => i + 1);
+      setLessonMessage(null);
+      setShowContinue(false);
+      setShowHint(false);
+      setShowSolution(false);
+    } else {
+      setGameEnded(true);
+      setLessonMessage({
+        type: "info",
+        text: "Lesson Complete! Black resigned after 17. h4.",
+      });
+    }
+  };
+
+  const toggleHint = () => {
+    setShowHint(!showHint);
+    if (!showHint) setShowSolution(false);
+  };
+
+  const toggleSolution = () => {
+    setShowSolution(!showSolution);
+    if (!showSolution) setShowHint(false);
+  };
 
   return (
     <div
       className="page-container"
       style={{
         margin: 0,
-        padding: 0,
-        height: "100vh",
+        padding: 20,
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        backgroundColor: "#1e1e1e",
+        color: "#eee",
       }}
     >
       {/* HEADER */}
@@ -299,11 +269,12 @@ function EricVEmilia() {
           justifyContent: "space-between",
           alignItems: "flex-start",
           marginTop: 40,
+          marginBottom: 20,
         }}
       >
         <div
           className="main-title"
-          style={{ fontSize: 40, fontWeight: "bold", width: 300 }}
+          style={{ fontSize: 36, fontWeight: "bold", width: 320, lineHeight: 1.2 }}
         >
           Eric Rosen vs.
           <br />
@@ -313,62 +284,150 @@ function EricVEmilia() {
         </div>
         <div
           className="lesson-info-box"
-          style={{ width: 400, paddingLeft: 20 }}
+          style={{ fontSize: 14, lineHeight: 1.4, width: 400, marginTop: 10 }}
         >
-          <p style={{ fontSize: 14, color: "#ccc" }}>
-            Lesson on the game between IM Eric Rosen (White) and WFM Emilia
-            Sprzęczka (Black) in the Accelerated Indian System.
+          <p>
+            This is a real game from 2020. You'll follow the moves, get hints, and
+            solutions along the way. Play the moves as White.
           </p>
-          <p style={{ fontSize: 20, fontWeight: "bold" }}>
-            {gameEnded
-              ? "Game Over"
-              : `Your Turn: Play ${lesson.move.split(".")[0]}. ${lesson.player}'s Move`}
-          </p>
-          {!gameEnded && lesson.player === "White" && (
-            <p style={{ fontSize: 14 }}>
-              Instruction: Click or drag to play{" "}
-              <b>{lesson.move.split(" ")[1]}</b>.
-            </p>
-          )}
-          {lessonMessage && (
-            <div
-              className={`message ${lessonMessage.type}`}
-              style={{
-                backgroundColor:
-                  lessonMessage.type === "info"
-                    ? "#2e4d58"
-                    : lessonMessage.type === "success"
-                      ? "#335539"
-                      : "#571e21",
-                color: "#fff",
-                padding: 10,
-                marginTop: 10,
-                borderRadius: 4,
-              }}
-            >
-              <p>
-                <strong>{lessonMessage.text}</strong>
-              </p>
-              {lessonMessage.explanation && <p>{lessonMessage.explanation}</p>}
-            </div>
-          )}
+          <p>Click on a piece, then the square you want to move to.</p>
         </div>
       </div>
 
       {/* CHESSBOARD */}
-      <div style={{ position: "relative" }}>
-        <Chessboard
-          game={game}
-          setGame={setGame}
-          currentLessonIndex={currentLessonIndex}
-          setCurrentLessonIndex={setCurrentLessonIndex}
-          lessonMoves={GAME_LESSON_MOVES}
-          setLessonMessage={setLessonMessage}
-          setGameEnded={setGameEnded}
-          showContinue={showContinue}
-          setShowContinue={setShowContinue}
-        />
-      </div>
+      <Chessboard
+        game={game}
+        setGame={setGame}
+        currentLessonIndex={currentLessonIndex}
+        lessonMoves={GAME_LESSON_MOVES}
+        setLessonMessage={setLessonMessage}
+        setShowContinue={setShowContinue}
+        showContinue={showContinue}
+      />
+
+      {/* LESSON MESSAGE */}
+      {lessonMessage && (
+        <div
+          className={`lesson-message ${lessonMessage.type}`}
+          style={{
+            marginTop: 20,
+            maxWidth: 700,
+            padding: 12,
+            backgroundColor:
+              lessonMessage.type === "error"
+                ? "#8b0000"
+                : lessonMessage.type === "success"
+                ? "#006400"
+                : "#004080",
+            borderRadius: 8,
+          }}
+        >
+          <strong>{lessonMessage.text}</strong>
+          {lessonMessage.explanation && (
+            <p style={{ marginTop: 8 }}>{lessonMessage.explanation}</p>
+          )}
+        </div>
+      )}
+
+      {/* HINT & SOLUTION BUTTONS */}
+      {lessonMessage?.type === "error" && (
+        <div
+          className="hint-solution-buttons"
+          style={{ marginTop: 10, display: "flex", gap: 10 }}
+        >
+          <button
+            onClick={toggleHint}
+            style={{
+              backgroundColor: showHint ? "#444" : "#222",
+              color: "#eee",
+              padding: "8px 12px",
+              borderRadius: 5,
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            {showHint ? "Hide Hint" : "Show Hint"}
+          </button>
+          <button
+            onClick={toggleSolution}
+            style={{
+              backgroundColor: showSolution ? "#444" : "#222",
+              color: "#eee",
+              padding: "8px 12px",
+              borderRadius: 5,
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            {showSolution ? "Hide Solution" : "Show Solution"}
+          </button>
+        </div>
+      )}
+
+      {/* HINT & SOLUTION TEXT */}
+      {showHint && lessonMessage?.type === "error" && (
+        <div
+          className="hint-text"
+          style={{
+            marginTop: 10,
+            maxWidth: 700,
+            padding: 12,
+            backgroundColor: "#222",
+            borderRadius: 8,
+            fontStyle: "italic",
+          }}
+        >
+          <strong>Hint:</strong> {lesson.hint}
+        </div>
+      )}
+      {showSolution && lessonMessage?.type === "error" && (
+        <div
+          className="solution-text"
+          style={{
+            marginTop: 10,
+            maxWidth: 700,
+            padding: 12,
+            backgroundColor: "#222",
+            borderRadius: 8,
+            fontStyle: "italic",
+          }}
+        >
+          <strong>Solution:</strong> {lesson.solution}
+        </div>
+      )}
+
+      {/* CONTINUE / NEXT MOVE BUTTON */}
+      {showContinue && !gameEnded && (
+        <button
+          onClick={advanceLesson}
+          style={{
+            marginTop: 20,
+            backgroundColor: "#0055cc",
+            color: "#fff",
+            borderRadius: 6,
+            padding: "10px 20px",
+            border: "none",
+            cursor: "pointer",
+            fontSize: 16,
+          }}
+        >
+          Next Move
+        </button>
+      )}
+
+      {/* GAME END MESSAGE */}
+      {gameEnded && (
+        <div
+          style={{
+            marginTop: 30,
+            fontSize: 18,
+            fontWeight: "bold",
+            color: "#aaffaa",
+          }}
+        >
+          Lesson Complete! Black resigned after 17. h4.
+        </div>
+      )}
     </div>
   );
 }
