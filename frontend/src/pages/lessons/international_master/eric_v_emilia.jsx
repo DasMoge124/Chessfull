@@ -338,7 +338,7 @@ function EricVEmilia() {
           <button
             onClick={toggleHint}
             style={{
-              backgroundColor: showHint ? "#444" : "#222",
+              backgroundColor: showHint ? "#646401ff" : "#646401ff",
               color: "#eee",
               padding: "8px 12px",
               borderRadius: 5,
@@ -351,7 +351,7 @@ function EricVEmilia() {
           <button
             onClick={toggleSolution}
             style={{
-              backgroundColor: showSolution ? "#444" : "#222",
+              backgroundColor: showSolution ? "#009b39ff" : "#009b39ff",
               color: "#eee",
               padding: "8px 12px",
               borderRadius: 5,
@@ -372,7 +372,7 @@ function EricVEmilia() {
             marginTop: 10,
             maxWidth: 700,
             padding: 12,
-            backgroundColor: "#222",
+            backgroundColor: "#646401ff",
             borderRadius: 8,
             fontStyle: "italic",
           }}
@@ -387,7 +387,7 @@ function EricVEmilia() {
             marginTop: 10,
             maxWidth: 700,
             padding: 12,
-            backgroundColor: "#222",
+            backgroundColor: "#009b39ff",
             borderRadius: 8,
             fontStyle: "italic",
           }}
