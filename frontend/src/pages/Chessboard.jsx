@@ -16,11 +16,11 @@ const pieceToFilename = (piece) => {
 };
 
 const Chessboard = ({ boardWidth = 560 }) => {
-  const [game] = useState(new Chess());
-  const [board, setBoard] = useState(game.board());
-  const [dragging, setDragging] = useState(null);
-  const [legalMoves, setLegalMoves] = useState([]);
-  const [lastMove, setLastMove] = useState({ from: null, to: null });
+  const [game] = useState(new Chess());// chess.js instance
+  const [board, setBoard] = useState(game.board()); // 2D array of pieces
+  const [dragging, setDragging] = useState(null); // square being dragged
+  const [legalMoves, setLegalMoves] = useState([]); // squares where the selected piece can move
+  const [lastMove, setLastMove] = useState({ from: null, to: null }); // last move made
 
   const squareSize = boardWidth / 8;
 

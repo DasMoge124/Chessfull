@@ -1,0 +1,17 @@
+Psuedo Code for Chessboard.jsx
+We don't need to create objects for this board game as I thought we did.
+I need a function that determines if e is valid or invalid
+handledrop = drop event & square it's being dropped on
+if handledrop isn't legal, pop up screen adressing the problem
+
+e.isLegal = (from, to) => { // check if a move is legal
+    return game.moves({ square: from, verbose: true }).some((m) => m.to === to); // return true if the move is legal
+  }
+
+  if(e isilegal){
+    alert "" is illegal
+  }
+
+
+  THE problem
+  - for some reason every time I add coments to the code. The CSS changes . The chess pieces shift to the right and all the variables effecting the pieces and squares are shown; they must be hidden
