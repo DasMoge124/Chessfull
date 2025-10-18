@@ -37,11 +37,19 @@ const GAME_LESSON_MOVES = [
     solution: "Bd4 is a strong move pinning Black’s queen to the rook.",
   },
   {
-    move: "17. h4",
+    move: "17. Qg5",
     player: "Black",
+    explanation: "Find the final blow",
+    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
+    hint: "Push pawns to open lines for attack.",
+    solution: "h4 threatens to open lines and forces Black’s resignation.",
+  },
+  {
+    move: "18. h4",
+    player: "White",
     explanation:
       "The final blow! Threatens queen, rook, knight. Black resigned.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
+    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2PP/2P2Q2/PP1N1P2/2KR3R b - h3 0 17",
     hint: "Push pawns to open lines for attack.",
     solution: "h4 threatens to open lines and forces Black’s resignation.",
   },
