@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
 
 @RestController
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE,
-        RequestMethod.OPTIONS })
 public class UserController {
 
     private final ArrayList<User> users = new ArrayList<>();
