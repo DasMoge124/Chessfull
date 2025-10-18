@@ -1,0 +1,105 @@
+.chessboard {
+  position: relative;
+  user-select: none;
+  border: 2px solid #333;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+}
+
+.square {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.light {
+  background-color: #f0d9b5;
+}
+
+.dark {
+  background-color: #b58863;
+}
+
+.highlight-legal {
+  background-color: rgba(0, 255, 0, 0.4);
+}
+
+.highlight-source {
+  box-shadow: 0 0 8px 3px #007bff inset;
+}
+
+.last-move {
+  background-color: rgba(255, 255, 0, 0.4);
+}
+
+.legal-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.legal-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 35px;
+  height: 35px;
+  border: 2px solid rgba(0, 255, 0, 0.7);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.piece-img {
+  user-select: none;
+  cursor: pointer;
+}
+
+.lesson-controls {
+  margin-top: 10px;
+}
+
+.lesson-message {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.message-error {
+  color: #d32f2f;
+}
+
+.message-success {
+  color: #388e3c;
+}
+
+.message-info {
+  color: #1976d2;
+}
+
+.btn-hint,
+.btn-solution {
+  cursor: pointer;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn-hint:hover,
+.btn-solution:hover {
+  background-color: #0056b3;
+}
+
+.game-ended-message {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: green;
+}

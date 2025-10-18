@@ -7,43 +7,63 @@ import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 // =========================================================
 
 const STARTING_FEN =
-  "r1b1k2r/ppq2p1p/2nbpnp1/1B1pN3/3P2P1/2P1B3/PP1N1P1P/R2QK2R w KQkq - 3 12";
+  "r2qkbnr/pp1b1ppp/2n1p3/3pP3/3P4/5N2/PP2BPPP/RNBQK2R b KQkq - 0 1";
 
 const GAME_LESSON_MOVES = [
   {
-    move: "12. Qf3",
-    player: "White",
+    move: "8. Ne7",
+    player: "Black",
     explanation:
-      "Developing a piece and winning a tempo by attacking the knight on d6...",
-    fen: "r1b2rk1/p1q1ppbp/1p4p1/2p1P3/8/2PBBN2/PP3PPP/R2Q1RK1 b - - 0 12",
-    hint: "Try to put pressure on the knight on d6.",
-    solution: "The correct move is Qf3, attacking the knight and developing.",
+      "If your answer was Ne7, great job! You are on the right track.",
+    fen: "r2qkb1r/pp1bnppp/2n1p3/3pP3/3P4/5N2/PP2BPPP/RNBQK2R b KQkq - 0 1",
+    hint: "...",
+    solution: "...",
   },
   {
-    move: "13. dxe5 Qxe5 14. O-O-O Ke7 15. Bxc6 bxc6",
-    player: "Black",
-    explanation: "Black plays 13...Qe5 but could have defended better.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3pq3/6P1/2P1BQ2/PP1N1P1P/2KR3R w - - 0 16",
-    hint: "Black should look to improve king safety.",
+    move: "9. Nc3",
+    player: "White",
+    explanation: "Sina then played Nc3.",
+    fen: "r2qkb1r/pp1bnppp/2n1p3/3pP3/3P4/2N2N2/PP2BPPP/R1BQK2R b KQkq - 0 1",
+    hint: "...",
     solution:
-      "Black played Qe5, but a better defensive move was possible to avoid loss of material.",
+      "...",
   },
   {
-    move: "16. Bd4",
-    player: "White",
-    explanation: "Strong tactical Bd4 hitting queen + rook.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
-    hint: "Look for pins and attacks on high-value pieces.",
-    solution: "Bd4 is a strong move pinning Black’s queen to the rook.",
+    move: "10. Nf5",
+    player: "Black",
+    explanation: "Notice how in two moves, the knight controls more squares and is in a more active position. The knight originally was in a seemingly poor position where it cannot develop since the f6 and h6 squares are controlled by the pawn and bishop respectively. However, after the sequence Ne6 Nc3 Nf5, Magnus positioned his knight to a much better square where he could create more attacks.",
+    fen: "r2qkb1r/pp1b1ppp/2n1p3/3pPn2/3P4/2N2N2/PP2BPPP/R1BQK2R b KQkq - 0 1",
+    hint: "...",
+    solution: "...",
   },
   {
-    move: "17. h4",
+    move: "16. Bb4",
     player: "Black",
     explanation:
-      "The final blow! Threatens queen, rook, knight. Black resigned.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
-    hint: "Push pawns to open lines for attack.",
-    solution: "h4 threatens to open lines and forces Black’s resignation.",
+      "If you found Bb4, great job! This defends the Queen on a5 AND creates an absolute pin. Now the bishop on d4 is stuck due to the Bishop and Queen battery. Now Magnus is guaranteed to win material. If you’re wondering, Bxb4 leads to Qxb4+ Qd2 Qxa5, winning a knight.",
+    fen: "r3k2r/pp1b1ppp/2n1p3/q2pPn2/Nb1P3P/5N2/PP1BBPP1/R2QK2R b KQkq - 0 1",
+    hint: "...",
+    solution: "...",
+  },
+
+  {
+    move: "21. Ncxd4 Nxd4 Nxd4 or Nfxd4 Nxd4 Nxd4",
+    player: "Black",
+    explanation:
+      "If you said either of the solutions, great job! Previously, two knights were attacking the pawn on d4 which was defended by only one knight. Since there were more attackers than defenders, Magnus is guaranteed to win a pawn. After Magnus plays Ncxd4 followed by a knight exchange via Nxd4 Nxd4, Magnus is up in material by a pawn.",
+    fen: "r3k2r/pp1b1ppp/2n1p3/q1NpPn2/1b1P3P/5N2/PP1BBPP1/R2QK2R b KQkq - 0 1",
+    hint: "...",
+    solution: "...",
+  },
+
+  {
+    move: "25. Bxd2+ Qxd2 Nc2+ Kd1 Qxd2+ Kxd2 Nxa1",
+    player: "Black",
+    explanation:
+      "Firstly, Magnus played Bxd2+. Since Sina is in check, he has to respond to that move, which he does so by playing Qxd2. Notice how Magnus’s queen creates an absolute pin - consisting of Sina’s king and queen. Magnus takes advantage of it by playing Nc2+, forking the king and rook. Since Sina’s king is in check again, Sina has to move his king, which he does so by playing Kd1. Magnus did not immediately take the rook since it would hang his queen. Instead, Magnus played Qxd2+, exchanging the queens. Since Sina was in check, Sina had to play Kxd2. Since his knight was attacking the rook on a1, Magnus played Nxa1, giving Magnus a materialistic advantage.Notice how every move Magnus played was a check. This is why you need to ALWAYS look for checks: you may eventually win material or force checkmate or get a better position. ",
+    fen: "r3k2r/pN1b1ppp/2n1p3/q2pP3/1b1n3P/8/PP1BBPP1/R2QK2R b KQkq - 0 1",
+    hint: "...",
+    solution: "...",
   },
 ];
 
@@ -64,12 +84,10 @@ const pieceToFilename = (piece) => {
 
 const Chessboard = ({
   game,
-  setGame,
   currentLessonIndex,
   lessonMoves,
   setLessonMessage,
   setShowContinue,
-  showContinue,
 }) => {
   const [board, setBoard] = useState(game.board());
   const [sourceSquare, setSourceSquare] = useState(null);
@@ -200,7 +218,7 @@ function EricVEmilia() {
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
 
   useEffect(() => {
-    if (lesson && lesson.player === "Black" && !gameEnded) {
+    if (lesson && lesson.player === "White" && !gameEnded) {
       setLessonMessage({
         type: "info",
         text: `Black played ${lesson.move.split(" ")[1]}.`,
