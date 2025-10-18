@@ -9,9 +9,9 @@ e.isLegal = (from, to) => { // check if a move is legal
   }
 
   if(e isilegal){
-    alert "" is illegal
+    alert "" is illegal and how it's illegal
   }
 
 
   THE problem
-  - for some reason every time I add coments to the code. The CSS changes . The chess pieces shift to the right and all the variables effecting the pieces and squares are shown; they must be hidden
+  - for some reason every time I add coments to the code, or I add new code. The CSS changes . The chess pieces shift to the right and all the variables effecting the pieces and squares are shown; they must be hidden
