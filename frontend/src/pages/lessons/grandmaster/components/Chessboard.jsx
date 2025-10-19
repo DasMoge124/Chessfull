@@ -35,7 +35,7 @@ const Chessboard = ({
   // 400px / 8 squares = 50px per square
   const squareSize = 400 / 8; // Use 400/8 to match the parent container size
   const lesson = lessonMoves[currentLessonIndex];
-  const isUserTurn = game.turn() === "w" && lesson.player === "White";
+  const isUserTurn = game.turn() === "b" && lesson.player === "Black";
 
   useEffect(() => {
     setBoard([...game.board()]);

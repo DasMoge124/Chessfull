@@ -1,15 +1,13 @@
 import React from "react";
-import EricVEmilia from "./lessons/grandmaster/magnus_v_sina";
+import MagnusVSina from "./lessons/grandmaster/magnus_v_sina";
 
 function Beginner() {
-  return ( 
+  return (
     <div>
       <h1>Beginner Page</h1>;
-      <EricVEmilia />;
+      <MagnusVSina />;
     </div>
-    
   );
-  
 }
 
 export default Beginner;
