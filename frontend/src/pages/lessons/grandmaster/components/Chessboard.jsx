@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Chess } from "chess.js";
-// Removed: import "./GameLesson.css";
-// Removed: import "./Chessboard.css";
 
 // Utility function to convert row/column into algebraic square notation
 const toSquare = (row, col) => {
@@ -27,14 +25,14 @@ const Chessboard = ({
   showContinue,
   clearFeedback,
 }) => {
+  // ERROR FIX: game must be defined when this component mounts, ensured by parent
   const [board, setBoard] = useState(game.board());
   const [sourceSquare, setSourceSquare] = useState(null);
   const [legalMoves, setLegalMoves] = useState([]);
-  const [lastMove, setLastMove] = useState({ from: null, to: null });
+  const [lastMove, setLastMove] = useState({ from: null, to: null }); // 400px / 8 squares = 50px per square
 
-  // 400px / 8 squares = 50px per square
   const squareSize = 400 / 8; // Use 400/8 to match the parent container size
-  const lesson = lessonMoves[currentLessonIndex];
+  const lesson = lessonMoves[currentLessonIndex]; // CRITICAL: Enables user to move Black pieces only when the lesson dictates Black's turn
   const isUserTurn = game.turn() === "b" && lesson.player === "Black";
 
   useEffect(() => {
@@ -51,14 +49,16 @@ const Chessboard = ({
     if (!move) return;
 
     setLastMove({ from: move.from, to: move.to });
-    updateBoard();
+    updateBoard(); // The logic below assumes the PGN format is like "12. Qf3" and extracts 'Qf3'
 
-    // The logic below assumes the PGN format is like "12. Qf3" and extracts 'Qf3'
     const moveParts = lesson.move.split(" ");
     const expectedMove =
       moveParts.length > 1 ? moveParts[1].replace("...", "").trim() : "";
 
-    if (move.san === expectedMove) {
+    if (
+      move.san.toLowerCase().includes(expectedMove.toLowerCase().split(" ")[0])
+    ) {
+      // Simplified check for complex solutions
       setLessonMessage({
         type: "success",
         text: `Correct! ${move.san} was played.`,
@@ -108,8 +108,6 @@ const Chessboard = ({
 
   return (
     <div
-      // Reverted to basic styling that assumes external CSS will handle colors/borders
-      // We keep the grid structure here for layout
       className="chessboard"
       style={{
         width: 400,
@@ -118,11 +116,13 @@ const Chessboard = ({
         display: "grid",
         gridTemplateColumns: `repeat(8, ${squareSize}px)`,
         gridTemplateRows: `repeat(8, ${squareSize}px)`,
-        // Added standard styling fallback for visibility
         border: "3px solid #333",
-        boxShadow: "0 0 10px rgba(0,0,0,0.5)",
+        boxShadow: "0 0 10px rgba(0,0,0,0.5)", // Rotate the board 180deg if Black is the user and it's Black's turn
+        // Note: The Chessboard is rendered top-down (row 0 = rank 8)
+        transform: isUserTurn ? "rotate(180deg)" : "none",
       }}
     >
+           {" "}
       {board.map((row, rIdx) =>
         row.map((piece, cIdx) => {
           const square = toSquare(rIdx, cIdx);
@@ -131,16 +131,15 @@ const Chessboard = ({
           const isLast = square === lastMove.from || square === lastMove.to;
           const isLight = (rIdx + cIdx) % 2 === 0;
 
-          // Reverted to original class names for square color and highlighting
           const squareClasses = isLight ? "light" : "dark";
 
           return (
             <div
               key={square}
               className={`square ${squareClasses} ${isLegal ? "highlight-legal" : ""} 
-                          ${isSource ? "highlight-source" : ""} ${isLast ? "last-move" : ""}
-                          ${isUserTurn ? "cursor-pointer" : "cursor-default"}
-                          `}
+                          ${isSource ? "highlight-source" : ""} ${isLast ? "last-move" : ""}
+                          ${isUserTurn ? "cursor-pointer" : "cursor-default"}
+                          `}
               onClick={() => handleSquareClick(square)}
               style={{
                 width: squareSize,
@@ -149,9 +148,7 @@ const Chessboard = ({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                // Inline styles for base colors and highlight fallbacks
                 backgroundColor: isLight ? "#f0d9b5" : "#b58863",
-                // Overrides for highlights
                 ...(isLast && {
                   backgroundColor: isLight ? "#e7e7a3" : "#a3c26b",
                 }),
@@ -159,9 +156,13 @@ const Chessboard = ({
                   border: "3px solid #3d80e8",
                   boxSizing: "border-box",
                 }),
+                // Counter-rotate the piece so it appears upright
+                transform: isUserTurn ? "rotate(180deg)" : "none",
               }}
             >
-              {/* Highlight for legal moves (dot on empty square) */}
+                           {" "}
+              {/* Highlight for legal moves (dot on empty square) */}           
+               {" "}
               {isLegal && !piece && (
                 <div
                   style={{
@@ -173,8 +174,9 @@ const Chessboard = ({
                   }}
                 />
               )}
-
-              {/* Highlight for legal moves (ring on occupied square) */}
+                           {" "}
+              {/* Highlight for legal moves (ring on occupied square) */}       
+                   {" "}
               {isLegal && piece && (
                 <div
                   style={{
@@ -185,8 +187,7 @@ const Chessboard = ({
                   }}
                 />
               )}
-
-              {/* Piece Image */}
+                            {/* Piece Image */}             {" "}
               {piece && (
                 <img
                   src={`/assets/pieces/${pieceToFilename(piece)}`}
@@ -199,10 +200,12 @@ const Chessboard = ({
                   draggable={isUserTurn}
                 />
               )}
+                         {" "}
             </div>
           );
         })
       )}
+         {" "}
     </div>
   );
 };
