@@ -10,9 +10,10 @@ import Beginner from "./pages/Beginner";
 import Intermediate from "./pages/Intermediate";
 import Advanced from "./pages/Advanced";
 import Chessboard from "./pages/Chessboard";
-import MagnusVSina from "./pages/lessons/grandmaster/magnus_v_sina";
-import EricVEmilia from "./pages/lessons/international_master/eric_v_emilia";
+import MagnusVSina from "./pages/lessons/black/magnus_v_sina";
+import EricVEmilia from "./pages/lessons/white/eric_v_emilia";
 import Lessons from "./pages/Lessons";
+import MagnusVRainn from "./pages/lessons/white/Magnus_v_RainnWilson";
 
 function App() {
   return (
@@ -63,6 +64,10 @@ function App() {
           <Route
             path="/lessons/international_master/EricVEmilia"
             element={<EricVEmilia />}
+          />
+          <Route
+            path="/lessons/grandmaster/MagnusVRainn"
+            element={<MagnusVRainn />}
           />
           <Route path="/grandmaster/MagnusVSina" element={<MagnusVSina />} />
         </Routes>

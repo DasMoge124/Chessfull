@@ -24,6 +24,11 @@ function Lessons() {
             IM Eric Rosen vs. WFM Emilia Sprzęczka
           </button>
         </div>
+        <div className="ButtonElements">
+          <button onClick={() => navigate("/lessons/grandmaster/MagnusVRainn")}>
+            GM Magnus Carlsen vs Rainn Wilson
+          </button>
+        </div>
         <button onClick={completeLesson}>Complete Lesson</button>
         {lessonCompleted && (
           <div>

@@ -1,59 +1,79 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
+import Chessboard from "./components/Chessboard"; // Ensure path is correct
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
 
 const STARTING_FEN =
-  "rnbqk1nr/ppp1ppbp/3p2p1/8/2BPP3/5N2/PPP2PPP/RNBQK2R w KQkq - 0 1"; //1
+  "rn1qk1nr/ppp1ppbp/3p2p1/8/2BPP1b1/5N2/PPP2PPP/RNBQK2R w KQkq - 2 5"; //1
 
 const GAME_LESSON_MOVES = [
   {
-    move: "5. Bf7+", 
+    move: "5. Bxf7+",
     player: "White",
-    explanation: 
+    explanation:
       "Rainn made a vital mistake by playing Bg4. At first, this may seem like an annoying pin that White must respond to immediately by playing a move like h3. However, Magnus found it as an opportunity to temporarily be up in material and potentially create a threat that could win even more material.",
     fen: "rn1qk1nr/ppp1ppbp/3p2p1/8/2BPP1b1/5N2/PPP2PPP/RNBQK2R b KQkq - 0 1", // 2
     hint: "",
-    solution: "The correct move is Bf7, attacking the pawn and creating a checkmate.",
+    solution:
+      "The correct move is Bf7, attacking the pawn and creating a checkmate.",
   },
   {
-    move: "2. Kf7", // current scneario before
+    move: "5... Kxf7", // current scneario before
     player: "Black",
     explanation: "Black plays 2...Kf7 killing the Magnus's bishop.", // describes current situation
-    fen: "rnbq2nr/ppp1pkbp/3p2p1/8/3PP3/5N2/PPP2PPP/RNBQK2R w KQha - 0 1",
+    fen: "rn1q2nr/ppp1pkbp/3p2p1/8/3PP1b1/5N2/PPP2PPP/RNBQK2R w KQ - 0 6",
     hint: "",
-    solution:
-      "Black played Kf7 to capture the bishop on f7.",
+    solution: "Black played Kf7 to capture the bishop on f7.",
   },
   {
-    move: "3. Ng5",
+    move: "3. Ng5+",
     player: "White",
     explanation: "Hmmm? What should we do? move the knight from f3 to g5",
     fen: "rnbq2nr/ppp1pkbp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQha - 0 1",
     hint: "",
-    solution: "Perfect. Now that you've moved the knight to g5 resulting in a checkmate",
+    solution:
+      "Perfect. Now that you've moved the knight to g5 resulting in a checkmate",
   },
   {
     move: "4. Ke8",
     player: "Black",
     explanation:
       "The king is scared. He moves back to e8 after your knigth threatened him",
+    fen: "rn1qk1nr/ppp1p1bp/3p2p1/6N1/3PP1b1/8/PPP2PPP/RNBQK2R w KQ - 2 7",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "4. Qxg4",
+    player: "White",
+    explanation:
+      "This may seem confusing at first but let’s go through this step by step. After Bxf7+, the f7 square eventually weakens, hindering Rainn’s king’s safety. Additionally, since Rainn’s king is in check, Rainn must move his king away. If Rainn plays either Kd7 or Kf8, Magnus could simply retreat his bishop to a square like b3 or c4 and potentially kick the black bishop on g4 and create more attacks on the kingside.  Now Magnus is up a pawn, and Rainn’s king's safety worsened. Additionally, most of Rainn’s pieces are passive compared to White’s pieces.",
     fen: "rnbqk1nr/ppp1p1bp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQkq - 0 1",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
   },
   {
-    move: "4. Qg4",
-    player: "White",
+    move: "5. Nh6",
+    player: "Black",
     explanation:
-      "The king is scared. He moves back to e8 after your knigth threatened him",
+      " Later in the game,Rainn played Nh6, attackingthe queen.Howdid Magnus respond to it?",
+    fen: "rn1qk2r/ppp1p1bp/3p2pn/6N1/3PP1Q1/8/PPP2PPP/RNB1K2R w KQ - 1 8",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "4. Qxg4",
+    player: "Black",
+    explanation:
+      " Later in the game,Rainn played Nh6, attackingthequeen.Howdid Magnus respond to it?",
     fen: "rnbqk1nr/ppp1p1bp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQkq - 0 1",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
-  }
+  },
 ];
 
 // Utility for chessboard squares
@@ -70,7 +90,7 @@ const pieceToFilename = (piece) => {
 // =========================================================
 // 2. CHESSBOARD COMPONENT (Updated for Click-to-Move)
 // =========================================================
-
+/*
 const Chessboard = ({
   game,
   setGame,
@@ -192,13 +212,13 @@ const Chessboard = ({
     </div>
   );
 };
-
+*/
 // =========================================================
 // 3. MAIN LESSON COMPONENT
 // =========================================================
 
-function EricVEmilia() {
-  const [game, setGame] = useState(new Chess(STARTING_FEN)); 
+function MagnusVRainn() {
+  const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
   const [gameEnded, setGameEnded] = useState(false);
@@ -223,7 +243,7 @@ function EricVEmilia() {
       setTimeout(() => {
         if (currentLessonIndex < GAME_LESSON_MOVES.length - 1)
           setCurrentLessonIndex((i) => i + 1);
-      }, 4000);
+      });
     }
   }, [currentLessonIndex, gameEnded, lesson]);
 
@@ -445,4 +465,4 @@ function EricVEmilia() {
   );
 }
 
-export default EricVEmilia;
+export default MagnusVRainn;

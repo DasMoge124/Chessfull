@@ -1,5 +1,5 @@
 import React from "react";
-import MagnusVSina from "./lessons/grandmaster/magnus_v_sina";
+import MagnusVSina from "./lessons/black/magnus_v_sina";
 
 function Beginner() {
   return (
