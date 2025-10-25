@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
+import Chessboard from "./components/Chessboard";
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
@@ -37,11 +38,19 @@ const GAME_LESSON_MOVES = [
     solution: "Bd4 is a strong move pinning Black’s queen to the rook.",
   },
   {
-    move: "17. h4",
+    move: "16. Qg5",
     player: "Black",
+    explanation: "Find the final blow",
+    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
+    hint: "Push pawns to open lines for attack.",
+    solution: "h4 threatens to open lines and forces Black’s resignation.",
+  },
+  {
+    move: "18. h4",
+    player: "White",
     explanation:
       "The final blow! Threatens queen, rook, knight. Black resigned.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
+    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2PP/2P2Q2/PP1N1P2/2KR3R b - h3 0 17",
     hint: "Push pawns to open lines for attack.",
     solution: "h4 threatens to open lines and forces Black’s resignation.",
   },
@@ -61,7 +70,7 @@ const pieceToFilename = (piece) => {
 // =========================================================
 // 2. CHESSBOARD COMPONENT (Updated for Click-to-Move)
 // =========================================================
-
+/*
 const Chessboard = ({
   game,
   setGame,
@@ -183,7 +192,7 @@ const Chessboard = ({
     </div>
   );
 };
-
+*/
 // =========================================================
 // 3. MAIN LESSON COMPONENT
 // =========================================================
@@ -196,6 +205,10 @@ function EricVEmilia() {
   const [showContinue, setShowContinue] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
+  // Feedback box state
+  const [feedback, setFeedback] = useState(
+    "Could have defended the knight better<br />Loses tempo<br />Should have moved Bd7"
+  );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
 
@@ -211,10 +224,10 @@ function EricVEmilia() {
       setShowContinue(false);
       setShowHint(false);
       setShowSolution(false);
-      setTimeout(() => {
-        if (currentLessonIndex < GAME_LESSON_MOVES.length - 1)
-          setCurrentLessonIndex((i) => i + 1);
-      }, 4000);
+      // Instantly advance to next move (no cooldown)
+      if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
+        setCurrentLessonIndex((i) => i + 1);
+      }
     }
   }, [currentLessonIndex, gameEnded, lesson]);
 
@@ -235,12 +248,12 @@ function EricVEmilia() {
   };
 
   const toggleHint = () => {
-    setShowHint(!showHint);
+    setShowHint((prev) => !prev);
     if (!showHint) setShowSolution(false);
   };
 
   const toggleSolution = () => {
-    setShowSolution(!showSolution);
+    setShowSolution((prev) => !prev);
     if (!showSolution) setShowHint(false);
   };
 
@@ -307,7 +320,27 @@ function EricVEmilia() {
         setLessonMessage={setLessonMessage}
         setShowContinue={setShowContinue}
         showContinue={showContinue}
+        clearFeedback={() => setFeedback("")}
       />
+
+      {/* FEEDBACK BOX (blue, temporary) */}
+      {feedback && (
+        <div
+          className="feedback-box"
+          style={{
+            background: "#1976d2",
+            color: "#fff",
+            padding: "16px",
+            borderRadius: "8px",
+            marginTop: "16px",
+            fontSize: "1.1em",
+            boxShadow: "0 2px 8px rgba(25, 118, 210, 0.15)",
+            maxWidth: "400px",
+            textAlign: "left",
+          }}
+          dangerouslySetInnerHTML={{ __html: feedback }}
+        />
+      )}
 
       {/* LESSON MESSAGE */}
       {lessonMessage && (

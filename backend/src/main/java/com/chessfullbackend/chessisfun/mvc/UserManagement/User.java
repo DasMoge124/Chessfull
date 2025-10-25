@@ -3,6 +3,8 @@ package com.chessfullbackend.chessisfun.mvc.UserManagement;
 public class User {
     private String username;
     private String password;
+    private String email;
+    private String status;
 
     // Default constructor (needed for JSON deserialization)
     public User() {
@@ -23,6 +25,10 @@ public class User {
         return password;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     // Setters (needed for JSON deserialization)
     public void setUsername(String username) {
         this.username = username;
@@ -31,4 +37,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

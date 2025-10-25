@@ -14,10 +14,15 @@ function Learn() {
           <button onClick={() => navigate("/learn/beginner")}>Beginner</button>
         </div>
         <div className="ButtonElements">
-          <button onClick={() => navigate("/learn/intermediate")}>Intermediate</button>
+          <button onClick={() => navigate("/learn/intermediate")}>
+            Intermediate
+          </button>
         </div>
         <div className="ButtonElements">
           <button onClick={() => navigate("/learn/advanced")}>Advanced</button>
+        </div>
+        <div className="ButtonElements">
+          <button onClick={() => navigate("/chessboard")}>Chessboard</button>
         </div>
       </div>
     </div>

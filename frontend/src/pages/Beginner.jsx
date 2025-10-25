@@ -1,7 +1,13 @@
 import React from "react";
+import MagnusVSina from "./lessons/grandmaster/magnus_v_sina";
 
 function Beginner() {
-  return <h1>Beginner Page</h1>;
+  return (
+    <div>
+      <h1>Beginner Page</h1>;
+      <MagnusVSina />;
+    </div>
+  );
 }
 
 export default Beginner;
