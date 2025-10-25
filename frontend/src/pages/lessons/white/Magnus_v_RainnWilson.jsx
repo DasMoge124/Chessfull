@@ -60,21 +60,49 @@ const GAME_LESSON_MOVES = [
     move: "5. Nh6",
     player: "Black",
     explanation:
-      " Later in the game,Rainn played Nh6, attackingthe queen.Howdid Magnus respond to it?",
+      " Later in the game,Rainn played Nh6, attacking the queen.How did Magnus respond to it?",
     fen: "rn1qk2r/ppp1p1bp/3p2pn/6N1/3PP1Q1/8/PPP2PPP/RNB1K2R w KQ - 1 8",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
   },
   {
-    move: "4. Qxg4",
-    player: "Black",
+    move: "6. Qh3",
+    player: "White",
     explanation:
-      " Later in the game,Rainn played Nh6, attackingthequeen.Howdid Magnus respond to it?",
+      " Later in the game,Rainn played Nh6, attacking the queen.Howdid Magnus respond to it?",
     fen: "rnbqk1nr/ppp1p1bp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQkq - 0 1",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
   },
+  {
+    move: "7. Nd7",
+    player: "Black",
+    explanation:
+      " Later in the game,Rainn played Nh6, attackingthequeen.Howdid Magnus respond to it?",
+    fen: "r2qk2r/pppnp1bp/3p2pn/6N1/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 3 9",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "8. Ne6",
+    player: "White",
+    explanation:
+      "After Ne6, Magnus managed to fork both Rainn’s queen and bishop.",
+    fen: "r2qk2r/pppnp1bp/3p2pn/6N1/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 3 9",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "7. Nd7",
+    player: "Black",
+    explanation:
+      " Later in the game,Rainn played Nh6, attackingthequeen.Howdid Magnus respond to it?",
+    fen: "r1q1k2r/pppnp1bp/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 5 10",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
 ];
+//r1q1k2r/pppnp1bp/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 5 10
 
 // Utility for chessboard squares
 const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
@@ -225,6 +253,10 @@ function MagnusVRainn() {
   const [showContinue, setShowContinue] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
+  // Feedback box state
+  const [feedback, setFeedback] = useState(
+    "The game starts with the sequence: 1. e4 g6 2. Nf3 d6 3. d4 Bg7 4. Bc4 <br>Both sides are doing well as of right now and the position is essentially even. However, Magnus does have a slightly better advantage since both the e-pawn and d-pawn are controlling the center with the help of the light-squared bishop  - which is also eyeing the f7 square - and the knight on f3; Magnus can potentially castle early, activate his knight on b1 and activate his dark-squared bishop. On the other hand, Rainn does have a fianchettoed bishop on g7 and has advanced his d-pawn to d6. Its really important to activate most of your pieces and control the center in the opening phase since it will be easier to attack your opponent</br>"
+  );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
 
@@ -240,10 +272,10 @@ function MagnusVRainn() {
       setShowContinue(false);
       setShowHint(false);
       setShowSolution(false);
-      setTimeout(() => {
-        if (currentLessonIndex < GAME_LESSON_MOVES.length - 1)
-          setCurrentLessonIndex((i) => i + 1);
-      });
+      // Instantly advance to next move (no cooldown)
+      if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
+        setCurrentLessonIndex((i) => i + 1);
+      }
     }
   }, [currentLessonIndex, gameEnded, lesson]);
 
@@ -264,12 +296,12 @@ function MagnusVRainn() {
   };
 
   const toggleHint = () => {
-    setShowHint(!showHint);
+    setShowHint((prev) => !prev);
     if (!showHint) setShowSolution(false);
   };
 
   const toggleSolution = () => {
-    setShowSolution(!showSolution);
+    setShowSolution((prev) => !prev);
     if (!showSolution) setShowHint(false);
   };
 
@@ -309,9 +341,9 @@ function MagnusVRainn() {
             lineHeight: 1.2,
           }}
         >
-          Magnus vs.
+          Eric Rosen vs.
           <br />
-          Rainn Wilson
+          Emilia Sprzęczka
           <br />
           (Interactive Lesson)
         </div>
@@ -336,7 +368,27 @@ function MagnusVRainn() {
         setLessonMessage={setLessonMessage}
         setShowContinue={setShowContinue}
         showContinue={showContinue}
+        clearFeedback={() => setFeedback("")}
       />
+
+      {/* FEEDBACK BOX (blue, temporary) */}
+      {feedback && (
+        <div
+          className="feedback-box"
+          style={{
+            background: "#1976d2",
+            color: "#fff",
+            padding: "16px",
+            borderRadius: "8px",
+            marginTop: "16px",
+            fontSize: "1.1em",
+            boxShadow: "0 2px 8px rgba(25, 118, 210, 0.15)",
+            maxWidth: "400px",
+            textAlign: "left",
+          }}
+          dangerouslySetInnerHTML={{ __html: feedback }}
+        />
+      )}
 
       {/* LESSON MESSAGE */}
       {lessonMessage && (

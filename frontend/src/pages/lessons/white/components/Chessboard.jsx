@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Chess } from "chess.js";
-// Removed: import "./GameLesson.css";
-// Removed: import "./Chessboard.css";
+// Assuming you will re-add your CSS files here:
+// import "./GameLesson.css";
+import "./Chessboard.css";
 
 // Utility function to convert row/column into algebraic square notation
 const toSquare = (row, col) => {
@@ -33,7 +34,7 @@ const Chessboard = ({
   const [lastMove, setLastMove] = useState({ from: null, to: null });
 
   // 400px / 8 squares = 50px per square
-  const squareSize = 400 / 8; // Use 400/8 to match the parent container size
+  const squareSize = 400 / 8;
   const lesson = lessonMoves[currentLessonIndex];
   const isUserTurn = game.turn() === "w" && lesson.player === "White";
 
@@ -108,8 +109,6 @@ const Chessboard = ({
 
   return (
     <div
-      // Reverted to basic styling that assumes external CSS will handle colors/borders
-      // We keep the grid structure here for layout
       className="chessboard"
       style={{
         width: 400,
@@ -118,9 +117,7 @@ const Chessboard = ({
         display: "grid",
         gridTemplateColumns: `repeat(8, ${squareSize}px)`,
         gridTemplateRows: `repeat(8, ${squareSize}px)`,
-        // Added standard styling fallback for visibility
-        border: "3px solid #333",
-        boxShadow: "0 0 10px rgba(0,0,0,0.5)",
+        // Removed original inline style fallbacks to rely on CSS file
       }}
     >
       {board.map((row, rIdx) =>
@@ -131,17 +128,28 @@ const Chessboard = ({
           const isLast = square === lastMove.from || square === lastMove.to;
           const isLight = (rIdx + cIdx) % 2 === 0;
 
-          // Reverted to original class names for square color and highlighting
+          // Variables for file and rank notation
+          const rank = 8 - rIdx;
+          const file = ["a", "b", "c", "d", "e", "f", "g", "h"][cIdx];
+
           const squareClasses = isLight ? "light" : "dark";
 
           return (
             <div
               key={square}
               className={`square ${squareClasses} ${isLegal ? "highlight-legal" : ""} 
-                          ${isSource ? "highlight-source" : ""} ${isLast ? "last-move" : ""}
-                          ${isUserTurn ? "cursor-pointer" : "cursor-default"}
-                          `}
+                        ${isSource ? "highlight-source" : ""} ${isLast ? "last-move" : ""}
+                        ${isUserTurn ? "cursor-pointer" : "cursor-default"}
+                        `}
               onClick={() => handleSquareClick(square)}
+              // --- FILE AND RANK NOTATION DATA ATTRIBUTES ---
+              {...(cIdx === 7 && {
+                "data-rank": rank,
+              })} /* Right edge (h-file) */
+              {...(rIdx === 7 && {
+                "data-file": file,
+              })} /* Bottom edge (1st rank) */
+              // --- END NOTATION ---
               style={{
                 width: squareSize,
                 height: squareSize,
@@ -149,12 +157,8 @@ const Chessboard = ({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                // Inline styles for base colors and highlight fallbacks
-                backgroundColor: isLight ? "#f0d9b5" : "#b58863",
-                // Overrides for highlights
-                ...(isLast && {
-                  backgroundColor: isLight ? "#e7e7a3" : "#a3c26b",
-                }),
+                // Removed inline background color fallbacks to rely on CSS file
+                // Kept source highlight fallback for robust click indication
                 ...(isSource && {
                   border: "3px solid #3d80e8",
                   boxSizing: "border-box",
@@ -164,25 +168,16 @@ const Chessboard = ({
               {/* Highlight for legal moves (dot on empty square) */}
               {isLegal && !piece && (
                 <div
-                  style={{
-                    position: "absolute",
-                    width: "33%",
-                    height: "33%",
-                    backgroundColor: "rgba(50, 50, 50, 0.4)",
-                    borderRadius: "50%",
-                  }}
+                  // Using class name from your CSS for dot highlight
+                  className="legal-dot"
                 />
               )}
 
               {/* Highlight for legal moves (ring on occupied square) */}
               {isLegal && piece && (
                 <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    boxShadow: "inset 0 0 0 4px rgba(50, 50, 50, 0.4)",
-                    borderRadius: "50%",
-                  }}
+                  // Using class name from your CSS for ring highlight
+                  className="legal-ring"
                 />
               )}
 
@@ -191,9 +186,11 @@ const Chessboard = ({
                 <img
                   src={`/assets/pieces/${pieceToFilename(piece)}`}
                   alt={`${piece.color}${piece.type}`}
+                  // Using class name from your CSS for piece image
+                  className="piece-img"
                   style={{
-                    width: "100%",
-                    height: "100%",
+                    width: "100%", // Will be overridden by CSS if needed
+                    height: "100%", // Will be overridden by CSS if needed
                     objectFit: "contain",
                   }}
                   draggable={isUserTurn}
