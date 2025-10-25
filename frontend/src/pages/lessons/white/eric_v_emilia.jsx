@@ -16,9 +16,9 @@ const GAME_LESSON_MOVES = [
     move: "12. Qf3",
     player: "White",
     explanation:
-      "Developing a piece and winning a tempo by attacking the knight on d6...",
+      "Developing a piece and winning a tempo by attacking the knight on f6...",
     fen: "r1b2rk1/p1q1ppbp/1p4p1/2p1P3/8/2PBBN2/PP3PPP/R2Q1RK1 b - - 0 12",
-    hint: "Try to put pressure on the knight on d6.",
+    hint: "Try to put pressure on the knight on f6.",
     solution: "The correct move is Qf3, attacking the knight and developing.",
   },
   {
