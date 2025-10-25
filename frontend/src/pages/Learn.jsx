@@ -22,7 +22,7 @@ function Learn() {
           <button onClick={() => navigate("/learn/advanced")}>Advanced</button>
         </div>
         <div className="ButtonElements">
-          <button onClick={() => navigate("/chessboard")}>Chessboard</button>
+          <button onClick={() => navigate("/lessons")}>Lessons</button>
         </div>
       </div>
     </div>

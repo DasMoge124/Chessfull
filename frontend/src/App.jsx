@@ -10,6 +10,9 @@ import Beginner from "./pages/Beginner";
 import Intermediate from "./pages/Intermediate";
 import Advanced from "./pages/Advanced";
 import Chessboard from "./pages/Chessboard";
+import MagnusVSina from "./pages/lessons/grandmaster/magnus_v_sina";
+import EricVEmilia from "./pages/lessons/international_master/eric_v_emilia";
+import Lessons from "./pages/Lessons";
 
 function App() {
   return (
@@ -18,19 +21,29 @@ function App() {
         <nav>
           <ul className="nav_links">
             <li className="nav_list">
-              <Link className="nav_a" to="/">Home</Link>
+              <Link className="nav_a" to="/">
+                Home
+              </Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/login">Login</Link>
+              <Link className="nav_a" to="/login">
+                Login
+              </Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/signup">Sign Up</Link>
+              <Link className="nav_a" to="/signup">
+                Sign Up
+              </Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/learn">Learn</Link>
+              <Link className="nav_a" to="/learn">
+                Learn
+              </Link>
             </li>
             <li className="nav_list">
-              <Link className="nav_a" to="/chessboard">Chessboard</Link>
+              <Link className="nav_a" to="/chessboard">
+                Chessboard
+              </Link>
             </li>
           </ul>
         </nav>
@@ -45,7 +58,13 @@ function App() {
           <Route path="/learn/beginner" element={<Beginner />} />
           <Route path="/learn/intermediate" element={<Intermediate />} />
           <Route path="/learn/advanced" element={<Advanced />} />
+          <Route path="/lessons" element={<Lessons />} />
           <Route path="/chessboard" element={<Chessboard />} />
+          <Route
+            path="/lessons/international_master/EricVEmilia"
+            element={<EricVEmilia />}
+          />
+          <Route path="/grandmaster/MagnusVSina" element={<MagnusVSina />} />
         </Routes>
       </main>
     </BrowserRouter>
