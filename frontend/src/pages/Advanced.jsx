@@ -1,5 +1,5 @@
 import React from "react";
-import EricVEmilia from "./lessons/international_master/Magnus_v_RainnWilson";
+import EricVEmilia from "./lessons/international_master/eric_v_emilia";
 
 function Advanced() {
   return (
