@@ -15,7 +15,7 @@ const GAME_LESSON_MOVES = [
     move: "5. Bxf7+",
     player: "White",
     explanation:
-      "Rainn made a vital mistake by playing Bg4. At first, this may seem like an annoying pin that White must respond to immediately by playing a move like h3. However, Magnus found it as an opportunity to temporarily be up in material and potentially create a threat that could win even more material.",
+      "Congrats. You are on the right track. Lets continue to the next move.",
     fen: "rn1qk1nr/ppp1ppbp/3p2p1/8/2BPP1b1/5N2/PPP2PPP/RNBQK2R b KQkq - 0 1", // 2
     hint: "",
     solution:
@@ -32,8 +32,8 @@ const GAME_LESSON_MOVES = [
   {
     move: "3. Ng5+",
     player: "White",
-    explanation: "Hmmm? What should we do? move the knight from f3 to g5",
-    fen: "rnbq2nr/ppp1pkbp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQha - 0 1",
+    explanation:
+      "Congrats. You are on the right track. Lets continue to the next move.",    fen: "rnbq2nr/ppp1pkbp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQha - 0 1",
     hint: "",
     solution:
       "Perfect. Now that you've moved the knight to g5 resulting in a checkmate",
@@ -93,11 +93,146 @@ const GAME_LESSON_MOVES = [
     solution: "Black moved Ke8 to escape the check.",
   },
   {
-    move: "7. Nd7",
+    move: "11. Bxh6",
+    player: "White",
+    explanation:
+      "Since the knight on h6 had no defenders, Magnus simply takes that knight with his bishop. Furthermore, there were no meaningful checks or threats in that position for Rainn or Magnus, AND Rainn’s pieces are still passive since most are either on the 7th or 8th rank.",
+    fen: "r1q1k2r/pppnp2p/3pN1pB/8/3PP3/7Q/PPP2PPP/RN2K2R w KQkq - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "15. d5",
+    player: "White",
+    explanation:
+      "Magnus moves his pawn from d4 to d5 to provide an extra defender for the knight on e6. Notice how the knight on e6 has two defenders while being attacked by two of Rainn’s pieces. A general rule of thumb for whether a defended piece can be captured is: <br>• If a piece has more or the same number of defenders than attackers AND holds lower or equal value compared to its attackers, that piece cannot be captured. <br>• If a piece has fewer defenders than attackers OR holds a higher value compared to its attackers, the piece can be captured.",
+    fen: "r1q4r/ppp1pk1p/3pNnpB/3P4/4P3/2N4Q/PPP2PPP/R3K2R w KQha - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "17. O-O (Castle kingside)",
+    player: "White",
+    explanation:
+      "After Magnus castles, both rooks are connected, meaning that they can provide each other with mutual defense. Furthermore, the Kingside rook did not have to be stuck in the corner doing nothing. Now both rooks can eventually move to the d or e files, where they can potentially create more attacks. The c6 pawn threat meant nothing since after cxd5, Magnus simply responds with exd5, resulting in this position, which gives Magnus a winning position:",
+    fen: "r1q4r/pp2pk1p/2ppNnpB/3P4/4P3/2N4Q/PPP2PPP/R4RK1 w HQha - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "21. Ng5+",
+    player: "White",
+    explanation:
+      "Nice! You're on the right track. What does Rainn play?",
+    fen: "r6r/pp2pk1p/3p1npB/3P2N1/2q5/2N4Q/PPP2PPP/R4RK1 w HQha - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "22. Ke8",
     player: "Black",
     explanation:
-      " Later in the game,Rainn played Nh6, attackingthequeen.Howdid Magnus respond to it?",
-    fen: "r1q1k2r/pppnp1bp/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 5 10",
+      "Ke8 is a better option since it avoids a square that Magnus’s queen could control. If Rainn played Kg8, Rainn would lose via checkmate after Qe6# since Magnus’s bishop controls the f8 and g7 squares while Magnus’s queen controls the f7 and g8 squares.",
+    fen: "r3k2r/pp2p2p/3p1npB/3P2N1/2q5/2N4Q/PPP2PPP/R4RK1 w HQkq - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "23. Qe6",
+    player: "White",
+    explanation:
+      "After Ke8, Magnus plays Qe6, which puts Rainn’s king in a dangerous situation considering the number of white pieces near the king AND puts pressure on the e7 pawn, which will be important later in the game. Additionally, since both of the rooks are connected and have more squares to move around, Magnus could eventually bring his rooks out to join the attack. Now let's continue.",
+    fen: "r3k2r/pp2p2p/3pQnpB/3P2N1/2q5/2N5/PPP2PPP/R4RK1 w HQkq - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "25. Qf7+",
+    player: "White",
+    explanation:
+      "Congrats! You're right.",
+    fen: "r3k2r/pp2pQ1p/3p1npB/3P2N1/6q1/2N5/PPP2PPP/R4RK1 w HQkq - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "26. Kd7",
+    player: "Black",
+    explanation:
+      "After Qf7+, Rainn chose to play Kd7, still protecting the pawn. <br>Note that the e7 pawn is a major weakness. Thus, Magnus still put more pressure on that pawn and calculated a full sequence to do so. How did he do so?",
+    fen: "r6r/pp1kpQ1p/3p1npB/3P2N1/6q1/2N5/PPP2PPP/R4RK1 w HQha - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "26. Rae1",
+    player: "White",
+    explanation:
+      "Nice! You're on the right track.",
+    fen: "r6r/pp1kpQ1p/3p1npB/3P2N1/6q1/2N5/PPP2PPP/4RRK1 w - - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "28. Re6",
+    player: "White",
+    explanation:
+      "Nice!",
+    fen: "4r2r/pp1kpQ1p/3pRnpB/3P2N1/6q1/2N5/PPP2PPP/5RK1 w - - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "30. Rfe1",
+    player: "White",
+    explanation:
+      "Now we can see that the e-7 pawn has 3 attackers (the 2-rook battery on the e file and the Queen on f7) AND 2 defenders (the king on d7 and the rook on e8). In this position, Rainn will lose his pawn considering that there are more attackers than defenders. Furthermore, since the king is one of the defenders, White may have an easier time attacking the king after the e7 pawn is captured. <br>IMPORTANT NOTE: the tail of a pawn chain is a similar pawn weakness to an isolated pawn, considering that the tail’s primary function is defending other pawns and has no other defenders.",
+    fen: "4r2r/pp1kpQ1p/3pRnpB/3P2N1/3q4/2N5/PPP2PPP/4R1K1 w - - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "33. Rxe7+",
+    player: "White",
+    explanation:
+      "Firstly, since the pawn had more attackers than defenders, Magnus captures the pawn with his rook, which eventually forces a rook exchange as shown. Since Rainn’s king is in check, Rainn had to move his king, which he did by playing Kc8.",
+    fen: "7r/pp1kRQ1p/3p2pB/3P2N1/3q2n1/2N5/PPP2PPP/6K1 w HAha - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "35. Re8+",
+    player: "White",
+    explanation:
+      "Nice! You're on the right track.",
+    fen: "2k1R2r/pp3Q1p/3p2pB/3P2N1/3q2n1/2N5/PPP2PPP/6K1 b k - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "37. Qxe8+",
+    player: "White",
+    explanation:
+      "After Rainn played Kc8, Magnus decided to exchange the rooks again, while also checking Rainn’s king. Now Rainn must move his king; since Magnus’s queen is controlling the d7 and d8 squares, Rainn’s only move is Kc7.",
+    fen: "2k1Q3/pp5p/3p2pB/3P2N1/3q2n1/2N5/PPP2PPP/6K1 b - - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "39. Ne6+",
+    player: "White",
+    explanation:
+      "After Rainn moved his king to c6, Magnus proceeded with the checkmate threat with Ne6+. Interestingly, this also forks the king and the queen.",
+    fen: "4Q3/ppk4p/3pN1pB/3P4/3q2n1/2N5/PPP2PPP/6K1 b - - 0 1",
+    hint: "Push pawns to open lines for attack.",
+    solution: "Black moved Ke8 to escape the check.",
+  },
+  {
+    move: "41. Qb5#",
+    player: "White",
+    explanation:
+      "Rainn’s king had no other square to move other than b6 since that is the only adjacent square not controlled by a white piece. Most people may just take the queen, however Magnus finishes Rainn off with Qb5#. <br>Notice that the king has no more squares to move to. The white queen checks the king and controls the a6, a5, c6, and c5 squares. Additionally, the knight controls the c5 and c7 squares. <br>Furthermore, when finding a mate in 5 or more moves, a general pattern to consider is to always look for checks, especially checks after the first check move you calculate, and how exposed your king is. If your opponent’s king is exposed and many of your pieces are surrounding it, then it might be easier to find mate in 5 or more. That also applies to finding mate in any number of moves. So remember, always look for checks!",
+    fen: "8/pp5p/1k1pN1pB/1Q1P4/3q2n1/2N5/PPP2PPP/6K1 b - - 0 1",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
   },
@@ -105,15 +240,16 @@ const GAME_LESSON_MOVES = [
 //r1q1k2r/pppnp1bp/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 5 10
 
 // Utility for chessboard squares
-const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
-const toSquare = (row, col) => files[col] + (8 - row);
+//const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
+//const toSquare = (row, col) => files[col] + (8 - row);
 
-const pieceToFilename = (piece) => {
+{/*const pieceToFilename = (piece) => {
   if (!piece) return null;
   const color = piece.color === "w" ? "w" : "b";
   const type = piece.type.toUpperCase();
   return `${color}${type}.svg`;
 };
+*/}
 
 // =========================================================
 // 2. CHESSBOARD COMPONENT (Updated for Click-to-Move)
@@ -255,7 +391,7 @@ function MagnusVRainn() {
   const [showSolution, setShowSolution] = useState(false);
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "The game starts with the sequence: 1. e4 g6 2. Nf3 d6 3. d4 Bg7 4. Bc4 <br>Both sides are doing well as of right now and the position is essentially even. However, Magnus does have a slightly better advantage since both the e-pawn and d-pawn are controlling the center with the help of the light-squared bishop  - which is also eyeing the f7 square - and the knight on f3; Magnus can potentially castle early, activate his knight on b1 and activate his dark-squared bishop. On the other hand, Rainn does have a fianchettoed bishop on g7 and has advanced his d-pawn to d6. Its really important to activate most of your pieces and control the center in the opening phase since it will be easier to attack your opponent</br>"
+    "The game starts with the sequence: 1. e4 g6 2. Nf3 d6 3. d4 Bg7 4. Bc4 <br>Both sides are doing well as of right now and the position is essentially even. However, Magnus does have a slightly better advantage since both the e-pawn and d-pawn are controlling the center with the help of the light-squared bishop  - which is also eyeing the f7 square - and the knight on f3; Magnus can potentially castle early, activate his knight on b1 and activate his dark-squared bishop. On the other hand, Rainn does have a fianchettoed bishop on g7 and has advanced his d-pawn to d6. Its really important to activate most of your pieces and control the center in the opening phase since it will be easier to attack your opponent</br><br>Rainn made a vital mistake by playing Bg4. At first, this may seem like an annoying pin that White must respond to immediately by playing a move like h3. However, Magnus found it as an opportunity to temporarily be up in material and potentially create a threat that could win even more material. How does he do it?</br>"
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
