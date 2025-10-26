@@ -29,6 +29,13 @@ function Lessons() {
             GM Magnus Carlsen vs Rainn Wilson
           </button>
         </div>
+        <div className="ButtonElements">
+          <button
+            onClick={() => navigate("/lessons/beginner/BeginnerLessonGameOne")}
+          >
+            Beginner Game One
+          </button>
+        </div>
         <button onClick={completeLesson}>Complete Lesson</button>
         {lessonCompleted && (
           <div>

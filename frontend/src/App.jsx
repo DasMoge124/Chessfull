@@ -14,6 +14,7 @@ import MagnusVSina from "./pages/lessons/black/magnus_v_sina";
 import EricVEmilia from "./pages/lessons/white/eric_v_emilia";
 import Lessons from "./pages/Lessons";
 import MagnusVRainn from "./pages/lessons/white/Magnus_v_RainnWilson";
+import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
 
 function App() {
   return (
@@ -69,7 +70,14 @@ function App() {
             path="/lessons/grandmaster/MagnusVRainn"
             element={<MagnusVRainn />}
           />
-          <Route path="/grandmaster/MagnusVSina" element={<MagnusVSina />} />
+          <Route
+            path="lessons/grandmaster/MagnusVSina"
+            element={<MagnusVSina />}
+          />
+          <Route
+            path="lessons/beginner/BeginnerLessonGameOne"
+            element={<BeginnerLessonOne />}
+          />
         </Routes>
       </main>
     </BrowserRouter>

@@ -33,7 +33,8 @@ const GAME_LESSON_MOVES = [
     move: "3. Ng5+",
     player: "White",
     explanation:
-      "Congrats. You are on the right track. Lets continue to the next move.",    fen: "rnbq2nr/ppp1pkbp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQha - 0 1",
+      "Congrats. You are on the right track. Lets continue to the next move.",
+    fen: "rnbq2nr/ppp1pkbp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQha - 0 1",
     hint: "",
     solution:
       "Perfect. Now that you've moved the knight to g5 resulting in a checkmate",
@@ -93,16 +94,16 @@ const GAME_LESSON_MOVES = [
     solution: "Black moved Ke8 to escape the check.",
   },
   {
-    move: "11. Bxh6",
-    player: "White",
+    move: "9. Qc8",
+    player: "Black",
     explanation:
       "Since the knight on h6 had no defenders, Magnus simply takes that knight with his bishop. Furthermore, there were no meaningful checks or threats in that position for Rainn or Magnus, AND Rainn’s pieces are still passive since most are either on the 7th or 8th rank.",
-    fen: "r1q1k2r/pppnp2p/3pN1pB/8/3PP3/7Q/PPP2PPP/RN2K2R b KQkq - 0 1",
+    fen: "r1q1k2r/pppnp1bp/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 5 10",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
   },
   {
-    move: "15. d5",
+    move: "9. Nxg7+",
     player: "White",
     explanation:
       "Magnus moves his pawn from d4 to d5 to provide an extra defender for the knight on e6. Notice how the knight on e6 has two defenders while being attacked by two of Rainn’s pieces. A general rule of thumb for whether a defended piece can be captured is: <br>• If a piece has more or the same number of defenders than attackers AND holds lower or equal value compared to its attackers, that piece cannot be captured. <br>• If a piece has fewer defenders than attackers OR holds a higher value compared to its attackers, the piece can be captured.",
@@ -122,8 +123,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "21. Ng5+",
     player: "White",
-    explanation:
-      "Nice! You're on the right track. What does Rainn play?",
+    explanation: "Nice! You're on the right track. What does Rainn play?",
     fen: "r6r/pp2pk1p/3p1npB/3P2N1/2q5/2N4Q/PPP2PPP/R4RK1 b Q - 0 1",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -149,8 +149,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "25. Qf7+",
     player: "White",
-    explanation:
-      "Congrats! You're right.",
+    explanation: "Congrats! You're right.",
     fen: "r3k2r/pp2pQ1p/3p1npB/3P2N1/6q1/2N5/PPP2PPP/R4RK1 b Qkq - 0 1",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -167,8 +166,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "26. Rae1",
     player: "White",
-    explanation:
-      "Nice! You're on the right track.",
+    explanation: "Nice! You're on the right track.",
     fen: "r6r/pp1kpQ1p/3p1npB/3P2N1/6q1/2N5/PPP2PPP/4RRK1 b - - 0 1",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -176,8 +174,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "28. Re6",
     player: "White",
-    explanation:
-      "Nice!",
+    explanation: "Nice!",
     fen: "4r2r/pp1kpQ1p/3pRnpB/3P2N1/6q1/2N5/PPP2PPP/5RK1 b - - 0 1",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -203,8 +200,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "35. Re8+",
     player: "White",
-    explanation:
-      "Nice! You're on the right track.",
+    explanation: "Nice! You're on the right track.",
     fen: "2k1R2r/pp3Q1p/3p2pB/3P2N1/3q2n1/2N5/PPP2PPP/6K1 b k - 0 1",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -243,13 +239,15 @@ const GAME_LESSON_MOVES = [
 //const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
 //const toSquare = (row, col) => files[col] + (8 - row);
 
-{/*const pieceToFilename = (piece) => {
+{
+  /*const pieceToFilename = (piece) => {
   if (!piece) return null;
   const color = piece.color === "w" ? "w" : "b";
   const type = piece.type.toUpperCase();
   return `${color}${type}.svg`;
 };
-*/}
+*/
+}
 
 // =========================================================
 // 2. CHESSBOARD COMPONENT (Updated for Click-to-Move)
