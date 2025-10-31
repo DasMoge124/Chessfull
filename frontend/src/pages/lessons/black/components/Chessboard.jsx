@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 
-// Utility function to convert row/column into algebraic square notation
+// Convert row/column → algebraic notation
 const toSquare = (row, col) => {
   const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
   return `${files[col]}${8 - row}`;
 };
 
-// Utility to map piece objects to image filenames
+// Map piece object → filename
 const pieceToFilename = (piece) => {
   if (!piece) return "";
   const color = piece.color === "w" ? "w" : "b";
@@ -25,15 +25,14 @@ const Chessboard = ({
   showContinue,
   clearFeedback,
 }) => {
-  // ERROR FIX: game must be defined when this component mounts, ensured by parent
   const [board, setBoard] = useState(game.board());
   const [sourceSquare, setSourceSquare] = useState(null);
   const [legalMoves, setLegalMoves] = useState([]);
-  const [lastMove, setLastMove] = useState({ from: null, to: null }); // 400px / 8 squares = 50px per square
+  const [lastMove, setLastMove] = useState({ from: null, to: null });
 
-  const squareSize = 400 / 8; // Use 400/8 to match the parent container size
-  const lesson = lessonMoves[currentLessonIndex]; // CRITICAL: Enables user to move Black pieces only when the lesson dictates Black's turn
-  const isUserTurn = game.turn() === "b" && lesson.player === "Black";
+  const squareSize = 400 / 8;
+  const lesson = lessonMoves[currentLessonIndex];
+  const isUserTurn = lesson.player === "Black"; // ✅ Always let user move Black pieces
 
   useEffect(() => {
     setBoard([...game.board()]);
@@ -46,36 +45,46 @@ const Chessboard = ({
 
   const executeMove = (fromSquare, toSquare) => {
     const move = game.move({ from: fromSquare, to: toSquare, promotion: "q" });
-    if (!move) return;
+
+    if (!move) {
+      // Illegal move — feedback only
+      setLessonMessage({
+        type: "error",
+        text: `That move isn’t valid. Try again.`,
+        explanation: null,
+      });
+      setShowContinue(false);
+      return;
+    }
 
     setLastMove({ from: move.from, to: move.to });
-    updateBoard(); // The logic below assumes the PGN format is like "12. Qf3" and extracts 'Qf3'
+    updateBoard();
 
     const moveParts = lesson.move.split(" ");
     const expectedMove =
       moveParts.length > 1 ? moveParts[1].replace("...", "").trim() : "";
+    const expectedSan = lesson.solution || expectedMove;
 
-    if (
-      move.san.toLowerCase().includes(expectedMove.toLowerCase().split(" ")[0])
-    ) {
-      // Simplified check for complex solutions
+    if (move.san.toLowerCase().includes(expectedSan.toLowerCase())) {
+      const newGame = new Chess(game.fen());
+      setGame(newGame);
       setLessonMessage({
         type: "success",
         text: `Correct! ${move.san} was played.`,
         explanation: lesson.explanation,
       });
-      setShowContinue(true); // Show next move button
+      setShowContinue(true);
     } else {
-      game.undo();
-      updateBoard();
       setLessonMessage({
         type: "error",
         text: `You played ${move.san}. Try again.`,
-        explanation: null, // Do not show hint immediately
-        showHint: false,
-        showSolution: false,
+        explanation: null,
       });
-      setShowContinue(false); // Hide next move button
+      setShowContinue(false);
+      setTimeout(() => {
+        game.undo();
+        updateBoard();
+      }, 500);
     }
   };
 
@@ -84,7 +93,8 @@ const Chessboard = ({
     const piece = game.get(square);
 
     if (!sourceSquare) {
-      if (piece && piece.color === game.turn()) {
+      // Select only if it's Black’s piece
+      if (piece && piece.color === "b") {
         setSourceSquare(square);
         setLegalMoves(getLegalMoves(square));
       }
@@ -92,12 +102,11 @@ const Chessboard = ({
     }
 
     if (legalMoves.includes(square)) {
-      // Only clear feedback when a valid move is made
       if (clearFeedback) clearFeedback();
       executeMove(sourceSquare, square);
       setSourceSquare(null);
       setLegalMoves([]);
-    } else if (piece && piece.color === game.turn()) {
+    } else if (piece && piece.color === "b") {
       setSourceSquare(square);
       setLegalMoves(getLegalMoves(square));
     } else {
@@ -117,12 +126,9 @@ const Chessboard = ({
         gridTemplateColumns: `repeat(8, ${squareSize}px)`,
         gridTemplateRows: `repeat(8, ${squareSize}px)`,
         border: "3px solid #333",
-        boxShadow: "0 0 10px rgba(0,0,0,0.5)", // Rotate the board 180deg if Black is the user and it's Black's turn
-        // Note: The Chessboard is rendered top-down (row 0 = rank 8)
-        transform: isUserTurn ? "rotate(180deg)" : "none",
+        boxShadow: "0 0 10px rgba(0,0,0,0.5)",
       }}
     >
-           {" "}
       {board.map((row, rIdx) =>
         row.map((piece, cIdx) => {
           const square = toSquare(rIdx, cIdx);
@@ -131,20 +137,18 @@ const Chessboard = ({
           const isLast = square === lastMove.from || square === lastMove.to;
           const isLight = (rIdx + cIdx) % 2 === 0;
 
-          const squareClasses = isLight ? "light" : "dark";
-
           return (
             <div
               key={square}
-              className={`square ${squareClasses} ${isLegal ? "highlight-legal" : ""} 
-                          ${isSource ? "highlight-source" : ""} ${isLast ? "last-move" : ""}
-                          ${isUserTurn ? "cursor-pointer" : "cursor-default"}
-                          `}
+              className={`square ${isLight ? "light" : "dark"} ${
+                isLegal ? "highlight-legal" : ""
+              } ${isSource ? "highlight-source" : ""} ${
+                isLast ? "last-move" : ""
+              } ${isUserTurn ? "cursor-pointer" : "cursor-default"}`}
               onClick={() => handleSquareClick(square)}
               style={{
                 width: squareSize,
                 height: squareSize,
-                position: "relative",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -156,13 +160,9 @@ const Chessboard = ({
                   border: "3px solid #3d80e8",
                   boxSizing: "border-box",
                 }),
-                // Counter-rotate the piece so it appears upright
-                transform: isUserTurn ? "rotate(180deg)" : "none",
               }}
             >
-                           {" "}
-              {/* Highlight for legal moves (dot on empty square) */}           
-               {" "}
+              {/* Dots for legal moves */}
               {isLegal && !piece && (
                 <div
                   style={{
@@ -174,9 +174,8 @@ const Chessboard = ({
                   }}
                 />
               )}
-                           {" "}
-              {/* Highlight for legal moves (ring on occupied square) */}       
-                   {" "}
+
+              {/* Circle on occupied target */}
               {isLegal && piece && (
                 <div
                   style={{
@@ -187,7 +186,8 @@ const Chessboard = ({
                   }}
                 />
               )}
-                            {/* Piece Image */}             {" "}
+
+              {/* Piece */}
               {piece && (
                 <img
                   src={`/assets/pieces/${pieceToFilename(piece)}`}
@@ -197,15 +197,13 @@ const Chessboard = ({
                     height: "100%",
                     objectFit: "contain",
                   }}
-                  draggable={isUserTurn}
+                  draggable={false}
                 />
               )}
-                         {" "}
             </div>
           );
         })
       )}
-         {" "}
     </div>
   );
 };
