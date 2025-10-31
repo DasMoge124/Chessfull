@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
-import Chessboard from "./components/Chessboard";
-import LessonControls from "./components/LessonControls";
+import Chessboard from "../components/Chessboard";
+import LessonControls from "../components/LessonControls";
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
 
-const STARTING_FEN =
-  "r1b1k2r/ppq2p1p/2nbpnp1/1B1pN3/3P2P1/2P1B3/PP1N1P1P/R2QK2R w KQkq - 3 12";
+const STARTING_FEN = 
+  "r2q1rk1/pb3ppp/1pnp1n2/2p1p3/2PPP3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1";
 
 const GAME_LESSON_MOVES = [
   {
@@ -165,9 +165,9 @@ function EricVEmilia() {
             lineHeight: 1.2,
           }}
         >
-          Eric Rosen vs.
+          Magnus vs.
           <br />
-          Emilia Sprzęczka
+          Bardiya
           <br />
           (Interactive Lesson)
         </div>
