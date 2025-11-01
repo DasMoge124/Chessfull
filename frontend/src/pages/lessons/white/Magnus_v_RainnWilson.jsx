@@ -114,8 +114,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "10. Kd8",
     player: "Black",
-    explanation:
-      "Rainn plays Kd8.",
+    explanation: "Rainn plays Kd8.",
     fen: "r1qk3r/pppnp1Np/3p2pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 1 11",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -123,8 +122,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "10. Ne6+",
     player: "White",
-    explanation:
-      "Nice! Magnus played Ne6+",
+    explanation: "Nice! Magnus played Ne6+",
     fen: "r1qk3r/pppnp2p/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R b KQ - 2 11",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -132,8 +130,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "10. Ke8",
     player: "Black",
-    explanation:
-      "Rainn plays Ke8",
+    explanation: "Rainn plays Ke8",
     fen: "r1q1k2r/pppnp2p/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 3 12",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -150,8 +147,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "10. Nf6",
     player: "Black",
-    explanation:
-      "The game continues.",
+    explanation: "The game continues.",
     fen: "r1q1k2r/ppp1p2p/3pNnpB/8/3PP3/7Q/PPP2PPP/RN2K2R w KQ - 1 13",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -159,8 +155,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "10. Nc3",
     player: "White",
-    explanation:
-      "Nice! Magnus activates his other knight.",
+    explanation: "Nice! Magnus activates his other knight.",
     fen: "r1q1k2r/ppp1p2p/3pNnpB/8/3PP3/2N4Q/PPP2PPP/R3K2R b KQ - 2 13",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -168,8 +163,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "10. Kf7",
     player: "Black",
-    explanation:
-      "Nice! The game continues.",
+    explanation: "Nice! The game continues.",
     fen: "r1q4r/ppp1pk1p/3pNnpB/8/3PP3/2N4Q/PPP2PPP/R3K2R w KQ - 3 14",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -204,8 +198,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "17. cxd5",
     player: "Black",
-    explanation:
-      "Rainn plays cxd5.",
+    explanation: "Rainn plays cxd5.",
     fen: "r1q4r/pp2pk1p/3pNnpB/3p4/4P3/2N4Q/PPP2PPP/R4RK1 w - - 0 16",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -222,8 +215,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "17. Qc4",
     player: "Black",
-    explanation:
-      "Rainn plays Qc4.",
+    explanation: "Rainn plays Qc4.",
     fen: "r6r/pp2pk1p/3pNnpB/3P4/2q5/2N4Q/PPP2PPP/R4RK1 w - - 1 17",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -258,8 +250,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "23. Kg4",
     player: "Black",
-    explanation:
-      "Seems like Rainn wants to offer a queen trade.",
+    explanation: "Seems like Rainn wants to offer a queen trade.",
     fen: "r3k2r/pp2p2p/3pQnpB/3P2N1/6q1/2N5/PPP2PPP/R4RK1 w - - 5 19",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -342,8 +333,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "33. Rxe7",
     player: "Black",
-    explanation:
-      "Rainn plays Rxe7.",
+    explanation: "Rainn plays Rxe7.",
     fen: "7r/pp1krQ1p/3p2pB/3P2N1/3q2n1/2N5/PPP2PPP/4R1K1 w - - 0 24",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -351,8 +341,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "33. Rxe7+",
     player: "White",
-    explanation:
-      "Nice.",
+    explanation: "Nice.",
     fen: "7r/pp1kRQ1p/3p2pB/3P2N1/3q2n1/2N5/PPP2PPP/6K1 b - - 0 24",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -360,8 +349,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "33. Kc8",
     player: "Black",
-    explanation:
-      "Rainn plays Kc8.",
+    explanation: "Rainn plays Kc8.",
     fen: "2k4r/pp2RQ1p/3p2pB/3P2N1/3q2n1/2N5/PPP2PPP/6K1 w - - 1 25",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -422,7 +410,7 @@ const GAME_LESSON_MOVES = [
     move: "41. Qb5#",
     player: "White",
     explanation:
-      "Most people may just take the queen, however Magnus finishes Rainn off with Qb5#. </br>Notice that the king has no more squares to move to. The white queen checks the king and controls the a6, a5, c6, and c5 squares. Additionally, the knight controls the c5 and c7 squares. <\br>Furthermore, when finding a mate in 5 or more moves, a general pattern to consider is to always look for checks, especially checks after the first check move you calculate, and how exposed your king is. If your opponent’s king is exposed and many of your pieces are surrounding it, then it might be easier to find mate in 5 or more. That also applies to finding mate in any number of moves. So remember, always look for checks!",
+      "Most people may just take the queen, however Magnus finishes Rainn off with Qb5#. <br>Notice that the king has no more squares to move to. The white queen checks the king and controls the a6, a5, c6, and c5 squares. Additionally, the knight controls the c5 and c7 squares. </br>Furthermore, when finding a mate in 5 or more moves, a general pattern to consider is to always look for checks, especially checks after the first check move you calculate, and how exposed your king is. If your opponent’s king is exposed and many of your pieces are surrounding it, then it might be easier to find mate in 5 or more. That also applies to finding mate in any number of moves. So remember, always look for checks!",
     fen: "8/pp5p/1k1pN1pB/1Q1P4/3q2n1/2N5/PPP2PPP/6K1 b - - 4 28",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
