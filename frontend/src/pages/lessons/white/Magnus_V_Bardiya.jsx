@@ -1,40 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
-import Chessboard from "../components/Chessboard";
-import LessonControls from "../components/LessonControls";
+import Chessboard from "./components/Chessboard";
+import LessonControls from "./components/LessonControls";
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
 
-const STARTING_FEN = 
-  "r2q1rk1/pb3ppp/1pnp1n2/2p1p3/2PPP3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1";
+const STARTING_FEN = "r2q1rk1/pb3ppp/1pnp1n2/2p1p3/2PPP3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1";// complete 
 
 const GAME_LESSON_MOVES = [
   {
-    move: "12. Qf3",
-    player: "White",
-    explanation:
-      "Developing a piece and winning a tempo by attacking the knight on f6...",
-    fen: "r1b2rk1/p1q1ppbp/1p4p1/2p1P3/8/2PBBN2/PP3PPP/R2Q1RK1 b - - 0 12",
-    hint: "Try to put pressure on the knight on f6.",
-    solution: "The correct move is Qf3, attacking the knight and developing.",
+    move: "12. PD5", // compleete
+    player: "White", 
+    explanation:"Let's look at the game played between Maagnus & Grandmaster Bardiya Daneshvar. Magnus plays white and Bardiya plays black. In this move, how can Magnus kick a piece to limit Bardiya's activity?",
+    fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
+    hint: "Try to put pressure on the knight on C6.",
+    solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
   {
-    move: "13. dxe5 Qxe5 14. O-O-O Ke7 15. Bxc6 bxc6",
+    move: "13.Ne7",
     player: "Black",
-    explanation: "Black plays 13...Qe5 but could have defended better.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3pq3/6P1/2P1BQ2/PP1N1P1P/2KR3R w - - 0 16",
-    hint: "Black should look to improve king safety.",
+    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
+    hint: "black needs to move his knight to safety",
     solution:
-      "Black played Qe5, but a better defensive move was possible to avoid loss of material.",
+      "Black moved his knight to e7 to avoid the pawn attack and potentially protect the king",
   },
   {
-    move: "16. Bd4",
-    player: "White",
-    explanation: "Strong tactical Bd4 hitting queen + rook.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
+    explanation: "Magnus opened the f file due to the pawn exchange, which allows his f1 rook to control the f file, developing an attack on the kingside."// look at this and see how I can have it open a page explaining his moves
+  },
+  {
+    move: "14. Ng6",
+    player: "Black",
+    fen: "r2q1rk1/pb3ppp/1p1p1nn1/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w HQhq - 0 1",
+    
+  },
+
+  {
+    move: "15.Bg5",
+    player: "white",
+    explanation: "Black moves knight to g6 to allow the rook to move more actively",
+    fen: "r2q1rk1/pb3ppp/1p1p1nn1/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w HQhq - 0 1",
     hint: "Look for pins and attacks on high-value pieces.",
     solution: "Bd4 is a strong move pinning Black’s queen to the rook.",
   },
@@ -69,7 +76,7 @@ const pieceToFilename = (piece) => {
 };
 
 
-function EricVEmilia() {
+function Magnus_V_Bardiya() {
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -341,4 +348,4 @@ function EricVEmilia() {
   );
 }
 
-export default EricVEmilia;
+export default Magnus_V_Bardiya;
