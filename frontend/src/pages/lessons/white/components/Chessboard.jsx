@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Chess } from "chess.js";
-// Assuming you will re-add your CSS files here:
-// import "./GameLesson.css";
+// import { Chess } from "chess.js";
 import "./Chessboard.css";
 
 // Utility function to convert row/column into algebraic square notation
