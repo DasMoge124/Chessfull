@@ -9,7 +9,7 @@ function Beginner() {
 
   return (
     <div>
-      <h1>Beginner Page</h1>;
+      <h1>Beginner Page</h1>
       <div className="ButtonElements">
         <button onClick={() => navigate("/lessons/beginner/hanging_pieces")}>
           Hanging Pieces
@@ -18,6 +18,11 @@ function Beginner() {
       <div className="ButtonElements">
         <button onClick={() => navigate("/lessons/beginner/forks")}>
           Forks
+        </button>
+      </div>
+      <div className="ButtonElements">
+        <button onClick={() => navigate("/lessons/beginner/pins_and_skewers")}>
+          Pins and Skewers
         </button>
       </div>
       <h2>Practice Games</h2>
