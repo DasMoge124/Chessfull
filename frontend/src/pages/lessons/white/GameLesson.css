@@ -52,7 +52,7 @@
   height: 35px;
   border: 2px solid rgba(0, 255, 0, 0.7);
   border-radius: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(0, 0);
 }
 
 .piece-img {

@@ -12,7 +12,9 @@ function Beginner() {
       <h1>Beginner Page</h1>
       <h2>How to Play Chess</h2>
       <div className="ButtonElements">
-        <button onClick={() => navigate("/lessons/beginner/hanging_pieces")}>
+        <button
+          onClick={() => navigate("/lessons/beginner/how_to_setup_chessboard")}
+        >
           How to Set up a Chessboard
         </button>
       </div>
