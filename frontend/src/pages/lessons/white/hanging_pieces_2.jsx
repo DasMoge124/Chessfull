@@ -131,7 +131,7 @@ function hanging_pieces_practice_2() {
             lineHeight: 1.2,
           }}
         >
-          Hanging Pieces Lesson 1
+          Hanging Pieces Lesson 2
           <br />
           (Interactive Lesson)
         </div>
@@ -298,7 +298,7 @@ function hanging_pieces_practice_2() {
             color: "#aaffaa",
           }}
         >
-          Forks Lesson 1: Complete
+          Hanging Pieces Lesson 2: Complete
           <div className="ButtonElements">
             <button
               onClick={() =>

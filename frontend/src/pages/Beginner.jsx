@@ -20,6 +20,14 @@ function Beginner() {
           Forks
         </button>
       </div>
+      <h2>Practice Games</h2>
+      <div className="ButtonElements">
+        <button
+          onClick={() => navigate("/lessons/beginner/beginner_lesson_one")}
+        >
+          Game 1
+        </button>
+      </div>
     </div>
   );
 }

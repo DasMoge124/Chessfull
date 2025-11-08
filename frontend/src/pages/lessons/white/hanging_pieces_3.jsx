@@ -130,7 +130,7 @@ function hanging_pieces_practice_3() {
             lineHeight: 1.2,
           }}
         >
-          Hanging Pieces Lesson 1
+          Hanging Pieces Lesson 3
           <br />
           (Interactive Lesson)
         </div>

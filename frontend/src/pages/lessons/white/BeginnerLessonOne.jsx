@@ -9,50 +9,71 @@ import LessonControls from "./components/LessonControls";
 // =========================================================
 
 const STARTING_FEN =
-  "rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq d6 0 2";
+  "rnb1kbnr/ppp1pppp/4q3/8/8/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 4";
 
 const GAME_LESSON_MOVES = [
   {
-    move: "2. exd5",
+    move: "1. Be2",
     player: "White",
     explanation:
-      "Developing a piece and winning a tempo by attacking the knight on f6...",
+      "This move blocks the check from the queen while also developing the light-squared bishop, which is more prefered compared to developing the knight as developing the light-squared bishop can lead to quicker development after a potential move like Nf3.",
     fen: "r1b2rk1/p1q1ppbp/1p4p1/2p1P3/8/2PBBN2/PP3PPP/R2Q1RK1 b - - 0 12",
     hint: "Try to put pressure on the knight on f6.",
     solution: "The correct move is Qf3, attacking the knight and developing.",
   },
   {
-    move: "2. Qxd5",
+    move: "1... Qc6",
     player: "Black",
-    explanation: "Black plays 13...Qe5 but could have defended better.",
-    fen: "rnb1kbnr/ppp1pppp/8/3q4/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 3",
-    hint: "Black should look to improve king safety.",
+    explanation:
+      "After this move, black played 4… Qc6, attacking the undefended g2 pawn and threatening h1 rook behind it but there was a critical error in his defenses. How can White punish this mistake?",
+    fen: "rnb1kbnr/ppp1pppp/2q5/8/8/2N5/PPPPBPPP/R1BQK1NR w KQkq - 4 5",
+    hint: "White’s bishop is active, and Black's queen and king are aligned diagonally.",
     solution:
       "Black played Qe5, but a better defensive move was possible to avoid loss of material.",
   },
   {
-    move: "3. Nc3",
+    move: "2. Bb5",
     player: "White",
-    explanation: "Strong tactical Bd4 hitting queen + rook.",
-    fen: "rnb1kbnr/ppp1pppp/8/3q4/8/2N5/PPPP1PPP/R1BQKBNR b KQkq - 1 3",
+    explanation:
+      "This move wins a queen by pinning it to the king, with the bishop defended by the knight.",
+    fen: "rn2kbnr/ppp1pppp/2q5/1B6/6b1/2N5/PPPP1PPP/R1BQK1NR w KQkq - 6 6",
     hint: "Look for pins and attacks on high-value pieces.",
     solution: "Bd4 is a strong move pinning Black’s queen to the rook.",
   },
   {
-    move: "4. Qg5",
+    move: "2... Bg4",
     player: "Black",
-    explanation: "Find the final blow",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
+    explanation:
+      "Black responded with one more trick 5… Bg4, hoping to trade queens with a counterattack. How can White neutralize this while also keeping the pin on the Black queen? ",
+    fen: "rn2kbnr/ppp1pppp/2q5/1B6/6b1/2N5/PPPP1PPP/R1BQK1NR w KQkq - 6 6",
     hint: "Push pawns to open lines for attack.",
     solution: "h4 threatens to open lines and forces Black’s resignation.",
   },
   {
-    move: "18. h4",
+    move: "3. Qxg4",
     player: "White",
     explanation:
-      "The final blow! Threatens queen, rook, knight. Black resigned.",
+      "This removes the attacking bishop while also maintaining the pin on the queen, so White will end up winning both pieces.",
     fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2PP/2P2Q2/PP1N1P2/2KR3R b - h3 0 17",
     hint: "Push pawns to open lines for attack.",
+    solution: "h4 threatens to open lines and forces Black’s resignation.",
+  },
+  {
+    move: "3... Nf6",
+    player: "Black",
+    explanation:
+      "After this, Black played the move 6… Nf6, attacking White’s queen. Should White retreat, or is there a better move here?",
+    fen: "rn2kb1r/ppp1pppp/2q2n2/1B6/6Q1/2N5/PPPP1PPP/R1B1K1NR w KQkq - 1 7",
+    hint: "Think of checks!",
+    solution: "h4 threatens to open lines and forces Black’s resignation.",
+  },
+  {
+    move: "4. Qc8#",
+    player: "White",
+    explanation:
+      "White immediately checkmates Black by utilizing the weak undeveloped back rank defending the king. Although retreating would still have White in a winning position, White used the weak king’s defense to checkmate Black immediately.",
+    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2PP/2P2Q2/PP1N1P2/2KR3R b - h3 0 17",
+    hint: "Think of checks!",
     solution: "h4 threatens to open lines and forces Black’s resignation.",
   },
 ];
@@ -68,7 +89,7 @@ const pieceToFilename = (piece) => {
   return `${color}${type}.svg`;
 };
 
-function BeginnerLessonOne() {
+function beginner_game_one() {
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -78,7 +99,7 @@ function BeginnerLessonOne() {
   const [showSolution, setShowSolution] = useState(false);
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "Could have defended the knight better<br />Loses tempo<br />Should have moved Bd7"
+    "The game started with the Scandinavian Defense, with the sequence 1.e4 d5 2. exd5 Qxd5 3. Nc3, with black responded by checking the white king with 3. Qe6+, a somewhat sub-optimal move compared to the regularly played book moves, like Qa5 or Qd6 keeping the black queen active and safe. How did White respond to this check while also developing a piece?"
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
@@ -151,8 +172,8 @@ function BeginnerLessonOne() {
           width: 800,
           justifyContent: "space-between",
           alignItems: "flex-start",
-          marginTop: 40,
-          marginBottom: 20,
+          marginTop: 0,
+          marginBottom: 0,
         }}
       >
         <div
@@ -164,9 +185,7 @@ function BeginnerLessonOne() {
             lineHeight: 1.2,
           }}
         >
-          Eric Rosen vs.
-          <br />
-          Emilia Sprzęczka
+          Eric Rosen vs Emilia Sprzęczka
           <br />
           (Interactive Lesson)
         </div>
@@ -333,11 +352,17 @@ function BeginnerLessonOne() {
             color: "#aaffaa",
           }}
         >
-          Lesson Complete! Black resigned after 17. h4.
+          Lesson Complete! Congratulations! These are the topics covered:
+          Opening Principles, Pins, Hanging Pieces, Checkmate in One.
+          <div className="ButtonElements">
+            <button onClick={() => navigate("/learn/beginner")}>
+              Go back to lessons
+            </button>
+          </div>
         </div>
       )}
     </div>
   );
 }
 
-export default BeginnerLessonOne;
+export default beginner_game_one;

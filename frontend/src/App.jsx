@@ -25,6 +25,7 @@ import Forks from "./pages/lessons/beginner_lessons/forks";
 import ForksPractice from "./pages/lessons/white/forks_practice";
 import ForksPractice2 from "./pages/lessons/white/forks_practice_2";
 import ForksPractice3 from "./pages/lessons/white/forks_practice_3";
+//Practice Games for Beginners
 // Removed import Navbar from "./components/Navbar";
 
 function App() {
@@ -123,6 +124,10 @@ function App() {
           <Route
             path="lessons/beginner/hanging_pieces_practice_3"
             element={<Hanging_Pieces_Practice_3 />}
+          />
+          <Route
+            path="lessons/beginner/beginner_lesson_one"
+            element={<BeginnerLessonOne />}
           />
         </Routes>
       </main>
