@@ -146,7 +146,7 @@ function forks_practice() {
             lineHeight: 1.2,
           }}
         >
-          Forks Practice
+          Forks Lesson 1
           <br />
           (Interactive Lesson)
         </div>
@@ -155,8 +155,8 @@ function forks_practice() {
           style={{ fontSize: 14, lineHeight: 1.4, width: 400, marginTop: 10 }}
         >
           <p>
-            This is a real game from 2020. You'll follow the moves, get hints,
-            and solutions along the way. Play the moves as White.
+            You'll follow the moves, get hints, and solutions along the way.
+            Play the moves as White.
           </p>
           <p>Click on a piece, then the square you want to move to.</p>
         </div>
@@ -313,7 +313,12 @@ function forks_practice() {
             color: "#aaffaa",
           }}
         >
-          Lesson Complete! Black resigned after 17. h4.
+          Forks Lesson 1: Complete
+          <div className="ButtonElements">
+            <button onClick={() => navigate("/lessons/beginner/forks")}>
+              Forks
+            </button>
+          </div>
         </div>
       )}
     </div>

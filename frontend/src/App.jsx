@@ -14,10 +14,12 @@ import MagnusVSina from "./pages/lessons/black/magnus_v_sina";
 import EricVEmilia from "./pages/lessons/white/eric_v_emilia";
 import Lessons from "./pages/Lessons";
 import MagnusVRainn from "./pages/lessons/white/Magnus_v_RainnWilson";
+import MagnusVBardiya from "./pages/lessons/white/Magnus_V_Bardiya";
 import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
 import Hanging_Pieces from "./pages/lessons/beginner_lessons/hanging_pieces";
 import Forks from "./pages/lessons/beginner_lessons/forks";
 import ForksPractice from "./pages/lessons/white/forks_practice";
+import ForksPractice2 from "./pages/lessons/white/forks_practice_2";
 
 function App() {
   return (
@@ -74,6 +76,10 @@ function App() {
             element={<MagnusVRainn />}
           />
           <Route
+            path="/lessons/grandmaster/MagnusVBardiya"
+            element={<MagnusVBardiya />}
+          />
+          <Route
             path="lessons/grandmaster/MagnusVSina"
             element={<MagnusVSina />}
           />
@@ -86,7 +92,12 @@ function App() {
             path="lessons/beginner/forks_practice"
             element={<ForksPractice />}
           />
+          <Route
+            path="lessons/beginner/forks_practice_2"
+            element={<ForksPractice2 />}
+          />
         </Routes>
+
       </main>
     </BrowserRouter>
   );
