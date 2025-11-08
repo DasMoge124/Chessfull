@@ -36,6 +36,11 @@ function Lessons() {
             Beginner Game One
           </button>
         </div>
+        <div className="ButtonElements">
+          <button onClick={() => navigate("/lessons/grandmaster/MagnusVSina")}>
+            Magnus vs Sina
+          </button>
+        </div>
         <button onClick={completeLesson}>Complete Lesson</button>
         {lessonCompleted && (
           <div>
