@@ -20,48 +20,71 @@ const GAME_LESSON_MOVES = [
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
   {
-    move: "13.Ne7",
-    player: "Black",
-    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "black needs to move his knight to safety",
-    solution:
-      "Black moved his knight to e7 to avoid the pawn attack and potentially protect the king",
+    move: "13.Ne7", 
+    player: "black",
+    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w HQhq - 0 1", // complete
   },
   {
-    explanation: "Magnus opened the f file due to the pawn exchange, which allows his f1 rook to control the f file, developing an attack on the kingside."// look at this and see how I can have it open a page explaining his moves
+    move: "14.Pf4",
+    player: "White", //complete
+    explanation: "You have threatened the knight on c6. and Bartiya has moved his knight to e7. How can you continue to build pressure on the king",
+    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pPp3/2P1PP2/1NPB4/P5PP/R1BQ1RK1 w Qq - 0 1",
+    hint: "How can you pressure the pawn on e5",
+    solution: "Move your pawn(f2) 2 spaces to trick Bartiya to kill it",
   },
   {
-    move: "14. Ng6",
+    move: "15.Pf4",
     player: "Black",
-    fen: "r2q1rk1/pb3ppp/1p1p1nn1/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w HQhq - 0 1",
+    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pP4/2P1Pp2/1NPB4/P5PP/R1BQ1RK1 w Qq - 0 1",//complete
     
   },
-
   {
-    move: "15.Bg5",
+    move: "16.Bf4",
     player: "white",
-    explanation: "Black moves knight to g6 to allow the rook to move more actively",
-    fen: "r2q1rk1/pb3ppp/1p1p1nn1/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w HQhq - 0 1",
-    hint: "Look for pins and attacks on high-value pieces.",
-    solution: "Bd4 is a strong move pinning Black’s queen to the rook.",
+    explanation:"Bartiya has taken your pawn on f4. How can you recapture and develop a piece at the same time?",
+    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pP4/2P1PB2/1NPB4/P5PP/R2Q1RK1 w HQhq - 0 1",
+    hint: "you need to eliminate the pawn on f4",
+    solution:"move your bishop from c1 to f4 to eliminate the pawn.", // complete
   },
-  {
-    move: "16. Qg5",
+  { // puzzle 3
+    move: "17 ...Ng6",
     player: "Black",
-    explanation: "Find the final blow",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
-    hint: "Push pawns to open lines for attack.",
-    solution: "h4 threatens to open lines and forces Black’s resignation.",
+    fen:"r2q1rk1/pb3ppp/1p1p1nn1/2pP4/2P1PB2/1NPB4/P5PP/R2Q1RK1 w Qq - 0 1",
   },
   {
-    move: "18. h4",
+    move: "18. Bg5",
     player: "White",
-    explanation:
-      "The final blow! Threatens queen, rook, knight. Black resigned.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2PP/2P2Q2/PP1N1P2/2KR3R b - h3 0 17",
-    hint: "Push pawns to open lines for attack.",
-    solution: "h4 threatens to open lines and forces Black’s resignation.",
+    explanation:"Bartiya has moved his knight to g6. How can you respond to this threat while maintaining pressure on Bartiya's position?",
+    fen: "r2q1rk1/pb3ppp/1p1p1nn1/2pP2B1/2P1P3/1NPB4/P5PP/R2Q1RK1 w Qq - 0 1",
+    hint: "consider moving your bishop from f4",
+    solution: "move your bishop from f4 to g5 to pressure the knight.",
   },
+  { // puzzle 4
+move: "19. Qe8",
+player:"Black",
+fen:"r3qrk1/pb3ppp/1p1p1nn1/2pP2B1/2P1P3/1NPB4/P5PP/R2Q1RK1 w Qq - 0 1",
+  },
+  {
+    move: "20. Rf6", 
+    player: "White",
+    explanation: "Bartiya has moved his queen to e8. A bad move. How can you increase the pressure on Bartiya's position and threaten a decisive attack? Think OUTSIDE THE BOX",
+    fen: "r3qrk1/pb3ppp/1p1p1Rn1/2pP2B1/2P1P3/1NPB4/P5PP/R2Q2K1 w Qq - 0 1",
+    hint: "what are all possible ways you can eliminate the knight on f6",
+    solution: "Move your rook from f1 to f6 to eliminate the knight on f6. From their the pawn will eliminate the rook and you can move you bishop to f6",
+  },
+  { // puzzle 5
+move: "21. Qd7",
+player: "black",
+fen:"r4rk1/pb1q1p1p/1p1p1Bn1/2pP4/2P1P3/1NPB4/P5PP/R2Q2K1 w Qq - 0 1",
+  },
+  {
+    move: "22. Qh5, 23. Qh6, 24. Qg7",
+    player: "White",
+    explanation: "This looks pretty straight forward. Now that the queen is out of the way, what can you move to put the king on checkmate?",
+    fen: "r4rk1/pb1q1p1p/1p1p1Bn1/2pP3Q/2P1P3/1NPB4/P5PP/R5K1 w Qq - 0 1",
+    hint: "Think about the opening. Where is the opening and what piece can you put there",
+    solution: "the right move is to move your queen to h5. From there, you can move in to check the king",
+  }
 ];
 
 // Utility for chessboard squares
