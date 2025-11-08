@@ -8,7 +8,7 @@ function chessboard_setup() {
 
   return (
     <div>
-      <h1>Forks</h1>
+      <h1>How to Set Up A Chessboard</h1>
       <p>Be sure to follow the following steps</p>
       <ol>
         <li>
