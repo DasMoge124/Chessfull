@@ -18,6 +18,14 @@ function Beginner() {
           How to Set up a Chessboard
         </button>
       </div>
+      <h2>Basic Chess Principles</h2>
+      <div className="ButtonElements">
+        <button
+          onClick={() => navigate("/lessons/beginner/opening_principles")}
+        >
+          Opening Principles
+        </button>
+      </div>
       <h2>Basic Tactics</h2>
       <div className="ButtonElements">
         <button onClick={() => navigate("/lessons/beginner/hanging_pieces")}>

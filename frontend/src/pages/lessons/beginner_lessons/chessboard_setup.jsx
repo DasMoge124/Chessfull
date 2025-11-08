@@ -1,5 +1,5 @@
 import React from "react";
-import chessImage from "./Images/forks.png";
+import chessImage from "./Images/chessboard.png";
 import { useNavigate } from "react-router-dom";
 import "./lesson.css";
 
@@ -35,8 +35,8 @@ function chessboard_setup() {
         <img src={chessImage} alt="Chess players" />
       </div>
       <div className="ButtonElements">
-        <button onClick={() => navigate("/lessons/beginner/forks_practice")}>
-          Lessons
+        <button onClick={() => navigate("/learn/beginner")}>
+          Back to Lessons Page
         </button>
       </div>
     </div>

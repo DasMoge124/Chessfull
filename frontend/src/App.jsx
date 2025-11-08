@@ -19,6 +19,7 @@ import MagnusVBardiya from "./pages/lessons/white/Magnus_V_Bardiya";
 import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
 //How To Set Up Chess Board Input
 import HowToSetUpChessBoard from "./pages/lessons/beginner_lessons/chessboard_setup";
+import OpeningPrinciples from "./pages/lessons/beginner_lessons/opening_principles";
 //Hanging Pieces Imports
 import Hanging_Pieces from "./pages/lessons/beginner_lessons/hanging_pieces";
 import Hanging_Pieces_Practice from "./pages/lessons/white/hanging_pieces";
@@ -106,7 +107,15 @@ function App() {
             path="lessons/grandmaster/MagnusVSina"
             element={<MagnusVSina />}
           />
-          /* Beginner Lessons */
+          {/* Beginner Stuff */}
+          <Route
+            path="lessons/beginner/how_to_setup_chessboard"
+            element={<HowToSetUpChessBoard />}
+          />
+          <Route
+            path="lessons/beginner/opening_principles"
+            element={<OpeningPrinciples />}
+          />
           <Route
             path="lessons/beginner/BeginnerLessonGameOne"
             element={<BeginnerLessonOne />}
@@ -171,10 +180,6 @@ function App() {
           <Route
             path="lessons/beginner/discovered_attacks"
             element={<Discovered_Attack />}
-          />
-          <Route
-            path="lessons/beginner/how_to_setup_chessboard"
-            element={<HowToSetUpChessBoard />}
           />
         </Routes>
       </main>
