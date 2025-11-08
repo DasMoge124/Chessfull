@@ -8,103 +8,36 @@ import LessonControls from "./components/LessonControls";
 // 1. GAME DATA & UTILITIES
 // =========================================================
 
-const STARTING_FEN = "r2q1rk1/pb3ppp/1pnp1n2/2p1p3/2PPP3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1";// complete 
+const STARTING_FEN =
+  "rnb1k2r/ppp2p1p/7p/2bNp3/2B1P1n1/3P1N2/PPP2PPP/R2Q1RK1 w kq - 0 9"; // complete
+
 const GAME_LESSON_MOVES = [
   {
-    move: "1. d5", // compleete
+    move: "1. Nxc7+", // compleete
     player: "White",
     explanation:
-      "The move d5 threatens to capture the knight on c6. Since he does not want to lose a knight without any compensation, Bardiya is forced to respond to the c6 move by playing Na5 or Nb8 or Ne7, making his knight less active.",
-    fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 b - - 0 1",
+      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+    fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
     hint: "Try to put pressure on the knight on C6.",
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
   {
-    move: "1... Ne7", // current scneario before
+    move: "1. Kf8",
     player: "Black",
-    explanation: "Later in the game, Bardiya chose to play Ne7. Later in the game, Magnus decided to gain more activity on the kingside and potentially create more attacks on Bardiya’s king. How did Magnus create his foundation?", // describes current situation
-    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w - - 1 2",
-    hint: "",
-    solution: "Black played Kf7 to capture the bishop on f7.",
+    fen: "rnb2k1r/ppN2p1p/7p/2b1p3/2B1P1n1/3P1N2/PPP2PPP/R2Q1RK1 w - - 1 10",
+    hint: "black needs to move his knight to safety",
+    solution:
+      "Black moved his knight to e7 to avoid the pawn attack and potentially protect the king",
   },
   {
-    move: "1. f4", // compleete
+    move: "2. Nxa8", // compleete
     player: "White",
     explanation:
-      "Congrats. You are on the right track. Lets continue to the next move.",
-    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pPp3/2P1PP2/1NPB4/P5PP/R1BQ1RK1 b - - 0 1",
+      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+    fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
     hint: "Try to put pressure on the knight on C6.",
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
-  {
-    move: "2... exf4", // current scneario before
-    player: "Black",
-    explanation: "What move did Magnus play next?", // describes current situation
-    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pP4/2P1Pp2/1NPB4/P5PP/R1BQ1RK1 w - - 0 3",
-    hint: "",
-    solution: "Black played Kf7 to capture the bishop on f7.",
-  },
-  {
-    move: "3. Bxf4", // compleete
-    player: "White",
-    explanation:
-      "Magnus opened the f file due to the pawn exchange, which allows his f1 rook to control the f file, developing an attack on the kingside. If you are worried about Magnus’s King safety, don’t be. Even though Magnus’s king experiences an exposed diagonal with the dark squares, Bardiya has no dark squared bishop and most of Bardiya’s pieces are passive, so there is nothing to worry about. If you wonder where the knight on f6 can move, it cannot move to g4 or h5 since Magnus’s queen controls these squares.",
-    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pPp3/2P1PP2/1NPB4/P5PP/R1BQ1RK1 b - - 0 1",
-    hint: "Try to put pressure on the knight on C6.",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
-  },
-  {
-    move: "3... Ng6", // current scneario before
-    player: "Black",
-    explanation: "Later in the game, Bardiya played Ng6. Magnus decided to create a pin that immobilizes one of Bardiya’s knights and allows the rook more activity. What move did Magnus play?", // describes current situation
-    fen: "r2q1rk1/pb3ppp/1p1p1nn1/2pP4/2P1PB2/1NPB4/P5PP/R2Q1RK1 w - - 1 4",
-    hint: "",
-    solution: "Black played Kf7 to capture the bishop on f7.",
-  },
-  {
-    move: "4. Bg5", // compleete
-    player: "White",
-    explanation:
-      "By playing Bg5, Magnus pins Bardiya’s f6 knight to the queen, meaning that Bardiya would lose his queen if he ever moves his f6 knight. Furthermore, Magnus’s rook on f1 controls more of the f file and is eyeing on the f6 knight, which plays a critical role later in the game.",
-    fen: "r2q1rk1/pb3ppp/1p1p1nn1/2pP2B1/2P1P3/1NPB4/P5PP/R2Q1RK1 b - - 2 4",
-    hint: "Try to put pressure on the knight on C6.",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
-  },
-  {
-    move: "4... Qe8", // current scneario before
-    player: "Black",
-    explanation: "Later, Bardiya made a huge blunder by playing Qe8. Later, Magnus punishes Bardiya by playing a brilliant move, weakening Bardiya’s king. How did Magnus do so?", // describes current situation
-    fen: "r3qrk1/pb3ppp/1p1p1nn1/2pP2B1/2P1P3/1NPB4/P5PP/R2Q1RK1 w - - 3 5",
-    hint: "",
-    solution: "Black played Kf7 to capture the bishop on f7.",
-  },
-  {
-    move: "5. Rxf6", // compleete
-    player: "White",
-    explanation:
-      "BRILLIANT MOVE! Magnus sacrificed THE ROOK! The idea is that after gxf6 (which is what Bardiya plays), Magnus simply plays Bxf6. Lets see why.",
-    fen: "r2q1rk1/pb3ppp/1p1p1nn1/2pP2B1/2P1P3/1NPB4/P5PP/R2Q1RK1 b - - 2 4",
-    hint: "Try to put pressure on the knight on C6.",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
-  },
-    {
-    move: "5... Qe8", // current scneario before
-    player: "Black",
-    explanation: "What did Magnus do next", // describes current situation
-    fen: "r3qrk1/pb3ppp/1p1p1nn1/2pP2B1/2P1P3/1NPB4/P5PP/R2Q1RK1 w - - 3 5",
-    hint: "",
-    solution: "Black played Kf7 to capture the bishop on f7.",
-  },
-  {
-    move: "5. Rxf6", // compleete
-    player: "White",
-    explanation:
-      "Even though Magnus did lose a rook, he sacrificed it for a deadlier attack. His bishop on f6 controls the g7 and h8 squares AND the h6 square is not defended. Therefore, Bardiya’s king is in a weak position and Magnus can potentially take advantage of it.",
-    fen: "r2q1rk1/pb3ppp/1p1p1nn1/2pP2B1/2P1P3/1NPB4/P5PP/R2Q1RK1 b - - 2 4",
-    hint: "Try to put pressure on the knight on C6.",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
-  },
-  
 ];
 // Utility for chessboard squares
 const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
@@ -117,8 +50,7 @@ const pieceToFilename = (piece) => {
   return `${color}${type}.svg`;
 };
 
-
-function Magnus_V_Bardiya() {
+function forks_practice_2() {
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -128,7 +60,7 @@ function Magnus_V_Bardiya() {
   const [showSolution, setShowSolution] = useState(false);
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "Let's look at the game played between Maagnus & Grandmaster Bardiya Daneshvar. <br>Magnus plays white and Bardiya plays black.</br> In this move, how can Magnus kick a piece to limit Bardiya's activity?"
+    "Practice: In this position, white can use a piece to fork two of black's pieces. Which piece did black use?"
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
@@ -214,9 +146,7 @@ function Magnus_V_Bardiya() {
             lineHeight: 1.2,
           }}
         >
-          Magnus vs.
-          <br />
-          Bardiya
+          Forks Practice
           <br />
           (Interactive Lesson)
         </div>
@@ -390,4 +320,4 @@ function Magnus_V_Bardiya() {
   );
 }
 
-export default Magnus_V_Bardiya;
+export default forks_practice_2;
