@@ -1,20 +1,24 @@
-/* Scoped only to Home page */
+:root {
+  --primary-electric: #00f0ff;
+  --bg-dark: #0a1128;
+  --neon-glow-strong: 0 0 20px #00f0ff, 0 0 30px #00f0ff, 0 0 40px #00f0ff;
+}
+
 .home-page-container {
   position: relative;
   min-height: calc(100vh - 80px); /* Adjust height for static navbar */
-  /* Dark, deep blue/black background spanning full width */
   background: linear-gradient(135deg, var(--bg-dark), #00051a); 
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px; /* Increased padding */
+  padding: 60px 20px;
   overflow: hidden;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #a8c0ff;
-  width: 100%; /* Ensure it's full width */
+  width: 100%;
 }
 
-/* Glowing circles only on Home - Intensify glow */
+/* Glowing circles */
 .home-page-container::before,
 .home-page-container::after {
   content: "";
@@ -42,21 +46,43 @@
   right: 5%;
 }
 
-/* Content block inside Home */
-.page-content {
+/* Decorative neon chess pieces */
+.chess-decoration {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--primary-electric);
+  border-radius: 50%;
+  opacity: 0.1;
+  filter: blur(4px);
+  transform: rotate(15deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.chess-decoration:nth-child(1) { top: 15%; left: 5%; }
+.chess-decoration:nth-child(2) { bottom: 10%; right: 10%; }
+.chess-decoration:nth-child(3) { top: 30%; right: 15%; }
+.chess-decoration:nth-child(4) { bottom: 20%; left: 20%; }
+.chess-decoration:nth-child(5) { top: 50%; left: 50%; }
+
+/.page-content {
   position: relative;
-  max-width: 1000px; /* Wider content block for PC feel */
-  width: 100%;
-  /* Removed transparency to make it a defined focal point */
+  width: 100%;           /* Make it stretch full width */
+  max-width: 1600px;     /* Limit max width so it doesn't get too crazy */
   background: var(--bg-dark); 
-  padding: 50px 70px; /* Increased padding for elegance */
+  padding: 60px 80px;
   border-radius: 20px;
-  /* Stronger neon shadow and border */
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), var(--neon-glow-strong); 
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), var(--neon-glow-strong);
   z-index: 1;
-  border: 2px solid var(--primary-electric); 
+  border: 2px solid var(--primary-electric);
   text-align: center;
   backdrop-filter: blur(5px);
+
+  display: flex;          /* Flex layout to center content */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .page-content h1 {
@@ -64,13 +90,10 @@
   margin-bottom: 20px;
   color: var(--primary-electric);
   text-shadow: var(--neon-glow-strong);
+  word-wrap: break-word; /* Prevent overflow */
+  white-space: normal;   /* Allow wrapping only if needed */
 }
 
-.page-content p {
-  font-size: 1.5rem;
-  margin-bottom: 40px;
-  color: #c7ffff;
-}
 
 .image-container {
   display: flex;
@@ -80,14 +103,27 @@
 }
 
 .image-container img {
-  max-width: 90%;
+  max-width: 70%; /* Bigger image */
   height: auto;
   border-radius: 10px;
-  box-shadow: 0 0 15px var(--primary-electric);
+  box-shadow: 0 0 25px var(--primary-electric);
   border: 3px solid var(--primary-electric);
   transition: transform 0.3s;
 }
 
 .image-container img:hover {
-    transform: scale(1.02);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .page-content { padding: 40px 50px; }
+  .page-content h1 { font-size: 3rem; white-space: normal; }
+  .image-container img { max-width: 80%; }
+}
+
+@media (max-width: 768px) {
+  .page-content { padding: 30px 20px; }
+  .page-content h1 { font-size: 2.2rem; }
+  .image-container img { max-width: 100%; }
 }
