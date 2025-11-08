@@ -31,19 +31,14 @@ function Lessons() {
         </div>
         <div className="ButtonElements">
           <button
-            onClick={() => navigate("/lessons/beginner/BeginnerLessonGameOne")}
+            onClick={() => navigate("/lessons/grandmaster/MagnusVBardiya")}
           >
-            Beginner Game One
+            GM Magnus Carlsen vs Bardiya
           </button>
         </div>
         <div className="ButtonElements">
           <button onClick={() => navigate("/lessons/grandmaster/MagnusVSina")}>
-            Magnus vs Sina
-          </button>
-        </div>
-        <div className="ButtonElements">
-          <button onClick={() => navigate("/lessons/grandmaster/MagnusVBardiya")}>
-            Magnus vs Bardiya
+            GM Magnus Carlsen vs Sina
           </button>
         </div>
         <button onClick={completeLesson}>Complete Lesson</button>

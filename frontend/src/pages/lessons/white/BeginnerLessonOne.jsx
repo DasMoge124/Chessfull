@@ -37,7 +37,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "This move wins a queen by pinning it to the king, with the bishop defended by the knight.",
     fen: "rn2kbnr/ppp1pppp/2q5/1B6/6b1/2N5/PPPP1PPP/R1BQK1NR w KQkq - 6 6",
-    hint: "Look for pins and attacks on high-value pieces.",
+    hint: "White’s bishop is active, and Black's queen and king are aligned diagonally.",
     solution: "Bd4 is a strong move pinning Black’s queen to the rook.",
   },
   {
@@ -46,7 +46,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "Black responded with one more trick 5… Bg4, hoping to trade queens with a counterattack. How can White neutralize this while also keeping the pin on the Black queen? ",
     fen: "rn2kbnr/ppp1pppp/2q5/1B6/6b1/2N5/PPPP1PPP/R1BQK1NR w KQkq - 6 6",
-    hint: "Push pawns to open lines for attack.",
+    hint: "Is Black’s bishop defended?",
     solution: "h4 threatens to open lines and forces Black’s resignation.",
   },
   {
@@ -55,7 +55,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "This removes the attacking bishop while also maintaining the pin on the queen, so White will end up winning both pieces.",
     fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2PP/2P2Q2/PP1N1P2/2KR3R b - h3 0 17",
-    hint: "Push pawns to open lines for attack.",
+    hint: "Is Black’s bishop defended?",
     solution: "h4 threatens to open lines and forces Black’s resignation.",
   },
   {

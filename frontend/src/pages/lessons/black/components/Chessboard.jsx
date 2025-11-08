@@ -3,11 +3,13 @@ import { Chess } from "chess.js";
 
 // Convert row/column → algebraic notation
 const toSquare = (row, col) => {
-  const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
+  // Column files are now read in reverse for the coordinates
+  // This is crucial for matching the *original* square name to the piece's position
+  const files = ["h", "g", "f", "e", "d", "c", "b", "a"];
   return `${files[col]}${8 - row}`;
 };
 
-// Map piece object → filename
+// Map piece object → filename (no change needed here)
 const pieceToFilename = (piece) => {
   if (!piece) return "";
   const color = piece.color === "w" ? "w" : "b";
@@ -32,7 +34,7 @@ const Chessboard = ({
 
   const squareSize = 400 / 8;
   const lesson = lessonMoves[currentLessonIndex];
-  const isUserTurn = lesson.player === "Black"; // ✅ Always let user move Black pieces
+  const isUserTurn = lesson.player === "Black";
 
   useEffect(() => {
     setBoard([...game.board()]);
@@ -115,6 +117,12 @@ const Chessboard = ({
     }
   };
 
+  // 1. Array of row indices in reverse order (for Black's perspective at the bottom): [7, 6, 5, 4, 3, 2, 1, 0]
+  const reversedRowIndices = Array.from({ length: 8 }, (_, i) => 7 - i);
+
+  // 2. Array of column indices in reverse order (for y-axis mirror): [7, 6, 5, 4, 3, 2, 1, 0]
+  const reversedColIndices = Array.from({ length: 8 }, (_, i) => 7 - i);
+
   return (
     <div
       className="chessboard"
@@ -129,9 +137,17 @@ const Chessboard = ({
         boxShadow: "0 0 10px rgba(0,0,0,0.5)",
       }}
     >
-      {board.map((row, rIdx) =>
-        row.map((piece, cIdx) => {
-          const square = toSquare(rIdx, cIdx);
+      {/* Iterate over reversed row indices (for X-axis flip / Black on bottom) */}
+      {reversedRowIndices.map((rIdx) =>
+        // Iterate over reversed column indices (for Y-axis mirror / file flip)
+        reversedColIndices.map((cIdx) => {
+          // Piece is retrieved using the original rIdx and cIdx from the Chess.js board
+          const piece = board[rIdx][cIdx];
+
+          // Square name is generated based on the original rIdx and the *reversed* cIdx
+          // The toSquare function has been updated to use reversed files
+          const square = toSquare(rIdx, reversedColIndices.indexOf(cIdx));
+
           const isLegal = legalMoves.includes(square);
           const isSource = square === sourceSquare;
           const isLast = square === lastMove.from || square === lastMove.to;
