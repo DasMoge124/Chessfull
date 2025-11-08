@@ -10,16 +10,16 @@ import LessonControls from "./components/LessonControls";
 // =========================================================
 
 const STARTING_FEN =
-  "3r1rk1/ppp2ppp/2n5/3npbN1/8/PP1P2P1/1B2PPBP/2R2RK1 w - - 1 19"; // complete
+  "r1b2rk1/ppq2pbp/2pp2p1/5n1n/2BP4/NQP2N1P/PP3PPB/R3R1K1 w - - 8 15"; // complete
 
 const GAME_LESSON_MOVES = [
   {
-    move: "1. e4", // compleete
+    move: "1. g4", // compleete
     player: "White",
     explanation:
-      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+      "After g4, White's pawn forks the knights on f5 and h5. Regardless of whatever move is played next, white is guaranteed to at least win a knight.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Try to put pressure on the knight on C6.",
+    hint: "Notice any two or more pieces aligned in any manner with white pieces close to them?",
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
 ];
@@ -299,10 +299,10 @@ function forks_practice_2() {
             color: "#aaffaa",
           }}
         >
-          Lesson Complete! Click the button below to continue.
+          Lesson Complete! Congratulations!
           <div className="ButtonElements">
-            <button onClick={() => navigate("/lessons/beginner/forks_practice_4")}>
-              Continue
+            <button onClick={() => navigate("/learn/beginner")}>
+              Go back to lessons
             </button>
           </div>
         </div>

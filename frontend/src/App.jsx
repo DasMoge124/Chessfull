@@ -17,19 +17,27 @@ import Lessons from "./pages/Lessons";
 import MagnusVRainn from "./pages/lessons/white/Magnus_v_RainnWilson";
 import MagnusVBardiya from "./pages/lessons/white/Magnus_V_Bardiya";
 import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
+//How To Set Up Chess Board Input
+import HowToSetUpChessBoard from "./pages/lessons/beginner_lessons/chessboard_setup";
+//Hanging Pieces Imports
 import Hanging_Pieces from "./pages/lessons/beginner_lessons/hanging_pieces";
 import Hanging_Pieces_Practice from "./pages/lessons/white/hanging_pieces";
 import Hanging_Pieces_Practice_2 from "./pages/lessons/white/hanging_pieces_2";
 import Hanging_Pieces_Practice_3 from "./pages/lessons/white/hanging_pieces_3";
+//Fork Imports
 import Forks from "./pages/lessons/beginner_lessons/forks";
 import ForksPractice from "./pages/lessons/white/forks_practice";
 import ForksPractice2 from "./pages/lessons/white/forks_practice_2";
 import ForksPractice3 from "./pages/lessons/white/forks_practice_3";
+import ForksPractice4 from "./pages/lessons/white/forks_practice_4";
+//Pins and Skewers
 import Pins_Skewers from "./pages/lessons/beginner_lessons/pins_and_skewers";
 import Pins_Skewers_Practice from "./pages/lessons/white/pins_and_skewers";
 import Pins_Skewers_Practice_2 from "./pages/lessons/white/pins_and_skewers_2";
 import Pins_Skewers_Practice_3 from "./pages/lessons/white/pins_and_skewers_3";
 import Pins_Skewers_Practice_4 from "./pages/lessons/white/pins_and_skewers_4";
+//Discoverd Attacks Imports
+import Discovered_Attack from "./pages/lessons/beginner_lessons/discovered_attack";
 
 //Practice Games for Beginners
 // Removed import Navbar from "./components/Navbar";
@@ -98,6 +106,7 @@ function App() {
             path="lessons/grandmaster/MagnusVSina"
             element={<MagnusVSina />}
           />
+          /* Beginner Lessons */
           <Route
             path="lessons/beginner/BeginnerLessonGameOne"
             element={<BeginnerLessonOne />}
@@ -114,6 +123,10 @@ function App() {
           <Route
             path="lessons/beginner/forks_practice_3"
             element={<ForksPractice3 />}
+          />
+          <Route
+            path="lessons/beginner/forks_practice_4"
+            element={<ForksPractice4 />}
           />
           <Route
             path="lessons/beginner/hanging_pieces"
@@ -154,6 +167,14 @@ function App() {
           <Route
             path="lessons/beginner/beginner_lesson_one"
             element={<BeginnerLessonOne />}
+          />
+          <Route
+            path="lessons/beginner/discovered_attacks"
+            element={<Discovered_Attack />}
+          />
+          <Route
+            path="lessons/beginner/how_to_setup_chessboard"
+            element={<HowToSetUpChessBoard />}
           />
         </Routes>
       </main>

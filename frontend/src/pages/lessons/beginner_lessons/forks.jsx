@@ -1,5 +1,5 @@
 import React from "react";
-import chessImage from "./forks.png";
+import chessImage from "./Images/forks.png";
 import { useNavigate } from "react-router-dom";
 
 function forks() {

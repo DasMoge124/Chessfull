@@ -1,5 +1,5 @@
 import React from "react";
-import chessImage from "./hanging_pieces.png";
+import chessImage from "./Images/hanging_pieces.png";
 import { useNavigate } from "react-router-dom";
 
 function hanging_pieces() {

@@ -10,6 +10,13 @@ function Beginner() {
   return (
     <div>
       <h1>Beginner Page</h1>
+      <h2>How to Play Chess</h2>
+      <div className="ButtonElements">
+        <button onClick={() => navigate("/lessons/beginner/hanging_pieces")}>
+          How to Set up a Chessboard
+        </button>
+      </div>
+      <h2>Basic Tactics</h2>
       <div className="ButtonElements">
         <button onClick={() => navigate("/lessons/beginner/hanging_pieces")}>
           Hanging Pieces
@@ -25,12 +32,24 @@ function Beginner() {
           Pins and Skewers
         </button>
       </div>
+      <div className="ButtonElements">
+        <button
+          onClick={() => navigate("/lessons/beginner/discovered_attacks")}
+        >
+          Discovered Attacks
+        </button>
+      </div>
       <h2>Practice Games</h2>
       <div className="ButtonElements">
         <button
           onClick={() => navigate("/lessons/beginner/beginner_lesson_one")}
         >
           Game 1
+        </button>
+      </div>
+      <div className="ButtonElements">
+        <button onClick={() => navigate("/learn")}>
+          Return to Lessons Page
         </button>
       </div>
     </div>
