@@ -20,11 +20,8 @@ import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
 import Hanging_Pieces from "./pages/lessons/beginner_lessons/hanging_pieces";
 import Forks from "./pages/lessons/beginner_lessons/forks";
 import ForksPractice from "./pages/lessons/white/forks_practice";
-<<<<<<< HEAD
 import ForksPractice2 from "./pages/lessons/white/forks_practice_2";
-=======
 // Removed import Navbar from "./components/Navbar";
->>>>>>> 7338f7ff28f70668f7f562fff7d28bce91a29b3d
 
 function App() {
   return (
@@ -104,7 +101,6 @@ function App() {
             element={<ForksPractice2 />}
           />
         </Routes>
-
       </main>
     </BrowserRouter>
   );
