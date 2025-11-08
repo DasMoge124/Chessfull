@@ -1,0 +1,71 @@
+.nav-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 16px 30px;
+  /* Start fully transparent, using primary-electric from index.css */
+  background: rgba(0, 0, 0, 0.1); 
+  transition: backdrop-filter 0.3s ease, background 0.3s ease;
+  z-index: 50;
+  /* Add a subtle initial border glow */
+  border-bottom: 1px solid rgba(0, 224, 255, 0.2); 
+}
+
+.nav-container.scrolled {
+  backdrop-filter: blur(10px);
+  /* Darker, blurred background when scrolled */
+  background: rgba(0, 0, 0, 0.6); 
+  /* Add stronger glow when scrolled */
+  box-shadow: 0 0 20px rgba(0, 224, 255, 0.2); 
+}
+
+.nav-content {
+  max-width: 1200px; /* Match the main content width */
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav a {
+  color: #d9e8ff;
+  margin-left: 35px; /* Increased spacing for PC feel */
+  font-size: 1.1rem; /* Slightly larger text */
+  font-weight: 500;
+  transition: 0.25s ease;
+  position: relative;
+}
+
+nav a:hover {
+  /* Use the electric-blue neon from index.css */
+  color: var(--primary-electric); 
+  text-shadow: 0 0 10px var(--primary-electric);
+}
+/* Clean underline effect for PC style */
+nav a:after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: var(--primary-electric);
+  transition: width 0.3s ease;
+}
+
+nav a:hover:after {
+  width: 100%;
+  left: 0;
+  background: var(--primary-electric);
+  box-shadow: 0 0 5px var(--primary-electric);
+}
+
+
+.nav-logo {
+  font-size: 1.8rem; /* Larger logo */
+  font-weight: 700;
+  /* Use the electric-blue neon from index.css */
+  color: var(--primary-electric); 
+  text-shadow: var(--neon-glow-soft);
+}

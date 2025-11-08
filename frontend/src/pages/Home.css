@@ -1,84 +1,93 @@
 /* Scoped only to Home page */
 .home-page-container {
   position: relative;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0a1128, #001f3f);
+  min-height: calc(100vh - 80px); /* Adjust height for static navbar */
+  /* Dark, deep blue/black background spanning full width */
+  background: linear-gradient(135deg, var(--bg-dark), #00051a); 
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 20px;
+  padding: 60px 20px; /* Increased padding */
   overflow: hidden;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #a8c0ff;
+  width: 100%; /* Ensure it's full width */
 }
 
-/* Glowing circles only on Home */
+/* Glowing circles only on Home - Intensify glow */
 .home-page-container::before,
 .home-page-container::after {
   content: "";
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.07;
+  filter: blur(150px);
+  opacity: 0.15;
   z-index: 0;
   pointer-events: none;
 }
 
 .home-page-container::before {
-  width: 220px;
-  height: 220px;
-  background: #1e40af;
-  top: 20%;
-  left: 15%;
+  width: 300px;
+  height: 300px;
+  background: var(--primary-electric);
+  top: 10%;
+  left: 10%;
 }
 
 .home-page-container::after {
-  width: 320px;
-  height: 320px;
+  width: 400px;
+  height: 400px;
   background: #0c4a6e;
-  bottom: 25%;
-  right: 10%;
+  bottom: 15%;
+  right: 5%;
 }
 
 /* Content block inside Home */
 .page-content {
   position: relative;
-  max-width: 600px;
+  max-width: 1000px; /* Wider content block for PC feel */
   width: 100%;
-  background: #121830;
-  padding: 40px 30px;
-  border-radius: 15px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+  /* Removed transparency to make it a defined focal point */
+  background: var(--bg-dark); 
+  padding: 50px 70px; /* Increased padding for elegance */
+  border-radius: 20px;
+  /* Stronger neon shadow and border */
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), var(--neon-glow-strong); 
   z-index: 1;
-  border: 1px solid #222a44;
+  border: 2px solid var(--primary-electric); 
   text-align: center;
+  backdrop-filter: blur(5px);
 }
 
 .page-content h1 {
-  font-size: 3rem;
-  margin-bottom: 15px;
-  color: #7da1ff;
-  font-weight: 700;
-  text-shadow: 0 2px 6px rgba(125, 161, 255, 0.7);
+  font-size: 4rem;
+  margin-bottom: 20px;
+  color: var(--primary-electric);
+  text-shadow: var(--neon-glow-strong);
 }
 
 .page-content p {
-  font-size: 1.25rem;
-  margin-bottom: 30px;
-  color: #cbd5f7;
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  color: #c7ffff;
 }
 
 .image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
 .image-container img {
-  max-width: 100%;
+  max-width: 90%;
   height: auto;
   border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
-  border: 2px solid #3b4cca;
+  box-shadow: 0 0 15px var(--primary-electric);
+  border: 3px solid var(--primary-electric);
+  transition: transform 0.3s;
+}
+
+.image-container img:hover {
+    transform: scale(1.02);
 }

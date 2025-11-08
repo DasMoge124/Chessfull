@@ -11,6 +11,7 @@ function Home() {
         <div className="image-container">
           <img src={chessImage} alt="Chess players" />
         </div>
+        
       </div>
     </div>
   );

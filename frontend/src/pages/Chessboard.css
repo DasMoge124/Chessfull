@@ -1,41 +1,56 @@
 .chessboard {
-  width: calc(70px * 8); /* 560px */
-  height: calc(70px * 8); /* 560px */
-  border: 1px solid #333;
+  width: calc(70px * 8); /* 560px - Keep original board size */
+  height: calc(70px * 8); /* 560px - Keep original board size */
+  border: 4px solid var(--primary-electric); /* Neon border */
+  box-shadow: var(--neon-glow-soft); /* Softer neon shadow */
   box-sizing: content-box;
   display: flex;
   flex-wrap: wrap;
   user-select: none;
+  margin: 40px auto; /* Center board */
 }
 
 .square {
   box-sizing: border-box;
   position: relative;
-  border: 2px solid black; /* thick black border between squares */
+  border: none;
   width: 70px;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: background-color 0.1s;
 }
 
 .light {
-  background-color: #f0d9b5;
+  background-color: #333d47; /* Darker light square */
 }
 
 .dark {
-  background-color: #b58863;
+  background-color: #1a1a1a; /* Very dark square */
+}
+
+/* Highlight for last move */
+.last-move {
+    background-color: #5d00ff !important; /* Distinct purple highlight */
+    opacity: 0.8;
+}
+
+/* Subtle glow on hover for a square */
+.square:hover {
+  background-color: rgba(0, 224, 255, 0.1) !important;
 }
 
 .selected {
-  outline: 3px solid yellow;
+  outline: 3px solid #ffff00;
+  box-shadow: 0 0 10px #ffff00;
   z-index: 5;
 }
 
 .piece-img {
-  position: relative; /* no absolute to keep centered */
-  width: 90%; /* adjust so piece fits nicely inside square */
+  position: relative;
+  width: 90%;
   height: 90%;
   object-fit: contain;
   user-select: none;
@@ -44,24 +59,25 @@
 }
 
 .legal-dot {
-  width: 16px;
-  height: 16px;
-  background-color: rgba(0, 0, 0, 0.4);
+  width: 18px;
+  height: 18px;
+  background-color: rgba(0, 224, 255, 0.7);
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 4;
 }
 
 .legal-ring {
-  width: 80%;
-  height: 80%;
-  border: 3px solid rgba(255, 0, 0, 0.5);
+  width: 90%;
+  height: 90%;
+  border: 3px solid var(--primary-electric);
+  box-shadow: 0 0 10px var(--primary-electric);
   border-radius: 50%;
   position: absolute;
-  top: 10%;
-  left: 10%;
-  z-index: 1;
+  top: 5%;
+  left: 5%;
+  z-index: 4;
 }

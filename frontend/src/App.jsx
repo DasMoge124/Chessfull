@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import React from "react";
 
 import "./App.css";
+import Navbar from "./Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
@@ -18,10 +19,12 @@ import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
 import Hanging_Pieces from "./pages/lessons/beginner_lessons/hanging_pieces";
 import Forks from "./pages/lessons/beginner_lessons/forks";
 import ForksPractice from "./pages/lessons/white/forks_practice";
+// Removed import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <BrowserRouter>
+      {/* Reinstated static header/navbar */}
       <header className="nav_header">
         <nav>
           <ul className="nav_links">
@@ -54,6 +57,7 @@ function App() {
         </nav>
       </header>
 
+      {/* Removed 'page-content-area' class as the nav is no longer fixed */}
       <main className="page-container">
         <Routes>
           <Route path="/" element={<Home />} />
