@@ -1,68 +1,89 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6; /* Increased line-height for better readability */
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: dark; /* Force dark mode */
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #000;
+
+  /* --- New CSS Variables for Neon Theme --- */
+  --primary-electric: #00e0ff; /* Electric Blue Neon / Cyan */
+  --secondary-accent: #ff4500; /* Subtle orange for contrast/secondary info */
+  --bg-dark: #0a0a0a;
+  --text-light: #f0f0f0;
+  --neon-glow-strong: 0 0 15px var(--primary-electric),
+    0 0 25px rgba(0, 224, 255, 0.4);
+  --neon-glow-soft: 0 0 8px rgba(0, 224, 255, 0.5);
+  /* -------------------------------------- */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* --- Smooth Scrolling --- */
+  scroll-behavior: smooth;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: var(--primary-electric);
+  text-decoration: none;
+  transition: color 0.3s, text-shadow 0.3s;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--text-light); 
+  text-shadow: var(--neon-glow-soft);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  display: block; /* Removed flex setup for full-width layout */
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 3.5em; /* Larger headings */
   line-height: 1.1;
+  color: var(--primary-electric);
+  text-shadow: var(--neon-glow-soft);
+  font-family: "Montserrat", sans-serif; /* Consistent heading font */
 }
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  border: 1px solid var(--primary-electric);
+  padding: 0.8em 1.5em; /* Larger button padding */
+  font-size: 1.1em;
+  font-weight: 600;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: var(--text-light);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s,
+    background-color 0.25s,
+    transform 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--primary-electric);
+  box-shadow: var(--neon-glow-soft);
+  background-color: rgba(0, 224, 255, 0.1);
+  transform: translateY(-2px); /* Subtle lift on hover */
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto var(--primary-electric);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+    color: rgba(255, 255, 255, 0.9);
+    background-color: var(--bg-dark);
   }
 }
