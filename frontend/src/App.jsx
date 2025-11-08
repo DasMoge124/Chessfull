@@ -15,6 +15,9 @@ import EricVEmilia from "./pages/lessons/white/eric_v_emilia";
 import Lessons from "./pages/Lessons";
 import MagnusVRainn from "./pages/lessons/white/Magnus_v_RainnWilson";
 import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
+import Hanging_Pieces from "./pages/lessons/beginner_lessons/hanging_pieces";
+import Forks from "./pages/lessons/beginner_lessons/forks";
+import ForksPractice from "./pages/lessons/white/forks_practice";
 
 function App() {
   return (
@@ -77,6 +80,11 @@ function App() {
           <Route
             path="lessons/beginner/BeginnerLessonGameOne"
             element={<BeginnerLessonOne />}
+          />
+          <Route path="lessons/beginner/forks" element={<Forks />} />
+          <Route
+            path="lessons/beginner/forks_practice"
+            element={<ForksPractice />}
           />
         </Routes>
       </main>

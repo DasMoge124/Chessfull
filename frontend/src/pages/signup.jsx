@@ -7,7 +7,7 @@ function Signup() {
 
   const handleSignup = async () => {
     try {
-      const response = await fetch("http://localhost:8085/api/register", {
+      const response = await fetch("http://localhost:8085/addUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

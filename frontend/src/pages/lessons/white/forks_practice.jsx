@@ -9,54 +9,36 @@ import LessonControls from "./components/LessonControls";
 // =========================================================
 
 const STARTING_FEN =
-  "r1b1k2r/ppq2p1p/2nbpnp1/1B1pN3/3P2P1/2P1B3/PP1N1P1P/R2QK2R w KQkq - 3 12";
+  "rnb1k2r/ppp2p1p/7p/2bNp3/2B1P1n1/3P1N2/PPP2PPP/R2Q1RK1 w kq - 0 9"; // complete
 
 const GAME_LESSON_MOVES = [
   {
-    move: "12. Qf3",
+    move: "1. Nxc7+", // compleete
     player: "White",
     explanation:
-      "Developing a piece and winning a tempo by attacking the knight on f6...",
-    fen: "r1b2rk1/p1q1ppbp/1p4p1/2p1P3/8/2PBBN2/PP3PPP/R2Q1RK1 b - - 0 12",
-    hint: "Try to put pressure on the knight on f6.",
-    solution: "The correct move is Qf3, attacking the knight and developing.",
+      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+    fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
+    hint: "Try to put pressure on the knight on C6.",
+    solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
   {
-    move: "13. dxe5 Qxe5 14. O-O-O Ke7 15. Bxc6 bxc6",
+    move: "1. Kf8",
     player: "Black",
-    explanation: "Black plays 13...Qe5 but could have defended better.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3pq3/6P1/2P1BQ2/PP1N1P1P/2KR3R w - - 0 16",
-    hint: "Black should look to improve king safety.",
+    fen: "rnb2k1r/ppN2p1p/7p/2b1p3/2B1P1n1/3P1N2/PPP2PPP/R2Q1RK1 w - - 1 10",
+    hint: "black needs to move his knight to safety",
     solution:
-      "Black played Qe5, but a better defensive move was possible to avoid loss of material.",
+      "Black moved his knight to e7 to avoid the pawn attack and potentially protect the king",
   },
   {
-    move: "16. Bd4",
-    player: "White",
-    explanation: "Strong tactical Bd4 hitting queen + rook.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
-    hint: "Look for pins and attacks on high-value pieces.",
-    solution: "Bd4 is a strong move pinning Black’s queen to the rook.",
-  },
-  {
-    move: "16. Qg5",
-    player: "Black",
-    explanation: "Find the final blow",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
-    hint: "Push pawns to open lines for attack.",
-    solution: "h4 threatens to open lines and forces Black’s resignation.",
-  },
-  {
-    move: "18. h4",
+    move: "2. Nxa8", // compleete
     player: "White",
     explanation:
-      "The final blow! Threatens queen, rook, knight. Black resigned.",
-    fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2PP/2P2Q2/PP1N1P2/2KR3R b - h3 0 17",
-    hint: "Push pawns to open lines for attack.",
-    solution: "h4 threatens to open lines and forces Black’s resignation.",
+      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+    fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
+    hint: "Try to put pressure on the knight on C6.",
+    solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
 ];
-
 // Utility for chessboard squares
 const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
 const toSquare = (row, col) => files[col] + (8 - row);
@@ -68,7 +50,7 @@ const pieceToFilename = (piece) => {
   return `${color}${type}.svg`;
 };
 
-function EricVEmilia() {
+function forks_practice() {
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -338,4 +320,4 @@ function EricVEmilia() {
   );
 }
 
-export default EricVEmilia;
+export default forks_practice;
