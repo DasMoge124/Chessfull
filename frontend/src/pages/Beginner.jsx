@@ -11,6 +11,11 @@ function Beginner() {
     <div>
       <h1>Beginner Page</h1>;
       <div className="ButtonElements">
+        <button onClick={() => navigate("/lessons/beginner/hanging_pieces")}>
+          Hanging Pieces
+        </button>
+      </div>
+      <div className="ButtonElements">
         <button onClick={() => navigate("/lessons/beginner/forks")}>
           Forks
         </button>

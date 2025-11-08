@@ -18,9 +18,13 @@ import MagnusVRainn from "./pages/lessons/white/Magnus_v_RainnWilson";
 import MagnusVBardiya from "./pages/lessons/white/Magnus_V_Bardiya";
 import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
 import Hanging_Pieces from "./pages/lessons/beginner_lessons/hanging_pieces";
+import Hanging_Pieces_Practice from "./pages/lessons/white/hanging_pieces";
+import Hanging_Pieces_Practice_2 from "./pages/lessons/white/hanging_pieces_2";
+import Hanging_Pieces_Practice_3 from "./pages/lessons/white/hanging_pieces_3";
 import Forks from "./pages/lessons/beginner_lessons/forks";
 import ForksPractice from "./pages/lessons/white/forks_practice";
 import ForksPractice2 from "./pages/lessons/white/forks_practice_2";
+import ForksPractice3 from "./pages/lessons/white/forks_practice_3";
 // Removed import Navbar from "./components/Navbar";
 
 function App() {
@@ -99,6 +103,26 @@ function App() {
           <Route
             path="lessons/beginner/forks_practice_2"
             element={<ForksPractice2 />}
+          />
+          <Route
+            path="lessons/beginner/forks_practice_3"
+            element={<ForksPractice3 />}
+          />
+          <Route
+            path="lessons/beginner/hanging_pieces"
+            element={<Hanging_Pieces />}
+          />
+          <Route
+            path="lessons/beginner/hanging_pieces_practice"
+            element={<Hanging_Pieces_Practice />}
+          />
+          <Route
+            path="lessons/beginner/hanging_pieces_practice_2"
+            element={<Hanging_Pieces_Practice_2 />}
+          />
+          <Route
+            path="lessons/beginner/hanging_pieces_practice_3"
+            element={<Hanging_Pieces_Practice_3 />}
           />
         </Routes>
       </main>

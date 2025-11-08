@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
@@ -51,6 +52,7 @@ const pieceToFilename = (piece) => {
 };
 
 function forks_practice() {
+  const navigate = useNavigate();
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -315,8 +317,10 @@ function forks_practice() {
         >
           Forks Lesson 1: Complete
           <div className="ButtonElements">
-            <button onClick={() => navigate("/lessons/beginner/forks")}>
-              Forks
+            <button
+              onClick={() => navigate("/lessons/beginner/forks_practice_2")}
+            >
+              Continue
             </button>
           </div>
         </div>
@@ -326,3 +330,4 @@ function forks_practice() {
 }
 
 export default forks_practice;
+//r1b1k2r/ppp2ppp/1bnp1n2/8/4PPq1/4BNN1/PPP4P/R2QKB1R b KQkq - 6 11

@@ -1,102 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
+
 // =========================================================
-// 1. GAME DATA & UTILITIES----#####NEEEEDDD CHANGESSSSSSSSS
+// 1. GAME DATA & UTILITIES
 // =========================================================
 
 const STARTING_FEN =
-  "r2q1rk1/pb3ppp/1pnp1n2/2p1p3/2PPP3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1"; // complete
+  "2k1rbnr/pp1n1ppp/2p5/3p4/1q1P4/2NB1Q2/PPPB1PPP/R3R1K1 w - - 7 12"; // complete
 
 const GAME_LESSON_MOVES = [
   {
-    move: "12. PD5", // compleete
+    move: "1. Rxe8+", // compleete
     player: "White",
     explanation:
-      "Let's look at the game played between Maagnus & Grandmaster Bardiya Daneshvar. Magnus plays white and Bardiya plays black. In this move, how can Magnus kick a piece to limit Bardiya's activity?",
+      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
     hint: "Try to put pressure on the knight on C6.",
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
-  {
-    move: "13.Ne7",
-    player: "black",
-    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w HQhq - 0 1", // complete
-  },
-  {
-    move: "14.Pf4",
-    player: "White", //complete
-    explanation:
-      "You have threatened the knight on c6. and Bartiya has moved his knight to e7. How can you continue to build pressure on the king",
-    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pPp3/2P1PP2/1NPB4/P5PP/R1BQ1RK1 w Qq - 0 1",
-    hint: "How can you pressure the pawn on e5",
-    solution: "Move your pawn(f2) 2 spaces to trick Bartiya to kill it",
-  },
-  {
-    move: "15.Pf4",
-    player: "Black",
-    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pP4/2P1Pp2/1NPB4/P5PP/R1BQ1RK1 w Qq - 0 1", //complete
-  },
-  {
-    move: "16.Bf4",
-    player: "white",
-    explanation:
-      "Bartiya has taken your pawn on f4. How can you recapture and develop a piece at the same time?",
-    fen: "r2q1rk1/pb2nppp/1p1p1n2/2pP4/2P1PB2/1NPB4/P5PP/R2Q1RK1 w HQhq - 0 1",
-    hint: "you need to eliminate the pawn on f4",
-    solution: "move your bishop from c1 to f4 to eliminate the pawn.", // complete
-  },
-  {
-    // puzzle 3
-    move: "17 ...Ng6",
-    player: "Black",
-    fen: "r2q1rk1/pb3ppp/1p1p1nn1/2pP4/2P1PB2/1NPB4/P5PP/R2Q1RK1 w Qq - 0 1",
-  },
-  {
-    move: "18. Bg5",
-    player: "White",
-    explanation:
-      "Bartiya has moved his knight to g6. How can you respond to this threat while maintaining pressure on Bartiya's position?",
-    fen: "r2q1rk1/pb3ppp/1p1p1nn1/2pP2B1/2P1P3/1NPB4/P5PP/R2Q1RK1 w Qq - 0 1",
-    hint: "consider moving your bishop from f4",
-    solution: "move your bishop from f4 to g5 to pressure the knight.",
-  },
-  {
-    // puzzle 4
-    move: "19. Qe8",
-    player: "Black",
-    fen: "r3qrk1/pb3ppp/1p1p1nn1/2pP2B1/2P1P3/1NPB4/P5PP/R2Q1RK1 w Qq - 0 1",
-  },
-  {
-    move: "20. Rf6",
-    player: "White",
-    explanation:
-      "Bartiya has moved his queen to e8. A bad move. How can you increase the pressure on Bartiya's position and threaten a decisive attack? Think OUTSIDE THE BOX",
-    fen: "r3qrk1/pb3ppp/1p1p1Rn1/2pP2B1/2P1P3/1NPB4/P5PP/R2Q2K1 w Qq - 0 1",
-    hint: "what are all possible ways you can eliminate the knight on f6",
-    solution:
-      "Move your rook from f1 to f6 to eliminate the knight on f6. From their the pawn will eliminate the rook and you can move you bishop to f6",
-  },
-  {
-    // puzzle 5
-    move: "21. Qd7",
-    player: "black",
-    fen: "r4rk1/pb1q1p1p/1p1p1Bn1/2pP4/2P1P3/1NPB4/P5PP/R2Q2K1 w Qq - 0 1",
-  },
-  {
-    move: "22. Qh5, 23. Qh6, 24. Qg7",
-    player: "White",
-    explanation:
-      "This looks pretty straight forward. Now that the queen is out of the way, what can you move to put the king on checkmate?",
-    fen: "r4rk1/pb1q1p1p/1p1p1Bn1/2pP3Q/2P1P3/1NPB4/P5PP/R5K1 w Qq - 0 1",
-    hint: "Think about the opening. Where is the opening and what piece can you put there",
-    solution:
-      "the right move is to move your queen to h5. From there, you can move in to check the king",
-  },
 ];
-
 // Utility for chessboard squares
 const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
 const toSquare = (row, col) => files[col] + (8 - row);
@@ -108,7 +34,8 @@ const pieceToFilename = (piece) => {
   return `${color}${type}.svg`;
 };
 
-function Magnus_v_Finegold() {
+function hanging_pieces_practice() {
+  const navigate = useNavigate();
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -118,7 +45,7 @@ function Magnus_v_Finegold() {
   const [showSolution, setShowSolution] = useState(false);
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "Could have defended the knight better<br />Loses tempo<br />Should have moved Bd7"
+    "Practice: In this position, white can use a piece to fork two of black's pieces. Which piece did black use?"
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
@@ -204,9 +131,7 @@ function Magnus_v_Finegold() {
             lineHeight: 1.2,
           }}
         >
-          Magnus vs.
-          <br />
-          Bardiya
+          Hanging Pieces Lesson 1
           <br />
           (Interactive Lesson)
         </div>
@@ -215,8 +140,8 @@ function Magnus_v_Finegold() {
           style={{ fontSize: 14, lineHeight: 1.4, width: 400, marginTop: 10 }}
         >
           <p>
-            This is a real game from 2020. You'll follow the moves, get hints,
-            and solutions along the way. Play the moves as White.
+            You'll follow the moves, get hints, and solutions along the way.
+            Play the moves as White.
           </p>
           <p>Click on a piece, then the square you want to move to.</p>
         </div>
@@ -373,11 +298,21 @@ function Magnus_v_Finegold() {
             color: "#aaffaa",
           }}
         >
-          Lesson Complete! Black resigned after 17. h4.
+          Forks Lesson 1: Complete
+          <div className="ButtonElements">
+            <button
+              onClick={() =>
+                navigate("/lessons/beginner/hanging_pieces_practice_2")
+              }
+            >
+              Continue
+            </button>
+          </div>
         </div>
       )}
     </div>
   );
 }
 
-export default Magnus_v_Finegold;
+export default hanging_pieces_practice;
+//r1b1k2r/ppp2ppp/1bnp1n2/8/4PPq1/4BNN1/PPP4P/R2QKB1R b KQkq - 6 11

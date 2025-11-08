@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
+import { useNavigate } from "react-router-dom";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
@@ -8,12 +9,11 @@ import LessonControls from "./components/LessonControls";
 // 1. GAME DATA & UTILITIES
 // =========================================================
 
-const STARTING_FEN =
-  "rnb1k2r/ppp2p1p/7p/2bNp3/2B1P1n1/3P1N2/PPP2PPP/R2Q1RK1 w kq - 0 9"; // complete
+const STARTING_FEN = "8/1r3p2/1pR1p3/p2n1k1p/2N4P/PP3KP1/8/8 w - - 1 34"; // complete
 
 const GAME_LESSON_MOVES = [
   {
-    move: "1. Nxc7+", // compleete
+    move: "1. Nd6+", // compleete
     player: "White",
     explanation:
       "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
@@ -22,15 +22,15 @@ const GAME_LESSON_MOVES = [
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
   {
-    move: "1. Kf8",
+    move: "1... Kf6",
     player: "Black",
-    fen: "rnb2k1r/ppN2p1p/7p/2b1p3/2B1P1n1/3P1N2/PPP2PPP/R2Q1RK1 w - - 1 10",
+    fen: "8/1r3p2/1pRNpk2/p2n3p/7P/PP3KP1/8/8 w - - 3 35",
     hint: "black needs to move his knight to safety",
     solution:
       "Black moved his knight to e7 to avoid the pawn attack and potentially protect the king",
   },
   {
-    move: "2. Nxa8", // compleete
+    move: "2. Nxb7", // compleete
     player: "White",
     explanation:
       "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
@@ -51,6 +51,7 @@ const pieceToFilename = (piece) => {
 };
 
 function forks_practice_2() {
+  const navigate = useNavigate();
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -313,7 +314,14 @@ function forks_practice_2() {
             color: "#aaffaa",
           }}
         >
-          Lesson Complete! Black resigned after 17. h4.
+          / Forks Lesson 2: Complete
+          <div className="ButtonElements">
+            <button
+              onClick={() => navigate("/lessons/beginner/forks_practice_3")}
+            >
+              Continue
+            </button>
+          </div>
         </div>
       )}
     </div>

@@ -45,10 +45,11 @@
 .legal-ring {
   width: 80%;
   height: 80%;
-  border: 3px solid rgba(255, 0, 0, 0.5);
+  /* Using the same color as the dot/last move for consistency */
+  border: 4px solid rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   position: absolute;
-  top: 10%;
-  left: 10%;
+  top: 12%;
+  left: 12%;
   z-index: 1;
 }
