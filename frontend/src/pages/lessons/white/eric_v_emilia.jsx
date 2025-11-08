@@ -164,7 +164,7 @@ function EricVEmilia() {
             lineHeight: 1.2,
           }}
         >
-          Forks Practice
+          Eric Rosen vs Emilia Sprzęczka
           <br />
           (Interactive Lesson)
         </div>
