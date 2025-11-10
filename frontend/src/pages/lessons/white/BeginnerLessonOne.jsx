@@ -3,6 +3,7 @@ import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
+import { useNavigate } from "react-router-dom";
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
@@ -90,6 +91,7 @@ const pieceToFilename = (piece) => {
 };
 
 function beginner_game_one() {
+  const navigate = useNavigate();
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -185,7 +187,7 @@ function beginner_game_one() {
             lineHeight: 1.2,
           }}
         >
-          Eric Rosen vs Emilia Sprzęczka
+          Beginner Game
           <br />
           (Interactive Lesson)
         </div>
@@ -193,10 +195,6 @@ function beginner_game_one() {
           className="lesson-info-box"
           style={{ fontSize: 14, lineHeight: 1.4, width: 400, marginTop: 10 }}
         >
-          <p>
-            This is a real game from 2020. You'll follow the moves, get hints,
-            and solutions along the way. Play the moves as White.
-          </p>
           <p>Click on a piece, then the square you want to move to.</p>
         </div>
       </div>
