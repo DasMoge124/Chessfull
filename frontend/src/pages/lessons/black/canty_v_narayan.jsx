@@ -58,7 +58,7 @@ const GAME_LESSON_MOVES = [
 // =========================================================
 // 3. MAIN LESSON COMPONENT
 // =========================================================
-function MagnusVSina() {
+function CantyvNarayan() {
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -186,9 +186,9 @@ function MagnusVSina() {
             color: "#eee",
           }}
         >
-          Magnus Carlsen vs.
+          James Canty vs.
           <br />
-          Sina Khadempour
+          Narayan
           <br />
           (Interactive Lesson - **Playing Black**)
         </div>
@@ -352,4 +352,4 @@ function MagnusVSina() {
   );
 }
 
-export default MagnusVSina;
+export default CantyvNarayan;
