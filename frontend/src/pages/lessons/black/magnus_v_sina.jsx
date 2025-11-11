@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
-import Chessboard from "./components/Chessboard"; // Ensure path is correct
-import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
+// Assuming the path to Chessboard is correct and it handles move logic
+import Chessboard from "./components/Chessboard";
+import "./GameLesson.css";
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
@@ -65,41 +66,62 @@ function MagnusVSina() {
   const [showContinue, setShowContinue] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
+
+  // Updated initial feedback state
   const [feedback, setFeedback] = useState(
-    "It is Black's turn. Play 7... Nge7."
+    "In this game, Magnus plays with the Black pieces whereas Grandmaster Sina Movahed plays with the white pieces. The game starts with the French Defense: Advance Variation with the moves: 1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Nc6 5. Nf3 Bd7 6. Be2 cxd4 7. cxd4. The resulting sequence from these moves is shown in the position above. In this position, some of Magnus’s pieces are not developed properly. However, Magnus found out a slow but effective way to activate his knight on g8. **What move did he play to do so?**"
   );
 
-  const lesson = GAME_LESSON_MOVES[currentLessonIndex]; // Logic for engine moves and board setup
+  const lesson = GAME_LESSON_MOVES[currentLessonIndex];
 
   useEffect(() => {
-    // Skip Black's turn, as the user handles it
+    // Logic for engine moves (White's turn in this lesson)
     if (lesson && lesson.player === "White" && !gameEnded) {
       setLessonMessage({
         type: "info",
-        text: `White played ${lesson.move.split(" ")[1]}.`,
+        text: `White played ${lesson.move.split(" ")[0]}.`,
         explanation: lesson.explanation,
       });
-      // Update game state and advance lesson after White's move
+      // Set the game state to the FEN *after* White's move
       const tempGame = new Chess(lesson.fen);
       setGame(tempGame);
-      setShowContinue(false);
-      setShowHint(false);
-      setShowSolution(false);
-      // Automatically advance to the next step, setting up Black's turn
+
+      // *** MODIFICATION FOR AUTO-ADVANCE ***
+      // Immediately advance the index after setting the FEN/message for White's move
       if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
         setCurrentLessonIndex((i) => i + 1);
+      } else {
+        // If it was the last move by White, set game ended
+        setGameEnded(true);
       }
+
+      setShowContinue(false); // Ensure button is hidden
+      setShowHint(false);
+      setShowSolution(false);
+      setFeedback(""); // Clear feedback box after White's move
     }
-    // When moving to the user's turn (Black), reset messages
+
+    // Logic for user's turn (Black's turn in this lesson)
     if (lesson && lesson.player === "Black" && game.turn() === "b") {
-      setLessonMessage({
-        type: "instruction",
-        text: `Your turn (Black). Find the best move for ${lesson.move.split(" ")[0]}.`,
-        explanation: null,
-      });
-      setFeedback("");
+      // Restore initial instruction/question in feedback box if it's the very first move
+      if (currentLessonIndex === 0) {
+        setFeedback(
+          "In this game, Magnus plays with the Black pieces whereas Grandmaster Sina Movahed plays with the white pieces. The game starts with the French Defense: Advance Variation with the moves: 1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Nc6 5. Nf3 Bd7 6. Be2 cxd4 7. cxd4. The resulting sequence from these moves is shown in the position above. In this position, some of Magnus’s pieces are not developed properly. However, Magnus found out a slow but effective way to activate his knight on g8. **What move did he play to do so?**"
+        );
+      } else {
+        setLessonMessage({
+          type: "instruction",
+          text: `Your turn (Black). Find the move for ${lesson.move.split(" ")[0]}.`,
+          explanation: lesson.explanation,
+        });
+        // Setting instruction feedback for subsequent Black moves
+        setFeedback(
+          `Black's turn. Find the move: **${lesson.move.split(" ")[0]}**`
+        );
+      }
+      setShowContinue(false); // Hide continue button for user's move
     }
-  }, [currentLessonIndex, gameEnded, lesson, setGame, game.turn()]);
+  }, [currentLessonIndex, gameEnded, lesson, game, setGame]);
 
   const advanceLesson = () => {
     if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
@@ -199,6 +221,7 @@ function MagnusVSina() {
             maxWidth: "400px",
             textAlign: "left",
           }}
+          // Use dangerouslySetInnerHTML to render the bolded part of the initial text
           dangerouslySetInnerHTML={{ __html: feedback }}
         />
       )}
@@ -293,7 +316,7 @@ function MagnusVSina() {
         </div>
       )}
 
-      {/* CONTINUE / NEXT MOVE BUTTON */}
+      {/* CONTINUE / NEXT MOVE BUTTON - Only visible when explicitly set to true (e.g., after a successful player move) */}
       {showContinue && !gameEnded && (
         <button
           onClick={advanceLesson}
