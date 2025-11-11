@@ -1,19 +1,9 @@
-[build]
-  base    = "frontend"
-  command = "vite build"
-  publish = "dist"
+// vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Content-Type = "application/javascript; charset=utf-8"
-
-[[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+// https://vitejs.dev/config/
+export default defineConfig({
+  base: '/',
+  plugins: [react()],
+})
