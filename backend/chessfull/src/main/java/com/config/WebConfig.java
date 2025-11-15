@@ -12,10 +12,16 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // **Important:** Changed "/*" to "/**" to match all paths recursively
-                        .allowedOrigins("*") // **FIX:** Use "*" to allow all origins
+                // Allows CORS requests to all paths ("/**")
+                registry.addMapping("/**")
+                        // FIX: Allows all origins. This fixes the "No 'Access-Control-Allow-Origin'
+                        // header" error.
+                        .allowedOrigins("*")
+                        // Allow the HTTP methods needed by your frontend
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        // Allows all headers in the request
                         .allowedHeaders("*")
+                        // Since you are using a wildcard (*), allowCredentials must be false
                         .allowCredentials(false);
             }
         };
