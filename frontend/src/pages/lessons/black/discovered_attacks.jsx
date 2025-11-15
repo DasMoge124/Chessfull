@@ -1,41 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Chess } from "chess.js";
-import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
+// Assuming the path to Chessboard is correct and it handles move logic
 import Chessboard from "./components/Chessboard";
-import LessonControls from "./components/LessonControls";
+import "./GameLesson.css";
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
 
 const STARTING_FEN =
-  "r1bqkr2/pp1pp2p/2n3p1/2p5/3bN1Q1/8/PPPP1PPP/RNB2RK1 b Qq - 0 1"; // complete
+  "r1bqkr2/pp1pp2p/2n3p1/2p5/3bN1Q1/8/PPPP1PPP/RNB2RK1 b Qq - 0 1";
 
 const GAME_LESSON_MOVES = [
   {
     move: "1. d5", // compleete
-    player: "White",
+    player: "Black",
     explanation:
       "This move sets a discovered attack on the queen on g4 and attacks the knight on e4",
     fen: "r1bqkr2/pp2p2p/2n3p1/2pp4/3bN1Q1/8/PPPP1PPP/RNB2RK1 b Qq - 0 1",
     hint: ".",
-    solution: ".",
+    solution: "d5",
   },
 ];
-// Utility for chessboard squares
-const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
-const toSquare = (row, col) => files[col] + (8 - row);
 
-const pieceToFilename = (piece) => {
-  if (!piece) return null;
-  const color = piece.color === "w" ? "w" : "b";
-  const type = piece.type.toUpperCase();
-  return `${color}${type}.svg`;
-};
-
-function discovered_attacks_practice() {
-  const navigate = useNavigate();
+// =========================================================
+// 3. MAIN LESSON COMPONENT
+// =========================================================
+function Discovered_Attack() {
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -43,31 +34,62 @@ function discovered_attacks_practice() {
   const [showContinue, setShowContinue] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
-  // Feedback box state
+
+  // Updated initial feedback state
   const [feedback, setFeedback] = useState(
-    "Practice: (insert words))"
+    "Practice: (insert words)"
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
 
   useEffect(() => {
-    if (lesson && lesson.player === "Black" && !gameEnded) {
+    // Logic for engine moves (White's turn in this lesson)
+    if (lesson && lesson.player === "White" && !gameEnded) {
       setLessonMessage({
         type: "info",
-        text: `Black played ${lesson.move.split(" ")[1]}.`,
+        text: `White played ${lesson.move.split(" ")[0]}.`,
         explanation: lesson.explanation,
       });
+      // Set the game state to the FEN *after* White's move
       const tempGame = new Chess(lesson.fen);
       setGame(tempGame);
-      setShowContinue(false);
-      setShowHint(false);
-      setShowSolution(false);
-      // Instantly advance to next move (no cooldown)
+
+      // *** MODIFICATION FOR AUTO-ADVANCE ***
+      // Immediately advance the index after setting the FEN/message for White's move
       if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
         setCurrentLessonIndex((i) => i + 1);
+      } else {
+        // If it was the last move by White, set game ended
+        setGameEnded(true);
       }
+
+      setShowContinue(false); // Ensure button is hidden
+      setShowHint(false);
+      setShowSolution(false);
+      setFeedback(""); // Clear feedback box after White's move
     }
-  }, [currentLessonIndex, gameEnded, lesson]);
+
+    // Logic for user's turn (Black's turn in this lesson)
+    if (lesson && lesson.player === "Black" && game.turn() === "b") {
+      // Restore initial instruction/question in feedback box if it's the very first move
+      if (currentLessonIndex === 0) {
+        setFeedback(
+          "..."
+        );
+      } else {
+        setLessonMessage({
+          type: "instruction",
+          text: `Your turn (Black). Find the move for ${lesson.move.split(" ")[0]}.`,
+          explanation: lesson.explanation,
+        });
+        // Setting instruction feedback for subsequent Black moves
+        setFeedback(
+          `Black's turn. Find the move: **${lesson.move.split(" ")[0]}**`
+        );
+      }
+      setShowContinue(false); // Hide continue button for user's move
+    }
+  }, [currentLessonIndex, gameEnded, lesson, game, setGame]);
 
   const advanceLesson = () => {
     if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
@@ -80,7 +102,7 @@ function discovered_attacks_practice() {
       setGameEnded(true);
       setLessonMessage({
         type: "info",
-        text: "Lesson Complete! ...",
+        text: "Lesson Complete!",
       });
     }
   };
@@ -94,6 +116,7 @@ function discovered_attacks_practice() {
     setShowSolution((prev) => !prev);
     if (!showSolution) setShowHint(false);
   };
+  const clearFeedback = () => setFeedback("");
 
   return (
     <div
@@ -110,16 +133,13 @@ function discovered_attacks_practice() {
         color: "#eee",
       }}
     >
-      {/* HEADER */}
       <div
-        className="header-content"
+        className="game-area"
         style={{
           display: "flex",
-          width: 800,
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          marginTop: 40,
-          marginBottom: 20,
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: 20,
         }}
       >
         <div
@@ -129,25 +149,17 @@ function discovered_attacks_practice() {
             fontWeight: "bold",
             width: 320,
             lineHeight: 1.2,
+            marginBottom: 20,
+            textAlign: "center",
+            color: "#eee",
           }}
         >
           Discovered Attacks Lesson 1
           <br />
           (Interactive Lesson)
         </div>
-        <div
-          className="lesson-info-box"
-          style={{ fontSize: 14, lineHeight: 1.4, width: 400, marginTop: 10 }}
-        >
-          <p>
-            You'll follow the moves, get hints, and solutions along the way.
-            Play the moves as White.
-          </p>
-          <p>Click on a piece, then the square you want to move to.</p>
-        </div>
-      </div>
 
-      {/* CHESSBOARD */}
+        {/* CHESSBOARD */}
       <Chessboard
         game={game}
         setGame={setGame}
@@ -159,7 +171,7 @@ function discovered_attacks_practice() {
         clearFeedback={() => setFeedback("")}
       />
 
-      {/* FEEDBACK BOX (blue, temporary) */}
+      {/* FEEDBACK AND MESSAGE AREA */}
       {feedback && (
         <div
           className="feedback-box"
@@ -174,11 +186,11 @@ function discovered_attacks_practice() {
             maxWidth: "400px",
             textAlign: "left",
           }}
+          // Use dangerouslySetInnerHTML to render the bolded part of the initial text
           dangerouslySetInnerHTML={{ __html: feedback }}
         />
       )}
 
-      {/* LESSON MESSAGE */}
       {lessonMessage && (
         <div
           className={`lesson-message ${lessonMessage.type}`}
@@ -269,7 +281,7 @@ function discovered_attacks_practice() {
         </div>
       )}
 
-      {/* CONTINUE / NEXT MOVE BUTTON */}
+      {/* CONTINUE / NEXT MOVE BUTTON - Only visible when explicitly set to true (e.g., after a successful player move) */}
       {showContinue && !gameEnded && (
         <button
           onClick={advanceLesson}
@@ -298,21 +310,12 @@ function discovered_attacks_practice() {
             color: "#aaffaa",
           }}
         >
-          Forks Lesson 1: Complete
-          <div className="ButtonElements">
-            <button
-              onClick={() =>
-                navigate("/lessons/beginner/hanging_pieces_practice_2")
-              }
-            >
-              Continue
-            </button>
-          </div>
+          Lesson Complete!
         </div>
       )}
     </div>
+    </div> 
   );
-}
+  }
 
-export default discovered_attacks_practice;
-//r1b1k2r/ppp2ppp/1bnp1n2/8/4PPq1/4BNN1/PPP4P/R2QKB1R b KQkq - 6 11
+export default Discovered_Attack;

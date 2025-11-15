@@ -39,6 +39,7 @@ import Pins_Skewers_Practice_3 from "./pages/lessons/white/pins_and_skewers_3";
 import Pins_Skewers_Practice_4 from "./pages/lessons/white/pins_and_skewers_4";
 //Discoverd Attacks Imports
 import Discovered_Attack from "./pages/lessons/beginner_lessons/discovered_attack";
+import Discovered_Attack_Practice from "./pages/lessons/black/discovered_attacks";
 
 //Practice Games for Beginners
 // Removed import Navbar from "./components/Navbar";
@@ -180,6 +181,10 @@ function App() {
           <Route
             path="lessons/beginner/discovered_attacks"
             element={<Discovered_Attack />}
+          />
+          <Route
+            path="lessons/beginner/discovered_attacks_practice"
+            element={<Discovered_Attack_Practice />}
           />
         </Routes>
       </main>

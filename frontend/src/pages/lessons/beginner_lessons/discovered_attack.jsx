@@ -26,8 +26,8 @@ function discovered_attack() {
         <img src={chessImage} alt="Chess players" />
       </div>
       <div className="ButtonElements">
-        <button onClick={() => navigate("/lessons/beginner/forks_practice")}>
-          Lessons
+        <button onClick={() => navigate("/lessons/beginner/discovered_attacks_practice")}>
+          Start practicing
         </button>
       </div>
     </div>
