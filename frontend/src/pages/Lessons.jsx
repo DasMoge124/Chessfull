@@ -4,11 +4,11 @@ import "../App.css";
 
 function Lessons() {
   const navigate = useNavigate();
-  const [lessonCompleted, setLessonCompleted] = useState(false);
+  //const [lessonCompleted, setLessonCompleted] = useState(false);
 
-  const completeLesson = () => {
+  /*const completeLesson = () => {
     setLessonCompleted(true);
-  };
+  };*/
 
   return (
     <div className="page-container">
@@ -41,13 +41,6 @@ function Lessons() {
             GM Magnus Carlsen vs Sina
           </button>
         </div>
-        <button onClick={completeLesson}>Complete Lesson</button>
-        {lessonCompleted && (
-          <div>
-            <p>Congratulations! You've completed the lesson.</p>
-            <button onClick={() => navigate("/learn")}>Back to Levels</button>
-          </div>
-        )}
       </div>
     </div>
   );
