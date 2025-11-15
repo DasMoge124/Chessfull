@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
+import { useNavigate } from "react-router-dom";
 // Assuming the path to Chessboard is correct and it handles move logic
 import Chessboard from "./components/Chessboard";
 import "./GameLesson.css";
@@ -27,6 +28,7 @@ const GAME_LESSON_MOVES = [
 // 3. MAIN LESSON COMPONENT
 // =========================================================
 function Discovered_Attack() {
+  const navigate = useNavigate();
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -69,26 +71,7 @@ function Discovered_Attack() {
       setFeedback(""); // Clear feedback box after White's move
     }
 
-    // Logic for user's turn (Black's turn in this lesson)
-    if (lesson && lesson.player === "Black" && game.turn() === "b") {
-      // Restore initial instruction/question in feedback box if it's the very first move
-      if (currentLessonIndex === 0) {
-        setFeedback(
-          "..."
-        );
-      } else {
-        setLessonMessage({
-          type: "instruction",
-          text: `Your turn (Black). Find the move for ${lesson.move.split(" ")[0]}.`,
-          explanation: lesson.explanation,
-        });
-        // Setting instruction feedback for subsequent Black moves
-        setFeedback(
-          `Black's turn. Find the move: **${lesson.move.split(" ")[0]}**`
-        );
-      }
-      setShowContinue(false); // Hide continue button for user's move
-    }
+    
   }, [currentLessonIndex, gameEnded, lesson, game, setGame]);
 
   const advanceLesson = () => {
@@ -310,7 +293,14 @@ function Discovered_Attack() {
             color: "#aaffaa",
           }}
         >
-          Lesson Complete!
+          Forks Lesson 1: Complete
+          <div className="ButtonElements">
+            <button
+              onClick={() => navigate("/lessons/beginner/forks_practice_2")}
+            >
+              Continue
+            </button>
+          </div>
         </div>
       )}
     </div>
