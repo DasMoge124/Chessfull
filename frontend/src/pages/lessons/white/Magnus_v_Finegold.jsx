@@ -204,9 +204,9 @@ function Magnus_v_Finegold() {
             lineHeight: 1.2,
           }}
         >
-          Magnus vs.
+          Magnus Carlsen vs.
           <br />
-          Bardiya
+          Finegold
           <br />
           (Interactive Lesson)
         </div>
@@ -215,7 +215,7 @@ function Magnus_v_Finegold() {
           style={{ fontSize: 14, lineHeight: 1.4, width: 400, marginTop: 10 }}
         >
           <p>
-            This is a real game from 2020. You'll follow the moves, get hints,
+            This is a real game from 2017. You'll follow the moves, get hints,
             and solutions along the way. Play the moves as White.
           </p>
           <p>Click on a piece, then the square you want to move to.</p>
