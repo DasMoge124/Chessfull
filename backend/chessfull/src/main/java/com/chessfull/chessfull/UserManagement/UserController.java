@@ -11,6 +11,7 @@ import com.chessfull.chessfull.UserManagement.User;
 
 // ...
 @RestController
+@CrossOrigin(origins = "*")
 public class UserController {
     @Autowired
     private UserRepository userRepo;
