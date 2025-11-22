@@ -16,10 +16,10 @@ const GAME_LESSON_MOVES = [
     move: "1. Rxc5", // compleete
     player: "White",
     explanation:
-      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+      "After Rxc5, White's rook on c5 captures the hanging bishop on c5. The bishop was undefended and could be taken without any immediate consequences. Sure there was a pawn on b4 that was hanging, but the bishop is worth much more than a pawn.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Think about how every piece moves and how they capture. After that, look for undefended (hanging) pieces. Are any pieces on the same file or diagonal?",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+    hint: "Think about how every piece moves and how they capture. After that, look for undefended (hanging) pieces and check which ones are more valuable. A good question to ask for bishops, queens, and rooks: are any pieces on the same file or diagonal?",
+    solution: "Rxc5 captures the hanging bishop on c5.",
   },
 ];
 // Utility for chessboard squares

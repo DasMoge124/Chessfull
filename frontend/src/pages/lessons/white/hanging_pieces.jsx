@@ -19,8 +19,8 @@ const GAME_LESSON_MOVES = [
     explanation:
       "The rook on e8 was hanging, therefore it was free to capture. Sure, there was a pawn on f7 that's hanging, but rooks worth much more than a awn.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Try to search for all captures. Remember how the pieces move?",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+    hint: "Think about how every piece moves and how they capture. After that, look for undefended (hanging) pieces and check which ones are more valuable. A good question to ask for bishops, queens, and rooks: are any pieces on the same file or diagonal?",
+    solution: "Rxe8+ captures the hanging rook on e8.",
   },
 ];
 // Utility for chessboard squares

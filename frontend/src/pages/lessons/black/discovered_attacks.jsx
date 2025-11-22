@@ -19,7 +19,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "This move sets a discovered attack on the queen on g4 and attacks the knight on e4",
     fen: "r1bqkr2/pp2p2p/2n3p1/2pp4/3bN1Q1/8/PPPP1PPP/RNB2RK1 b Qq - 0 1",
-    hint: "Are any of the pieces of opposite color on the same diagonal? If so, is any of them a long ranged piece that is blocked a less valued piece? If that's the case, can you move the less moved piece out of the way (preferably to a square that can create not only a discovered attack on piece, but an additional attack another?",
+    hint: "Are any of the pieces of opposite color on the same diagonal? If so, is any of them a long ranged piece that is blocked a less valued piece? If that's the case, can you move the less moved piece out of the way (preferably to a square that can create not only a discovered attack on piece, but an additional attack another if possible)?",
     solution: "d5",
   },
 ];
@@ -39,7 +39,7 @@ function Discovered_Attack_Practice() {
 
   // Updated initial feedback state
   const [feedback, setFeedback] = useState(
-    "Practice: (insert words)"
+    "Black can set up a discovered attack on one of White's important pieces. Figure out how!"
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
@@ -70,8 +70,6 @@ function Discovered_Attack_Practice() {
       setShowSolution(false);
       setFeedback(""); // Clear feedback box after White's move
     }
-
-    
   }, [currentLessonIndex, gameEnded, lesson, game, setGame]);
 
   const advanceLesson = () => {
@@ -143,169 +141,167 @@ function Discovered_Attack_Practice() {
         </div>
 
         {/* CHESSBOARD */}
-      <Chessboard
-        game={game}
-        setGame={setGame}
-        currentLessonIndex={currentLessonIndex}
-        lessonMoves={GAME_LESSON_MOVES}
-        setLessonMessage={setLessonMessage}
-        setShowContinue={setShowContinue}
-        showContinue={showContinue}
-        clearFeedback={() => setFeedback("")}
-      />
-
-      {/* FEEDBACK AND MESSAGE AREA */}
-      {feedback && (
-        <div
-          className="feedback-box"
-          style={{
-            background: "#1976d2",
-            color: "#fff",
-            padding: "16px",
-            borderRadius: "8px",
-            marginTop: "16px",
-            fontSize: "1.1em",
-            boxShadow: "0 2px 8px rgba(25, 118, 210, 0.15)",
-            maxWidth: "400px",
-            textAlign: "left",
-          }}
-          // Use dangerouslySetInnerHTML to render the bolded part of the initial text
-          dangerouslySetInnerHTML={{ __html: feedback }}
+        <Chessboard
+          game={game}
+          setGame={setGame}
+          currentLessonIndex={currentLessonIndex}
+          lessonMoves={GAME_LESSON_MOVES}
+          setLessonMessage={setLessonMessage}
+          setShowContinue={setShowContinue}
+          showContinue={showContinue}
+          clearFeedback={() => setFeedback("")}
         />
-      )}
 
-      {lessonMessage && (
-        <div
-          className={`lesson-message ${lessonMessage.type}`}
-          style={{
-            marginTop: 20,
-            maxWidth: 700,
-            padding: 12,
-            backgroundColor:
-              lessonMessage.type === "error"
-                ? "#8b0000"
-                : lessonMessage.type === "success"
-                  ? "#006400"
-                  : "#004080",
-            borderRadius: 8,
-          }}
-        >
-          <strong>{lessonMessage.text}</strong>
-          {lessonMessage.explanation && (
-            <p style={{ marginTop: 8 }}>{lessonMessage.explanation}</p>
-          )}
-        </div>
-      )}
-
-      {/* HINT & SOLUTION BUTTONS */}
-      {lessonMessage?.type === "error" && (
-        <div
-          className="hint-solution-buttons"
-          style={{ marginTop: 10, display: "flex", gap: 10 }}
-        >
-          <button
-            onClick={toggleHint}
+        {/* FEEDBACK AND MESSAGE AREA */}
+        {feedback && (
+          <div
+            className="feedback-box"
             style={{
-              backgroundColor: showHint ? "#646401ff" : "#646401ff",
-              color: "#eee",
-              padding: "8px 12px",
-              borderRadius: 5,
-              border: "none",
-              cursor: "pointer",
+              background: "#1976d2",
+              color: "#fff",
+              padding: "16px",
+              borderRadius: "8px",
+              marginTop: "16px",
+              fontSize: "1.1em",
+              boxShadow: "0 2px 8px rgba(25, 118, 210, 0.15)",
+              maxWidth: "400px",
+              textAlign: "left",
+            }}
+            // Use dangerouslySetInnerHTML to render the bolded part of the initial text
+            dangerouslySetInnerHTML={{ __html: feedback }}
+          />
+        )}
+
+        {lessonMessage && (
+          <div
+            className={`lesson-message ${lessonMessage.type}`}
+            style={{
+              marginTop: 20,
+              maxWidth: 700,
+              padding: 12,
+              backgroundColor:
+                lessonMessage.type === "error"
+                  ? "#8b0000"
+                  : lessonMessage.type === "success"
+                    ? "#006400"
+                    : "#004080",
+              borderRadius: 8,
             }}
           >
-            {showHint ? "Hide Hint" : "Show Hint"}
-          </button>
-          <button
-            onClick={toggleSolution}
-            style={{
-              backgroundColor: showSolution ? "#009b39ff" : "#009b39ff",
-              color: "#eee",
-              padding: "8px 12px",
-              borderRadius: 5,
-              border: "none",
-              cursor: "pointer",
-            }}
+            <strong>{lessonMessage.text}</strong>
+            {lessonMessage.explanation && (
+              <p style={{ marginTop: 8 }}>{lessonMessage.explanation}</p>
+            )}
+          </div>
+        )}
+
+        {/* HINT & SOLUTION BUTTONS */}
+        {lessonMessage?.type === "error" && (
+          <div
+            className="hint-solution-buttons"
+            style={{ marginTop: 10, display: "flex", gap: 10 }}
           >
-            {showSolution ? "Hide Solution" : "Show Solution"}
-          </button>
-        </div>
-      )}
-
-      {/* HINT & SOLUTION TEXT */}
-      {showHint && lessonMessage?.type === "error" && (
-        <div
-          className="hint-text"
-          style={{
-            marginTop: 10,
-            maxWidth: 700,
-            padding: 12,
-            backgroundColor: "#646401ff",
-            borderRadius: 8,
-            fontStyle: "italic",
-          }}
-        >
-          <strong>Hint:</strong> {lesson.hint}
-        </div>
-      )}
-      {showSolution && lessonMessage?.type === "error" && (
-        <div
-          className="solution-text"
-          style={{
-            marginTop: 10,
-            maxWidth: 700,
-            padding: 12,
-            backgroundColor: "#009b39ff",
-            borderRadius: 8,
-            fontStyle: "italic",
-          }}
-        >
-          <strong>Solution:</strong> {lesson.solution}
-        </div>
-      )}
-
-      {/* CONTINUE / NEXT MOVE BUTTON - Only visible when explicitly set to true (e.g., after a successful player move) */}
-      {showContinue && !gameEnded && (
-        <button
-          onClick={advanceLesson}
-          style={{
-            marginTop: 20,
-            backgroundColor: "#0055cc",
-            color: "#fff",
-            borderRadius: 6,
-            padding: "10px 20px",
-            border: "none",
-            cursor: "pointer",
-            fontSize: 16,
-          }}
-        >
-          Next Move
-        </button>
-      )}
-
-      {/* GAME END MESSAGE */}
-      {gameEnded && (
-        <div
-          style={{
-            marginTop: 30,
-            fontSize: 18,
-            fontWeight: "bold",
-            color: "#aaffaa",
-          }}
-        >
-          Forks Lesson 1: Complete
-          <div className="ButtonElements">
             <button
-              onClick={() => navigate("/lessons/beginner/forks_practice_2")}
+              onClick={toggleHint}
+              style={{
+                backgroundColor: showHint ? "#646401ff" : "#646401ff",
+                color: "#eee",
+                padding: "8px 12px",
+                borderRadius: 5,
+                border: "none",
+                cursor: "pointer",
+              }}
             >
-              Continue
+              {showHint ? "Hide Hint" : "Show Hint"}
+            </button>
+            <button
+              onClick={toggleSolution}
+              style={{
+                backgroundColor: showSolution ? "#009b39ff" : "#009b39ff",
+                color: "#eee",
+                padding: "8px 12px",
+                borderRadius: 5,
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              {showSolution ? "Hide Solution" : "Show Solution"}
             </button>
           </div>
-        </div>
-      )}
+        )}
+
+        {/* HINT & SOLUTION TEXT */}
+        {showHint && lessonMessage?.type === "error" && (
+          <div
+            className="hint-text"
+            style={{
+              marginTop: 10,
+              maxWidth: 700,
+              padding: 12,
+              backgroundColor: "#646401ff",
+              borderRadius: 8,
+              fontStyle: "italic",
+            }}
+          >
+            <strong>Hint:</strong> {lesson.hint}
+          </div>
+        )}
+        {showSolution && lessonMessage?.type === "error" && (
+          <div
+            className="solution-text"
+            style={{
+              marginTop: 10,
+              maxWidth: 700,
+              padding: 12,
+              backgroundColor: "#009b39ff",
+              borderRadius: 8,
+              fontStyle: "italic",
+            }}
+          >
+            <strong>Solution:</strong> {lesson.solution}
+          </div>
+        )}
+
+        {/* CONTINUE / NEXT MOVE BUTTON - Only visible when explicitly set to true (e.g., after a successful player move) */}
+        {showContinue && !gameEnded && (
+          <button
+            onClick={advanceLesson}
+            style={{
+              marginTop: 20,
+              backgroundColor: "#0055cc",
+              color: "#fff",
+              borderRadius: 6,
+              padding: "10px 20px",
+              border: "none",
+              cursor: "pointer",
+              fontSize: 16,
+            }}
+          >
+            Next Move
+          </button>
+        )}
+
+        {/* GAME END MESSAGE */}
+        {gameEnded && (
+          <div
+            style={{
+              marginTop: 30,
+              fontSize: 18,
+              fontWeight: "bold",
+              color: "#aaffaa",
+            }}
+          >
+            Forks Lesson 1: Complete
+            <div className="ButtonElements">
+              <button onClick={() => navigate("/learn/beginner")}>
+                Continue
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
-    </div> 
   );
-  }
+}
 
 export default Discovered_Attack_Practice;

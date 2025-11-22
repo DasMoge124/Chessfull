@@ -19,8 +19,8 @@ const GAME_LESSON_MOVES = [
     explanation:
       "The knight on h5 is hanging - meaning it has no defenders and is sitting all by itself - so White can capture it with the queen.",
     fen: "rnbqkb1r/pppppppp/8/4P2Q/8/8/PPPP1PPP/RNB1KBNR b KQkq - 0 3",
-    hint: "Think about how every piece moves and how they capture. After that, look for undefended (hanging) pieces. Are any pieces on the same file or diagonal?",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+    hint: "Think about how every piece moves and how they capture. After that, look for undefended (hanging) pieces and check which ones are more valuable. A good question to ask for bishops, queens, and rooks: are any pieces on the same file or diagonal?",
+    solution: "Qxh5 captures the hanging knight on h5.",
   },
 ];
 // Utility for chessboard squares
