@@ -19,7 +19,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "This move sets a discovered attack on the queen on g4 and attacks the knight on e4",
     fen: "r1bqkr2/pp2p2p/2n3p1/2pp4/3bN1Q1/8/PPPP1PPP/RNB2RK1 b Qq - 0 1",
-    hint: ".",
+    hint: "Are any of the pieces of opposite color on the same diagonal? If so, is any of them a long ranged piece that is blocked a less valued piece? If that's the case, can you move the less moved piece out of the way (preferably to a square that can create not only a discovered attack on piece, but an additional attack another?",
     solution: "d5",
   },
 ];
@@ -27,7 +27,7 @@ const GAME_LESSON_MOVES = [
 // =========================================================
 // 3. MAIN LESSON COMPONENT
 // =========================================================
-function Discovered_Attack() {
+function Discovered_Attack_Practice() {
   const navigate = useNavigate();
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
@@ -308,4 +308,4 @@ function Discovered_Attack() {
   );
   }
 
-export default Discovered_Attack;
+export default Discovered_Attack_Practice;
