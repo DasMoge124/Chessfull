@@ -19,8 +19,9 @@ const GAME_LESSON_MOVES = [
     explanation:
       "This move pins the rook on c7 to the rook on d8. This is a relative pin. Regardless of which rook moves away, white will be guaranteed to win a rook.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Any pins. Always look for checks, captures, and attacks.",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+    hint: "Any pins? Always look for checks, captures, and attacks. Check if there are two pieces aligned in any manner with one of your pieces close to them.",
+    solution:
+      "This move pins the rook on c7 to the rook on d8. This is a relative pin. Regardless of which rook moves away, white will be guaranteed to win a rook.",
   },
 ];
 // Utility for chessboard squares

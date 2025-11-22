@@ -9,8 +9,7 @@ import LessonControls from "./components/LessonControls";
 // 1. GAME DATA & UTILITIES
 // =========================================================
 
-const STARTING_FEN =
-  "8/8/p1k3p1/3pB3/N7/8/PPq2PPQ/R4RK1 w - - 0 1"; // complete
+const STARTING_FEN = "8/8/p1k3p1/3pB3/N7/8/PPq2PPQ/R4RK1 w - - 0 1"; // complete
 
 const GAME_LESSON_MOVES = [
   {
@@ -19,7 +18,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "This move pins the queen on c2 to the king on c6. Since this is an absolute pin, Black is guaranteed to eventually lose a queen.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Try to put pressure on the knight on C6.",
+    hint: "Notice any pieces aligned on the same file? If so, try to see if you can do anything about it.",
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
 ];

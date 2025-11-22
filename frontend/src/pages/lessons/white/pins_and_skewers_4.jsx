@@ -9,18 +9,16 @@ import LessonControls from "./components/LessonControls";
 // 1. GAME DATA & UTILITIES
 // =========================================================
 
-const STARTING_FEN =
-  "7r/7p/pp1B1k2/2p2pp1/6PP/P1N5/1PP5/2K1R3 w - - 0 1"; // complete
+const STARTING_FEN = "7r/7p/pp1B1k2/2p2pp1/6PP/P1N5/1PP5/2K1R3 w - - 0 1"; // complete
 
 const GAME_LESSON_MOVES = [
   {
     move: "1. Be5+", // compleete
     player: "White",
-    explanation:
-      "This move skewers the king on f6 to the rook on h8",
+    explanation: "This move skewers the king on f6 to the rook on h8",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
     hint: "Try to put pressure on the knight on C6.",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+    solution: "This move skewers the king on f6 to the rook on h",
   },
 ];
 // Utility for chessboard squares
@@ -300,11 +298,7 @@ function pins_and_skewers_practice_4() {
         >
           Pins and Skewers Lesson 4: Complete
           <div className="ButtonElements">
-            <button
-              onClick={() =>
-                navigate("/learn/beginner/")
-              }
-            >
+            <button onClick={() => navigate("/learn/beginner/")}>
               Go back to lessons
             </button>
           </div>

@@ -16,11 +16,10 @@ const GAME_LESSON_MOVES = [
   {
     move: "1. Bf4", // compleete
     player: "White",
-    explanation:
-      "This move skewers the queen on e5 to the rook on b8.",
+    explanation: "This move skewers the queen on e5 to the rook on b8.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
     hint: "Try to put pressure on the knight on C6.",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+    solution: "This move skewers the queen on e5 to the rook on b8.",
   },
 ];
 // Utility for chessboard squares
