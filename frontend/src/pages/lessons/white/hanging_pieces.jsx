@@ -17,9 +17,9 @@ const GAME_LESSON_MOVES = [
     move: "1. Rxe8+", // compleete
     player: "White",
     explanation:
-      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+      "The rook on e8 was hanging, therefore it was free to capture. Sure, there was a pawn on f7 that's hanging, but rooks worth much more than a awn.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Try to put pressure on the knight on C6.",
+    hint: "Try to search for all captures. Remember how the pieces move?",
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
 ];

@@ -17,9 +17,9 @@ const GAME_LESSON_MOVES = [
     move: "1. Qxh5", // compleete
     player: "White",
     explanation:
-      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+      "The knight on h5 is hanging - meaning it has no defenders and is sitting all by itself - so White can capture it with the queen.",
     fen: "rnbqkb1r/pppppppp/8/4P2Q/8/8/PPPP1PPP/RNB1KBNR b KQkq - 0 3",
-    hint: "Try to put pressure on the knight on C6.",
+    hint: "Think about how every piece moves and how they capture. After that, look for undefended (hanging) pieces. Are any pieces on the same file or diagonal?",
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
 ];
