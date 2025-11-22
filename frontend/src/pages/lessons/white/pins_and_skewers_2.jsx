@@ -297,7 +297,7 @@ function pins_and_skewers_practice_3() {
             color: "#aaffaa",
           }}
         >
-          Forks Lesson 1: Complete
+          Pins and Skewers Lesson 2: Complete
           <div className="ButtonElements">
             <button
               onClick={() =>
