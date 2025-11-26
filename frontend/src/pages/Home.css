@@ -1,7 +1,7 @@
 :root {
   --primary-electric: #00f0ff;
   --bg-dark: #0a1128;
-  --neon-glow-strong: 0 0 20px #00f0ff, 0 0 30px #00f0ff, 0 0 40px #00f0ff;
+  --neon-glow-strong: 0 0 21px #00f0ff, 0 0 30px #00f0ff, 0 0 40px #00f0ff;
 }
 
 .home-page-container {

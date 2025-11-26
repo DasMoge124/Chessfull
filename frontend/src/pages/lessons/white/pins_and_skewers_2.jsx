@@ -18,7 +18,7 @@ const GAME_LESSON_MOVES = [
     player: "White",
     explanation: "This move skewers the queen on e5 to the rook on b8.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Try to put pressure on the knight on C6.",
+    hint: "Any pins? Always look for checks, captures, and attacks. Check if there are two pieces aligned in any manner with one of your pieces close to them.",
     solution: "This move skewers the queen on e5 to the rook on b8.",
   },
 ];
@@ -130,7 +130,7 @@ function pins_and_skewers_practice_3() {
             lineHeight: 1.2,
           }}
         >
-          Hanging Pieces Lesson 1
+          Pins and Skewers Lesson 2
           <br />
           (Interactive Lesson)
         </div>

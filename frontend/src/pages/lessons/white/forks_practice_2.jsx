@@ -16,14 +16,17 @@ const GAME_LESSON_MOVES = [
     move: "1. Nd6+", // compleete
     player: "White",
     explanation:
-      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+      "After Nd6+, White's knight on d6 is attacking the king on f6 and the rook on b7. Since the king is in check, black has to move the king away from the f6 square.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Try to put pressure on the knight on C6.",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+    hint: "Take a look at how each piece is placed and be sure to look for checks, captures, and threats/attacks",
+    solution:
+      "Nd6+ attacks both the king and the rook, forcing the king to move.",
   },
   {
     move: "1... Kf6",
     player: "Black",
+    explanation:
+      "After Kf6, Black moves his king to safety. What should White do now?",
     fen: "8/1r3p2/1pRNpk2/p2n3p/7P/PP3KP1/8/8 w - - 3 35",
     hint: "black needs to move his knight to safety",
     solution:
@@ -33,10 +36,10 @@ const GAME_LESSON_MOVES = [
     move: "2. Nxb7", // compleete
     player: "White",
     explanation:
-      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+      "After Nxb7, White's knight captures the undefended rook on b7, winning material. White cannot play moves Nxf7 or Rxb6 since both moves result in losing a piece. Remember, rooks are more valuable than knights!",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Try to put pressure on the knight on C6.",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+    hint: "Which pieces is the knight on d6 attacking/threatening to capture?",
+    solution: "This captures a free rook.",
   },
 ];
 // Utility for chessboard squares
@@ -61,7 +64,7 @@ function forks_practice_2() {
   const [showSolution, setShowSolution] = useState(false);
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "Practice: In this position, white can use a piece to fork two of black's pieces. Which piece did black use?"
+    "Practice: In this position, white can use a piece to fork two of black's pieces. What would White do in this position?"
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
@@ -314,7 +317,7 @@ function forks_practice_2() {
             color: "#aaffaa",
           }}
         >
-          / Forks Lesson 2: Complete
+          Forks Lesson 2: Complete
           <div className="ButtonElements">
             <button
               onClick={() => navigate("/lessons/beginner/forks_practice_3")}

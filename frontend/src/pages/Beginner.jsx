@@ -17,6 +17,9 @@ function Beginner() {
         >
           How to Set up a Chessboard
         </button>
+        <button onClick={() => navigate("/lessons/beginner/how_pieces_move")}>
+          How each chess piece Moves
+        </button>
       </div>
       <h2>Basic Chess Principles</h2>
       <div className="ButtonElements">
@@ -24,6 +27,13 @@ function Beginner() {
           onClick={() => navigate("/lessons/beginner/opening_principles")}
         >
           Opening Principles
+        </button>
+        <button
+          onClick={() =>
+            navigate("/lessons/beginner/checkmates_and_stalemates")
+          }
+        >
+          Checkmates and Stalemates
         </button>
       </div>
       <h2>Basic Tactics</h2>
@@ -47,6 +57,16 @@ function Beginner() {
           onClick={() => navigate("/lessons/beginner/discovered_attacks")}
         >
           Discovered Attacks
+        </button>
+      </div>
+      <h2>Pawn Structures</h2>
+      <div className="ButtonElements">
+        <button
+          onClick={() =>
+            navigate("/lessons/beginner/pawn_structure_doubled_pawns")
+          }
+        >
+          Doubled Pawns
         </button>
       </div>
       <h2>Practice Games</h2>

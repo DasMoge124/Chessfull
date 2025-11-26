@@ -17,9 +17,14 @@ import Lessons from "./pages/Lessons";
 import MagnusVRainn from "./pages/lessons/white/Magnus_v_RainnWilson";
 import MagnusVBardiya from "./pages/lessons/white/Magnus_V_Bardiya";
 import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
-//How To Set Up Chess Board Input
+//How To Set Up Chess Board Import
 import HowToSetUpChessBoard from "./pages/lessons/beginner_lessons/chessboard_setup";
+import HowPiecesMove from "./pages/lessons/beginner_lessons/how_pieces_move";
+//Opening Principles Import
 import OpeningPrinciples from "./pages/lessons/beginner_lessons/opening_principles";
+import CheckmatesAndStalemates from "./pages/lessons/beginner_lessons/checkmates";
+import TwoRookCheckmate from "./pages/lessons/white/tworookmate";
+import QueenCheckmateLesson from "./pages/lessons/white/QueenMateLesson";
 //Hanging Pieces Imports
 import Hanging_Pieces from "./pages/lessons/beginner_lessons/hanging_pieces";
 import Hanging_Pieces_Practice from "./pages/lessons/white/hanging_pieces";
@@ -40,6 +45,8 @@ import Pins_Skewers_Practice_4 from "./pages/lessons/white/pins_and_skewers_4";
 //Discoverd Attacks Imports
 import Discovered_Attack from "./pages/lessons/beginner_lessons/discovered_attack";
 import Discovered_Attack_Practice from "./pages/lessons/black/discovered_attacks";
+//Pawn Structure Imports
+import DoubledPawns from "./pages/lessons/beginner_lessons/doubled_pawns";
 
 //Practice Games for Beginners
 // Removed import Navbar from "./components/Navbar";
@@ -53,7 +60,7 @@ function App() {
           <ul className="nav_links">
             <li className="nav_list">
               <Link className="nav_a" to="/">
-                Home
+                Chessfull
               </Link>
             </li>
             <li className="nav_list">
@@ -114,9 +121,27 @@ function App() {
             element={<HowToSetUpChessBoard />}
           />
           <Route
+            path="lessons/beginner/how_pieces_move"
+            element={<HowPiecesMove />}
+          />
+          <Route
             path="lessons/beginner/opening_principles"
             element={<OpeningPrinciples />}
           />
+          {/* Checkmates and Stalemates */}
+          <Route
+            path="lessons/beginner/checkmates_and_stalemates"
+            element={<CheckmatesAndStalemates />}
+          />
+          <Route
+            path="lessons/beginner/two_rook_checkmate"
+            element={<TwoRookCheckmate />}
+          />
+          <Route
+            path="lessons/beginner/queen_checkmate_lesson"
+            element={<QueenCheckmateLesson />}
+          />
+          {/* Beginner Tactics */}
           <Route
             path="lessons/beginner/BeginnerLessonGameOne"
             element={<BeginnerLessonOne />}
@@ -185,6 +210,11 @@ function App() {
           <Route
             path="lessons/beginner/discovered_attacks_practice"
             element={<Discovered_Attack_Practice />}
+          />
+          {/* Pawn Structure */}
+          <Route
+            path="lessons/beginner/pawn_structure_doubled_pawns"
+            element={<DoubledPawns />}
           />
         </Routes>
       </main>

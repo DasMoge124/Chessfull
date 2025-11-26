@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
-// import { Chess } from "chess.js";
+import React, { useState, useEffect } from "react";
+// import { Chess } from "chess.js"; // Assume Chess is available globally or imported elsewhere
 import "./Chessboard.css";
 
 // Utility function to convert row/column into algebraic square notation
@@ -31,6 +31,10 @@ const Chessboard = ({
   const [legalMoves, setLegalMoves] = useState([]);
   const [lastMove, setLastMove] = useState({ from: null, to: null });
 
+  // NEW STATE for Promotion Handling
+  const [promotionPending, setPromotionPending] = useState(false);
+  const [promotionMove, setPromotionMove] = useState({ from: null, to: null });
+
   // 400px / 8 squares = 50px per square
   const squareSize = 400 / 8;
   const lesson = lessonMoves[currentLessonIndex];
@@ -45,19 +49,52 @@ const Chessboard = ({
   const getLegalMoves = (square) =>
     game.moves({ square, verbose: true }).map((m) => m.to);
 
-  const executeMove = (fromSquare, toSquare) => {
-    const move = game.move({ from: fromSquare, to: toSquare, promotion: "q" });
+  // UPDATED: Now accepts an optional promotion piece
+  const executeMove = (fromSquare, toSquare, promotionPiece = "q") => {
+    const piece = game.get(fromSquare);
+    const targetRank = game.turn() === "w" ? "8" : "1";
+
+    // Check if the move is a pawn move to the last rank, AND we haven't specified a promotion piece yet
+    const requiresPromotionChoice =
+      piece &&
+      piece.type === "p" &&
+      toSquare.endsWith(targetRank) &&
+      !promotionPending; // Check only if not already pending
+
+    // If promotion choice is required, pause and show the modal
+    if (requiresPromotionChoice) {
+      setPromotionPending(true);
+      setPromotionMove({ from: fromSquare, to: toSquare });
+      return;
+    }
+
+    // Configure the move, including 'promotion' if it's required (or explicitly passed)
+    const moveConfig = {
+      from: fromSquare,
+      to: toSquare,
+      ...(requiresPromotionChoice ||
+      (piece.type === "p" && toSquare.endsWith(targetRank))
+        ? { promotion: promotionPiece }
+        : {}),
+    };
+
+    const move = game.move(moveConfig);
+
     if (!move) return;
 
     setLastMove({ from: move.from, to: move.to });
     updateBoard();
 
-    // The logic below assumes the PGN format is like "12. Qf3" and extracts 'Qf3'
+    // Lesson feedback logic
     const moveParts = lesson.move.split(" ");
     const expectedMove =
       moveParts.length > 1 ? moveParts[1].replace("...", "").trim() : "";
 
-    if (move.san === expectedMove) {
+    // Clean SAN for comparison: remove promotion notation (=Q, =R, etc.)
+    const cleanedSan = move.san.replace(/=\w/g, "");
+    const cleanedExpectedMove = expectedMove.replace(/=\w/g, "");
+
+    if (cleanedSan === cleanedExpectedMove || move.san === expectedMove) {
       setLessonMessage({
         type: "success",
         text: `Correct! ${move.san} was played.`,
@@ -70,7 +107,7 @@ const Chessboard = ({
       setLessonMessage({
         type: "error",
         text: `You played ${move.san}. Try again.`,
-        explanation: null, // Do not show hint immediately
+        explanation: null,
         showHint: false,
         showSolution: false,
       });
@@ -78,8 +115,26 @@ const Chessboard = ({
     }
   };
 
+  // NEW FUNCTION: Handles the user's promotion choice and executes the move
+  const handlePromotionChoice = (piece) => {
+    if (!promotionPending || !promotionMove.from || !promotionMove.to) return;
+
+    // Execute the move with the chosen promotion piece ('q', 'r', 'b', 'n')
+    executeMove(promotionMove.from, promotionMove.to, piece);
+
+    // Clear promotion state
+    setPromotionPending(false);
+    setPromotionMove({ from: null, to: null });
+
+    // Clear highlight states
+    setSourceSquare(null);
+    setLegalMoves([]);
+  };
+
   const handleSquareClick = (square) => {
-    if (!isUserTurn) return;
+    // Block clicks while promotion modal is open
+    if (!isUserTurn || promotionPending) return;
+
     const piece = game.get(square);
 
     if (!sourceSquare) {
@@ -91,11 +146,16 @@ const Chessboard = ({
     }
 
     if (legalMoves.includes(square)) {
-      // Only clear feedback when a valid move is made
       if (clearFeedback) clearFeedback();
+
+      // Execute move. This will either move the piece or trigger promotionPending state
       executeMove(sourceSquare, square);
-      setSourceSquare(null);
-      setLegalMoves([]);
+
+      // Only clear source/legal moves if promotion is NOT pending
+      if (!promotionPending) {
+        setSourceSquare(null);
+        setLegalMoves([]);
+      }
     } else if (piece && piece.color === game.turn()) {
       setSourceSquare(square);
       setLegalMoves(getLegalMoves(square));
@@ -115,7 +175,6 @@ const Chessboard = ({
         display: "grid",
         gridTemplateColumns: `repeat(8, ${squareSize}px)`,
         gridTemplateRows: `repeat(8, ${squareSize}px)`,
-        // Removed original inline style fallbacks to rely on CSS file
       }}
     >
       {board.map((row, rIdx) =>
@@ -137,7 +196,7 @@ const Chessboard = ({
               key={square}
               className={`square ${squareClasses} ${isLegal ? "highlight-legal" : ""} 
                         ${isSource ? "highlight-source" : ""} ${isLast ? "last-move" : ""}
-                        ${isUserTurn ? "cursor-pointer" : "cursor-default"}
+                        ${isUserTurn && !promotionPending ? "cursor-pointer" : "cursor-default"}
                         `}
               onClick={() => handleSquareClick(square)}
               // --- FILE AND RANK NOTATION DATA ATTRIBUTES ---
@@ -155,8 +214,6 @@ const Chessboard = ({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                // Removed inline background color fallbacks to rely on CSS file
-                // Kept source highlight fallback for robust click indication
                 ...(isSource && {
                   border: "3px solid #3d80e8",
                   boxSizing: "border-box",
@@ -164,40 +221,57 @@ const Chessboard = ({
               }}
             >
               {/* Highlight for legal moves (dot on empty square) */}
-              {isLegal && !piece && (
-                <div
-                  // Using class name from your CSS for dot highlight
-                  className="legal-dot"
-                />
-              )}
+              {isLegal && !piece && <div className="legal-dot" />}
 
               {/* Highlight for legal moves (ring on occupied square) */}
-              {isLegal && piece && (
-                <div
-                  // Using class name from your CSS for ring highlight
-                  className="legal-ring"
-                />
-              )}
+              {isLegal && piece && <div className="legal-ring" />}
 
               {/* Piece Image */}
               {piece && (
                 <img
                   src={`/assets/pieces/${pieceToFilename(piece)}`}
                   alt={`${piece.color}${piece.type}`}
-                  // Using class name from your CSS for piece image
                   className="piece-img"
                   style={{
-                    width: "100%", // Will be overridden by CSS if needed
-                    height: "100%", // Will be overridden by CSS if needed
+                    width: "100%",
+                    height: "100%",
                     objectFit: "contain",
                   }}
-                  draggable={isUserTurn}
+                  draggable={isUserTurn && !promotionPending}
                 />
               )}
             </div>
           );
         })
       )}
+
+      {/* --- PROMOTION OVERLAY --- */}
+      {promotionPending && (
+        <div className="promotion-overlay">
+          <div className="promotion-dialog">
+            <h3>Choose a piece for promotion:</h3>
+            <div className="promotion-choices">
+              {["q", "r", "b", "n"].map((type) => (
+                <button
+                  key={type}
+                  onClick={() => handlePromotionChoice(type)}
+                  className="promotion-piece-button"
+                >
+                  <img
+                    src={`/assets/pieces/${pieceToFilename({
+                      color: game.turn(),
+                      type: type,
+                    })}`}
+                    alt={type}
+                    className="piece-img"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+      {/* --- END PROMOTION OVERLAY --- */}
     </div>
   );
 };

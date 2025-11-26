@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Chess } from "chess.js";
 import { useNavigate } from "react-router-dom";
+import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
@@ -9,22 +9,122 @@ import LessonControls from "./components/LessonControls";
 // 1. GAME DATA & UTILITIES
 // =========================================================
 
-const STARTING_FEN =
-  "r1b2rk1/ppq2pbp/2pp2p1/5n1n/2BP4/NQP2N1P/PP3PPB/R3R1K1 w - - 8 15"; // complete
+// FEN for the starting position: 8/1k6/5K2/4Q3/8/8/8/8 w - - 0 1
+const STARTING_FEN = "8/1k6/5K2/4Q3/8/8/8/8 w - - 0 1";
 
 const GAME_LESSON_MOVES = [
+  // 1. Qd6 - Restricts the Black King to the 7th and 8th ranks
   {
-    move: "1. g4", // compleete
+    move: "1. Qd6",
     player: "White",
     explanation:
-      "After g4, White's pawn forks the knights on f5 and h5. Regardless of whatever move is played next, white is guaranteed to at least win a knight. Remember, knights are more valuable than pawns!",
-    fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Notice any two or more pieces aligned in any manner with white pieces close to them?",
-    solution:
-      "This forks the knights on f5 and h5. Make the move for a more detailed explanation.",
+      "The Queen immediately restricts the Black King to the last two ranks (the 'box' is set). Your King will now approach to help deliver the mate.",
+    fen: "8/1k6/3Q1K2/8/8/8/8/8 b - - 0 1",
+    hint: "Use the Queen to cut off the King, creating a 'box'.",
+    solution: "Qd6 limits the Black King to the 7th and 8th ranks.",
   },
-];
-// Utility for chessboard squares
+  {
+    move: "1... Ka7",
+    player: "Black",
+    explanation: "Black tries to escape to the corner.",
+    fen: "8/k7/3Q1K2/8/8/8/8/8 w - - 2 2",
+  },
+  // 2. Qc6 - Shrinks the box, keeps the King trapped on the 8th rank
+  {
+    move: "2. Qc6",
+    player: "White",
+    explanation:
+      "Shrink the box again. The Queen moves along the back rank to keep the King cut off on the 8th rank.",
+    fen: "k7/8/2Q2K2/8/8/8/8/8 b - - 1 2",
+    hint: "Keep the King on the edge of the board.",
+    solution: "Qc6 restricts the King further by staying on the back rank.",
+  },
+  // 2... Kb8
+  {
+    move: "2... Kb8",
+    player: "Black",
+    explanation: "Black tries to hide in the opposite corner.",
+    fen: "1k6/8/2Q2K2/8/8/8/8/8 w - - 4 3",
+  },
+  // 3. Qd7 - Keeps the King in the corner, preparing for the King's approach
+  {
+    move: "3. Qd7",
+    player: "White",
+    explanation:
+      "A waiting move, maintaining the restriction. Now is the time to bring your King closer to the action.",
+    fen: "1k6/3Q4/5K2/8/8/8/8/8 b - - 2 3",
+    hint: "The Queen has done its job for now. Move your King closer.",
+    solution: "Qd7 maintains the position until the White King can support.",
+  },
+  // 3... Ka8
+  {
+    move: "3... Ka8",
+    player: "Black",
+    explanation: "Black continues to shuffle in the corner.",
+    fen: "k7/3Q4/5K2/8/8/8/8/8 w - - 3 4",
+  },
+  // 4. Ke6 - The White King starts marching
+  {
+    move: "4. Ke6",
+    player: "White",
+    explanation:
+      "The White King steps closer. The mate is only possible when your King supports the Queen.",
+    fen: "k7/3Q4/4K3/8/8/8/8/8 b - - 3 4",
+    hint: "Bring the King to help force the mate.",
+    solution: "Ke6 moves the King one step closer to the enemy King.",
+  },
+  // 4... Kb8
+  {
+    move: "4... Kb8",
+    player: "Black",
+    explanation: "Black moves back.",
+    fen: "1k6/3Q4/4K3/8/8/8/8/8 w - - 4 5",
+  },
+  // 5. Kd6 - Approaching the opposition
+  {
+    move: "5. Kd6",
+    player: "White",
+    explanation:
+      "The King is now perfectly positioned, achieving the 'opposition' and cutting off all remaining escape squares on the 7th rank.",
+    fen: "1k6/3Q4/3K4/8/8/8/8/8 b - - 4 5",
+    hint: "Position your King on the same file/rank, two squares away from the Black King (with a square in between).",
+    solution: "Kd6 brings the King into a decisive position.",
+  },
+  // 5... Ka8
+  {
+    move: "5... Ka8",
+    player: "Black",
+    explanation: "Black shifts to the a8 square.",
+    fen: "k7/3Q4/3K4/8/8/8/8/8 w - - 5 6",
+  },
+  // 6. Kc6 - Supporting the final blow
+  {
+    move: "6. Kc6",
+    player: "White",
+    explanation:
+      "The White King moves adjacent to the Queen's target square (b7), supporting the checkmate.",
+    fen: "k7/3Q4/2K5/8/8/8/8/8 b - - 5 6",
+    hint: "The Queen's target is b7. Your King must defend the Queen and block escape squares.",
+    solution: "Kc6 prepares the final move.",
+  },
+  // 6... Kb8
+  {
+    move: "6... Kb8",
+    player: "Black",
+    explanation: "Black is now forced into the corner with no escape.",
+    fen: "1k6/3Q4/2K5/8/8/8/8/8 w - - 6 7",
+  },
+  // 7. Qb7# - Checkmate!
+  {
+    move: "7. Qb7#",
+    player: "White",
+    explanation:
+      "Checkmate! The Queen on b7 attacks the King on b8. The White King on c6 blocks the squares c7, c8, and a7. The Queen on b7 also covers the square a8. There are no safe squares for the Black King. Excellent work!",
+    fen: "1k6/1Q6/2K5/8/8/8/8/8 b - - 6 7", // FEN for final checkmate position
+    hint: "Look for the final checkmate square supported by the King.",
+    solution: "Qb7# is checkmate.",
+  },
+]; // Utility for chessboard squares
 const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
 const toSquare = (row, col) => files[col] + (8 - row);
 
@@ -35,7 +135,7 @@ const pieceToFilename = (piece) => {
   return `${color}${type}.svg`;
 };
 
-function forks_practice_2() {
+function pins_and_skewers_practice() {
   const navigate = useNavigate();
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
@@ -46,7 +146,7 @@ function forks_practice_2() {
   const [showSolution, setShowSolution] = useState(false);
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "Practice: In this position, white can use a piece to fork two of black's pieces. Which should White do in this position?"
+    "Practice: Let's see if you can checkmate with a king and a queen given this position."
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
@@ -132,7 +232,7 @@ function forks_practice_2() {
             lineHeight: 1.2,
           }}
         >
-          Forks Practice
+          Queen and king checkmate lesson
           <br />
           (Interactive Lesson)
         </div>
@@ -141,8 +241,8 @@ function forks_practice_2() {
           style={{ fontSize: 14, lineHeight: 1.4, width: 400, marginTop: 10 }}
         >
           <p>
-            This is a real game from 2020. You'll follow the moves, get hints,
-            and solutions along the way. Play the moves as White.
+            You'll follow the moves, get hints, and solutions along the way.
+            Play the moves as White.
           </p>
           <p>Click on a piece, then the square you want to move to.</p>
         </div>
@@ -299,10 +399,14 @@ function forks_practice_2() {
             color: "#aaffaa",
           }}
         >
-          Lesson Complete! Congratulations!
+          Checkmate Lesson Complete
           <div className="ButtonElements">
-            <button onClick={() => navigate("/learn/beginner")}>
-              Go back to lessons
+            <button
+              onClick={() =>
+                navigate("/lessons/beginner/queen_checkmate_lesson")
+              }
+            >
+              Continue
             </button>
           </div>
         </div>
@@ -311,4 +415,5 @@ function forks_practice_2() {
   );
 }
 
-export default forks_practice_2;
+export default pins_and_skewers_practice;
+//1r3rk1/4bppp/5n2/4q3/2pn4/2NP2P1/PP4BP/R1BQ1RK1 w - - 0 1

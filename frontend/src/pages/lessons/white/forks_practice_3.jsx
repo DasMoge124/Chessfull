@@ -17,10 +17,11 @@ const GAME_LESSON_MOVES = [
     move: "1. e4", // compleete
     player: "White",
     explanation:
-      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+      "After e4, White's pawn forks the knight on d5 and bishop on f5, meaning that White will eventually win at least one of these pieces. Rember, knights and bishops are more valuable than pawns!",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Try to put pressure on the knight on C6.",
-    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+    hint: "Notice any two pieces close together?",
+    solution:
+      "After e4, White's pawn forks the knight on d5 and bishop on f5, meaning that White will eventually win at least one of these pieces.",
   },
 ];
 // Utility for chessboard squares
@@ -45,7 +46,7 @@ function forks_practice_2() {
   const [showSolution, setShowSolution] = useState(false);
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "Practice: In this position, white can use a piece to fork two of black's pieces. Which piece did black use?"
+    "Practice: In this position, white can use a piece to fork two of black's pieces. What did White do in this position?"
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
@@ -96,7 +97,6 @@ function forks_practice_2() {
   };
 
   return (
-    
     <div
       className="page-container"
       style={{
@@ -301,7 +301,9 @@ function forks_practice_2() {
         >
           Lesson Complete! Click the button below to continue.
           <div className="ButtonElements">
-            <button onClick={() => navigate("/lessons/beginner/forks_practice_4")}>
+            <button
+              onClick={() => navigate("/lessons/beginner/forks_practice_4")}
+            >
               Continue
             </button>
           </div>

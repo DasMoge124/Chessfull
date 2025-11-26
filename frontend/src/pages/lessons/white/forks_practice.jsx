@@ -17,7 +17,7 @@ const GAME_LESSON_MOVES = [
     move: "1. Nxc7+", // compleete
     player: "White",
     explanation:
-      "After Nxc7+, White's knight on c7 is attacking the king on e8 and the rook on a8. Since the king is in check, black has to move the king away from the e8 square.",
+      "After Nxc7+, White's knight on c7 is attacking the black king on e8 and the black rook on a8. Since the king on e8 is in check, black has to move the king away from the e8 square.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
     hint: "Try to put pressure on the knight on C6.",
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
@@ -25,7 +25,8 @@ const GAME_LESSON_MOVES = [
   {
     move: "1. Kf8",
     player: "Black",
-    explanation: "After moving the king to f8, black avoids the check. What does white do next?",
+    explanation:
+      "After moving the king to f8, black avoids the check and moves the king to safety. What does white do next?",
     fen: "rnb2k1r/ppN2p1p/7p/2b1p3/2B1P1n1/3P1N2/PPP2PPP/R2Q1RK1 w - - 1 10",
     hint: "black needs to move his knight to safety",
     solution:
@@ -35,7 +36,7 @@ const GAME_LESSON_MOVES = [
     move: "2. Nxa8", // compleete
     player: "White",
     explanation:
-      "Since the king has moved, White can now capture the rook on a8 with the knight, winning significant material.",
+      "Since the king has moved, White can now capture the rook on a8 with the knight, winning significant material. Remember, rooks are more valuable than knights!",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
     hint: "Try to put pressure on the knight on C6.",
     solution: "Moving the pawn to d5 will pressure the knight on c6.",

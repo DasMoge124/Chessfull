@@ -132,7 +132,7 @@ function pins_and_skewers_practice_3() {
             lineHeight: 1.2,
           }}
         >
-          Hanging Pieces Lesson 1
+          Pins and Skewers Lesson 3
           <br />
           (Interactive Lesson)
         </div>

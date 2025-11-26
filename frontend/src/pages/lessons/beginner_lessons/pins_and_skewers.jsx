@@ -12,8 +12,8 @@ function pins_and_skewers() {
       <p>
         A pin is where a defending piece cannot move out of an attacking piece's
         line of attack without exposing a more valuable or equally valued
-        defending piece. There are two kinds of pins, relative pins - which
-        involve any pieces that aren’t kings- and absolute pins - which involve
+        defending piece. There are two kinds of pins, relative pins, which
+        involve any pieces that aren’t kings, and absolute pins, which involve
         kings. Image a represents an example of a relative pin: the bishop on a6
         is pinning the knight on d3 to the rook on f1; either the knight or the
         rook can move in this scenario.

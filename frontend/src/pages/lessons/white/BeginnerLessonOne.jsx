@@ -136,7 +136,7 @@ function beginner_game_one() {
       setGameEnded(true);
       setLessonMessage({
         type: "info",
-        text: "Lesson Complete! Black resigned after 17. h4.",
+        text: "Lesson Complete!",
       });
     }
   };

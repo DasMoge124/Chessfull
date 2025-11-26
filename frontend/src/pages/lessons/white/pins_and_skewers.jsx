@@ -130,7 +130,7 @@ function pins_and_skewers_practice() {
             lineHeight: 1.2,
           }}
         >
-          Hanging Pieces Lesson 1
+          Pins and Skewers Lesson 1
           <br />
           (Interactive Lesson)
         </div>
@@ -297,7 +297,7 @@ function pins_and_skewers_practice() {
             color: "#aaffaa",
           }}
         >
-          Forks Lesson 1: Complete
+          Pins and Skewers Lesson 1: Complete
           <div className="ButtonElements">
             <button
               onClick={() =>

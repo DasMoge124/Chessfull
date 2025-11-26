@@ -21,13 +21,19 @@ function forks() {
       </p>
       <p>
         {" "}
-        Since the king is in check, black has to move the queen and white will
+        Since the king is in check, black has to move the king and white will
         win a queen by playing the best move Nxd5 (Knight captures the queen on
         d5).{" "}
       </p>
       <div className="image-container">
         <img src={chessImage} alt="Chess players" />
       </div>
+      <p>
+        {" "}
+        Now lets take a look at how you can fork pieces with various
+        pieces.{" "}
+      </p>
+      <h2>Forking with knights</h2>
       <div className="ButtonElements">
         <button onClick={() => navigate("/lessons/beginner/forks_practice")}>
           Lessons

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Chess } from "chess.js";
 import { useNavigate } from "react-router-dom";
+import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
@@ -9,19 +9,68 @@ import LessonControls from "./components/LessonControls";
 // 1. GAME DATA & UTILITIES
 // =========================================================
 
-const STARTING_FEN =
-  "r1b2rk1/ppq2pbp/2pp2p1/5n1n/2BP4/NQP2N1P/PP3PPB/R3R1K1 w - - 8 15"; // complete
+const STARTING_FEN = "8/8/8/1k6/7R/6R1/8/6K1 w - - 0 1"; // complete
 
 const GAME_LESSON_MOVES = [
   {
-    move: "1. g4", // compleete
+    move: "1. Rg5+",
     player: "White",
     explanation:
-      "After g4, White's pawn forks the knights on f5 and h5. Regardless of whatever move is played next, white is guaranteed to at least win a knight. Remember, knights are more valuable than pawns!",
-    fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Notice any two or more pieces aligned in any manner with white pieces close to them?",
-    solution:
-      "This forks the knights on f5 and h5. Make the move for a more detailed explanation.",
+      "Good job. You're on the right track. Rg5+ forces the king to move up.",
+    fen: "8/8/8/1k4R1/7R/8/8/6K1 b - - 1 1",
+    hint: "How do you force the king to move?",
+    solution: "Rg5+ forces the king to move to c6.",
+  },
+  {
+    move: "2. Kc6",
+    player: "Black",
+    explanation: "Now what?",
+    fen: "8/8/2k5/6R1/7R/8/8/6K1 w - - 2 2",
+    hint: "Notice any pieces aligned on the same file? If so, try to see if you can do anything about it.",
+    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+  },
+  {
+    move: "3. Rh6+",
+    player: "White",
+    explanation:
+      "Good job. You're on the right track. Rh6+ forces the king to move up.",
+    fen: "8/8/2k4R/6R1/8/8/8/6K1 b - - 3 2",
+    hint: "How do you force the king to move?",
+    solution: "Rg5+ forces the king to move to c6.",
+  },
+  {
+    move: "2. Kd7",
+    player: "Black",
+    explanation: "Now what?",
+    fen: "8/3k4/7R/6R1/8/8/8/6K1 w - - 4 3",
+    hint: "Notice any pieces aligned on the same file? If so, try to see if you can do anything about it.",
+    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+  },
+  {
+    move: "3. Rg7+",
+    player: "White",
+    explanation:
+      "Good job. You're on the right track. Rg7+ forces the king to move up.",
+    fen: "8/8/2k4R/6R1/8/8/8/6K1 b - - 3 2",
+    hint: "How do you force the king to move?",
+    solution: "Rg5+ forces the king to move to c6.",
+  },
+  {
+    move: "2. Ke8",
+    player: "Black",
+    explanation: "Now what?",
+    fen: "4k3/6R1/7R/8/8/8/8/6K1 w - - 6 4",
+    hint: "Notice any pieces aligned on the same file? If so, try to see if you can do anything about it.",
+    solution: "Moving the pawn to d5 will pressure the knight on c6.",
+  },
+  {
+    move: "3. Rh8#",
+    player: "White",
+    explanation:
+      "Good job. You're on the right track. That's checkmate. You just did a ladder checkmate with two rooks! You should also note how the king was initially on the b file, otherwise the rooks would have to eventually move to a farther square to avoid being captured by the king.",
+    fen: "8/8/2k4R/6R1/8/8/8/6K1 b - - 3 2",
+    hint: "How do you force the king to move?",
+    solution: "Rg5+ forces the king to move to c6.",
   },
 ];
 // Utility for chessboard squares
@@ -35,7 +84,7 @@ const pieceToFilename = (piece) => {
   return `${color}${type}.svg`;
 };
 
-function forks_practice_2() {
+function pins_and_skewers_practice() {
   const navigate = useNavigate();
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
@@ -46,7 +95,7 @@ function forks_practice_2() {
   const [showSolution, setShowSolution] = useState(false);
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "Practice: In this position, white can use a piece to fork two of black's pieces. Which should White do in this position?"
+    "Practice: Let's see if you can checkmate with two rooks given this position."
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
@@ -132,7 +181,7 @@ function forks_practice_2() {
             lineHeight: 1.2,
           }}
         >
-          Forks Practice
+          King vs 2 Rooks checkmate Lesson
           <br />
           (Interactive Lesson)
         </div>
@@ -141,8 +190,8 @@ function forks_practice_2() {
           style={{ fontSize: 14, lineHeight: 1.4, width: 400, marginTop: 10 }}
         >
           <p>
-            This is a real game from 2020. You'll follow the moves, get hints,
-            and solutions along the way. Play the moves as White.
+            You'll follow the moves, get hints, and solutions along the way.
+            Play the moves as White.
           </p>
           <p>Click on a piece, then the square you want to move to.</p>
         </div>
@@ -299,10 +348,14 @@ function forks_practice_2() {
             color: "#aaffaa",
           }}
         >
-          Lesson Complete! Congratulations!
+          Checkmate Lesson Complete
           <div className="ButtonElements">
-            <button onClick={() => navigate("/learn/beginner")}>
-              Go back to lessons
+            <button
+              onClick={() =>
+                navigate("/lessons/beginner/queen_checkmate_lesson")
+              }
+            >
+              Continue
             </button>
           </div>
         </div>
@@ -311,4 +364,5 @@ function forks_practice_2() {
   );
 }
 
-export default forks_practice_2;
+export default pins_and_skewers_practice;
+//1r3rk1/4bppp/5n2/4q3/2pn4/2NP2P1/PP4BP/R1BQ1RK1 w - - 0 1
