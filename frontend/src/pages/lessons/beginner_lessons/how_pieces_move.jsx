@@ -153,6 +153,14 @@ function how_pieces_move() {
         right of the king. This also protects the king by moving it away from
         the center.
       </p>
+      <div className="image-container">
+        <img
+          src={queensidecastling}
+          alt="How Kingside Castling works"
+          width="500"
+          height="600"
+        />
+      </div>
       <h2>En Passant</h2>
       <p>
         Translating to ‘in passing’ in English, if a pawn on the second rank
