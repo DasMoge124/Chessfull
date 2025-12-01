@@ -76,6 +76,11 @@ function Beginner() {
         >
           Game 1
         </button>
+        <button
+          onClick={() => navigate("/lessons/beginner/beginner_lesson_two")}
+        >
+          Game 2
+        </button>
       </div>
       <div className="ButtonElements">
         <button onClick={() => navigate("/learn")}>

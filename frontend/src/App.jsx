@@ -17,6 +17,7 @@ import Lessons from "./pages/Lessons";
 import MagnusVRainn from "./pages/lessons/white/Magnus_v_RainnWilson";
 import MagnusVBardiya from "./pages/lessons/white/Magnus_V_Bardiya";
 import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
+import BeginnerLessonTwo from "./pages/lessons/white/BeginnerLessonTwo";
 //How To Set Up Chess Board Import
 import HowToSetUpChessBoard from "./pages/lessons/beginner_lessons/chessboard_setup";
 import HowPiecesMove from "./pages/lessons/beginner_lessons/how_pieces_move";
@@ -142,10 +143,6 @@ function App() {
             element={<QueenCheckmateLesson />}
           />
           {/* Beginner Tactics */}
-          <Route
-            path="lessons/beginner/BeginnerLessonGameOne"
-            element={<BeginnerLessonOne />}
-          />
           <Route path="lessons/beginner/forks" element={<Forks />} />
           <Route
             path="lessons/beginner/forks_practice"
@@ -199,10 +196,16 @@ function App() {
             path="lessons/beginner/pins_and_skewers_practice_4"
             element={<Pins_Skewers_Practice_4 />}
           />
+          {/* Practice Games for Beginners */}
           <Route
             path="lessons/beginner/beginner_lesson_one"
             element={<BeginnerLessonOne />}
           />
+          <Route
+            path="lessons/beginner/beginner_lesson_two"
+            element={<BeginnerLessonTwo />}
+          />
+          {/* Discovered Attacks */}
           <Route
             path="lessons/beginner/discovered_attacks"
             element={<Discovered_Attack />}
