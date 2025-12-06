@@ -19,7 +19,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "After Nxc7+, White's knight on c7 is attacking the black king on e8 and the black rook on a8. Since the king on e8 is in check, black has to move the king away from the e8 square.",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
-    hint: "Try to put pressure on the knight on C6.",
+    hint: "Notice how any black pieces spaced out in a certain manner which can be attacked simultaneously by a knight.",
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
   {

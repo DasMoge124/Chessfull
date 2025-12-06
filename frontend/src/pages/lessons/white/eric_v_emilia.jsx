@@ -16,7 +16,7 @@ const GAME_LESSON_MOVES = [
     move: "12. Qf3",
     player: "White",
     explanation:
-      "Developing a piece and winning a tempo by attacking the knight on f6...",
+      "This move develops a piece and wins a tempo by attacking the knight on f6...",
     fen: "r1b2rk1/p1q1ppbp/1p4p1/2p1P3/8/2PBBN2/PP3PPP/R2Q1RK1 b - - 0 12",
     hint: "Try to put pressure on the knight on f6.",
     solution: "The correct move is Qf3, attacking the knight and developing.",
@@ -24,7 +24,8 @@ const GAME_LESSON_MOVES = [
   {
     move: "13. dxe5 Qxe5 14. O-O-O Ke7 15. Bxc6 bxc6",
     player: "Black",
-    explanation: "Black plays 13...Qe5 but could have defended better.",
+    explanation:
+      "Black plays 13...Qe5 but could have defended better. What does white do next?",
     fen: "r1b4r/p3kp1p/2p1pnp1/3pq3/6P1/2P1BQ2/PP1N1P1P/2KR3R w - - 0 16",
     hint: "Black should look to improve king safety.",
     solution:
@@ -33,9 +34,10 @@ const GAME_LESSON_MOVES = [
   {
     move: "16. Bd4",
     player: "White",
-    explanation: "Strong tactical Bd4 hitting queen + rook.",
+    explanation:
+      "Strong tactical Bd4 hits the queen, knight, and rook via a three-piece pin.",
     fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
-    hint: "Look for pins and attacks on high-value pieces.",
+    hint: "Look for pins/skewers and attacks on high-value pieces.",
     solution: "Bd4 is a strong move pinning Black’s queen to the rook.",
   },
   {
@@ -50,7 +52,7 @@ const GAME_LESSON_MOVES = [
     move: "18. h4",
     player: "White",
     explanation:
-      "The final blow! Threatens queen, rook, knight. Black resigned.",
+      "The final blow! This threatens the queen, rook, knight. Black resigned.",
     fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2PP/2P2Q2/PP1N1P2/2KR3R b - h3 0 17",
     hint: "Push pawns to open lines for attack.",
     solution: "h4 threatens to open lines and forces Black’s resignation.",
@@ -78,7 +80,7 @@ function EricVEmilia() {
   const [showSolution, setShowSolution] = useState(false);
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "Practice: In this position, white can use a piece to fork two of black's pieces. Which piece did black use?"
+    "Practice: In the position after 11... Qc7, Black has made a strategic inaccuracy. The move loses tempo because the Queen on c7 is an easy target for White's next move, and it fails to properly defend the knight on b6. A better move would have been 11... Bd7, which develops a piece and defends the knight on b6 indirectly, allowing the Queen to remain active elsewhere or to be played to c7 later under better circumstances. The current position allows White to immediately gain an advantage by exploiting the undefended position of the Black queen and the vulnerable knight. What is White's best continuation after 11... Qc7?"
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];

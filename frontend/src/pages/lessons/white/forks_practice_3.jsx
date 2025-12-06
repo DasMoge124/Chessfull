@@ -17,7 +17,7 @@ const GAME_LESSON_MOVES = [
     move: "1. e4", // compleete
     player: "White",
     explanation:
-      "After e4, White's pawn forks the knight on d5 and bishop on f5, meaning that White will eventually win at least one of these pieces. Rember, knights and bishops are more valuable than pawns!",
+      "After e4, White's pawn forks the knight on d5 and bishop on f5, meaning that White will eventually win at least one of these pieces. Remember, knights and bishops are more valuable than pawns!",
     fen: "r2q1rk1/pb3ppp/1pnp1n2/2pPp3/2P1P3/1NPB4/P4PPP/R1BQ1RK1 w Qq - 0 1",
     hint: "Notice any two pieces close together?",
     solution:

@@ -17,6 +17,13 @@ function Lessons() {
         <p>Lesson content goes here...</p>
         <div className="ButtonElements">
           <button
+            onClick={() => navigate("/lessons/grandmaster/CantyVNarayan")}
+          >
+            FM James Canty vs FM Narayan
+          </button>
+        </div>
+        <div className="ButtonElements">
+          <button
             onClick={() =>
               navigate("/lessons/international_master/EricVEmilia")
             }

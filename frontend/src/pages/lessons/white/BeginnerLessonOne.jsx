@@ -19,7 +19,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "This move blocks the check from the queen while also developing the light-squared bishop, which is more prefered compared to developing the knight as developing the light-squared bishop can lead to quicker development after a potential move like Nf3.",
     fen: "r1b2rk1/p1q1ppbp/1p4p1/2p1P3/8/2PBBN2/PP3PPP/R2Q1RK1 b - - 0 12",
-    hint: "Try to put pressure on the knight on f6.",
+    hint: "Remember that one of the key opening principles is to develop pieces. Lets try to develop a piece that also blocks the check, preferably a piece less valuable than a queen. Also, it's best not to move a piece that prevents another piece from developing.",
     solution: "The correct move is Qf3, attacking the knight and developing.",
   },
   {

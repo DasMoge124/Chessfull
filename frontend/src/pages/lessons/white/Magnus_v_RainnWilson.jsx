@@ -17,7 +17,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "Congrats. You are on the right track. Lets continue to the next move.",
     fen: "rn1qk1nr/ppp1ppbp/3p2p1/8/2BPP1b1/5N2/PPP2PPP/RNBQK2R b KQkq - 0 1", // 2
-    hint: "",
+    hint: "Look for checks, captures and attacks. After looking for these moves, try to calculate a few moves ahead to see what can happen next",
     solution:
       "The correct move is Bf7, attacking the pawn and creating a checkmate.",
   },
@@ -26,7 +26,7 @@ const GAME_LESSON_MOVES = [
     player: "Black",
     explanation: "Black plays 2...Kf7 killing the Magnus's bishop.", // describes current situation
     fen: "rn1q2nr/ppp1pkbp/3p2p1/8/3PP1b1/5N2/PPP2PPP/RNBQK2R w KQ - 0 6",
-    hint: "",
+    hint: "Look for checks, captures, and attacks. After looking for these moves, try to calculate a few moves ahead to see what can happen next",
     solution: "Black played Kf7 to capture the bishop on f7.",
   },
   {
@@ -35,7 +35,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "Congrats. You are on the right track. Lets continue to the next move.",
     fen: "rnbq2nr/ppp1pkbp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQha - 0 1",
-    hint: "",
+    hint: "Look for checks, captures, and attacks. You could achieve the following: capturing a hanging piece or fork two pieces. But there is only one best move in this position. Also, don't forget about what your opponent could do in response to your move.",
     solution:
       "Perfect. Now that you've moved the knight to g5 resulting in a checkmate",
   },
@@ -45,7 +45,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "The king is scared. He moves back to e8 after your knigth threatened him",
     fen: "rn1qk1nr/ppp1p1bp/3p2p1/6N1/3PP1b1/8/PPP2PPP/RNBQK2R w KQ - 2 7",
-    hint: "Push pawns to open lines for attack.",
+    hint: "Look for checks, captures, and attacks. You could achieve the following: capturing a hanging piece or fork two pieces. But there is only one best move in this position. Also, don't forget about what your opponent could do in response to your move.",
     solution: "Black moved Ke8 to escape the check.",
   },
   {
@@ -54,32 +54,32 @@ const GAME_LESSON_MOVES = [
     explanation:
       "This may seem confusing at first but let’s go through this step by step. After Bxf7+, the f7 square eventually weakens, hindering Rainn’s king’s safety. Additionally, since Rainn’s king is in check, Rainn must move his king away. If Rainn plays either Kd7 or Kf8, Magnus could simply retreat his bishop to a square like b3 or c4 and potentially kick the black bishop on g4 and create more attacks on the kingside.  Now Magnus is up a pawn, and Rainn’s king's safety worsened. Additionally, most of Rainn’s pieces are passive compared to White’s pieces.",
     fen: "rnbqk1nr/ppp1p1bp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQkq - 0 1",
-    hint: "Push pawns to open lines for attack.",
+    hint: "Look for checks, captures, and attacks. You could achieve the following: capturing a hanging piece or fork two pieces. But there is only one best move in this position. Also, don't forget about what your opponent could do in response to your move.",
     solution: "Black moved Ke8 to escape the check.",
   },
   {
     move: "5. Nh6",
     player: "Black",
     explanation:
-      " Later in the game,Rainn played Nh6, attacking the queen.How did Magnus respond to it?",
+      " Later in the game,Rainn played Nh6, attacking the queen. How did Magnus respond to it?",
     fen: "rn1qk2r/ppp1p1bp/3p2pn/6N1/3PP1Q1/8/PPP2PPP/RNB1K2R w KQ - 1 8",
-    hint: "Push pawns to open lines for attack.",
+    hint: "Look for checks, captures, and attacks. You could achieve the following: capturing a hanging piece or fork two pieces. But there is only one best move in this position. Also, don't forget about what your opponent could do in response to your move.",
     solution: "Black moved Ke8 to escape the check.",
   },
   {
     move: "6. Qh3",
     player: "White",
     explanation:
-      " Later in the game,Rainn played Nh6, attacking the queen.Howdid Magnus respond to it?",
+      " Later in the game,Rainn played Nh6, attacking the queen.How did Magnus respond to it?",
     fen: "rnbqk1nr/ppp1p1bp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQkq - 0 1",
-    hint: "Push pawns to open lines for attack.",
+    hint: "What is the opponent trying to do? What can you do about it?",
     solution: "Black moved Ke8 to escape the check.",
   },
   {
     move: "7. Nd7",
     player: "Black",
     explanation:
-      " Later in the game,Rainn played Nh6, attackingthequeen.Howdid Magnus respond to it?",
+      " Later in the game,Rainn played Nh6, attacking the queen.How did Magnus respond to it?",
     fen: "r2qk2r/pppnp1bp/3p2pn/6N1/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 3 9",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -90,7 +90,7 @@ const GAME_LESSON_MOVES = [
     explanation:
       "After Ne6, Magnus managed to fork both Rainn’s queen and bishop.",
     fen: "r2qk2r/pppnp1bp/3p2pn/6N1/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 3 9",
-    hint: "Push pawns to open lines for attack.",
+    hint: "Notice any two pieces placed in a certain manner, specifically in a way that a piece can control the squares of both pieces?",
     solution: "Black moved Ke8 to escape the check.",
   },
   {
@@ -114,7 +114,8 @@ const GAME_LESSON_MOVES = [
   {
     move: "10. Kd8",
     player: "Black",
-    explanation: "Rainn plays Kd8.",
+    explanation:
+      "Rainn plays Kd8. Magnus decided to give a check first. How did he do so?",
     fen: "r1qk3r/pppnp1Np/3p2pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 1 11",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -130,7 +131,8 @@ const GAME_LESSON_MOVES = [
   {
     move: "10. Ke8",
     player: "Black",
-    explanation: "Rainn plays Ke8",
+    explanation:
+      "Rainn plays Ke8. Magnus captures a hanging piece. What does he do first?",
     fen: "r1q1k2r/pppnp2p/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 3 12",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -141,13 +143,14 @@ const GAME_LESSON_MOVES = [
     explanation:
       "Since the knight on h6 had no defenders, Magnus simply takes that knight with his bishop. Furthermore, there were no meaningful checks or threats in that position for Rainn or Magnus, AND Rainn’s pieces are still passive since most are either on the 7th or 8th rank.",
     fen: "r1q1k2r/pppnp2p/3pN1pB/8/3PP3/7Q/PPP2PPP/RN2K2R b KQ - 0 12",
-    hint: "Push pawns to open lines for attack.",
+    hint: "Look for all checks, captures, and attacks. It'll be helpful if you know how long-range pieces move.",
     solution: "Black moved Ke8 to escape the check.",
   },
   {
     move: "10. Nf6",
     player: "Black",
-    explanation: "The game continues.",
+    explanation:
+      "The game continues. Magnus decided to develop a piece. What did he play?",
     fen: "r1q1k2r/ppp1p2p/3pNnpB/8/3PP3/7Q/PPP2PPP/RN2K2R w KQ - 1 13",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -163,7 +166,8 @@ const GAME_LESSON_MOVES = [
   {
     move: "10. Kf7",
     player: "Black",
-    explanation: "Nice! The game continues.",
+    explanation:
+      "The game continues. It seems like Rainn is putting pressure on a piece. How did Magnus respond?",
     fen: "r1q4r/ppp1pk1p/3pNnpB/8/3PP3/2N4Q/PPP2PPP/R3K2R w KQ - 3 14",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -181,7 +185,7 @@ const GAME_LESSON_MOVES = [
     move: "10. c6",
     player: "Black",
     explanation:
-      "Rainn plays c6, putting pressure on the d5 pawn, which is also protected.",
+      "Rainn eventually responded with c6, putting pressure on the d5 pawn, which is also protected. Instead of worrying about the pawn, Magnus decided to activate more of his pieces. How did Magnus do so?",
     fen: "r1q4r/pp2pk1p/2ppNnpB/3P4/4P3/2N4Q/PPP2PPP/R3K2R w KQ - 0 15",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -198,7 +202,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "17. cxd5",
     player: "Black",
-    explanation: "Rainn plays cxd5.",
+    explanation: "Rainn plays cxd5. How does Magnus respond?",
     fen: "r1q4r/pp2pk1p/3pNnpB/3p4/4P3/2N4Q/PPP2PPP/R4RK1 w - - 0 16",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -215,7 +219,8 @@ const GAME_LESSON_MOVES = [
   {
     move: "17. Qc4",
     player: "Black",
-    explanation: "Rainn plays Qc4.",
+    explanation:
+      "After Rainn played Qc4, Magnus calculated multiple moves ahead and decided to put pressure on the weak e7 pawn, which happens to be the tail of a pawn chain. How did Magnus do so?",
     fen: "r6r/pp2pk1p/3pNnpB/3P4/2q5/2N4Q/PPP2PPP/R4RK1 w - - 1 17",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -250,7 +255,8 @@ const GAME_LESSON_MOVES = [
   {
     move: "23. Kg4",
     player: "Black",
-    explanation: "Seems like Rainn wants to offer a queen trade.",
+    explanation:
+      "Seems like Rainn wants to offer a queen trade. However, Magnus refused it and continued attacking. How did Magnus continue attacking?",
     fen: "r3k2r/pp2p2p/3pQnpB/3P2N1/6q1/2N5/PPP2PPP/R4RK1 w - - 5 19",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
