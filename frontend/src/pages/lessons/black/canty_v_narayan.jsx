@@ -163,12 +163,259 @@ const GAME_LESSON_MOVES = [
     move: "11... b4",
     player: "Black",
     explanation:
-      "Canty decides to attack the knight on c3 after playing b4, prompting Narayanan to play the best move Na4. This keeps the initiative on the queenside.",
+      "Canty decides to attack the knight on c3 after playing b3, prompting Narayanan to play the best move Na4. If Narayanan played Qxg7, Canty could play Rg8, forcing Narayanan’s Queen to move to a square like h6 for its own safety, allowing Canty to win a knight by playing bxc3. ",
     fen: "rnb1k2r/1q2bppp/p2ppn2/1p6/3NP3/1BN1BQ2/PPP2PPP/R4RK1 w kq - 6 11",
     hint: "Lets try kicking a piece by moving a pawn up, which can push that piece to a square where is controls less squares",
     solution: "b4",
   },
-  // ... The rest of the moves are incomplete in the prompt, so I will stop here.
+  {
+    move: "12. Na4 Nbd7 13. f3 O-O 14. Bh6",
+    player: "White",
+    explanation:
+      "After Narayanan played Qg3 (threatening Qxg7), Canty decides to create a counterattack. What move did Canty play?",
+    fen: "r1b2rk1/1q1nbppp/p2ppn1B/8/Np1NP3/1B3PQ1/PPP3PP/R4RK1 b - - 2 14",
+    hint: "White's move has been played. Click Next Move to continue.",
+    solution: "Qg3",
+  },
+  {
+    move: "14... Nh5",
+    player: "Black",
+    explanation: "If you found that move, congrats. Let's continue",
+    fen: "r1b2rk1/1q1nbppp/p2ppn1B/8/Np1NP3/1B3PQ1/PPP3PP/R4RK1 b - - 2 14",
+    hint: "Notice any potential checks, captures, or threats from your opponent? Be sure to look for all of these in the list. This includes: capturing hang pieces, checkmates, forks, pins, skewers.",
+    solution: "Nh5",
+  },
+  {
+    move: "15. Qg4 ",
+    player: "White",
+    explanation: "Next moves consist of Canty attacking the queen.",
+    fen: "r1b2rk1/1q1nbppp/p2pp2B/7n/Np1NP1Q1/1B3P2/PPP3PP/R4RK1 b - - 4 15",
+    hint: "White's move has been played. Click Next Move to continue.",
+    solution: "Qg4 ",
+  },
+  {
+    move: "15... Ndf6",
+    player: "Black",
+    explanation: "If you found that move, congrats. Let's continue",
+    fen: "rnb1k2r/1q2bppp/p2ppn2/1p6/3NP3/1BN1BQ2/PPP2PPP/R4RK1 w kq - 6 11",
+    hint: "Notice any potential checks, captures, or threats from your opponent? Be sure to look for all of these in the list. This includes: capturing hang pieces, checkmates, forks, pins, skewers.",
+    solution: "Ndf6",
+  },
+  {
+    move: "16. Qg5",
+    player: "White",
+    explanation:
+      "After being attacked so much, Narayan seems to have trapped his own piece. What does Canty do to ensure Narayan's bishop gets captured?",
+    fen: "r1b2rk1/1q2bppp/p2ppn1B/6Qn/Np1NP3/1B3P2/PPP3PP/R4RK1 b - - 6 16",
+    hint: "White's move has been played. Click Next Move to continue.",
+    solution: "Qg4 ",
+  },
+  {
+    move: "16... Kh8",
+    player: "Black",
+    explanation:
+      "If you found that move, congrats. Now Narayan is guaranteed to win a bishop since the bishop is trapped by Narayan's own queen. Let's continue",
+    fen: "r1b2r1k/1q2bppp/p2ppn1B/6Qn/Np1NP3/1B3P2/PPP3PP/R4RK1 w - - 7 17",
+    hint: "Seems like one of Narayan's pieces is trapped by another piece (hint: his queen). Yet, at the same time, that piece cannot be captured since Canty's king is pinned. Let's fix that.",
+    solution: "Kh8",
+  },
+  {
+    move: "17. Bxg7+",
+    player: "White",
+    explanation: "How do you respond to the check?",
+    fen: "r1b2r1k/1q2bpBp/p2ppn2/6Qn/Np1NP3/1B3P2/PPP3PP/R4RK1 b - - 0 17",
+    hint: "White's move has been played. Click Next Move to continue.",
+    solution: "Qg4 ",
+  },
+  {
+    move: "17... Nxg7",
+    player: "Black",
+    explanation:
+      "If you found that move, congrats. Now Narayan is guaranteed to win a bishop since the bishop is trapped by Narayan's own queen. Let's continue",
+    fen: "r1b2r1k/1q2bppp/p2ppn1B/6Qn/Np1NP3/1B3P2/PPP3PP/R4RK1 w - - 7 17",
+    hint: "Hint: you should respond with a capture.",
+    solution: "Nxg7",
+  },
+  // --- START of Part 10 Sequence ---
+  {
+    move: "18. Qh4",
+    player: "White",
+    explanation:
+      "White plays Qh4. Find Black's move to begin the forcing sequence.",
+    fen: "r1b2r1k/1q2bpnp/p2ppn2/8/Np1NP2Q/1B3P2/PPP3PP/R4RK1 b - - 1 18",
+    hint: "Try to get rid of a minor piece that is chilling at the center of the board. (Hint from image for e5)",
+    solution: "Qh4",
+  },
+  {
+    move: "18... e5",
+    player: "Black",
+    explanation:
+      "e5. This attacks the Knight on d4. Narayanan plays 19. Ne2. What's Canty's next move?",
+    fen: "r1b2r1k/1q2bpnp/p2p1n2/4p3/Np1NP2Q/1B3P2/PPP1N1PP/R4RK1 w - - 0 19",
+    hint: "Try to kick White's Queen out of the kingside.",
+    solution: "e5",
+  },
+  {
+    move: "19. Ne2",
+    player: "White",
+    explanation:
+      "White plays Ne2. Find Black's move to attack the Queen again.",
+    fen: "r1b2r1k/1q2bpnp/p2p1n2/4p3/Np2P2Q/1B3P2/PPP1N1PP/R4RK1 b - - 1 19",
+    hint: "White's move has been played. Click Next Move to continue.",
+    solution: "Ne2",
+  },
+  {
+    move: "19... Ng4",
+    player: "Black",
+    explanation:
+      "Ng4. Canty attacks the Queen again. Narayanan plays 20. Qg3. What's Canty's next move?",
+    fen: "r1b2r1k/1q2bpnp/p2p1n2/4p3/Np1NP1Q1/1B3P2/PPP1N1PP/R4RK1 w - - 0 20",
+    hint: "Attack the Queen once more to force it into a passive position.",
+    solution: "Ng4",
+  },
+  {
+    move: "20. Qg3",
+    player: "White",
+    explanation:
+      "White plays Qg3. Find Black's third consecutive Queen-attacking move.",
+    fen: "r1b2r1k/1q2bpnp/p2p4/4p3/Np2P1n1/1B3PQ1/PPP1N1PP/R4RK1 b - - 3 20",
+    hint: "White's move has been played. Click Next Move to continue.",
+    solution: "Qg3",
+  },
+  {
+    move: "20... Nh5",
+    player: "Black",
+    explanation:
+      "Nh5. Narayanan retreats the Queen with 21. Qe1. Canty must now play a forcing check. What is Canty's move?",
+    fen: "r1b2r1k/1q2bpnp/p2p1n2/4p3/Np1NP2Q/1B3P2/PPP1N1PP/R4RK1 w - - 0 21",
+    hint: "It’s really annoying to have the queen on the same side as the king. Let’s try to kick it out of this place.",
+    solution: "Nh5",
+  },
+  {
+    move: "21. Qe1",
+    player: "White",
+    explanation:
+      "White plays Qe1. Canty continues the forcing line with a check.",
+    fen: "r1b2r1k/1q2bp1p/p2p4/4p2n/Np2P1n1/1B3P2/PPP1N1PP/R3QRK1 b - - 5 21",
+    hint: "White's move has been played. Click Next Move to continue.",
+    solution: "Qe1",
+  },
+  {
+    move: "21... Qa7+",
+    player: "Black",
+    explanation:
+      "Qa7+. Narayanan moves the King to 22. Kh1. Canty now plays the final move of the sequence, attacking the Queen's defense. What is Canty's move?",
+    fen: "r1b2r1k/q3bpnp/p2p1n2/4p2n/Np1NP3/1B3P2/PPP1N1PP/R4RK1 w - - 1 22",
+    hint: "Let’s try to confine the king to the corner. It will come in handy in the future.",
+    solution: "Qa7+",
+  },
+  {
+    move: "22. Kh1",
+    player: "White",
+    explanation:
+      "White plays Kh1. Find Black's move to complete the winning sequence.",
+    fen: "r1b2r1k/q3bp1p/p2p4/4p2n/Np2P1n1/1B3P2/PPP1N1PP/R3QR1K b - - 7 22",
+    hint: "White's move has been played. Click Next Move to continue.",
+    solution: "Kh1",
+  },
+  {
+    move: "22... Ne3",
+    player: "Black",
+    explanation:
+      "Ne3. This attacks the Queen and the f3 pawn, leaving Narayanan in a miserable position. Narayanan plays 23. Rg1 to protect the rook. Canty now wants to offer an exchange to remove defenses of the c2 square. **What did Canty play in this position? (Part 11)**",
+    fen: "r1b2r1k/q3bpnp/p2p1n2/4p2n/Np1NP3/1B2n3/PPP1N1PP/R4RQK w - - 2 23",
+    hint: "Let’s try to confine the king to the corner. It will come in handy in the future.",
+    solution: "Ne3",
+  },
+  // --- START of Part 11 Sequence ---
+  {
+    move: "23. Rg1",
+    player: "White",
+    explanation:
+      "White plays Rg1. Find Canty's move to prepare the removal of the c2 square's defense.",
+    fen: "r1b2r1k/q3bp1p/p2p4/4p2n/Np2P3/1B2nP2/PPP1N1PP/R3Q1RK b - - 9 23",
+    hint: "Look for a square that prepares an exchange on the long diagonal (a6-f1 or a7-g1).",
+    solution: "Rg1",
+  },
+  {
+    move: "23... Be6",
+    player: "Black",
+    explanation:
+      "This offers to exchange with the Bishop on b3, a key defender of the c2 square.",
+    fen: "r1b2r1k/q3bpnp/p2p1b2/4p2n/Np1NP3/1B2n3/PPP1N1PP/R4RQK w - - 4 24",
+    hint: "Look for a square that prepares an exchange on the long diagonal (a6-f1 or a7-g1).",
+    solution: "Be6",
+  },
+  {
+    move: "24. g4",
+    player: "White",
+    explanation:
+      "White plays Nf5. Now, play the move that removes the defense of c2.",
+    fen: "r4r1k/q3bp1p/p2pb3/4p2n/Np2P1P1/1B2nP2/PPP1N2P/R3Q1RK b - g3 0 24",
+    hint: "White's move has been played. Click Next Move to continue.",
+    solution: "Nf5",
+  },
+  {
+    move: "24... Bxb3",
+    player: "Black",
+    explanation:
+      "Bo6. This attacks the Bishop on b3. Narayanan captures 25. axb3.",
+    fen: "r1b2r1k/q4pnp/p2pbb2/4pN1n/Np1NP3/1B2n3/PPP1N1PP/R4RQK w - - 6 25",
+    hint: "Think about which piece can take advantage of the c2 square for what tactic. (Hint from image)",
+    solution: "Bxb3",
+  },
+  {
+    move: "25. axb3",
+    player: "White",
+    explanation: "White plays axb3. Find Black's move to win material.",
+    fen: "r4r1k/q3bp1p/p2p4/4p2n/Np2P1P1/1P2nP2/1PP1N2P/R3Q1RK b - - 0 25",
+    hint: "The move involves a capture.",
+    solution: "axb3",
+  },
+  {
+    move: "25... Nxc2",
+    player: "Black",
+    explanation:
+      "Bxb3. Canty recaptures the Bishop. Narayanan plays Nxc2. This move forks the Queen on e1 and Rook on a1",
+    fen: "r1b2r1k/q4pnp/p2p1b2/4pN1n/Np1NP3/1B2n3/PPP1N1PP/R4RQK w - - 0 25",
+    hint: "think about which piece can take advantage of the c2 square for what tactic.",
+    solution: "Nxc2",
+  },
+  {
+    move: "26. Qd2 ",
+    player: "White",
+    explanation: "White plays Qd2. Find Black's winning move.",
+    fen: "r4r1k/q3bp1p/p2p4/4p2n/Np2P1P1/1P3P2/1PnQN2P/R5RK b - - 1 26",
+    hint: "White's move has been played. Click Next Move to continue.",
+    solution: "Qd2",
+  },
+  {
+    move: "26... Nxa1",
+    player: "Black",
+    explanation:
+      "Canty captures the rook with a knight, ultimately winning more material. Remember, rooks are more valuable than knights.",
+    fen: "r4r1k/q3bp1p/p2p4/4p2n/Np2P1P1/1P3P2/1P1QN2P/n5RK w - - 0 27",
+    hint: "There is a hanging piece. Capture it",
+    solution: "Nxa1",
+  },
+  {
+    move: "27. gxh5 Nxb3 28. Qh6 ",
+    player: "White",
+    explanation:
+      "Narayan eventually plays the sequence 27. gxh5 Nxb3 28. Qh6. Pay attention to how the queen and rook are positioned How did Canty prevent checkmate in this position?",
+    fen: "r4r1k/q3bp1p/p2p3Q/4p2P/Np2P3/1n3P2/1P2N2P/6RK b - - 1 28",
+    hint: "White's move has been played. Click Next Move to continue.",
+    solution: "Nxa1",
+  },
+  {
+    move: "27... Rg8",
+    player: "Black",
+    explanation:
+      "This prevents the immediate checkmate threat (Qg4#) and defends the King's position. Due to being down so much material and having fewer active pieces to checkmate efficiently, Narayanan resigned.",
+    fen: "r1b2r1k/q4pnp/p2p1b2/4pN1n/Np1NP3/1B2n3/PPP1N1PP/R4RQK w - - 0 25",
+    hint: "Pay attention to how the rook on g7 and queen on h6 are positioned at. Big hint: there is a Qg7# threat.",
+    solution: "Rg8",
+  },
 ];
 
 // =========================================================

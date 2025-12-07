@@ -70,6 +70,10 @@ function chessboard_setup() {
           to move your queen a lot.
         </li>
       </ol>
+      <h4>
+        Below is a good example of an opening that follows the opening
+        principles
+      </h4>
       <div className="image-container">
         <img src={chessImage} alt="Chess players" />
       </div>

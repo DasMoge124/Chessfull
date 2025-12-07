@@ -22,6 +22,7 @@ import BeginnerLessonTwo from "./pages/lessons/white/BeginnerLessonTwo";
 //How To Set Up Chess Board Import
 import HowToSetUpChessBoard from "./pages/lessons/beginner_lessons/chessboard_setup";
 import HowPiecesMove from "./pages/lessons/beginner_lessons/how_pieces_move";
+import ChessNotation from "./pages/lessons/beginner_lessons/chessnotation";
 //Opening Principles Import
 import OpeningPrinciples from "./pages/lessons/beginner_lessons/opening_principles";
 import CheckmatesAndStalemates from "./pages/lessons/beginner_lessons/checkmates";
@@ -133,6 +134,10 @@ function App() {
           <Route
             path="lessons/beginner/opening_principles"
             element={<OpeningPrinciples />}
+          />
+          <Route
+            path="lessons/beginner/chess_notation"
+            element={<ChessNotation />}
           />
           {/* Checkmates and Stalemates */}
           <Route
