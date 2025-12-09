@@ -1,5 +1,6 @@
 import React from "react";
 import chessImage from "./Images/forks.png";
+import knightImage from "./Images/knight.png";
 import { useNavigate } from "react-router-dom";
 
 function forks() {
@@ -34,6 +35,18 @@ function forks() {
         pieces.{" "}
       </p>
       <h2>Forking with knights</h2>
+      <p>
+        Remember that knights move in an L shape as seen in the image below:
+      </p>
+      <div className="image-container">
+        <img src={knightImage} alt="Chess players" />
+      </div>
+      <p>
+        {" "}
+        Reminder: Knights are great at forking pieces because of their unique
+        movement pattern. They can jump over other pieces and attack multiple
+        targets from unexpected angles.{" "}
+      </p>
       <div className="ButtonElements">
         <button onClick={() => navigate("/lessons/beginner/forks_practice")}>
           Lessons

@@ -35,6 +35,9 @@ function Beginner() {
         >
           Checkmates and Stalemates
         </button>
+        <button onClick={() => navigate("/lessons/beginner/chess_notation")}>
+          Chess Notation
+        </button>
       </div>
       <h2>Basic Tactics</h2>
       <div className="ButtonElements">
