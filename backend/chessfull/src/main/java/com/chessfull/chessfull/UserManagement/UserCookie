@@ -1,0 +1,11 @@
+import jakarta.servlet.http.*;// import jak.servlet.http.Cookie;
+
+private class UserCookie {
+        public static Cookie createCookie(User user) {
+            Cookie username = new Cookie("user", user.getUsername()); //  have a method to get the username
+            Cookie progress = new Cookie("progress", user.getProgress()); // Assuming you have a method to get the progress
+            username.setPath("/"); // Set the path to which the client should return the cookie
+            progress.setPath("/"); // Set the path to which the client should return the cookie
+            return username;// Return the created cookie
+        }
+    }

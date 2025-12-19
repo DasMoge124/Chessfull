@@ -3,6 +3,7 @@ package com.chessfull.chessfull.UserManagement;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
 @Document
 public class User {
     @Id
@@ -11,9 +12,7 @@ public class User {
     private String password;
     private String email;
 
-    public User() {
-    }
-
+    
     public User(String username, String password, String email) {
         super();
         this.username = username;
