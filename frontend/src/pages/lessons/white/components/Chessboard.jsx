@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { Chess } from "chess.js"; // Assume Chess is available globally or imported elsewhere
 import "./Chessboard.css";
 
 // Utility function to convert row/column into algebraic square notation
@@ -23,7 +22,6 @@ const Chessboard = ({
   lessonMoves,
   setLessonMessage,
   setShowContinue,
-  showContinue,
   clearFeedback,
 }) => {
   const [board, setBoard] = useState(game.board());
@@ -31,66 +29,62 @@ const Chessboard = ({
   const [legalMoves, setLegalMoves] = useState([]);
   const [lastMove, setLastMove] = useState({ from: null, to: null });
 
-  // NEW STATE for Promotion Handling
   const [promotionPending, setPromotionPending] = useState(false);
   const [promotionMove, setPromotionMove] = useState({ from: null, to: null });
 
-  // 400px / 8 squares = 50px per square
   const squareSize = 400 / 8;
   const lesson = lessonMoves[currentLessonIndex];
   const isUserTurn = game.turn() === "w" && lesson.player === "White";
 
+  // SYNC BOARD AND TRACES
+  // This effect runs whenever the game instance changes (e.g., clicking "Next")
   useEffect(() => {
     setBoard([...game.board()]);
+    
+    // Auto-update last move trace based on the game's actual history
+    const history = game.history({ verbose: true });
+    if (history.length > 0) {
+      const latest = history[history.length - 1];
+      setLastMove({ from: latest.from, to: latest.to });
+    } else {
+      setLastMove({ from: null, to: null });
+    }
   }, [game]);
 
   const updateBoard = () => setBoard([...game.board()]);
 
-  const getLegalMoves = (square) =>
-    game.moves({ square, verbose: true }).map((m) => m.to);
-
-  // UPDATED: Now accepts an optional promotion piece
   const executeMove = (fromSquare, toSquare, promotionPiece = "q") => {
     const piece = game.get(fromSquare);
     const targetRank = game.turn() === "w" ? "8" : "1";
 
-    // Check if the move is a pawn move to the last rank, AND we haven't specified a promotion piece yet
     const requiresPromotionChoice =
       piece &&
       piece.type === "p" &&
       toSquare.endsWith(targetRank) &&
-      !promotionPending; // Check only if not already pending
+      !promotionPending;
 
-    // If promotion choice is required, pause and show the modal
     if (requiresPromotionChoice) {
       setPromotionPending(true);
       setPromotionMove({ from: fromSquare, to: toSquare });
       return;
     }
 
-    // Configure the move, including 'promotion' if it's required (or explicitly passed)
     const moveConfig = {
       from: fromSquare,
       to: toSquare,
-      ...(requiresPromotionChoice ||
-      (piece.type === "p" && toSquare.endsWith(targetRank))
+      ...(piece?.type === "p" && toSquare.endsWith(targetRank)
         ? { promotion: promotionPiece }
         : {}),
     };
 
     const move = game.move(moveConfig);
-
     if (!move) return;
 
-    setLastMove({ from: move.from, to: move.to });
     updateBoard();
 
-    // Lesson feedback logic
+    // Lesson validation logic
     const moveParts = lesson.move.split(" ");
-    const expectedMove =
-      moveParts.length > 1 ? moveParts[1].replace("...", "").trim() : "";
-
-    // Clean SAN for comparison: remove promotion notation (=Q, =R, etc.)
+    const expectedMove = moveParts.length > 1 ? moveParts[1].replace("...", "").trim() : "";
     const cleanedSan = move.san.replace(/=\w/g, "");
     const cleanedExpectedMove = expectedMove.replace(/=\w/g, "");
 
@@ -100,7 +94,7 @@ const Chessboard = ({
         text: `Correct! ${move.san} was played.`,
         explanation: lesson.explanation,
       });
-      setShowContinue(true); // Show next move button
+      setShowContinue(true);
     } else {
       game.undo();
       updateBoard();
@@ -108,31 +102,38 @@ const Chessboard = ({
         type: "error",
         text: `You played ${move.san}. Try again.`,
         explanation: null,
-        showHint: false,
-        showSolution: false,
       });
-      setShowContinue(false); // Hide next move button
+      setShowContinue(false);
     }
   };
 
-  // NEW FUNCTION: Handles the user's promotion choice and executes the move
-  const handlePromotionChoice = (piece) => {
-    if (!promotionPending || !promotionMove.from || !promotionMove.to) return;
+  /* --- DRAG AND DROP HANDLERS --- */
+  const handleDragStart = (e, square) => {
+    if (!isUserTurn || promotionPending) {
+      e.preventDefault();
+      return;
+    }
+    setSourceSquare(square);
+    setLegalMoves(game.moves({ square, verbose: true }).map((m) => m.to));
+    e.dataTransfer.setData("sourceSquare", square);
+  };
 
-    // Execute the move with the chosen promotion piece ('q', 'r', 'b', 'n')
-    executeMove(promotionMove.from, promotionMove.to, piece);
+  const handleDragOver = (e) => e.preventDefault();
 
-    // Clear promotion state
-    setPromotionPending(false);
-    setPromotionMove({ from: null, to: null });
+  const handleDrop = (e, targetSquare) => {
+    e.preventDefault();
+    const draggedSource = e.dataTransfer.getData("sourceSquare");
 
-    // Clear highlight states
+    if (draggedSource && game.moves({ square: draggedSource, verbose: true }).some(m => m.to === targetSquare)) {
+      if (clearFeedback) clearFeedback();
+      executeMove(draggedSource, targetSquare);
+    }
     setSourceSquare(null);
     setLegalMoves([]);
   };
 
+  /* --- CLICK HANDLER --- */
   const handleSquareClick = (square) => {
-    // Block clicks while promotion modal is open
     if (!isUserTurn || promotionPending) return;
 
     const piece = game.get(square);
@@ -140,29 +141,32 @@ const Chessboard = ({
     if (!sourceSquare) {
       if (piece && piece.color === game.turn()) {
         setSourceSquare(square);
-        setLegalMoves(getLegalMoves(square));
+        setLegalMoves(game.moves({ square, verbose: true }).map((m) => m.to));
       }
       return;
     }
 
     if (legalMoves.includes(square)) {
       if (clearFeedback) clearFeedback();
-
-      // Execute move. This will either move the piece or trigger promotionPending state
       executeMove(sourceSquare, square);
-
-      // Only clear source/legal moves if promotion is NOT pending
-      if (!promotionPending) {
-        setSourceSquare(null);
-        setLegalMoves([]);
-      }
+      setSourceSquare(null);
+      setLegalMoves([]);
     } else if (piece && piece.color === game.turn()) {
       setSourceSquare(square);
-      setLegalMoves(getLegalMoves(square));
+      setLegalMoves(game.moves({ square, verbose: true }).map((m) => m.to));
     } else {
       setSourceSquare(null);
       setLegalMoves([]);
     }
+  };
+
+  const handlePromotionChoice = (piece) => {
+    if (!promotionPending) return;
+    executeMove(promotionMove.from, promotionMove.to, piece);
+    setPromotionPending(false);
+    setPromotionMove({ from: null, to: null });
+    setSourceSquare(null);
+    setLegalMoves([]);
   };
 
   return (
@@ -185,59 +189,39 @@ const Chessboard = ({
           const isLast = square === lastMove.from || square === lastMove.to;
           const isLight = (rIdx + cIdx) % 2 === 0;
 
-          // Variables for file and rank notation
           const rank = 8 - rIdx;
           const file = ["a", "b", "c", "d", "e", "f", "g", "h"][cIdx];
-
-          const squareClasses = isLight ? "light" : "dark";
 
           return (
             <div
               key={square}
-              className={`square ${squareClasses} ${isLegal ? "highlight-legal" : ""} 
-                        ${isSource ? "highlight-source" : ""} ${isLast ? "last-move" : ""}
-                        ${isUserTurn && !promotionPending ? "cursor-pointer" : "cursor-default"}
-                        `}
+              className={`square ${isLight ? "light" : "dark"} 
+                        ${isLast ? "last-move-trace" : ""}
+                        ${isUserTurn && !promotionPending ? "cursor-pointer" : ""}`}
               onClick={() => handleSquareClick(square)}
-              // --- FILE AND RANK NOTATION DATA ATTRIBUTES ---
-              {...(cIdx === 7 && {
-                "data-rank": rank,
-              })} /* Right edge (h-file) */
-              {...(rIdx === 7 && {
-                "data-file": file,
-              })} /* Bottom edge (1st rank) */
-              // --- END NOTATION ---
+              onDragOver={handleDragOver}
+              onDrop={(e) => handleDrop(e, square)}
+              {...(cIdx === 7 && { "data-rank": rank })}
+              {...(rIdx === 7 && { "data-file": file })}
               style={{
                 width: squareSize,
                 height: squareSize,
-                position: "relative",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                ...(isSource && {
-                  border: "3px solid #3d80e8",
-                  boxSizing: "border-box",
-                }),
+                ...(isSource && { outline: "3px solid #3d80e8", outlineOffset: "-3px" }),
               }}
             >
-              {/* Highlight for legal moves (dot on empty square) */}
               {isLegal && !piece && <div className="legal-dot" />}
-
-              {/* Highlight for legal moves (ring on occupied square) */}
               {isLegal && piece && <div className="legal-ring" />}
 
-              {/* Piece Image */}
               {piece && (
                 <img
                   src={`/assets/pieces/${pieceToFilename(piece)}`}
                   alt={`${piece.color}${piece.type}`}
                   className="piece-img"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                  }}
                   draggable={isUserTurn && !promotionPending}
+                  onDragStart={(e) => handleDragStart(e, square)}
                 />
               )}
             </div>
@@ -245,11 +229,10 @@ const Chessboard = ({
         })
       )}
 
-      {/* --- PROMOTION OVERLAY --- */}
       {promotionPending && (
         <div className="promotion-overlay">
           <div className="promotion-dialog">
-            <h3>Choose a piece for promotion:</h3>
+            <h3>Promote to:</h3>
             <div className="promotion-choices">
               {["q", "r", "b", "n"].map((type) => (
                 <button
@@ -258,12 +241,8 @@ const Chessboard = ({
                   className="promotion-piece-button"
                 >
                   <img
-                    src={`/assets/pieces/${pieceToFilename({
-                      color: game.turn(),
-                      type: type,
-                    })}`}
+                    src={`/assets/pieces/${pieceToFilename({ color: game.turn(), type })}`}
                     alt={type}
-                    className="piece-img"
                   />
                 </button>
               ))}
@@ -271,7 +250,6 @@ const Chessboard = ({
           </div>
         </div>
       )}
-      {/* --- END PROMOTION OVERLAY --- */}
     </div>
   );
 };

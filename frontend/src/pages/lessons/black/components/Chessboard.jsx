@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 
-// Convert row/column → algebraic notation
+// Convert internal coordinates to algebraic (a1, h8, etc.)
 const toSquare = (row, col) => {
-  // Column files are now read in reverse for the coordinates
-  // This is crucial for matching the *original* square name to the piece's position
+  // Logic specifically for Black's perspective
   const files = ["h", "g", "f", "e", "d", "c", "b", "a"];
   return `${files[col]}${8 - row}`;
 };
 
-// Map piece object → filename (no change needed here)
+// Map piece object to the SVG filename
 const pieceToFilename = (piece) => {
   if (!piece) return "";
   const color = piece.color === "w" ? "w" : "b";
@@ -24,7 +23,6 @@ const Chessboard = ({
   lessonMoves,
   setLessonMessage,
   setShowContinue,
-  showContinue,
   clearFeedback,
 }) => {
   const [board, setBoard] = useState(game.board());
@@ -42,20 +40,15 @@ const Chessboard = ({
 
   const updateBoard = () => setBoard([...game.board()]);
 
-  const getLegalMoves = (square) =>
-    game.moves({ square, verbose: true }).map((m) => m.to);
-
   const executeMove = (fromSquare, toSquare) => {
     const move = game.move({ from: fromSquare, to: toSquare, promotion: "q" });
 
     if (!move) {
-      // Illegal move — feedback only
       setLessonMessage({
         type: "error",
-        text: `That move isn’t valid. Try again.`,
+        text: `Invalid move. Try again.`,
         explanation: null,
       });
-      setShowContinue(false);
       return;
     }
 
@@ -63,8 +56,7 @@ const Chessboard = ({
     updateBoard();
 
     const moveParts = lesson.move.split(" ");
-    const expectedMove =
-      moveParts.length > 1 ? moveParts[1].replace("...", "").trim() : "";
+    const expectedMove = moveParts.length > 1 ? moveParts[1].replace("...", "").trim() : "";
     const expectedSan = lesson.solution || expectedMove;
 
     if (move.san.toLowerCase().includes(expectedSan.toLowerCase())) {
@@ -90,15 +82,41 @@ const Chessboard = ({
     }
   };
 
+  // --- Drag & Drop Handlers ---
+  const handleDragStart = (e, square) => {
+    if (!isUserTurn) return;
+    const piece = game.get(square);
+    if (piece && piece.color === "b") {
+      e.dataTransfer.setData("sourceSquare", square);
+      setSourceSquare(square);
+      setLegalMoves(game.moves({ square, verbose: true }).map((m) => m.to));
+    } else {
+      e.preventDefault();
+    }
+  };
+
+  const handleDrop = (e, targetSquare) => {
+    e.preventDefault();
+    const draggedSource = e.dataTransfer.getData("sourceSquare");
+    if (draggedSource) {
+      if (clearFeedback) clearFeedback();
+      executeMove(draggedSource, targetSquare);
+    }
+    setSourceSquare(null);
+    setLegalMoves([]);
+  };
+
+  const onDragOver = (e) => e.preventDefault();
+
+  // --- Click Handlers ---
   const handleSquareClick = (square) => {
     if (!isUserTurn) return;
     const piece = game.get(square);
 
     if (!sourceSquare) {
-      // Select only if it's Black’s piece
       if (piece && piece.color === "b") {
         setSourceSquare(square);
-        setLegalMoves(getLegalMoves(square));
+        setLegalMoves(game.moves({ square, verbose: true }).map((m) => m.to));
       }
       return;
     }
@@ -108,113 +126,116 @@ const Chessboard = ({
       executeMove(sourceSquare, square);
       setSourceSquare(null);
       setLegalMoves([]);
-    } else if (piece && piece.color === "b") {
-      setSourceSquare(square);
-      setLegalMoves(getLegalMoves(square));
     } else {
-      setSourceSquare(null);
-      setLegalMoves([]);
+      // Re-select if another black piece is clicked, otherwise clear
+      if (piece && piece.color === "b") {
+        setSourceSquare(square);
+        setLegalMoves(game.moves({ square, verbose: true }).map((m) => m.to));
+      } else {
+        setSourceSquare(null);
+        setLegalMoves([]);
+      }
     }
   };
 
-  // 1. Array of row indices in reverse order (for Black's perspective at the bottom): [7, 6, 5, 4, 3, 2, 1, 0]
-  const reversedRowIndices = Array.from({ length: 8 }, (_, i) => 7 - i);
-
-  // 2. Array of column indices in reverse order (for y-axis mirror): [7, 6, 5, 4, 3, 2, 1, 0]
-  const reversedColIndices = Array.from({ length: 8 }, (_, i) => 7 - i);
+  const reversedRowIndices = [7, 6, 5, 4, 3, 2, 1, 0];
+  const reversedColIndices = [7, 6, 5, 4, 3, 2, 1, 0];
+  const filesLabels = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
   return (
     <div
-      className="chessboard"
+      className="chessboard-container"
       style={{
         width: 400,
         height: 400,
-        position: "relative",
         display: "grid",
-        gridTemplateColumns: `repeat(8, ${squareSize}px)`,
-        gridTemplateRows: `repeat(8, ${squareSize}px)`,
-        border: "3px solid #333",
-        boxShadow: "0 0 10px rgba(0,0,0,0.5)",
+        gridTemplateColumns: `repeat(8, 1fr)`,
+        gridTemplateRows: `repeat(8, 1fr)`,
+        border: "3px solid #111",
+        backgroundColor: "#242526",
+        userSelect: "none",
+        position: "relative"
       }}
     >
-      {/* Iterate over reversed row indices (for X-axis flip / Black on bottom) */}
-      {reversedRowIndices.map((rIdx) =>
-        // Iterate over reversed column indices (for Y-axis mirror / file flip)
-        reversedColIndices.map((cIdx) => {
-          // Piece is retrieved using the original rIdx and cIdx from the Chess.js board
+      {reversedRowIndices.map((rIdx, vRow) =>
+        reversedColIndices.map((cIdx, vCol) => {
           const piece = board[rIdx][cIdx];
-
-          // Square name is generated based on the original rIdx and the *reversed* cIdx
-          // The toSquare function has been updated to use reversed files
           const square = toSquare(rIdx, reversedColIndices.indexOf(cIdx));
-
+          
           const isLegal = legalMoves.includes(square);
           const isSource = square === sourceSquare;
           const isLast = square === lastMove.from || square === lastMove.to;
-          const isLight = (rIdx + cIdx) % 2 === 0;
+          
+          const isLight = (rIdx + cIdx) % 2 !== 0; 
+          const lightColor = "#31333b"; 
+          const darkColor = "#242526";
+          const labelColor = "#999";
 
           return (
             <div
               key={square}
-              className={`square ${isLight ? "light" : "dark"} ${
-                isLegal ? "highlight-legal" : ""
-              } ${isSource ? "highlight-source" : ""} ${
-                isLast ? "last-move" : ""
-              } ${isUserTurn ? "cursor-pointer" : "cursor-default"}`}
               onClick={() => handleSquareClick(square)}
+              onDragOver={onDragOver}
+              onDrop={(e) => handleDrop(e, square)}
               style={{
-                width: squareSize,
-                height: squareSize,
+                position: "relative",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: isLight ? "#f0d9b5" : "#b58863",
-                ...(isLast && {
-                  backgroundColor: isLight ? "#e7e7a3" : "#a3c26b",
-                }),
-                ...(isSource && {
-                  border: "3px solid #3d80e8",
-                  boxSizing: "border-box",
-                }),
+                backgroundColor: isLight ? lightColor : darkColor,
+                transition: "background 0.15s",
+                ...(isLast && { backgroundColor: isLight ? "#4d533b" : "#3b402b" }),
+                ...(isSource && { backgroundColor: "#264653" }),
               }}
             >
-              {/* Dots for legal moves */}
-              {isLegal && !piece && (
-                <div
-                  style={{
-                    position: "absolute",
-                    width: "33%",
-                    height: "33%",
-                    backgroundColor: "rgba(50, 50, 50, 0.4)",
-                    borderRadius: "50%",
-                  }}
-                />
+              {/* Algebraic Ranks (left edge) */}
+              {vCol === 0 && (
+                <span style={{
+                  position: "absolute", top: 2, left: 2, fontSize: 10,
+                  fontWeight: "bold", color: labelColor, pointerEvents: "none"
+                }}>
+                  {8 - rIdx}
+                </span>
               )}
 
-              {/* Circle on occupied target */}
-              {isLegal && piece && (
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    boxShadow: "inset 0 0 0 4px rgba(50, 50, 50, 0.4)",
-                    borderRadius: "50%",
-                  }}
-                />
+              {/* Algebraic Files (bottom edge) */}
+              {vRow === 7 && (
+                <span style={{
+                  position: "absolute", bottom: 2, right: 2, fontSize: 10,
+                  fontWeight: "bold", color: labelColor, pointerEvents: "none"
+                }}>
+                  {filesLabels[7 - vCol]}
+                </span>
               )}
 
-              {/* Piece */}
+              {/* Piece rendering with Drag ability */}
               {piece && (
                 <img
                   src={`/assets/pieces/${pieceToFilename(piece)}`}
                   alt={`${piece.color}${piece.type}`}
+                  draggable={isUserTurn && piece.color === "b"}
+                  onDragStart={(e) => handleDragStart(e, square)}
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
+                    width: "85%",
+                    height: "85%",
+                    cursor: isUserTurn && piece.color === "b" ? "grab" : "default",
+                    zIndex: 2
                   }}
-                  draggable={false}
                 />
+              )}
+
+              {/* Legal Move Hints */}
+              {isLegal && !piece && (
+                <div style={{
+                  width: "25%", height: "25%", backgroundColor: "rgba(255,255,255,0.1)",
+                  borderRadius: "50%"
+                }} />
+              )}
+              {isLegal && piece && (
+                <div style={{
+                  position: "absolute", width: "90%", height: "90%",
+                  border: "4px solid rgba(255,255,255,0.08)", borderRadius: "50%"
+                }} />
               )}
             </div>
           );

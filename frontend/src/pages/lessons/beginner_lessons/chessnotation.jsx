@@ -8,8 +8,7 @@ function chess_notation() {
 
   return (
     <div>
-      <h1>How to Set Up A Chessboard</h1>
-      <p>Be sure to follow the following steps</p>
+      <h1>Chess Notation</h1>
       <ol>
         <li>
           Pawns: You write the square to which it moves.
@@ -28,9 +27,9 @@ function chess_notation() {
           <ul>Example: Be4 = Bishop moves to e4</ul>
         </li>{" "}
         <li>
-          Queen: You write Q + square<li>Example: Qe4 = Queen moves to e4</li>
+          Queen: You write Q + square<ul>Example: Qe4 = Queen moves to e4</ul>
         </li>{" "}
-        <li>King: You write K + square Example: Ke4 = King moves to e4</li>
+        <li>King: You write K + square<ul>Example: Ke4 = King moves to e4</ul></li>
         <li>
           Captures with any piece but a pawn: You write [Piece] + x + square
           <ul>Example: Qxe4 = Queen takes on e4</ul>
@@ -40,7 +39,8 @@ function chess_notation() {
         </li>
         <ul>Example: cxd4 = pawn on c file takes on d4</ul>
         <li>Castle kingside: You write O-O </li>
-        <li>Castle queenside: You write O-O-O Promotion: Square + = + Piece</li>
+        <li>Castle queenside: You write O-O-O </li>
+        <li>Promotion: Square + = + Piece</li>
         <ul>Example: f8=Q = the pawn on f8 promotes to a Queen</ul>
         <li>Check: Move + “+”</li>
         <ul>Example: Ne7+ = Knight moves to e7 check</ul>

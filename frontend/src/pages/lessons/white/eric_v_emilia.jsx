@@ -113,6 +113,7 @@ function EricVEmilia() {
       setShowSolution(false);
     } else {
       setGameEnded(true);
+      //console.log("Done!");
       setLessonMessage({
         type: "info",
         text: "Lesson Complete! Black resigned after 17. h4.",

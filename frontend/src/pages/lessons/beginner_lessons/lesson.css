@@ -22,6 +22,9 @@ h3 {
   letter-spacing: 0.5px;
   padding-top: 15px; /* Add some space above headings */
 }
+ul{
+  margin-left: 20px;
+}
 
 /* --- Navigation Bar --- */
 .nav-bar {

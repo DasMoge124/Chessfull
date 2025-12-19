@@ -153,3 +153,26 @@
   width: 100%;
   height: 100%;
 }
+/* --- Last Move Trace (Lichess Style Yellow) --- */
+.last-move-trace {
+  background-color: rgba(255, 255, 0, 0.4) !important;
+}
+
+/* Optional: Improve Cursor Feedback */
+.cursor-pointer {
+  cursor: grab;
+}
+
+.cursor-pointer:active {
+  cursor: grabbing;
+}
+
+/* Ensure images don't block dropping on the square */
+.piece-img {
+  pointer-events: none; /* Allows the drop event to hit the square underneath */
+}
+
+/* Override for user interaction */
+.cursor-pointer .piece-img {
+  pointer-events: auto;
+}
