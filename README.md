@@ -1,7 +1,6 @@
 # ♟️ Chessfull
 
-An interactive pedagogical tool designed to teach advanced chess strategy through real-game simulations. This platform features a high-fidelity interactive lesson module based on the professional match between **GM Magnus Carlsen** and **GM Bardiya Daneshvar**.
-
+An interactive pedagogical tool designed to teach advanced chess strategy through real-game simulations.
 **🚀 [Live Demo on Netlify](https://chessfull.netlify.app/)**
 
 ## ✨ Key Features
