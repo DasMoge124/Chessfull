@@ -15,7 +15,6 @@ public class UserController {
     private final UserRepository userRepo;
     private final PasswordEncoder passwordEncoder;
 
-    // Single constructor for clean dependency injection
     public UserController(UserRepository userRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
@@ -23,12 +22,13 @@ public class UserController {
 
     @PostMapping("/addUser")
     public ResponseEntity<?> registerUser(@RequestBody RegistrationRequest request) {
-        if (userRepo.existsByUsername(request.getUsername())) {
-            return ResponseEntity.badRequest().body("Username already taken");
+        if (userRepo.existsByUsername(request.getUsername()) || userRepo.existsByEmail(request.getEmail())) {
+            return ResponseEntity.badRequest().body("Username or email already taken");
         }
 
         User newUser = new User();
         newUser.setUsername(request.getUsername());
+        newUser.setEmail(request.getEmail());
         // Encode the password before saving to MongoDB
         newUser.setPassword(passwordEncoder.encode(request.getPassword()));
 

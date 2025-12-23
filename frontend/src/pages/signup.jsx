@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 
 function Signup() {
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const localhost = "http://localhost:8085";
+  const url = localhost + "/addUser";
 
   const handleSignup = async () => {
     try {
-      const response = await fetch("http://localhost:8085/addUser", {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, username, password }),
       });
 
       const result = await response.text(); // backend returns a plain string
@@ -28,6 +31,13 @@ function Signup() {
         <div className="CONTAINER">
           <div className="CARD">
             <h3>Sign Up</h3>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input"
+              placeholder="Email"
+            />
             <input
               type="text"
               value={username}
