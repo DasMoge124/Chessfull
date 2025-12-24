@@ -116,6 +116,8 @@ function Magnus_v_Finegold() {
   const [showContinue, setShowContinue] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
+  const localUrl = "http://localhost:8085/";
+  const url = localUrl;
   // Feedback box state
   const [feedback, setFeedback] = useState(
     "Could have defended the knight better<br />Loses tempo<br />Should have moved Bd7"

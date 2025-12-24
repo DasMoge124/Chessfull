@@ -436,6 +436,8 @@ function CantyvNarayan() {
   const [feedback, setFeedback] = useState(INITIAL_SCENARIO);
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
+  const localUrl = "http://localhost:8085/";
+  const url = localUrl;
 
   // --- NEW FUNCTION: Called by Chessboard when the user plays the correct Black move ---
   const handleCorrectMove = useCallback(
@@ -486,50 +488,41 @@ function CantyvNarayan() {
     }
   }, [currentLessonIndex, lesson, game, isAwaitingUserClick]); // Added isAwaitingUserClick as dependency
 
-  const advanceLesson = () => {
+  const advanceLesson = async () => {
     const nextIndex = currentLessonIndex + 1;
 
+    // Check if there are more moves in the lesson array
     if (nextIndex < GAME_LESSON_MOVES.length) {
       const nextLesson = GAME_LESSON_MOVES[nextIndex];
 
-      // We just played a correct Black move and clicked "Next Move"
-      // === PHASE 1: Display White's response and set up the next question ===
       if (nextLesson.player === "White") {
-        // 1. Update Board to White's move FEN
         const tempGame = new Chess(nextLesson.fen);
         setGame(tempGame);
 
-        // 2. Display White's move and the next question/scenario
         setLessonMessage({
           type: "info",
           text: `White played ${nextLesson.move.split(" ")[0]}.`,
-          explanation: nextLesson.explanation, // This IS the new question text
+          explanation: nextLesson.explanation,
         });
 
-        // 3. Set index to the *next* Black move (skipping the White instruction)
         const finalIndex = nextIndex + 1;
-
         if (finalIndex < GAME_LESSON_MOVES.length) {
-          // Set index to the next Black puzzle, which triggers the useEffect hook
           setCurrentLessonIndex(finalIndex);
         } else {
+          // This case handles if White makes the absolute last move of the array
+          await saveProgress();
           setGameEnded(true);
         }
 
-        // Reset flow control states
-        setShowContinue(false); // Hide button, user must now play on the board
-        setFeedback(nextLesson.explanation); // Set the question in the main feedback area
-      }
-      // This 'else' should generally not be hit with the current structure but is a safeguard.
-      else {
+        setShowContinue(false);
+        setFeedback(nextLesson.explanation);
+      } else {
         setCurrentLessonIndex(nextIndex);
         setShowContinue(false);
       }
-
-      // Reset hints/solutions
-      setShowHint(false);
-      setShowSolution(false);
     } else {
+      // 2. TRIGGER SAVE: No more moves left, lesson is finished
+      await saveProgress();
       setGameEnded(true);
       setLessonMessage({
         type: "info",
@@ -537,8 +530,38 @@ function CantyvNarayan() {
       });
       setShowContinue(false);
     }
+
+    setShowHint(false);
+    setShowSolution(false);
   };
 
+  // 3. Extracted Save Logic for cleaner code
+  const saveProgress = async () => {
+    const lessonId = "magnus_v_sina"; // Ensure this matches your expected ID
+    const token = localStorage.getItem("token")?.trim();
+
+    if (token) {
+      try {
+        const response = await fetch(`${url}api/progress/complete/${lessonId}`, {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        });
+
+        if (response.ok) {
+          console.log("Progress saved successfully!");
+        } else {
+          console.error("Failed to save progress. Status:", response.status);
+        }
+      } catch (err) {
+        console.error("Error connecting to progress API:", err);
+      }
+    } else {
+      console.warn("No token found. Progress not saved.");
+    }
+  };
   const toggleHint = () => {
     setShowHint((prev) => !prev);
     if (!showHint) setShowSolution(false);

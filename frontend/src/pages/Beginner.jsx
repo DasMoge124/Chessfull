@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import MagnusVSina from "./lessons/black/magnus_v_sina";
@@ -6,6 +6,8 @@ import Forks from "./lessons/beginner_lessons/forks";
 
 function Beginner() {
   const navigate = useNavigate();
+  const [completedLessonIds, setCompletedLessonIds] = useState([]);
+  const isCompleted = (id) => completedLessonIds.includes(id);
 
   return (
     <div>
@@ -77,12 +79,12 @@ function Beginner() {
         <button
           onClick={() => navigate("/lessons/beginner/beginner_lesson_one")}
         >
-          Game 1
+          Game 1{isCompleted("beginner_game_1") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
         </button>
         <button
           onClick={() => navigate("/lessons/beginner/beginner_lesson_two")}
         >
-          Game 2
+          Game 2{isCompleted("beginner_game_2") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
         </button>
       </div>
       <div className="ButtonElements">

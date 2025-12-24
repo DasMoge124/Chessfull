@@ -82,7 +82,8 @@ function EricVEmilia() {
   const [feedback, setFeedback] = useState(
     "Practice: In the position after 11... Qc7, Black has made a strategic inaccuracy. The move loses tempo because the Queen on c7 is an easy target for White's next move, and it fails to properly defend the knight on b6. A better move would have been 11... Bd7, which develops a piece and defends the knight on b6 indirectly, allowing the Queen to remain active elsewhere or to be played to c7 later under better circumstances. The current position allows White to immediately gain an advantage by exploiting the undefended position of the Black queen and the vulnerable knight. What is White's best continuation after 11... Qc7?"
   );
-
+  const localUrl = "http://localhost:8085/";
+  const url = localUrl;
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
 
   useEffect(() => {
@@ -104,7 +105,7 @@ function EricVEmilia() {
     }
   }, [currentLessonIndex, gameEnded, lesson]);
 
-  const advanceLesson = () => {
+  const advanceLesson = async () => {
     if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
       setCurrentLessonIndex((i) => i + 1);
       setLessonMessage(null);
@@ -118,6 +119,31 @@ function EricVEmilia() {
         type: "info",
         text: "Lesson Complete! Black resigned after 17. h4.",
       });
+      const lessonId = "eric_v_emilia_003"; // Unique ID for this specific page
+      const token = localStorage.getItem("token")?.trim();
+
+      // 3. Send to Backend
+      if (token) {
+        try {
+          const response = await fetch(url + `api/progress/complete/${lessonId}`, {
+            method: "POST",
+            headers: { 
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json"
+            }
+          });
+
+          if (response.ok) {
+            console.log("Progress saved successfully!");
+          } else {
+            console.error("Failed to save progress. Status:", response.status);
+          }
+        } catch (err) {
+          console.error("Error connecting to progress API:", err);
+        }
+      } else {
+        console.warn("No token found. Progress not saved. (User might be a guest)");
+      }
     }
   };
 

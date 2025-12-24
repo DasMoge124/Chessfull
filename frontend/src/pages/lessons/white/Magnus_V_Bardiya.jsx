@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
+import { useNavigate } from "react-router-dom";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
@@ -140,6 +141,7 @@ const pieceToFilename = (piece) => {
 };
 
 function Magnus_V_Bardiya() {
+  const navigate = useNavigate();
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [lessonMessage, setLessonMessage] = useState(null);
@@ -147,9 +149,11 @@ function Magnus_V_Bardiya() {
   const [showContinue, setShowContinue] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
+  const localUrl = "http://localhost:8085/";
+  const url = localUrl;
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "Let's look at the game played between Maagnus & Grandmaster Bardiya Daneshvar. <br>Magnus plays white and Bardiya plays black.</br> In this move, how can Magnus kick a piece to limit Bardiya's activity?"
+    "Let's look at the game played between Magnus & Grandmaster Bardiya Daneshvar. <br>Magnus plays white and Bardiya plays black.</br> In this move, how can Magnus kick a piece to limit Bardiya's activity?"
   ); // this is the intro feedback message
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
@@ -173,7 +177,7 @@ function Magnus_V_Bardiya() {
     }
   }, [currentLessonIndex, gameEnded, lesson]);
 
-  const advanceLesson = () => {
+  const advanceLesson = async () => {
     if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
       setCurrentLessonIndex((i) => i + 1);
       setLessonMessage(null);
@@ -181,11 +185,39 @@ function Magnus_V_Bardiya() {
       setShowHint(false);
       setShowSolution(false);
     } else {
+      // 1. Mark the UI as ended
       setGameEnded(true);
       setLessonMessage({
         type: "info",
         text: "Lesson Complete! Black resigned after 17. h4.",
       });
+
+      // 2. Define the Lesson ID and get the Token
+      const lessonId = "magnus_v_bardiya_001"; // Unique ID for this specific page
+      const token = localStorage.getItem("token")?.trim();
+
+      // 3. Send to Backend
+      if (token) {
+        try {
+          const response = await fetch(url + `api/progress/complete/${lessonId}`, {
+            method: "POST",
+            headers: { 
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json"
+            }
+          });
+
+          if (response.ok) {
+            console.log("Progress saved successfully!");
+          } else {
+            console.error("Failed to save progress. Status:", response.status);
+          }
+        } catch (err) {
+          console.error("Error connecting to progress API:", err);
+        }
+      } else {
+        console.warn("No token found. Progress not saved. (User might be a guest)");
+      }
     }
   };
 
@@ -405,6 +437,11 @@ function Magnus_V_Bardiya() {
           }}
         >
           Lesson Complete! Black resigned after 17. h4.
+          <div className="ButtonElements">
+            <button onClick={() => navigate("/lessons")}>
+              Go back to lessons
+            </button>
+          </div>
         </div>
       )}
     </div>

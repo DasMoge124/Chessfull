@@ -1,51 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 function Lessons() {
   const navigate = useNavigate();
-  //const [lessonCompleted, setLessonCompleted] = useState(false);
+  // State to store the list of completed lesson IDs from the backend
+  const [completedLessonIds, setCompletedLessonIds] = useState([]);
 
-  /*const completeLesson = () => {
-    setLessonCompleted(true);
-  };*/
+  useEffect(() => {
+    const fetchProgress = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      try {
+        const response = await fetch("http://localhost:8085/api/progress/my-lessons", {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setCompletedLessonIds(data); // e.g., ["magnus_v_bardiya_001"]
+        }
+      } catch (err) {
+        console.error("Error fetching progress:", err);
+      }
+    };
+
+    fetchProgress();
+  }, []);
+
+  // Helper function to check if a lesson is done
+  const isCompleted = (id) => completedLessonIds.includes(id);
 
   return (
     <div className="page-container">
       <div className="page-content">
-        <h2>Lesson Title</h2>
-        <p>Lesson content goes here...</p>
+        <h2>Chess Lessons</h2>
+        <p>Master the board by studying the greats.</p>
+
+        {/* Lesson 1 */}
         <div className="ButtonElements">
-          <button
-            onClick={() => navigate("/lessons/grandmaster/CantyVNarayan")}
-          >
-            FM James Canty vs FM Narayan
+          <button onClick={() => navigate("/lessons/grandmaster/CantyVNarayan")}>
+            FM James Canty vs FM Narayan {isCompleted("canty_v_narayan") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
           </button>
         </div>
+
+        {/* Lesson 2 */}
         <div className="ButtonElements">
-          <button
-            onClick={() =>
-              navigate("/lessons/international_master/EricVEmilia")
-            }
-          >
-            IM Eric Rosen vs. WFM Emilia Sprzęczka
+          <button onClick={() => navigate("/lessons/international_master/EricVEmilia")}>
+            IM Eric Rosen vs. WFM Emilia Sprzęczka {isCompleted("eric_v_emilia_003") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
           </button>
         </div>
+
+        {/* Lesson 3 */}
         <div className="ButtonElements">
           <button onClick={() => navigate("/lessons/grandmaster/MagnusVRainn")}>
-            GM Magnus Carlsen vs Rainn Wilson
+            GM Magnus Carlsen vs Rainn Wilson {isCompleted("magnus_v_rainn") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
           </button>
         </div>
+
+        {/* Lesson 4 (The one we just worked on) */}
         <div className="ButtonElements">
-          <button
-            onClick={() => navigate("/lessons/grandmaster/MagnusVBardiya")}
-          >
-            GM Magnus Carlsen vs Bardiya
+          <button onClick={() => navigate("/lessons/grandmaster/MagnusVBardiya")}>
+            GM Magnus Carlsen vs Bardiya {isCompleted("magnus_v_bardiya_001") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
           </button>
         </div>
+
+        {/* Lesson 5 */}
         <div className="ButtonElements">
           <button onClick={() => navigate("/lessons/grandmaster/MagnusVSina")}>
-            GM Magnus Carlsen vs Sina
+            GM Magnus Carlsen vs Sina {isCompleted("magnus_v_sina") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
           </button>
         </div>
       </div>

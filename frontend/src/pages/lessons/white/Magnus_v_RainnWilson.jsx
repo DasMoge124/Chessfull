@@ -580,7 +580,8 @@ function MagnusVRainn() {
   const [feedback, setFeedback] = useState(
     "The game starts with the sequence: 1. e4 g6 2. Nf3 d6 3. d4 Bg7 4. Bc4 </br>Both sides are doing well as of right now and the position is essentially even. However, Magnus does have a slightly better advantage since both the e-pawn and d-pawn are controlling the center with the help of the light-squared bishop  - which is also eyeing the f7 square - and the knight on f3; Magnus can potentially castle early, activate his knight on b1 and activate his dark-squared bishop. On the other hand, Rainn does have a fianchettoed bishop on g7 and has advanced his d-pawn to d6. Its really important to activate most of your pieces and control the center in the opening phase since it will be easier to attack your opponent</br></br>Rainn made a vital mistake by playing Bg4. At first, this may seem like an annoying pin that White must respond to immediately by playing a move like h3. However, Magnus found it as an opportunity to temporarily be up in material and potentially create a threat that could win even more material. How does he do it?</br>"
   );
-
+  const localUrl = "http://localhost:8085/";
+  const url = localUrl;
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
 
   useEffect(() => {
@@ -602,7 +603,7 @@ function MagnusVRainn() {
     }
   }, [currentLessonIndex, gameEnded, lesson]);
 
-  const advanceLesson = () => {
+  const advanceLesson = async() => {
     if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
       setCurrentLessonIndex((i) => i + 1);
       setLessonMessage(null);
@@ -615,6 +616,32 @@ function MagnusVRainn() {
         type: "info",
         text: "Lesson Complete! Black resigned after 17. h4.",
       });
+       // 2. Define the Lesson ID and get the Token
+      const lessonId = "magnus_v_rainn_002"; // Unique ID for this specific page
+      const token = localStorage.getItem("token")?.trim();
+
+      // 3. Send to Backend
+      if (token) {
+        try {
+          const response = await fetch(url + `api/progress/complete/${lessonId}`, {
+            method: "POST",
+            headers: { 
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json"
+            }
+          });
+
+          if (response.ok) {
+            console.log("Progress saved successfully!");
+          } else {
+            console.error("Failed to save progress. Status:", response.status);
+          }
+        } catch (err) {
+          console.error("Error connecting to progress API:", err);
+        }
+      } else {
+        console.warn("No token found. Progress not saved. (User might be a guest)");
+      }
     }
   };
 

@@ -54,13 +54,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // CSRF not needed for stateless JWT
+                .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/login").permitAll() // Open login/signup
+                        // 1. PUBLIC PATHS: Add /addUser here so users can sign up
+                        .requestMatchers("/api/auth/**", "/login", "/addUser").permitAll()
+
+                        // 2. PROTECTED PATHS: Explicitly allow the progress API for logged-in users
+                        .requestMatchers("/api/progress/**").authenticated()
+
+                        // 3. EVERYTHING ELSE: Must be logged in
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // No sessions
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

@@ -182,7 +182,7 @@ const Chessboard = ({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: isLight ? lightColor : darkColor,
+                backgroundColor: isLight ? darkColor : lightColor,
                 transition: "background 0.15s",
                 ...(isLast && { backgroundColor: isLight ? "#4d533b" : "#3b402b" }),
                 ...(isSource && { backgroundColor: "#264653" }),
