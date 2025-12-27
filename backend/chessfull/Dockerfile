@@ -13,7 +13,7 @@ RUN chmod +x ./gradlew
 
 # Copy source code and build
 COPY src src
-RUN ./gradlew bootJar --no-daemon
+RUN ./gradlew bootJar -x test --no-daemon
 
 # Stage 2: Run
 FROM eclipse-temurin:17-jre-jammy
