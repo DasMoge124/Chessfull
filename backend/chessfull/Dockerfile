@@ -2,23 +2,25 @@
 FROM eclipse-temurin:17-jdk-jammy AS build
 WORKDIR /app
 
-# Copy gradle files first to cache dependencies
+# Copy the wrapper and configuration files first (better for caching)
 COPY gradlew .
 COPY gradle gradle
 COPY build.gradle .
 COPY settings.gradle .
 
-# Grant execution permissions for the wrapper
+# Fix permission for the wrapper (crucial for Linux)
 RUN chmod +x ./gradlew
 
-# Copy source code and build
+# Copy the source code
 COPY src src
-RUN ./gradlew bootJar -x test --no-daemon
+
+# The FIX: Tell Gradle to ignore toolchains and just use the current JDK
+RUN ./gradlew bootJar -x test --no-daemon -Porg.gradle.java.installations.auto-detect=false -Porg.gradle.java.installations.auto-download=false
 
 # Stage 2: Run
 FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
-# Note: The JAR name usually follows the pattern 'projectname-version.jar'
+# Use a wildcard to find the jar since name might vary by version
 COPY --from=build /app/build/libs/*.jar app.jar
 
 EXPOSE 8085
