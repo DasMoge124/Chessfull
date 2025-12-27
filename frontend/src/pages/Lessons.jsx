@@ -45,7 +45,7 @@ function Lessons() {
             FM James Canty vs FM Narayan {isCompleted("canty_v_narayan") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
           </button>
         </div>
-
+{/*hikaru_v_andrey */}
         {/* Lesson 2 */}
         <div className="ButtonElements">
           <button onClick={() => navigate("/lessons/international_master/EricVEmilia")}>
@@ -71,6 +71,11 @@ function Lessons() {
         <div className="ButtonElements">
           <button onClick={() => navigate("/lessons/grandmaster/MagnusVSina")}>
             GM Magnus Carlsen vs Sina {isCompleted("magnus_v_sina") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
+          </button>
+        </div>
+        <div className="ButtonElements">
+          <button onClick={() => navigate("/lessons/grandmaster/AndreyVHikaru")}>
+            GM Hikaru Nakamura vs Andrey Esipenko {isCompleted("hikaru_v_andrey") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
           </button>
         </div>
       </div>

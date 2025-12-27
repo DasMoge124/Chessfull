@@ -17,6 +17,7 @@ import Lessons from "./pages/Lessons";
 import MagnusVRainn from "./pages/lessons/white/Magnus_v_RainnWilson";
 import MagnusVBardiya from "./pages/lessons/white/Magnus_V_Bardiya";
 import CantyVNarayan from "./pages/lessons/black/canty_v_narayan";
+import AndreyVHikaru from "./pages/lessons/black/AndreyVHikaru";
 import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
 import BeginnerLessonTwo from "./pages/lessons/white/BeginnerLessonTwo";
 //How To Set Up Chess Board Import
@@ -121,6 +122,10 @@ function App() {
           <Route
             path="lessons/grandmaster/MagnusVSina"
             element={<MagnusVSina />}
+          />
+          <Route
+            path="lessons/grandmaster/AndreyVHikaru"
+            element={<AndreyVHikaru />}
           />
           {/* Beginner Stuff */}
           <Route
