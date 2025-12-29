@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard"; // Ensure path is correct
-
+import Utility from "../Chessboard.jsx";
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
@@ -425,23 +425,12 @@ const GAME_LESSON_MOVES = [
 //r1q1k2r/pppnp1bp/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 5 10
 
 // Utility for chessboard squares
-//const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
-//const toSquare = (row, col) => files[col] + (8 - row);
-
-{
-  /*const pieceToFilename = (piece) => {
-  if (!piece) return null;
-  const color = piece.color === "w" ? "w" : "b";
-  const type = piece.type.toUpperCase();
-  return `${color}${type}.svg`;
-};
-*/
-}
+Utility();
 
 // =========================================================
 // 2. CHESSBOARD COMPONENT (Updated for Click-to-Move)
 // =========================================================
-/*
+
 const Chessboard = ({
   game,
   setGame,
@@ -563,7 +552,6 @@ const Chessboard = ({
     </div>
   );
 };
-*/
 // =========================================================
 // 3. MAIN LESSON COMPONENT
 // =========================================================

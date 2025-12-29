@@ -3,6 +3,7 @@ import { Chess } from "chess.js";
 import "./Chessboard.css";
 
 const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
+const Utility = () => ({ toSquare, pieceToFilename });
 
 const toSquare = (row, col) => {
   return files[col] + (8 - row);
