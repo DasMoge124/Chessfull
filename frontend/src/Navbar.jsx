@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -6,7 +7,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -15,12 +16,16 @@ const Navbar = () => {
   return (
     <header className={`nav-container ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-content">
-        <div className="nav-logo">⚡ LuxChess</div>
+        <Link to="/" className="nav-logo">
+          <span>⚡</span> CHESSFULL
+        </Link>
 
-        <nav>
-          <a href="#home">Home</a>
-          <a href="#play">Play</a>
-          <a href="#features">Features</a>
+        <nav className="nav-links-list">
+          <Link to="/" className="nav-item">Home</Link>
+          <Link to="/learn" className="nav-item">Learn</Link>
+          <Link to="/chessboard" className="nav-item">Chessboard</Link>
+          <Link to="/login" className="nav-item">Login</Link>
+          <Link to="/signup" className="nav-item nav-cta">Get Started</Link>
         </nav>
       </div>
     </header>

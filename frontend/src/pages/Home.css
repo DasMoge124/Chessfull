@@ -6,19 +6,19 @@
 
 .home-page-container {
   position: relative;
-  min-height: calc(100vh - 80px); /* Adjust height for static navbar */
+  min-height: calc(100vh - 80px);
   background: linear-gradient(135deg, var(--bg-dark), #00051a);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
+  padding: 40px 20px; /* Space around the main box */
   overflow: hidden;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #a8c0ff;
   width: 100%;
 }
 
-/* Glowing circles */
+/* Glowing background circles */
 .home-page-container::before,
 .home-page-container::after {
   content: "";
@@ -30,129 +30,78 @@
   pointer-events: none;
 }
 
-.home-page-container::before {
-  width: 300px;
-  height: 300px;
-  background: var(--primary-electric);
-  top: 10%;
-  left: 10%;
-}
+.home-page-container::before { width: 400px; height: 400px; background: var(--primary-electric); top: 5%; left: 5%; }
+.home-page-container::after { width: 500px; height: 500px; background: #0c4a6e; bottom: 5%; right: 5%; }
 
-.home-page-container::after {
-  width: 400px;
-  height: 400px;
-  background: #0c4a6e;
-  bottom: 15%;
-  right: 5%;
-}
-
-/* Decorative neon chess pieces */
-.chess-decoration {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  border: 2px solid var(--primary-electric);
-  border-radius: 50%;
-  opacity: 0.1;
-  filter: blur(2px);
-  transform: rotate(15deg);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.chess-decoration:nth-child(1) {
-  top: 15%;
-  left: 5%;
-}
-.chess-decoration:nth-child(2) {
-  bottom: 10%;
-  right: 10%;
-}
-.chess-decoration:nth-child(3) {
-  top: 30%;
-  right: 15%;
-}
-.chess-decoration:nth-child(4) {
-  bottom: 20%;
-  left: 20%;
-}
-.chess-decoration:nth-child(5) {
-  top: 50%;
-  left: 50%;
-}
-
+/* --- MAIN RECTANGLE FIX --- */
 .page-content {
   position: relative;
-  width: 100%; /* Make it stretch full width */
-  max-width: 3200px; /* Limit max width so it doesn't get too crazy */
-  background: var(--bg-dark);
-  padding: 60px 80px;
-  border-radius: 10px;
-  box-shadow:
-    0 0 40px rgba(0, 0, 0, 0.9),
-    var(--neon-glow-strong);
+  /* CHANGE: Increased width to 90% of the screen */
+  width: 90% !important; 
+  /* CHANGE: Increased max-width significantly for PC */
+  max-width: 1400px !important; 
+  /* CHANGE: Added min-height to make it look taller/fuller */
+  min-height: 80vh; 
+  
+  background: rgba(10, 17, 40, 0.85); /* Slightly transparent to see background glow */
+  padding: 60px 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), var(--neon-glow-strong);
   z-index: 1;
   border: 2px solid var(--primary-electric);
   text-align: center;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
 
-  display: flex; /* Flex layout to center content */
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .page-content h1 {
-  font-size: 4rem;
+  /* CHANGE: Larger font for wider screen */
+  font-size: 5rem; 
   margin-bottom: 20px;
   color: var(--primary-electric);
   text-shadow: var(--neon-glow-strong);
-  word-wrap: break-word; /* Prevent overflow */
-  white-space: normal; /* Allow wrapping only if needed */
+  line-height: 1.1;
+}
+
+.page-content p {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  color: #c0c0c0;
 }
 
 .image-container {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
 .image-container img {
-  max-width: 70%; /* Bigger image */
+  /* CHANGE: Image now takes more of the wider box */
+  max-width: 800px; 
+  width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 0 25px var(--primary-electric);
   border: 3px solid var(--primary-electric);
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .image-container img:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-  .page-content {
-    padding: 40px 50px;
-  }
-  .page-content h1 {
-    font-size: 3rem;
-    white-space: normal;
-  }
-  .image-container img {
-    max-width: 80%;
-  }
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1024px) {
+  .page-content h1 { font-size: 3.5rem; }
+  .page-content { width: 95% !important; padding: 40px 20px; }
 }
 
 @media (max-width: 768px) {
-  .page-content {
-    padding: 30px 20px;
-  }
-  .page-content h1 {
-    font-size: 2.2rem;
-  }
-  .image-container img {
-    max-width: 100%;
-  }
+  .page-content h1 { font-size: 2.5rem; }
+  .home-page-container { padding: 20px 10px; }
 }
