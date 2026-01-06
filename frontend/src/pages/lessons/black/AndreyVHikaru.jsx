@@ -307,7 +307,7 @@ function AndreyVHikru() {
             color: "#eee",
           }}
         >
-          Canty vs. Narayanan
+          Hikaru Nakamura vs Andrey Esipenko
           <br />
           (Interactive Lesson - **Playing Black**)
         </div>

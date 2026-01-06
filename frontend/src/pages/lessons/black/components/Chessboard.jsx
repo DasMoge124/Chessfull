@@ -57,6 +57,7 @@ const Chessboard = ({
 
     const moveParts = lesson.move.split(" ");
     const expectedMove = moveParts.length > 1 ? moveParts[1].replace("...", "").trim() : "";
+    const cleanedSan = move.san.replace(/=\w/g, "");
     const expectedSan = lesson.solution || expectedMove;
 
     if (move.san.toLowerCase().includes(expectedSan.toLowerCase())) {
@@ -69,9 +70,13 @@ const Chessboard = ({
       });
       setShowContinue(true);
     } else {
+      let errorMessage = `You played ${move.san}. Try again.`;
+      if (lesson.customIncorrectFeedback && lesson.customIncorrectFeedback[cleanedSan]) {
+        errorMessage = lesson.customIncorrectFeedback[cleanedSan];
+      }
       setLessonMessage({
         type: "error",
-        text: `You played ${move.san}. Try again.`,
+        text: errorMessage,
         explanation: null,
       });
       setShowContinue(false);

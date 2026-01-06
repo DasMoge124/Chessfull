@@ -77,6 +77,9 @@ const GAME_LESSON_MOVES = [
     fen: "rnbqkb1r/1p3ppp/p2ppn2/8/2BNP3/2N5/PPP2PPP/R1BQK2R w KQkq - 0 7",
     hint: "Best to mainly focus on defending the **f7 square** and opening a path for development.",
     solution: "e6",
+    customIncorrectFeedback: {
+        "e5": "Incorrect Answer: e5. This move doesn’t solve the problem at all and allows white to play Nf5, further attacking the backwards d6 pawn, and the bishop on c4 still maintains control over the d5 square, along with three other pieces - the queen, knight on c3, and e4 pawn - which is more attackers than defenders. This means that if d5 was played, Narayanan can capture with either the e4 pawn, the bishop on c4, or the knight on c3 (note the queen cannot capture the pawn since the bishop on f8 is one of the defenders of the d5 square)."
+    }
   },
   {
     move: "7. Bb3",
@@ -149,6 +152,9 @@ const GAME_LESSON_MOVES = [
     fen: "rnb1k2r/1q2bppp/p2ppn2/1p6/3NP3/1BN1BQ2/PPP2PPP/R4RK1 w kq - 6 11",
     hint: "Remember the posibility of creating a discovered attack via Nxe6. We can just move the queen away by moving it by one square.",
     solution: "Qb7",
+    customIncorrectFeedback: {
+        "e5": "Even though e5 first attacks the knight on d4, it still allows Narayan to create a discovered attack through a move like Nf5, which forces Canty to move his queen away from the bishop's threat and ultimately give up his pawn after Narayan plays Nxg7."
+    }
   },
   {
     move: "11. Qg3",
@@ -231,7 +237,7 @@ const GAME_LESSON_MOVES = [
     move: "17... Nxg7",
     player: "Black",
     explanation:
-      "If you found that move, congrats. Now Narayan is guaranteed to win a bishop since the bishop is trapped by Narayan's own queen. Let's continue",
+      "In that sequence, Canty was forcing the Queen to move to a specific position by making multiple threats with his knights to eventually force a position that allows Canty to eventually win a bishop.",
     fen: "r1b2r1k/1q2bppp/p2ppn1B/6Qn/Np1NP3/1B3P2/PPP3PP/R4RK1 w - - 7 17",
     hint: "Hint: you should respond with a capture.",
     solution: "Nxg7",
