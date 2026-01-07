@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard"; // Ensure path is correct
-import Utility from "./Chessboard.jsx";
+import Utility from "../../Chessboard.jsx";
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
