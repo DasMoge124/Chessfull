@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
-import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
-import Chessboard from "./components/Chessboard"; // Ensure path is correct
-import Utility from "../../Chessboard.jsx";
+import "./GameLesson.css";
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
@@ -423,9 +421,6 @@ const GAME_LESSON_MOVES = [
   },
 ];
 //r1q1k2r/pppnp1bp/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 5 10
-
-// Utility for chessboard squares
-Utility();
 
 // =========================================================
 // 2. CHESSBOARD COMPONENT (Updated for Click-to-Move)
@@ -856,3 +851,4 @@ function MagnusVRainn() {
 }
 
 export default MagnusVRainn;
+

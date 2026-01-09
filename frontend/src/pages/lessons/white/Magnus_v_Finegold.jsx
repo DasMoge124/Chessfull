@@ -3,7 +3,6 @@ import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
-import Utility from "../../Chessboard.jsx";
 // =========================================================
 // 1. GAME DATA & UTILITIES----#####NEEEEDDD CHANGESSSSSSSSS
 // =========================================================
@@ -97,9 +96,6 @@ const GAME_LESSON_MOVES = [
       "the right move is to move your queen to h5. From there, you can move in to check the king",
   },
 ];
-
-// Utility for chessboard squares
-Utility();
 
 // =========================================================
 // 2. REACT COMPONENT
@@ -380,3 +376,4 @@ function Magnus_v_Finegold() {
 }
 
 export default Magnus_v_Finegold;
+

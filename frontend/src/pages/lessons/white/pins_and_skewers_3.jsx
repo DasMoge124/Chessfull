@@ -4,7 +4,6 @@ import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
-import Utility from "../../Chessboard.jsx";
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
@@ -24,8 +23,7 @@ const GAME_LESSON_MOVES = [
       "This move pins the rook on c7 to the rook on d8. This is a relative pin. Regardless of which rook moves away, white will be guaranteed to win a rook.",
   },
 ];
-// Utility for chessboard squares
-Utility();
+
 // =========================================================
 // 2. REACT COMPONENT
 // =========================================================
@@ -312,3 +310,4 @@ function pins_and_skewers_practice_3() {
 
 export default pins_and_skewers_practice_3;
 //r1b1k2r/ppp2ppp/1bnp1n2/8/4PPq1/4BNN1/PPP4P/R2QKB1R b KQkq - 6 11
+

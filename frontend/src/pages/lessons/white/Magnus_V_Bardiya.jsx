@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
-import Utility from "../../Chessboard.jsx";
-
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
@@ -130,9 +128,6 @@ const GAME_LESSON_MOVES = [
     solution: "move the queen to h5 to threaten checkmate in 2 moves.",
   },
 ];
-// Utility for chessboard squares
-Utility();
-
 // =========================================================
 // 2. REACT COMPONENT
 // =========================================================
@@ -446,3 +441,4 @@ function Magnus_V_Bardiya() {
 }
 
 export default Magnus_V_Bardiya;
+

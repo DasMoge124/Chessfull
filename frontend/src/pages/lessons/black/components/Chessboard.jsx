@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
+import "./Chessboard.css";
 
 // Convert internal coordinates to algebraic (a1, h8, etc.)
 const toSquare = (row, col) => {

@@ -4,8 +4,6 @@ import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
-import Utility from "../../Chessboard.jsx";
-
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
@@ -43,9 +41,6 @@ const GAME_LESSON_MOVES = [
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
 ];
-// Utility for chessboard squares
-Utility();
-
 // =========================================================
 // 2. REACT COMPONENT
 // =========================================================
@@ -330,3 +325,4 @@ function forks_practice() {
 
 export default forks_practice;
 //r1b1k2r/ppp2ppp/1bnp1n2/8/4PPq1/4BNN1/PPP4P/R2QKB1R b KQkq - 6 11
+

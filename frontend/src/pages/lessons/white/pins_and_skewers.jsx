@@ -4,7 +4,6 @@ import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
-import Utility from "../../Chessboard.jsx";
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
@@ -22,9 +21,6 @@ const GAME_LESSON_MOVES = [
     solution: "Moving the pawn to d5 will pressure the knight on c6.",
   },
 ];
-// Utility for chessboard squares
-Utility();
-
 // =========================================================
 // 2. REACT COMPONENT
 // =========================================================
@@ -311,3 +307,4 @@ function pins_and_skewers_practice() {
 
 export default pins_and_skewers_practice;
 //1r3rk1/4bppp/5n2/4q3/2pn4/2NP2P1/PP4BP/R1BQ1RK1 w - - 0 1
+

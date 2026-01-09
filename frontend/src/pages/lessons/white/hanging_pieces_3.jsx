@@ -4,8 +4,6 @@ import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
-import Utility from "../../Chessboard.jsx";
-
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
@@ -23,9 +21,6 @@ const GAME_LESSON_MOVES = [
     solution: "Rxc5 captures the hanging bishop on c5.",
   },
 ];
-// Utility for chessboard squares
-Utility();
-
 // =========================================================
 // 2. REACT COMPONENT
 // =========================================================
@@ -307,3 +302,4 @@ function hanging_pieces_practice_3() {
 }
 
 export default hanging_pieces_practice_3;
+

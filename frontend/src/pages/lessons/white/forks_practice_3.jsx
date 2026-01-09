@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
-import Utility from "../../Chessboard.jsx";
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
@@ -24,8 +23,6 @@ const GAME_LESSON_MOVES = [
       "After e4, White's pawn forks the knight on d5 and bishop on f5, meaning that White will eventually win at least one of these pieces.",
   },
 ];
-// Utility for chessboard squares
-Utility();
 // =========================================================
 // 2. REACT COMPONENT
 // =========================================================
@@ -309,3 +306,4 @@ function forks_practice_2() {
 }
 
 export default forks_practice_2;
+

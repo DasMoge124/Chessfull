@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
-import Utility from "../../Chessboard.jsx";
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
@@ -42,9 +41,6 @@ const GAME_LESSON_MOVES = [
     solution: "This captures a free rook.",
   },
 ];
-// Utility for chessboard squares
-Utility();
-
 // =========================================================
 // 2. FORKS PRACTICE LESSON COMPONENT
 // =========================================================
@@ -328,3 +324,4 @@ function forks_practice_2() {
 }
 
 export default forks_practice_2;
+

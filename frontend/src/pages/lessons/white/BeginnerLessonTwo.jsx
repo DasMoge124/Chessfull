@@ -4,7 +4,6 @@ import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
 import { useNavigate } from "react-router-dom";
-import Utility from "../../Chessboard.jsx";
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
@@ -159,8 +158,6 @@ const GAME_LESSON_MOVES = [
   },
 ];
 
-// Utility for chessboard squares
-Utility();
 
 // =========================================================
 // 2. REACT COMPONENT
@@ -441,3 +438,4 @@ function beginner_game_two() {
 }
 
 export default beginner_game_two;
+

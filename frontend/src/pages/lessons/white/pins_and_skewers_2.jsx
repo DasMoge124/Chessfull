@@ -4,8 +4,6 @@ import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
-import Utility from "../../Chessboard.jsx";
-
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
@@ -23,8 +21,6 @@ const GAME_LESSON_MOVES = [
     solution: "This move skewers the queen on e5 to the rook on b8.",
   },
 ];
-// Utility for chessboard squares
-Utility();
 
 // =========================================================
 // 2. MAIN COMPONENT
@@ -312,3 +308,4 @@ function pins_and_skewers_practice_3() {
 
 export default pins_and_skewers_practice_3;
 //1r3rk1/4bppp/5n2/4q3/2pn4/2NP2P1/PP4BP/R1BQ1RK1 w - - 0 1
+

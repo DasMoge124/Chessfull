@@ -4,7 +4,6 @@ import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
 import LessonControls from "./components/LessonControls";
 import { useNavigate } from "react-router-dom";
-import Utility from "../../Chessboard.jsx";
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
@@ -80,8 +79,9 @@ const GAME_LESSON_MOVES = [
   },
 ];
 
-// Utility for chessboard squares
-Utility();
+// =========================================================
+// 2. REACT COMPONENT
+// =========================================================
 
 function beginner_game_one() {
   const navigate = useNavigate();
@@ -118,7 +118,7 @@ function beginner_game_one() {
     }
   }, [currentLessonIndex, gameEnded, lesson]);
 
-  const advanceLesson = () => {
+  const advanceLesson = () => { 
     if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
       setCurrentLessonIndex((i) => i + 1);
       setLessonMessage(null);
@@ -357,3 +357,4 @@ function beginner_game_one() {
 }
 
 export default beginner_game_one;
+
