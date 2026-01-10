@@ -1,25 +1,33 @@
 # Stage 1: Build
-# Use 25-jdk to match your project's toolchain requirement
 FROM eclipse-temurin:25-jdk-jammy AS build
 WORKDIR /app
 
+# Copy Gradle wrapper and config
 COPY gradlew .
 COPY gradle gradle
 COPY build.gradle .
 COPY settings.gradle .
 
-RUN chmod +x ./gradlew
-COPY src src
+# Pre-download dependencies to speed up subsequent builds
+RUN ./gradlew dependencies --no-daemon
 
-# Build without tests to save memory and time
+# Copy source and build
+COPY src src
 RUN ./gradlew bootJar -x test --no-daemon
 
 # Stage 2: Run
-# Use 25-jre for the runtime
 FROM eclipse-temurin:25-jre-jammy
 WORKDIR /app
+
+# Add a non-root user for better security on Render
+RUN useradd -m springuser
+USER springuser
+
 COPY --from=build /app/build/libs/*.jar app.jar
 
-# Render will override this port, but 8085 matches your local preference
+# Render uses the PORT env var; Spring Boot recognizes this automatically,
+# but we set a default just in case.
+ENV PORT=8085
 EXPOSE 8085
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-jar", "app.jar"]

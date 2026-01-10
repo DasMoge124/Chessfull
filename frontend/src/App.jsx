@@ -20,6 +20,7 @@ import CantyVNarayan from "./pages/lessons/black/canty_v_narayan";
 import AndreyVHikaru from "./pages/lessons/black/AndreyVHikaru";
 import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
 import BeginnerLessonTwo from "./pages/lessons/white/BeginnerLessonTwo";
+import BeginnerLessonThree from "./pages/lessons/black/BeginnerLessonThree";
 //How To Set Up Chess Board Import
 import HowToSetUpChessBoard from "./pages/lessons/beginner_lessons/chessboard_setup";
 import HowPiecesMove from "./pages/lessons/beginner_lessons/how_pieces_move";
@@ -219,6 +220,10 @@ function App() {
           <Route
             path="lessons/beginner/beginner_lesson_two"
             element={<BeginnerLessonTwo />}
+          />
+          <Route
+            path="lessons/beginner/beginner_lesson_three"
+            element={<BeginnerLessonThree />}
           />
           {/* Discovered Attacks */}
           <Route

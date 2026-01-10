@@ -82,6 +82,8 @@ const GAME_LESSON_MOVES = [
 // Utility for chessboard squares
 const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
 const toSquare = (row, col) => files[col] + (8 - row);
+const localurl = "http://localhost:8085/";
+const url = localurl;
 
 const pieceToFilename = (piece) => {
   if (!piece) return null;
@@ -125,7 +127,7 @@ function beginner_game_one() {
     }
   }, [currentLessonIndex, gameEnded, lesson]);
 
-  const advanceLesson = () => {
+  const advanceLesson = async() => {
     if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
       setCurrentLessonIndex((i) => i + 1);
       setLessonMessage(null);
@@ -138,6 +140,30 @@ function beginner_game_one() {
         type: "info",
         text: "Lesson Complete!",
       });
+      const lessonId = "beginner_game_1"; // Unique ID for this specific page
+      const token = localStorage.getItem("token")?.trim();
+
+      if (token) {
+        try {
+          const response = await fetch(url + `api/progress/complete/${lessonId}`, {
+            method: "POST",
+            headers: { 
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json"
+            }
+          });
+
+          if (response.ok) {
+            console.log("Progress saved successfully!");
+          } else {
+            console.error("Failed to save progress. Status:", response.status);
+          }
+        } catch (err) {
+          console.error("Error connecting to progress API:", err);
+        }
+      } else {
+        console.warn("No token found. Progress not saved. (User might be a guest)");
+      }
     }
   };
 

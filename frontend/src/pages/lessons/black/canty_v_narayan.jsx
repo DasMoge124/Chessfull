@@ -543,7 +543,7 @@ function CantyvNarayan() {
 
   // 3. Extracted Save Logic for cleaner code
   const saveProgress = async () => {
-    const lessonId = "magnus_v_sina"; // Ensure this matches your expected ID
+    const lessonId = "canty_v_narayan"; // Ensure this matches your expected ID
     const token = localStorage.getItem("token")?.trim();
 
     if (token) {

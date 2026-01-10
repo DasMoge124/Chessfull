@@ -8,6 +8,30 @@ function Beginner() {
   const navigate = useNavigate();
   const [completedLessonIds, setCompletedLessonIds] = useState([]);
   const isCompleted = (id) => completedLessonIds.includes(id);
+  const localUrl = "http://localhost:8085/";
+  const url = localUrl;
+  useEffect(() => {
+      const fetchProgress = async () => {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+  
+        try {
+          const response = await fetch(url + "api/progress/my-lessons", {
+            headers: {
+              "Authorization": `Bearer ${token}`
+            }
+          });
+          if (response.ok) {
+            const data = await response.json();
+            setCompletedLessonIds(data); // e.g., ["magnus_v_bardiya_001"]
+          }
+        } catch (err) {
+          console.error("Error fetching progress:", err);
+        }
+      };
+  
+      fetchProgress();
+    }, []);
 
   return (
     <div>
@@ -85,6 +109,11 @@ function Beginner() {
           onClick={() => navigate("/lessons/beginner/beginner_lesson_two")}
         >
           Game 2{isCompleted("beginner_game_2") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
+        </button>
+        <button
+          onClick={() => navigate("/lessons/beginner/beginner_lesson_three")}
+        >
+          Game 3{isCompleted("beginner_game_3") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
         </button>
       </div>
       <div className="ButtonElements">
