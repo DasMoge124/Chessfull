@@ -36,6 +36,7 @@ function Beginner() {
   return (
     <div>
       <h1>Beginner Page</h1>
+      <p>Welcome to the world of chess. If you are new to the game, this is an excellent start for your chess journey. It is strongly recommended to go through each module one by one, especially if you are new or not familiar with most chess concepts.</p>
       <h2>How to Play Chess</h2>
       <div className="ButtonElements">
         <button

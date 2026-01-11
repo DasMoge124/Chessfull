@@ -73,6 +73,8 @@ const Chessboard = ({
       let errorMessage = `You played ${move.san}. Try again.`;
       if (lesson.customIncorrectFeedback && lesson.customIncorrectFeedback[cleanedSan]) {
         errorMessage = lesson.customIncorrectFeedback[cleanedSan];
+      } else if (lesson.customIncorrectFeedback && lesson.customIncorrectFeedback["default"]) {
+        errorMessage = lesson.customIncorrectFeedback["default"];
       }
       setLessonMessage({
         type: "error",

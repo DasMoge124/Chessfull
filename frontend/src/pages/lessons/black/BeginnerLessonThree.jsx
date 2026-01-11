@@ -20,7 +20,6 @@ const GAME_LESSON_MOVES = [
         player: "Black",
         explanation:
         "By playing Nf6, Black develops their other knight, increasing influence in the center.",
-        fen: "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/3P4/PPP2PPP/RNBQK1NR w KQkq - 1 4",
         hint: "Let's try activating any of the minor pieces, like a bishop or a knight. Knights are great for controlling central squares.",
         solution: "Nf6",
         customIncorrectFeedback: {
@@ -32,7 +31,7 @@ const GAME_LESSON_MOVES = [
         move: "4. Nxd4",
         player: "White",
         explanation:
-        "Eventually, White decided to play Nf3 developing their knight for more influence towards the center, while also allowing the king on e1 and rook on h1 to see each other, granting the opportunity to castle kingside. Black decided to continue develop and increase control over the center, while also granting the opportunity to castle. What move did Black play?",
+        "Eventually, White played Nf3, developing the knight for greater influence in the center while allowing the king on e1 and the rook on h1 to see each other, thereby enabling kingside castling. Black decided to continue developing and increasing control over the center, while also granting the opportunity to castle. What move did Black play?",
         fen: "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R b KQkq - 2 4",
     },
     {
@@ -40,8 +39,7 @@ const GAME_LESSON_MOVES = [
         player: "Black",
         explanation:
         "This move develops the bishop and attacks the f2 square, a really weak square since at that time it was only defended by White’s king. Furthermore, the king on e8 and rook on h8 can see each other, granting the opportunity to castle. ",
-        fen: "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/3P4/PPP2PPP/RNBQK1NR w KQkq - 1 4",
-        hint: "Let's try activating any of the minor pieces, like a bishop or a knight. Knights are great for controlling central squares.",
+        hint: "Let's try activating any of the minor pieces, like a bishop or a knight.",
         solution: "Bc5",
         customIncorrectFeedback: {
             "d6": "Incorrect Answer: d6. This limit the number of squares Black’s bishop can move to."
@@ -57,8 +55,7 @@ const GAME_LESSON_MOVES = [
         move: "5... d6",
         player: "Black",
         explanation: "This move activates Black's bishop and allows it multiple opportunities to attack, considering the various possible moves Black can make in that position. Remember the opening principle of developing minor pieces. Black wants to develop their pieces early to allow more attacking opportunities. Either way Black is doing well. Castling kingside is a safe option as well as it does ensure king safety later in the game.",
-        fen: "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/3P4/PPP2PPP/RNBQK1NR w KQkq - 1 4",
-        hint: "Let's try activating any of the minor pieces, like a bishop or a knight. Knights are great for controlling central squares.",
+        hint: "Let's try activating any of the minor pieces, like a bishop or a knight. Bishops can control long diagonals as long as no other piece is in their way.",
         solution: "d6",
         customIncorrectFeedback: {
             "b6": "This only allows the bishop to potentially develop on the queenside, which doesn’t have a lot of space for the bishop to control.",
@@ -69,7 +66,85 @@ const GAME_LESSON_MOVES = [
         move: "6. c3",
         player: "White",
         explanation:"Black later plays the move c3, attempting to develop on the queenside. However, Black is more worried about the threatening Bg5, which can pin the knight on f6 to the queen, limiting the knight’s options. What does Black play to prevent Bg5?",
-        fen: "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQ1RK1 b kq - 4 5",
+        fen: "r1bqk2r/ppp2ppp/2np1n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQ1RK1 b kq - 0 6",
+    },
+    {
+        move: "6... h6",
+        player: "Black",
+        explanation: "This is the only move that works, as it protects the g5 square, where Black’s dark-squared bishop is.",
+        hint: "Bishops are not the only squares that control diagonal squares. Pawns can also control diagonal adjacent squares (meaning a diagonal square right next to the pawn).",
+        solution: "h6",
+        customIncorrectFeedback: {
+            "O-O":"Castling kingside (O-O) also works. However, let’s focus on Black’s focus on protecting the g5 square."
+        }
+    },
+    {
+        move: "7. b5",
+        player: "White",
+        explanation:"Later in the game, White played b4, attacking the bishop on c5. Black didn’t want to lose another bishop, so what did Black play?",
+        fen: "r1bqk2r/ppp2pp1/2np1n1p/2b1p3/1PB1P3/2PP1N2/P4PPP/RNBQ1RK1 b kq b3 0 7",
+    },
+    {
+        move: "7... Bb6",
+        player: "Black",
+        explanation: "This is the only move that works since it protects the g5 square, which is the one square where Black’s dark-squared bishop.",
+        hint: "Usually it's best to retreat an attacked piece",
+        solution: "Bb6",
+        customIncorrectFeedback: {
+            "O-O":"Castling kingside (O-O) also works. However, let’s focus on Black’s focus on protecting the g5 square.",
+            "Nd4":"Now Black is hanging both a knight and a bishop",
+            "Na5":"Now Black is hanging both a knight and a bishop",
+            "Nxe4":"Now Black is hanging both a knight and a bishop",
+            "default" : "This loses a bishop"
+        }
+    },
+    {
+        move: "8. b5",
+        player: "White",
+        explanation:"Later in the game, White plays b5 to attack the knight on c6. Black decided to move to a square that moves it away from the attack and continues attacking pieces. What move did Black play?",
+        fen: "r1bqk2r/ppp2pp1/1bnp1n1p/1P2p3/2B1P3/2PP1N2/P4PPP/RNBQ1RK1 b kq - 0 8",
+    },
+    {
+        move: "8... Na5",
+        player: "Black",
+        explanation: "This is the only move that works since it protects the g5 square, which is the one square where Black’s dark-squared bishop.",
+        hint: "Usually it's best to retreat an attacked piece",
+        solution: "Na5",
+        customIncorrectFeedback: {
+            "default": "This loses a knight."
+        }
+    },
+    {
+        move: "9. a4",
+        player: "White",
+        explanation:"Later in the game, White played a4, which ignores a threat that could lead to material loss. How did Black punish White?",
+        fen: "r1bqk2r/ppp2pp1/1b1p1n1p/nP2p3/P1B1P3/2PP1N2/5PPP/RNBQ1RK1 b kq a3 0 9",
+    },
+    {
+        move: "9... Nxc4",
+        player: "Black",
+        explanation: "This is the only move that works since it protects the g5 square, which is the one square where Black’s dark-squared bishop.",
+        hint: "Look for checks, captures, and threats. Some captures can lead to weaknesses for the opponent.Usually it's best to retreat an attacked piece",
+        solution: "Nxc4",
+        customIncorrectFeedback: {
+            "default": "This loses a knight."
+        }
+    },
+    {
+        move: "10. dxc4",
+        player: "White",
+        explanation:"Eventually, White played dxc4, resulting in doubled pawns. Additionally, this allows Black to win a hanging piece. What move did Black play to win that hanging piece?",
+        fen: "r1bqk2r/ppp2pp1/1b1p1n1p/1P2p3/P1P1P3/2P2N2/5PPP/RNBQ1RK1 b kq - 0 10",
+    },
+    {
+        move: "10... Nxe4",
+        player: "Black",
+        explanation: "This captures a free pawn. Previously, that pawn was defended by the pawn that was originally at d3. However, that former d3 pawn eventually had to capture the c4 pawn through dxc4 earlier. Therefore, the defender of the e4 pawn was removed, allowing White to gain material.",
+        hint: "Look for checks, captures, and threats. Some captures can lead to weaknesses for the opponent.Usually it's best to retreat an attacked piece",
+        solution: "Nxe4",
+        customIncorrectFeedback: {
+            "Nc5": "This loses a bishop"
+        }
     },
 ];
 
