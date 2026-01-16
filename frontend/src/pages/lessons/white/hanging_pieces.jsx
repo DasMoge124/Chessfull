@@ -23,7 +23,7 @@ const GAME_LESSON_MOVES = [
   },
 ];
 // =========================================================
-// 2. MAIN COMPONENT
+// 2. REACT COMPONENT
 // =========================================================
 
 function hanging_pieces_practice() {

@@ -20,7 +20,9 @@ const GAME_LESSON_MOVES = [
     solution: "This move skewers the king on f6 to the rook on h",
   },
 ];
-
+//========================================================
+//= 2. REACT COMPONENT====================================
+//========================================================
 function pins_and_skewers_practice_4() {
   const navigate = useNavigate();
   const [game, setGame] = useState(new Chess(STARTING_FEN));

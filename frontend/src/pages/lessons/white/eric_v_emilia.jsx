@@ -57,7 +57,9 @@ const GAME_LESSON_MOVES = [
     solution: "h4 threatens to open lines and forces Black’s resignation.",
   },
 ];
-
+//===============================================================
+//====================REACT COMPONENT============================
+//===============================================================
 function EricVEmilia() {
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);

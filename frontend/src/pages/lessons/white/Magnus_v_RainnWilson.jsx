@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
+import Chessboard from "./components/Chessboard";
 import "./GameLesson.css";
 // =========================================================
 // 1. GAME DATA & UTILITIES
@@ -420,135 +421,9 @@ const GAME_LESSON_MOVES = [
     solution: "Black moved Ke8 to escape the check.",
   },
 ];
-//r1q1k2r/pppnp1bp/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 5 10
 
 // =========================================================
-// 2. CHESSBOARD COMPONENT (Updated for Click-to-Move)
-// =========================================================
-
-const Chessboard = ({
-  game,
-  setGame,
-  currentLessonIndex,
-  lessonMoves,
-  setLessonMessage,
-  setShowContinue,
-  showContinue,
-}) => {
-  const [board, setBoard] = useState(game.board());
-  const [sourceSquare, setSourceSquare] = useState(null);
-  const [legalMoves, setLegalMoves] = useState([]);
-  const [lastMove, setLastMove] = useState({ from: null, to: null });
-
-  const squareSize = 400 / 8;
-  const lesson = lessonMoves[currentLessonIndex];
-  const isUserTurn = game.turn() === "w" && lesson.player === "White";
-
-  useEffect(() => {
-    setBoard([...game.board()]);
-  }, [game]);
-
-  const updateBoard = () => setBoard([...game.board()]);
-
-  const getLegalMoves = (square) =>
-    game.moves({ square, verbose: true }).map((m) => m.to);
-
-  const executeMove = (fromSquare, toSquare) => {
-    const move = game.move({ from: fromSquare, to: toSquare, promotion: "q" });
-    if (!move) return;
-
-    setLastMove({ from: move.from, to: move.to });
-    updateBoard();
-
-    const expectedMove = lesson.move.split(" ")[1].replace("...", "").trim();
-
-    if (move.san === expectedMove) {
-      setLessonMessage({
-        type: "success",
-        text: `Correct! ${move.san} was played.`,
-        explanation: lesson.explanation,
-      });
-      setShowContinue(true); // Show next move button
-    } else {
-      game.undo();
-      updateBoard();
-      setLessonMessage({
-        type: "error",
-        text: `You played ${move.san}. Try again.`,
-        explanation: lesson.hint,
-        showHint: true,
-        showSolution: false,
-      });
-      setShowContinue(false); // Hide next move button
-    }
-  };
-
-  const handleSquareClick = (square) => {
-    if (!isUserTurn) return;
-    const piece = game.get(square);
-
-    if (!sourceSquare) {
-      if (piece && piece.color === game.turn()) {
-        setSourceSquare(square);
-        setLegalMoves(getLegalMoves(square));
-      }
-      return;
-    }
-
-    if (legalMoves.includes(square)) {
-      executeMove(sourceSquare, square);
-      setSourceSquare(null);
-      setLegalMoves([]);
-    } else if (piece && piece.color === game.turn()) {
-      setSourceSquare(square);
-      setLegalMoves(getLegalMoves(square));
-    } else {
-      setSourceSquare(null);
-      setLegalMoves([]);
-    }
-  };
-
-  return (
-    <div
-      className="chessboard"
-      style={{ width: 400, height: 400, position: "relative" }}
-    >
-      {board.map((row, rIdx) =>
-        row.map((piece, cIdx) => {
-          const square = toSquare(rIdx, cIdx);
-          const isLegal = legalMoves.includes(square);
-          const isSource = square === sourceSquare;
-          const isLast = square === lastMove.from || square === lastMove.to;
-
-          return (
-            <div
-              key={square}
-              className={`square ${(rIdx + cIdx) % 2 === 0 ? "light" : "dark"} ${
-                isLegal ? "highlight-legal" : ""
-              } ${isSource ? "highlight-source" : ""} ${isLast ? "last-move" : ""}`}
-              onClick={() => handleSquareClick(square)}
-              style={{ width: squareSize, height: squareSize }}
-            >
-              {isLegal && !piece && <div className="legal-dot" />}
-              {isLegal && piece && <div className="legal-ring" />}
-              {piece && (
-                <img
-                  src={`/assets/pieces/${pieceToFilename(piece)}`}
-                  alt={`${piece.color}${piece.type}`}
-                  className="piece-img"
-                  draggable={isUserTurn}
-                  style={{ width: squareSize, height: squareSize }}
-                />
-              )}
-            </div>
-          );
-        })
-      )}
-    </div>
-  );
-};
-// =========================================================
-// 3. MAIN LESSON COMPONENT
+// 2. REACT COMPONENT
 // =========================================================
 
 function MagnusVRainn() {

@@ -83,7 +83,7 @@ const GAME_LESSON_MOVES = [
 // 2. REACT COMPONENT
 // =========================================================
 
-function beginner_game_one() {
+function beginner_game_one() { 
   const navigate = useNavigate();
   const [game, setGame] = useState(new Chess(STARTING_FEN));
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);

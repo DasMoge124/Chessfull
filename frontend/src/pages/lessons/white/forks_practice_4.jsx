@@ -24,7 +24,7 @@ const GAME_LESSON_MOVES = [
   },
 ];
 // =========================================================
-// 2. FORKS PRACTICE COMPONENT
+// 2. REACT COMPONENT
 // =========================================================
 
 function forks_practice_2() {
