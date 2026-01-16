@@ -1,4 +1,3 @@
 [build]
-  base = "frontend"
-  command = "vite build"
+  command = "cd frontend && vite build"
   publish = "frontend/dist"
