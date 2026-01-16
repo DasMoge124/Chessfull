@@ -1,6 +1,6 @@
 # frontend/netlify.toml
 [build]
-  base    = "frontend"
+  base    = "."
   command = "vite build"
   publish = "dist"
 
