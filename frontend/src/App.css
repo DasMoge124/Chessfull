@@ -151,3 +151,19 @@ html, body {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Allow particles to render behind everything */
+.app-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Make sure header stays above particles */
+.nav_header {
+  position: relative;
+  z-index: 10;
+}
+
+.page-container {
+  padding-top: 80px; /* match navbar height */
+}
