@@ -1,5 +1,6 @@
 /**
- * Learn page component that displays skill level selection for chess lessons.\n * Users can choose between Beginner, Intermediate, Advanced levels, or view all lessons.\n * Each button navigates to the corresponding lesson page with appropriate content.\n * Uses neon-themed styling to match the application's design aesthetic.\n */\nimport React from "react";
+ * Learn page component that displays skill level selection for chess lessons.\n * Users can choose between Beginner, Intermediate, Advanced levels, or view all lessons.\n * Each button navigates to the corresponding lesson page with appropriate content.\n * Uses neon-themed styling to match the application's design aesthetic.\n */
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import "./Home.css"; // We use Home.css for the container styling

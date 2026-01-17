@@ -21,7 +21,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
-/**\n * Security configuration for the Chessfull application.\n * Configures JWT-based stateless authentication, CORS settings, and authorization rules.\n * Defines which endpoints are public (login, signup) and which require authentication (progress API).\n * Uses BCrypt for password encoding and JWT filters for stateless security.\n */
+/**
+ * Security configuration for the Chessfull application.
+ * Configures JWT-based stateless authentication, CORS settings, and authorization rules.
+ * Defines which endpoints are public (login, signup) and which require authentication (progress API).
+ * Uses BCrypt for password encoding and JWT filters for stateless security.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {

@@ -1,7 +1,7 @@
 package com.chessfull.chessfull.UserManagement;
 
 import com.chessfull.chessfull.JWT.JwtService;
-import com.chessfull.chessfull.dto.LoginRequest;
+import com.chessfull.chessfull.dto.LoginRequest; // Change this
 import com.chessfull.chessfull.dto.AuthResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

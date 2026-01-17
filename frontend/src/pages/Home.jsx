@@ -1,4 +1,12 @@
-import React from "react";
+/**
+ * Home page component for the Chessfull application.
+ * Displays a welcome message and chess-themed introduction image.
+ * Includes decorative neon chess piece animations.
+ * Serves as the landing page for users visiting the application.
+ */
+import React, { useCallback } from "react";
+import Particles from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 import chessImage from "./image.png";
 import "./Home.css";
 
