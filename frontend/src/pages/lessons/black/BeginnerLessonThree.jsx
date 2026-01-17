@@ -107,10 +107,11 @@ const GAME_LESSON_MOVES = [
     {
         move: "8... Na5",
         player: "Black",
-        explanation: "This is the only move that works since it protects the g5 square, which is the one square where Black’s dark-squared bishop.",
+        explanation: "This moves the knight to safety and attacks the bishop on c4.",
         hint: "Usually it's best to retreat an attacked piece",
         solution: "Na5",
         customIncorrectFeedback: {
+            "Ne7" : "That does save the knight; however, the knight now remains passive.",
             "default": "This loses a knight."
         }
     },
@@ -127,7 +128,7 @@ const GAME_LESSON_MOVES = [
         hint: "Look for checks, captures, and threats. Some captures can lead to weaknesses for the opponent.Usually it's best to retreat an attacked piece",
         solution: "Nxc4",
         customIncorrectFeedback: {
-            "default": "This loses a knight."
+            "Nb3": "This loses a knight."
         }
     },
     {
@@ -143,7 +144,40 @@ const GAME_LESSON_MOVES = [
         hint: "Look for checks, captures, and threats. Some captures can lead to weaknesses for the opponent.Usually it's best to retreat an attacked piece",
         solution: "Nxe4",
         customIncorrectFeedback: {
-            "Nc5": "This loses a bishop"
+            "Nd5": "This loses a knight"
+        }
+    },
+    {
+        move: "11. Re1",
+        player: "White",
+        explanation:"Later, White played Re1, attacking the knight. However, he tunnel-visioned as it no longer defends the f2 square, a current weakness. Black employs a tactic that exploits the f2 square. What does he play?",
+        fen: "r1bqk2r/ppp2pp1/1b1p3p/1P2p3/P1P1n3/2P2N2/5PPP/RNBQR1K1 b kq - 1 11",
+    },
+    {
+        move: "11... Bxf2+",
+        player: "Black",
+        explanation: "Bxf2+ forks the king on g1 and rook on e1. The king cannot capture the bishop on f2 since the bishop is protected by the knight on e4.",
+        hint: "Look for checks, captures, and threats. Some captures can lead to weaknesses for the opponent.Usually it's best to retreat an attacked piece",
+        solution: "Bxf2+",
+        customIncorrectFeedback: {
+            "Nxf2": "Technically you still win a pawn through Nxf2 and does similar role to Bxf2+ since it first threatens the queen which can then result in a discovered attack that can win a rook. However, it requires more moves to accomplish that goal."
+        }
+    },
+    {
+        move: "29. h4",
+        player: "White",
+        explanation:"In this position, White tried to escape danger by moving their pawn to h4. However, this simply allows Black to checkmate in one move! What move did Black play to checkmate?",
+        fen: "6k1/pp4p1/3p3p/1P2p3/P3b2P/6B1/7K/2r5 b - - 0 29",
+    },
+    {
+        move: "29… Rh1#",
+        player: "Black",
+        explanation: "Notice how the bishop on e4 is controlling its diagonal. Specifically, it controls squares like g2 and h1, meaning the king cannot move to those squares. Additionally, notice how the Black rook controls the h file and the 8th rank, meaning the White king cannot move to squares like h3 or g1. As a result, IT’S CHECKMATE!",
+        hint: "Look for checks, captures, and threats. Some captures can lead to weaknesses for the opponent.Usually it's best to retreat an attacked piece",
+        solution: "Rh1#",
+        customIncorrectFeedback: {
+            "Rc2+": "Rc2+ allows White’s king to escape the checkmate threat by playing moves like Kg1 or Kh3",
+            "Rg1": "This move hangs a rook since White can then play Kxg1, or King takes the rook on g1. Remember that Kings can capture adjacent or nearby hanging (or undefended) pieces."
         }
     },
 ];
