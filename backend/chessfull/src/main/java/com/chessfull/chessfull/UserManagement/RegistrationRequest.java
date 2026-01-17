@@ -1,5 +1,10 @@
 package com.chessfull.chessfull.UserManagement;
 
+/**
+ * DTO (Data Transfer Object) for user registration requests.
+ * Contains the username, password, and email fields required for creating a new user account.
+ * Used to transfer registration data from the frontend to the backend API.
+ */
 public class RegistrationRequest {
     private String username;
     private String password;

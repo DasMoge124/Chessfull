@@ -9,6 +9,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * User entity class that represents a user in the Chessfull application.
+ * This class is persisted in MongoDB and implements Spring Security's UserDetails interface.
+ * Users can register and log in to access chess lessons and track their learning progress.
+ * Passwords are stored securely using BCrypt encoding.
+ */
 @Document(collection = "users")
 public class User implements UserDetails {
     @Id

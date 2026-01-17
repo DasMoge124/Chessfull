@@ -1,3 +1,9 @@
+/**
+ * Sign up page component for user registration.
+ * Allows new users to create accounts by providing email, username, and password.
+ * Sends registration data to the backend API (/addUser endpoint).
+ * Displays success or error messages based on the registration result.
+ */
 import React, { useState } from "react";
 
 function Signup() {

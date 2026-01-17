@@ -5,6 +5,11 @@ import java.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Progress entity class that tracks user completion of chess lessons.
+ * Records which lessons a user has completed and when they were completed.
+ * Stored in MongoDB to maintain a history of user progress through the Chessfull curriculum.
+ */
 @Document(collection = "user_progress")
 public class Progress {
     @Id

@@ -13,6 +13,12 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
+/**
+ * JWT (JSON Web Token) service for handling token generation and validation.
+ * Generates secure tokens for authenticated users that expire after 24 hours.
+ * Validates tokens to ensure they are authentic and not expired before granting access.
+ * Used throughout the application to maintain stateless authentication.
+ */
 @Service
 public class JwtService {
 

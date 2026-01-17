@@ -1,3 +1,13 @@
+/**
+ * Main App component for the Chessfull chess learning platform.
+ * Sets up React Router with all routes for the application including:
+ * - Authentication pages (Login, Signup)
+ * - Learning pages (Home, Learn, Beginner, Intermediate, Advanced, Lessons)
+ * - Interactive pages (Chessboard for free play)
+ * - Hundreds of lesson pages covering various chess topics and grandmaster games
+ * Lessons are organized by skill level and topic (tactics, openings, endgames, etc.)
+ * Uses BrowserRouter to enable client-side navigation throughout the app.
+ */
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import React from "react";
 

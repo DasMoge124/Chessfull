@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+// This class handles user-related operations such as registration and authentication.
+// It uses Spring's RestController to expose RESTful endpoints for user management.
+// The UserController interacts with the UserRepository to perform CRUD operations on user data.
+// Passwords are encoded using PasswordEncoder for security.
 @RestController
 public class UserController {
 

@@ -5,6 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * Web configuration for CORS (Cross-Origin Resource Sharing) settings.
+ * Allows the frontend (running on localhost or Netlify) to make requests to the backend API.
+ * Enables specific HTTP methods (GET, POST, PUT, DELETE) needed for the chess learning platform.
+ */
 @Configuration
 public class WebConfig {
     @Bean

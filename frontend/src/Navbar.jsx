@@ -1,3 +1,9 @@
+/**
+ * Navigation bar component for the Chessfull application.
+ * Provides links to all main pages: Home, Learn, Chessboard, Login, and Sign Up.
+ * Includes a scroll-based animation that changes styling when the user scrolls down.
+ * Displays the Chessfull logo with a lightning bolt emoji.
+ */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";

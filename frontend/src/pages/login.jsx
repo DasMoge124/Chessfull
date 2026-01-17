@@ -1,3 +1,10 @@
+/**
+ * Login page component for user authentication.
+ * Allows users to enter their username and password to access their accounts.
+ * Sends credentials to the backend API (/api/auth/login) and stores the JWT token in localStorage.
+ * Displays error messages for invalid credentials or server issues.
+ * Redirects to home page upon successful login.
+ */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Optional: for redirection
 import "./login.css";

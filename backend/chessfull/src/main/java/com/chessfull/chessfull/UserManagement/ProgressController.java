@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Progress controller that manages user progress tracking in the Chessfull application.
+ * Handles endpoints for saving lesson completion and retrieving completed lessons for a user.
+ * Ensures that authenticated users can only access and modify their own progress records.
+ */
 @RestController
 @RequestMapping("/api/progress")
 public class ProgressController {

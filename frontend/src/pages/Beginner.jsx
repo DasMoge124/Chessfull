@@ -1,3 +1,14 @@
+/**
+ * Beginner page component that displays chess lessons for new players.
+ * Includes foundational lessons such as:
+ * - How to set up a chessboard
+ * - How each chess piece moves
+ * - Chess notation
+ * - Opening principles
+ * - Basic tactics (hanging pieces, forks, pins, skewers)
+ * - Checkmates and stalemates
+ * Fetches user progress from the backend to show which lessons have been completed.
+ */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";

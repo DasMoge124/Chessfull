@@ -1,3 +1,13 @@
+// This is the Gradle build file for the Chessfull backend project.
+// It applies the Java and Spring Boot plugins, sets the project group and version,
+// and configures the Java toolchain to use Java 25.
+// Dependency management is handled through Spring's dependency management plugin.
+
+// Build configuration file for the Chessfull Spring Boot backend application.
+// Uses Gradle as the build tool to compile Java code and manage dependencies.
+// Applies Spring Boot and Spring Dependency Management plugins for easy configuration.
+// Configured to use Java 25 as the target language version.
+// Manages all project dependencies including Spring Security, MongoDB, and JWT libraries.
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.5.7'

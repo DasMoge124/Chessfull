@@ -1,3 +1,10 @@
+/**
+ * Lessons page component that displays all available chess lessons.
+ * Shows games from famous chess matches featuring both white and black perspectives.
+ * Includes games from grandmasters like Magnus Carlsen and other chess professionals.
+ * Fetches user progress from the backend and marks completed lessons with a green checkmark.
+ * Users can click on any lesson to view and practice the game moves.
+ */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";

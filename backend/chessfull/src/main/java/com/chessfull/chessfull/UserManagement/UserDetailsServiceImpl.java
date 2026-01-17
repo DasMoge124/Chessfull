@@ -5,6 +5,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of Spring Security's UserDetailsService interface.
+ * Loads user details from the MongoDB database using the UserRepository.
+ * Used by Spring Security to fetch user information for authentication and authorization.
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 

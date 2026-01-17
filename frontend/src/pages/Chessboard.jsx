@@ -1,3 +1,9 @@
+/**
+ * Interactive chessboard page component for free play.
+ * Allows users to play chess games from an empty or starting position.
+ * Provides a full-featured chessboard with move validation using the chess.js library.
+ * Users can make moves, see legal moves highlighted, and enjoy a complete chess playing experience.
+ */
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 import "./Chessboard.css";
