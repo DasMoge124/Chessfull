@@ -12,9 +12,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -23,15 +21,25 @@ const Navbar = () => {
     <header className={`nav-container ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-content">
         <Link to="/" className="nav-logo">
-          <span>⚡</span> CHESSFULL
+          ⚡ CHESSFLEX
         </Link>
 
         <nav className="nav-links-list">
-          <Link to="/" className="nav-item">Home</Link>
-          <Link to="/learn" className="nav-item">Learn</Link>
-          <Link to="/chessboard" className="nav-item">Chessboard</Link>
-          <Link to="/login" className="nav-item">Login</Link>
-          <Link to="/signup" className="nav-item nav-cta">Get Started</Link>
+          <Link to="/" className="nav-item">
+            Home
+          </Link>
+          <Link to="/learn" className="nav-item">
+            Learn
+          </Link>
+          <Link to="/login" className="nav-item">
+            Login
+          </Link>
+          <Link to="/signup" className="nav-item nav-cta">
+            Sign Up
+          </Link>
+          <Link to="/chessboard" className="nav-item">
+            Chessboard
+          </Link>
         </nav>
       </div>
     </header>
