@@ -85,6 +85,11 @@ function Lessons() {
             GM Hikaru Nakamura vs Andrey Esipenko {isCompleted("hikaru_v_andrey") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
           </button>
         </div>
+        <div className="ButtonElements">
+          <button onClick={() => navigate("/lessons/grandmaster/TerryVRozman")}>
+            GM Hikaru Nakamura vs Andrey Esipenko {isCompleted("terry_v_rozman") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
+          </button>
+        </div>
       </div>
     </div>
   );

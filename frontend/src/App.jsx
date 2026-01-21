@@ -29,6 +29,7 @@ import MagnusVSina from "./pages/lessons/black/magnus_v_sina";
 import EricVEmilia from "./pages/lessons/white/eric_v_emilia";
 import MagnusVRainn from "./pages/lessons/white/Magnus_v_RainnWilson";
 import MagnusVBardiya from "./pages/lessons/white/Magnus_V_Bardiya";
+import Terry_V_Rozman from "./pages/lessons/white/Terry_V_Rozman";
 import CantyVNarayan from "./pages/lessons/black/canty_v_narayan";
 import AndreyVHikaru from "./pages/lessons/black/AndreyVHikaru";
 import BeginnerLessonOne from "./pages/lessons/white/BeginnerLessonOne";
@@ -87,6 +88,7 @@ function App() {
           <Route path="/lessons/grandmaster/CantyVNarayan" element={<CantyVNarayan />} />
           <Route path="/lessons/grandmaster/MagnusVSina" element={<MagnusVSina />} />
           <Route path="/lessons/grandmaster/AndreyVHikaru" element={<AndreyVHikaru />} />
+          <Route path="/lessons/grandmaster/TerryVRozman" element={<Terry_V_Rozman />} />
 
           {/* Beginner lessons */}
           <Route path="/lessons/beginner/how_to_setup_chessboard" element={<HowToSetUpChessBoard />} />
