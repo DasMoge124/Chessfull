@@ -240,3 +240,34 @@ h3 {
 .read-the-docs {
   color: #888;
 }
+
+/* Full-page particle container */
+.home-hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+}
+
+.home-hero .page-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 450px;
+}
+
+/* particles canvas */
+.particles-bg {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0;
+}
+
+/* Existing styles for form remain untouched */

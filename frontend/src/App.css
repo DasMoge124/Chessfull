@@ -59,10 +59,9 @@ html, body {
 .page-container {
   width: 100%;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centers the large content block on the screen */
+  display: block;
 }
+
 
 /* This is the box with the glow in your screenshot */
 .container {

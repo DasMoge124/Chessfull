@@ -1,49 +1,68 @@
+/* Floating glass navbar */
 .nav-container {
   position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 16px 30px;
-  background: rgba(0, 0, 0, 0.1); 
-  transition: backdrop-filter 0.3s ease, background 0.3s ease;
-  z-index: 50;
-  border-bottom: 1px solid rgba(0, 224, 255, 0.2); 
+  top: 20px; /* floats below top */
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 60px); /* leave margin sides */
+  max-width: 1400px;
+  padding: 18px 30px;
+  background: rgba(0, 0, 0, 0.15); /* semi-transparent */
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 224, 255, 0.1);
+  box-shadow: 0 5px 25px rgba(0, 224, 255, 0.1);
+  transition: all 0.4s ease;
+  z-index: 100;
 }
 
 .nav-container.scrolled {
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.6); 
-  box-shadow: 0 0 20px rgba(0, 224, 255, 0.2); 
+  background: rgba(0, 0, 0, 0.65);
+  padding: 12px 30px;
+  box-shadow: 0 5px 25px rgba(0, 224, 255, 0.25);
+  border: 1px solid rgba(0, 224, 255, 0.2);
 }
 
+/* Flex container for content */
 .nav-content {
-  /* Increased to 1600px to match your new wide layout */
-  max-width: 1600px; 
+  max-width: 1400px;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* Logo styling */
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-electric);
+  text-shadow: 0 0 6px var(--primary-electric);
+  white-space: nowrap;
+}
+
+/* Links container */
 nav {
   display: flex;
   align-items: center;
 }
 
+/* Individual links */
 nav a {
   color: #d9e8ff;
   margin-left: 35px;
   font-size: 1.1rem;
   font-weight: 500;
-  transition: 0.25s ease;
+  transition: all 0.25s ease;
   position: relative;
   text-decoration: none;
-  /* FIX: This keeps 'Sign Up' on one line */
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
+/* Hover effects for links */
 nav a:hover {
-  color: var(--primary-electric); 
-  text-shadow: 0 0 10px var(--primary-electric);
+  color: var(--primary-electric);
+  text-shadow: 0 0 8px var(--primary-electric);
 }
 
 nav a:after {
@@ -65,10 +84,17 @@ nav a:hover:after {
   box-shadow: 0 0 5px var(--primary-electric);
 }
 
-.nav-logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--primary-electric); 
-  text-shadow: var(--neon-glow-soft);
-  white-space: nowrap;
+/* CTA button (Sign Up) */
+.nav-cta {
+  padding: 6px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--primary-electric);
+  box-shadow: 0 0 8px var(--primary-electric);
+  transition: 0.3s ease;
+}
+
+.nav-cta:hover {
+  background: var(--primary-electric);
+  color: #000;
+  box-shadow: 0 0 15px var(--primary-electric);
 }

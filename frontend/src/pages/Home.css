@@ -1,126 +1,55 @@
 :root {
   --primary-electric: #00f0ff;
-  --bg-dark: #0a1128;
-  --neon-glow-strong: 0 0 21px #00f0ff, 0 0 30px #00f0ff, 0 0 40px #00f0ff;
+  --particle-light-blue: #00bfff;
 }
 
-.home-page-container {
+.home-hero {
   position: relative;
-  min-height: calc(100vh - 80px);
-  background: linear-gradient(135deg, var(--bg-dark), #00051a);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px; /* Space around the main box */
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #a8c0ff;
-  width: 100%;
-}
-
-/* Glowing background circles */
-.home-page-container::before,
-.home-page-container::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(150px);
-  opacity: 0.15;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.home-page-container::before { width: 400px; height: 400px; background: var(--primary-electric); top: 5%; left: 5%; }
-.home-page-container::after { width: 500px; height: 500px; background: #0c4a6e; bottom: 5%; right: 5%; }
-
-/* --- MAIN RECTANGLE FIX --- */
-.page-content {
-  position: relative;
-  /* CHANGE: Increased width to 90% of the screen */
-  width: 90% !important; 
-  /* CHANGE: Increased max-width significantly for PC */
-  max-width: 1400px !important; 
-  /* CHANGE: Added min-height to make it look taller/fuller */
-  min-height: 80vh; 
-  
-  background: rgba(10, 17, 40, 0.85); /* Slightly transparent to see background glow */
-  padding: 60px 40px;
-  border-radius: 20px;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), var(--neon-glow-strong);
-  z-index: 1;
-  border: 2px solid var(--primary-electric);
-  text-align: center;
-  backdrop-filter: blur(10px);
-
+  background: linear-gradient(135deg, #0a1128, #00051a);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  color: #a8c0ff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.page-content h1 {
-  /* CHANGE: Larger font for wider screen */
-  font-size: 5rem; 
+/* particles canvas */
+.home-hero canvas {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 5rem;
+  text-shadow: 0 0 20px var(--primary-electric), 0 0 30px var(--primary-electric);
   margin-bottom: 20px;
-  color: var(--primary-electric);
-  text-shadow: var(--neon-glow-strong);
-  line-height: 1.1;
 }
 
-.page-content p {
+.hero-content p {
   font-size: 1.5rem;
   margin-bottom: 40px;
   color: #c0c0c0;
 }
 
-.image-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.image-container img {
-  /* CHANGE: Image now takes more of the wider box */
-  max-width: 800px; 
+.hero-image img {
+  max-width: 600px;
   width: 100%;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 0 25px var(--primary-electric);
-  border: 3px solid var(--primary-electric);
-  transition: transform 0.3s ease;
 }
-
-.image-container img:hover {
-  transform: scale(1.02);
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 1024px) {
-  .page-content h1 { font-size: 3.5rem; }
-  .page-content { width: 95% !important; padding: 40px 20px; }
-}
-
-@media (max-width: 768px) {
-  .page-content h1 { font-size: 2.5rem; }
-  .home-page-container { padding: 20px 10px; }
-}
-
-/* PARTICLES BACKGROUND */
-.home-page-container {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-.particles-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.page-content {
-  position: relative;
-  z-index: 2;
-}
-

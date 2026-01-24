@@ -1,28 +1,36 @@
-/**
- * Learn page component that displays skill level selection for chess lessons.\n * Users can choose between Beginner, Intermediate, Advanced levels, or view all lessons.\n * Each button navigates to the corresponding lesson page with appropriate content.\n * Uses neon-themed styling to match the application's design aesthetic.\n */
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../App.css";
-import "./Home.css"; // We use Home.css for the container styling
+import ParticleBackground from "../components/Particles";
+import "./Home.css"; // Reusing container styles
 
 function Learn() {
   const navigate = useNavigate();
 
   return (
-    <div className="home-page-container">
-      <div className="page-content">
-        <h2 style={{ fontSize: "3rem", color: "var(--primary-electric)", marginBottom: "40px", textShadow: "var(--neon-glow-strong)" }}>
+    <div className="home-hero">
+      <ParticleBackground />
+      <div className="page-content" style={{ position: "relative", zIndex: 1 }}>
+        <h2
+          style={{
+            fontSize: "3rem",
+            color: "var(--primary-electric)",
+            marginBottom: "40px",
+            textShadow: "0 0 15px var(--primary-electric)",
+            textAlign: "center",
+          }}
+        >
           Select Your Level
         </h2>
 
-        {/* This wrapper will spread buttons across the width */}
-        <div style={{ 
-          display: "flex", 
-          flexWrap: "wrap", 
-          gap: "30px", 
-          justifyContent: "center", 
-          width: "100%" 
-        }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "30px",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
           <div className="ButtonElements">
             <button className="neon-button" onClick={() => navigate("/learn/beginner")}>Beginner</button>
           </div>

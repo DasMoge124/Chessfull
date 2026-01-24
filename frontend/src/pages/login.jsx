@@ -1,44 +1,27 @@
-/**
- * Login page component for user authentication.
- * Allows users to enter their username and password to access their accounts.
- * Sends credentials to the backend API (/api/auth/login) and stores the JWT token in localStorage.
- * Displays error messages for invalid credentials or server issues.
- * Redirects to home page upon successful login.
- */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Optional: for redirection
+import { useNavigate } from "react-router-dom";
+import ParticleBackground from "../components/Particles";
 import "./login.css";
 
 function Login() {
-  // 1. Use State instead of direct DOM manipulation
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); 
-  const localUrl = "http://localhost:8085/api/auth/login";
-  const url = localUrl;
+  const navigate = useNavigate();
 
   const loginUser = async (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
     setError("");
-
     try {
       const response = await fetch("http://localhost:8085/api/auth/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
-
       if (response.ok) {
         const data = await response.json();
-        // 2. Store the token in LocalStorage
         localStorage.setItem("token", data.token);
-        console.log("Login successful! Token stored.");
-        
-        // 3. Redirect to home/dashboard
-        navigate("/"); 
+        navigate("/");
       } else {
         setError("Invalid username or password");
       }
@@ -48,34 +31,33 @@ function Login() {
   };
 
   return (
-    <div className="page-container">
-      <div className="page-content">
-        <div className="CONTAINER">
-          <form className="CARD" onSubmit={loginUser}>
-            <h3>Login</h3>
-            
-            {error && <p style={{ color: "red", fontSize: "0.8rem" }}>{error}</p>}
-
-            <input
-              className="input"
-              placeholder="Username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <input
-              className="input"
-              placeholder="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <button className="signInButton" type="submit">
-              Login
-            </button>
-          </form>
+    <div className="home-hero">
+      <ParticleBackground />
+      <div className="page-container" style={{ position: "relative", zIndex: 1 }}>
+        <div className="page-content">
+          <div className="CONTAINER">
+            <form className="CARD" onSubmit={loginUser}>
+              <h3>Login</h3>
+              {error && <p style={{ color: "red", fontSize: "0.8rem" }}>{error}</p>}
+              <input
+                className="input"
+                placeholder="Username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+              <input
+                className="input"
+                placeholder="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button className="signInButton" type="submit">Login</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

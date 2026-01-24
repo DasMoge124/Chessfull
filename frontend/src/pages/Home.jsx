@@ -1,58 +1,19 @@
-/**
- * Home page component for the Chessfull application.
- * Displays a welcome message and chess-themed introduction image.
- * Includes decorative neon chess piece animations.
- * Serves as the landing page for users visiting the application.
- */
-import React, { useCallback } from "react";
-import Particles from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+import React from "react";
+import ParticleBackground from "../components/Particles"; // <-- import the new component
 import chessImage from "./image.png";
 import "./Home.css";
 
 function Home() {
-  const particlesInit = useCallback(async (engine) => {
-    await loadSlim(engine);
-  }, []);
-
   return (
-    <div className="home-page-container">
-      {/* PARTICLES */}
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        className="particles-bg"
-        options={{
-          fullScreen: { enable: false },
-          background: { color: "transparent" },
-          particles: {
-            number: {
-              value: 70,
-              density: { enable: true, area: 800 },
-            },
-            color: { value: "#00f0ff" },
-            links: {
-              enable: true,
-              color: "#00f0ff",
-              distance: 150,
-              opacity: 0.15,
-            },
-            move: {
-              enable: true,
-              speed: 0.6,
-            },
-            opacity: { value: 0.4 },
-            size: { value: { min: 1, max: 3 } },
-          },
-          detectRetina: true,
-        }}
-      />
+    <div className="home-hero">
+      {/* Reusable Particles component */}
+      <ParticleBackground />
 
-      {/* CONTENT */}
-      <div className="page-content">
+      {/* Page content */}
+      <div className="hero-content">
         <h1>Welcome to Chesscrash</h1>
         <p>Your journey to mastering chess starts here!</p>
-        <div className="image-container">
+        <div className="hero-image">
           <img src={chessImage} alt="Chess players" />
         </div>
       </div>
