@@ -18,13 +18,17 @@ const GAME_LESSON_MOVES = [
     fen: "rnbqk1nr/ppp2ppp/3b4/3p4/2PP4/5N2/PP3PPP/RNBQKB1R b KQkq c3 0 5",
     hint: "Attack the d5 pawn",
     solution: "Move your c-pawn to c4 to challenge the center.",
+    customIncorrectFeedback: {
+          "Nc3": "This move prohibits White’s c-pawn from moving, which is crucial for White to gain space or solidify their pawn structure. Try again.",
+          "Bd3": "This move is possible, but creates a symmetrical position that isn’t exciting. Try to create some imbalances!"
+        }
   },
   {
     move: "4. dxc4",
     player: "Black",
     explanation: "Black takes your c4 pawn. What do you do to develop a piece and recapture?",
     fen: "rnbqk1nr/ppp2ppp/3b4/8/2pP4/5N2/PP3PPP/RNBQKB1R w KQkq - 0 6",
-    hint: "",
+    hint: "Recapture Black’s pawn on c4!",
     solution: "Black captured on c4.",
   },
   {
@@ -32,8 +36,11 @@ const GAME_LESSON_MOVES = [
     player: "White",
     explanation: "This develops a piece and recaptures the c4 pawn. Nice job!",
     fen: "rnbqk1nr/ppp2ppp/3b4/8/2BP4/5N2/PP3PPP/RNBQK2R b KQkq - 0 6",
-    hint: "Recapture the pawn with your Bishop.",
+    hint: "Recapture Black’s pawn on c4!",
     solution: "Bxc4 recaptures and develops.",
+    customIncorrectFeedback: {
+       "Bh6": "This loses a bishop"
+    }
   },
   {
     move: "4. Bf5", // Development phase skip represented by next FEN
@@ -48,8 +55,12 @@ const GAME_LESSON_MOVES = [
     player: "White",
     explanation: "Excellent! This attacks Black’s knight and gives White more space to seize the initiative.",
     fen: "r2q1rk1/ppp2pp1/2nb1n1p/3P1b2/2B5/2N2N1P/PP3PP1/R1BQR1K1 b - - 0 11",
-    hint: "Push the d-pawn to attack the Knight.",
+    hint: "Move a pawn to get an initiative!",
     solution: "d5 forces the Knight to move.",
+    customIncorrectFeedback: {
+      "g4":"Although this attacks a piece, this weakens your kingside and doesn’t allow you to seize the initiative.",
+      "Ne5": "Although this is a good try, be careful about overextending. For example, Black can go Bxe5 dxe5 Qxd1 and you’d be forced to take back with your Knight to avoid losing the e5 pawn"
+    }
   },
   {
     move: "1. Ne7",
@@ -64,8 +75,12 @@ const GAME_LESSON_MOVES = [
     player: "White",
     explanation: "Excellent! White attacks the Bishop while gaining even more space, continuing his initiative.",
     fen: "r2q1rk1/ppp1npp1/3b1n1p/3P1b2/2BN4/2N4P/PP3PP1/R1BQR1K1 b - - 2 12",
-    hint: "Move your Knight to a central square that attacks the Bishop.",
+    hint: "Move your knight on f3 to a more active location.",
     solution: "Nd4 centralizes the Knight and pressures f5.",
+    customIncorrectFeedback: {
+      "g4": "This weakens White’s Kingside and does not allow White to start an attack",
+      "Ne5":  "What does White achieve by moving a Knight to e5?"
+    }
   },
   {
     move: "1. a6",
@@ -80,8 +95,13 @@ const GAME_LESSON_MOVES = [
     player: "White",
     explanation: "Great work! White removes the Knight which was previously defending the f5 Bishop. A Bishop and Knight are worth more than a Rook here.",
     fen: "r2q1rk1/1pp1Rpp1/p2b1n1p/3P1b2/2BN4/2N4P/PP3PP1/R1BQ2K1 b - - 0 133",
-    hint: "Sacrifice the Rook for the Knight.",
+    hint: "Black’s Knight on e7 is defending his f5 Bishop. How do you remove the defender so you can take the f5 Bishop with your Knight?",
     solution: "Rxe7 simplifies into a winning tactic.",
+    customIncorrectFeedback: {
+      "Nxf5": "Black simply recaptures with Nxf5, and White hasn’t achieved anything",
+      "g4": "Black can simply retreat his bishop and it is unclear what White has accomplished",
+      "Qf3": "This is a good move, as it attacks Black’s bishop, but White has an even stronger response, involving a tactic. What is it?"
+    }
   },
   {
     move: "2. Qxe7",
@@ -98,11 +118,14 @@ const GAME_LESSON_MOVES = [
     fen: "r4rk1/1pp1qpp1/p2b1n1p/3P1N2/2B5/2N4P/PP3PP1/R1BQ12K1 b - - 0 14",
     hint: "Capture the Bishop.",
     solution: "Nxf5 gains the piece.",
+    customIncorrectFeedback: {
+      "default": "This move does not take a hanging piece."
+    }
   },
   {
     move: "1. Qe5",
     player: "Black",
-    explanation: "Black moves his Queen away from danger and is now threatening your Knight along with sneaky battery attacks involving Qh2+. How does White escape?",
+    explanation: "Black moves his Queen away from danger and is now threatening your Knight along with sneaky battery attacks involving Qh2+. This is dangerous because it weakens your King and Black can follow with Qh2+ Qh1+ Qxg2, also winning a pawn. How does White escape from this predicament?",
     fen: "r4rk1/1pp2pp1/p2b1n1p/3PqN2/2B5/2N4P/PP3PP1/R1BQ2K1 w - - 1 15",
     hint: "",
     solution: "Black plays Qe5 creating threats.",
@@ -112,15 +135,21 @@ const GAME_LESSON_MOVES = [
     player: "White",
     explanation: "This equal trade stops Black from going Qh2+ and also 'defends' your Knight by removing the attacker.",
     fen: "r4rk1/1pp2pp1/p2N1n1p/3Pq3/2B5/2N4P/PP3PP1/R1BQ12K1 b - - 0 15",
-    hint: "Trade your Knight for their powerful Bishop.",
+    hint: "Take an attacking piece!",
     solution: "Nxd6 eliminates the threat of Qh2+.",
+    customIncorrectFeedback: {
+      "Nd4": "What about Qh2+? Your King is in danger!",
+      "Ne3": "What about Qh2+? Your King is in danger!",
+      "Nh4": "What about Qh2+? Your King is in danger!",
+      "f4": "What about your Knight on f5?"
+    }
   },
   {
     move: "1. Qxd6",
     player: "Black",
-    explanation: "Black recaptures your Knight with his Queen. Now, you want to play Bf4 gaining a tempo on the Queen, but your Bishop is unprotected. How do you prepare?",
+    explanation: "Black recaptures your Knight with his Queen. Now, you want to play Bf4 gaining a tempo on the Queen, but your Bishop is unprotected there. How do you develop a piece to prepare Bf4?",
     fen: "r4rk1/1pp2pp1/p2q1n1p/3P4/2B5/2N4P/PP3PP1/R1BQ2K1 w - - 0 16",
-    hint: "",
+    hint: "Move your Queen to a square defending f4!",
     solution: "Black recaptured on d6.",
   },
   {
@@ -130,6 +159,11 @@ const GAME_LESSON_MOVES = [
     fen: "r4rk1/1pp2pp1/p2q1n1p/3P4/2B5/2N2Q1P/PP3PP1/R1B3K1 b - - 1 16",
     hint: "Develop your Queen to protect the f4 square.",
     solution: "Qf3 prepares the next attacking move.",
+    customIncorrectFeedback: {
+      "Bf4": "Your Bishop is hanging!",
+      "Ne4": "Your Knight is hanging!",
+      "Be3": "This develops a piece, but we want to prepare to go Bf4, gaining a tempo on the Black Queen."
+    }
   },
   {
     move: "1. b5",
@@ -146,6 +180,13 @@ const GAME_LESSON_MOVES = [
     fen: "r4rk1/2p2pp1/p2q1n1p/1p1P4/8/1BN2Q1P/PP3PP1/R1B3K1 b - - 1 17",
     hint: "Retreat the Bishop to a square that still guards the d5 pawn.",
     solution: "Bb3 is the most solid retreat.",
+    customIncorrectFeedback: {
+      "default": "This loses a bishop",
+      "Bf4": "This is a good move, but White decided against it by retreating his attacked Bishop. Try again.",
+      "Bf1": "Good try, but if Black responds with b4, you are going to lose your d5 pawn.",
+      "Be2": "Good try, but if Black responds with b4, you are going to lose your d5 pawn.",
+      "Bd3": "Good try, but if Black responds with b4, you are going to lose your d5 pawn."
+    }
   },
   {
     move: "1. Re8",
@@ -158,10 +199,13 @@ const GAME_LESSON_MOVES = [
   {
     move: "1. Bf4",
     player: "White",
-    explanation: "Good job! This defends against the back-rank threat while also gaining a tempo on the Black Queen.",
+    explanation: "Good job! This defends back rank check mate while also gaining a tempo on the Black Queen.",
     fen: "r3r1k1/2p2pp1/p2q1n1p/1p1P4/5B2/1BN2Q1P/PP3PP1/R5K1 b - - 3 18",
     hint: "Develop your dark-squared bishop to attack the Queen.",
     solution: "Bf4 develops with a threat.",
+    customIncorrectFeedback: {
+      "Be3": "This is fine, but we want to gain a tempo on the Black Queen. How do we do so?",
+    }
   },
   {
     move: "1. Qc5",
@@ -178,11 +222,15 @@ const GAME_LESSON_MOVES = [
     fen: "r3r1k1/2p2pp1/p4n1B/1pqP4/8/1BN2Q1P/PP3PP1/R5K1 b - - 0 19",
     hint: "If White moves his Bishop, his Queen will be attacking Black’s Knight. However, Black’s g-pawn is defending both Black’s h-pawn and Black’s knight. How does White take advantage of this?",
     solution: "Bxh6 wins a pawn due to the pin/overloading.",
+    customIncorrectFeedback: {
+      "Be3": "Be3 This attacks Black’s Queen, but doesn’t capitalize on a tactic White has",
+      "Rc1": "This is a great move, threatening discovery on Black’s Queen! However, White has an even better move, winning a pawn. What is it?"
+    }
   },
   {
     move: "1. Nd7",
     player: "Black",
-    explanation: "Black moves his Knight away. White spots a beautiful move that opens a diagonal to attack the f7 pawn.",
+    explanation: "Black moves his Knight away from danger, now threatening gxh6. To the untrained eye, it might seem as if White should then move his Bishop away from danger. However, White spots a beautiful move that opens a diagonal, allowing White to attack the Kingside. What was this beautiful move?",
     fen: "r3r1k1/2pn1pp1/p6B/1pqP4/8/1BN2Q1P/PP3PP1/R5K1 w - - 1 20",
     hint: "",
     solution: "Black retreats the Knight.",
@@ -194,6 +242,11 @@ const GAME_LESSON_MOVES = [
     fen: "r3r1k1/2pn1pp1/p2P3B/1pq5/8/1BN2Q1P/PP3PP1/R5K1 b - - 0 20",
     hint: "Open up the diagonal for your Bishop on b3.",
     solution: "d6 is a powerful interference and opening move.",
+    customIncorrectFeedback: {
+      "Ne4": "Black can simply take your Knight with his rook, and then capture your Bishop on h6 after you have recaptured his rook, causing you to lose material. Try again.",
+      "Be3": "This is fine, but White has an even better move, opening a diagonal and allowing White to attack the Kingside.",
+      "Bf4": "This is fine, but White has an even better move, opening a diagonal and allowing White to attack the Kingside."
+    }
   },
   {
     move: "1. Ne5",
@@ -210,6 +263,11 @@ const GAME_LESSON_MOVES = [
     fen: "r3r1k1/2p2pp1/p2P3B/1pq1n3/8/1BN3QP/PP3PP1/R5K1 b - - 2 21",
     hint: "Move the Queen to a square that pins the g7 pawn.",
     solution: "Qg3 defends and threatens mate.",
+    customIncorrectFeedback: {
+      "Qe3": "This is fine. However, Black can go Qxd6 and you have simply lost a pawn. Try again",
+      "Be3": "Good try, however Black can take your Queen on f3 with a check.",
+      "default": "This loses either a Queen or a Bishop."
+    }
   },
   {
     move: "1. g6",
@@ -226,6 +284,10 @@ const GAME_LESSON_MOVES = [
     fen: "r3r1k1/2p2p2/p2P2pB/1pq1n3/4N3/1B4QP/PP3PP1/R5K1 b - - 1 22",
     hint: "Look at your Knight's potential for a fork.",
     solution: "Ne4 finishes the combination.",
+    customIncorrectFeedback: {
+      "d7": "This attacks Black’s Queen, but Black can simply take your pawn with Qxd6",
+      "Ne4": "Congratulations! This attacks Black’s Queen while also threatening a fork with Nf6 check!"
+    }
   }
 ];
 // Utility for chessboard squares

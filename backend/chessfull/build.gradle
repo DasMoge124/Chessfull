@@ -53,3 +53,14 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+bootRun {
+    jvmArgs = [
+        "-Djdk.tls.client.protocols=TLSv1.2",
+        "-Dhttps.protocols=TLSv1.2"
+    ]
+}
+tasks.named('bootRun') {
+    jvmArgs = ['-Djdk.tls.client.protocols=TLSv1.2']
+}
+
+

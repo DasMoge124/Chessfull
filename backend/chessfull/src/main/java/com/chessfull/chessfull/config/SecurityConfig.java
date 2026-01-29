@@ -1,6 +1,9 @@
 package com.chessfull.chessfull.config;
 
 import com.chessfull.chessfull.JWT.JwtAuthenticationFilter;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,8 +26,10 @@ import java.util.List;
 
 /**
  * Security configuration for the Chessfull application.
- * Configures JWT-based stateless authentication, CORS settings, and authorization rules.
- * Defines which endpoints are public (login, signup) and which require authentication (progress API).
+ * Configures JWT-based stateless authentication, CORS settings, and
+ * authorization rules.
+ * Defines which endpoints are public (login, signup) and which require
+ * authentication (progress API).
  * Uses BCrypt for password encoding and JWT filters for stateless security.
  */
 @Configuration
@@ -55,6 +60,14 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getServletPath();
+        return path.startsWith("/api/auth/")
+                || path.equals("/login")
+                || path.equals("/addUser");
     }
 
     @Bean

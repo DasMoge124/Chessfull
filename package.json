@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/DasMoge124/Chessfull#readme",
   "dependencies": {
+    "react-tsparticles": "^2.12.2",
+    "tsparticles-slim": "^2.12.0",
     "vite": "^7.1.6"
   }
 }
