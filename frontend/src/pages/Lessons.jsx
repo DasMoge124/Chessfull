@@ -87,7 +87,7 @@ function Lessons() {
         </div>
         <div className="ButtonElements">
           <button onClick={() => navigate("/lessons/grandmaster/TerryVRozman")}>
-            GM Hikaru Nakamura vs Andrey Esipenko {isCompleted("terry_v_rozman") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
+            IM Renato Terry vs IM Rozman {isCompleted("terry_v_rozman") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
           </button>
         </div>
       </div>
