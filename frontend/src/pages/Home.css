@@ -3,29 +3,20 @@
   --particle-light-blue: #00bfff;
 }
 
+/* Home hero section */
 .home-hero {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: calc(100vh - 120px);
   overflow: hidden;
-  background: linear-gradient(135deg, #0a1128, #00051a);
+
   display: flex;
   justify-content: center;
-  align-items: center;
-  color: #a8c0ff;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  align-items: flex-start; /* push content down instead of center */
+  padding-top: 100px; /* space below navbar */
 }
 
-/* particles canvas */
-.home-hero canvas {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  z-index: 0;
-}
-
+/* Hero content */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -52,4 +43,14 @@
   height: auto;
   border-radius: 12px;
   box-shadow: 0 0 25px var(--primary-electric);
+}
+
+/* Particle canvas in Home */
+.home-hero canvas {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0;
 }

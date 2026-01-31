@@ -65,6 +65,7 @@ import DoubledPawns from "./pages/lessons/beginner_lessons/doubled_pawns";
 function App() {
   return (
     <BrowserRouter>
+      {/* <ParticleBackground /> */}
       {/* Use Navbar component only */}
       <Navbar />
 

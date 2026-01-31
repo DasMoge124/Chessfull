@@ -1,0 +1,54 @@
+/* Container that fills the viewport minus navbar height */
+.home-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* full viewport height */
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 10px; /* space for navbar */
+  box-sizing: border-box;
+  background-color: black; /* fallback if particle fails */
+}
+
+/* Content container */
+.page-content {
+  position: relative;
+  z-index: 1;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Buttons container */
+.ButtonElements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+/* Style for the neon buttons */
+.neon-button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  background-color: #6ef9f9;
+  color: black;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 12px #00f0ff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.neon-button:hover {
+  background-color: #00f0ff;
+  color: white;
+  box-shadow: 0 0 18px #00f0ff;
+}

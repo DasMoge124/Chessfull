@@ -5,23 +5,23 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: var(--bg-dark);
   overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
 }
 
 #root {
   width: 100% !important;
-  max-width: none !important; /* Removes the "narrow" limit */
+  max-width: none !important;
   margin: 0;
   padding: 0;
-  display: block; /* Ensures it doesn't try to center everything in a small box */
+  display: block;
 }
 
-/* --- NAVIGATION BAR (Spread across PC) --- */
+/* --- NAVIGATION BAR --- */
 .nav_header {
   display: flex;
   justify-content: center;
@@ -37,12 +37,13 @@ html, body {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 4rem; /* Wide spacing for PC */
+  gap: 4rem;
   width: 90%;
   max-width: 1400px;
 }
 
-.nav_list, .nav_a {
+.nav_list,
+.nav_a {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 18px;
@@ -56,31 +57,34 @@ html, body {
 }
 
 /* --- MAIN CONTENT CONTAINER --- */
-.page-container {
-  width: 100%;
-  min-height: 100vh;
-  display: block;
+.page-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 120px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-
-/* This is the box with the glow in your screenshot */
+/* --- BOX CONTAINER --- */
 .container {
   display: flex;
-  flex-direction: row; /* Force side-by-side layout on PC */
-  width: 90% !important; /* Take up 90% of the browser width */
-  max-width: 1600px !important; /* Allow it to be much wider than before */
-  min-height: 70vh; 
+  flex-direction: row;
+  width: 90% !important;
+  max-width: 1600px !important;
+  min-height: 70vh;
   margin: 60px auto;
   background-color: var(--bg-dark);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), var(--neon-glow-soft); 
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.8),
+    var(--neon-glow-soft);
   border: 1px solid rgba(0, 224, 255, 0.2);
 }
 
-/* --- INTERNAL SECTIONS (Text & Image) --- */
+/* --- INTERNAL SECTIONS --- */
 .image-section {
-  flex: 1.2; /* Makes image section slightly larger than text */
+  flex: 1.2;
   background: #000;
   display: flex;
   align-items: center;
@@ -106,7 +110,7 @@ html, body {
 }
 
 .text-section h1 {
-  font-size: 48px; /* Bigger for PC */
+  font-size: 48px;
   margin-bottom: 20px;
   font-weight: 700;
   line-height: 1.2;
@@ -118,6 +122,19 @@ html, body {
   font-size: 20px;
   margin-bottom: 30px;
   color: #c0c0c0;
+}
+
+/* --- BUTTON ELEMENTS (Beginner Page) --- */
+.ButtonElements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  justify-content: center; /* <-- CENTER buttons horizontally */
+}
+
+.ButtonElements button {
+  min-width: 180px; /* optional for consistent button size */
 }
 
 /* --- MOBILE RESPONSIVENESS --- */
@@ -132,7 +149,7 @@ html, body {
 
 @media (max-width: 768px) {
   .container {
-    flex-direction: column; /* Stack on mobile */
+    flex-direction: column;
     margin: 20px auto;
     width: 90%;
   }
@@ -147,8 +164,14 @@ html, body {
 
 /* --- FADE IN ANIMATION --- */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Allow particles to render behind everything */
