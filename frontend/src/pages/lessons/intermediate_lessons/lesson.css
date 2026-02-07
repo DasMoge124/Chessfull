@@ -1,0 +1,168 @@
+ol {
+  text-align: left;
+}
+/* --- Global Reset & Typography --- */
+body {
+  /* Background color for the whole page - a very dark grey or black is fine for a chess theme, 
+       but we'll use a deep navy/space black for a premium feel. */
+  background-color: #0b0c10;
+  color: #c5c6c7; /* Light grey for primary text */
+  font-family: "Poppins", sans-serif; /* A modern, readable font */
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Use a slightly lighter, contrasting color for headings for visual punch */
+h1,
+h2,
+h3 {
+  color: #66fcf1; /* Cyan/Teal - a common choice for modern/tech themes */
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding-top: 15px; /* Add some space above headings */
+}
+ul{
+  margin-left: 20px;
+}
+
+/* --- Navigation Bar --- */
+.nav-bar {
+  /* Assuming a class 'nav-bar' wraps your nav links */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1f2833; /* Darker bar for contrast */
+  padding: 15px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-bar a {
+  color: #c5c6c7;
+  text-decoration: none;
+  margin: 0 20px;
+  font-size: 1.1em;
+  padding: 5px 10px;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.nav-bar a:hover {
+  color: #66fcf1;
+  background-color: rgba(
+    102,
+    252,
+    241,
+    0.1
+  ); /* Subtle background hover effect */
+}
+
+/* --- Main Content Container --- */
+/* Center the main content and limit its width for readability on large screens */
+.how_pieces_move {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* --- Headings --- */
+h1 {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  /* Add a subtle text shadow for a glowing effect */
+  text-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
+}
+
+h2 {
+  font-size: 1.8em;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  color: #45a29e; /* A slightly darker teal for secondary headings */
+  border-bottom: 2px solid #1f2833; /* Separator line */
+  padding-bottom: 5px;
+}
+
+/* --- Paragraphs and Text --- */
+p {
+  font-size: 1.05em;
+  margin-bottom: 20px;
+  color: #c5c6c7;
+  text-align: justify;
+}
+
+/* Emphasize the core message/introduction */
+p:first-of-type {
+  font-style: italic;
+  color: #a3a3a3;
+}
+
+/* --- Image Containers (Chess Boards) --- */
+.image-container {
+  text-align: center;
+  margin: 30px 0;
+  padding: 15px;
+  background-color: #1f2833; /* Dark background for the image frame */
+  border-radius: 10px;
+  /* Add a sleek, modern shadow to the image block */
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.7),
+    0 0 15px rgba(102, 252, 241, 0.2);
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Remove extra space below images */
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px solid #66fcf1; /* Subtle border to tie into the theme color */
+}
+
+/* Special styling for the two promotion gifs side-by-side */
+.image-container:last-of-type img {
+  width: 48%; /* Adjust for side-by-side display */
+  display: inline-block;
+  margin: 0 1%;
+}
+
+/* --- Button Styling --- */
+.ButtonElements {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.ButtonElements button {
+  background-color: #66fcf1; /* Primary theme color for the button */
+  color: #0b0c10; /* Dark text on the light button */
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: 600;
+  border-radius: 50px; /* Pill shape */
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.1s ease,
+    box-shadow 0.3s ease;
+  /* Add a subtle shadow for depth */
+  box-shadow: 0 5px 15px rgba(102, 252, 241, 0.4);
+}
+
+.ButtonElements button:hover {
+  background-color: #45a29e; /* Darker on hover */
+  color: #fff;
+  transform: translateY(-2px); /* Lift button slightly */
+  box-shadow: 0 8px 20px rgba(102, 252, 241, 0.6);
+}
+
+.ButtonElements button:active {
+  transform: translateY(0); /* Press down effect */
+}

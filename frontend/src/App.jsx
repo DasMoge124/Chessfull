@@ -61,6 +61,8 @@ import Pins_Skewers_Practice_4 from "./pages/lessons/white/pins_and_skewers_4";
 import Discovered_Attack from "./pages/lessons/beginner_lessons/discovered_attack";
 import Discovered_Attack_Practice from "./pages/lessons/black/discovered_attacks";
 import DoubledPawns from "./pages/lessons/beginner_lessons/doubled_pawns";
+import OpponentsIdeas from "./pages/lessons/intermediate_lessons/opponent_idea";
+import OpponentsIdeasPractice from "./pages/lessons/black/your_opponents_ideas_practice";
 
 function App() {
   return (
@@ -119,6 +121,10 @@ function App() {
           <Route path="/lessons/beginner/beginner_lesson_one" element={<BeginnerLessonOne />} />
           <Route path="/lessons/beginner/beginner_lesson_two" element={<BeginnerLessonTwo />} />
           <Route path="/lessons/beginner/beginner_lesson_three" element={<BeginnerLessonThree />} />
+          {/* Intermediate lessons */}
+          <Route path="/lessons/intermediate/your_opponents_ideas" element={<OpponentsIdeas />} />
+          <Route path="/lessons/intermediate/your_opponents_ideas_practice" element={<OpponentsIdeasPractice />} />
+          {/* Add more intermediate lessons here */}
         </Routes>
       </main>
     </BrowserRouter>
