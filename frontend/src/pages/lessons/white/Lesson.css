@@ -1,0 +1,225 @@
+/* src/pages/lessons/white/Lesson.css */
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #000;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main wrapper */
+.main-content-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px 40px;
+  box-sizing: border-box;
+}
+
+/* Titles */
+.advanced-page-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #00bfff;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1100px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 20px;
+}
+
+.main-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1.2;
+  color: #eee;
+  max-width: 400px;
+}
+
+.lesson-info-box {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #ccc;
+  max-width: 500px;
+  text-align: right;
+}
+
+/* Main layout */
+.lesson-area {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  width: 100%;
+  max-width: 1200px;
+  align-items: center;
+}
+
+/* Chessboard */
+.chessboard-container {
+  flex-shrink: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  overflow: hidden;
+  align-self: flex-start;
+}
+
+/* Lesson content */
+.lesson-content {
+  flex: 1;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  /* FINAL vertical alignment */
+  transform: translateY(0px);
+}
+
+/* Feedback */
+.feedback-box {
+  background: rgba(25, 118, 210, 0.9);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  border-left: 6px solid #0d47a1;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Messages */
+.lesson-message {
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.lesson-message.info {
+  background-color: rgba(0, 64, 128, 0.85);
+  border: 1px solid #0055cc;
+}
+
+.lesson-message.error {
+  background-color: rgba(139, 0, 0, 0.85);
+  border: 1px solid #ff4444;
+}
+
+/* Hint / solution buttons */
+.hint-solution-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-hint,
+.btn-solution {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.btn-hint {
+  background-color: #0a58ca;
+}
+
+.btn-solution {
+  background-color: #007a2f;
+}
+
+.btn-hint:hover,
+.btn-solution:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
+
+/* Next button */
+.next-move-button {
+  background-color: #0055cc;
+  color: white;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.next-move-button:hover {
+  background-color: #0066ff;
+  transform: scale(1.02);
+}
+
+/* End message */
+.game-ended-message {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #aaffaa;
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 255, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Hint / solution text */
+.hint-text,
+.solution-text {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  font-style: italic;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 1050px) {
+  .lesson-area {
+    flex-direction: column;
+  }
+
+  .lesson-content {
+    transform: none;
+    max-width: 100%;
+  }
+
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .lesson-info-box {
+    text-align: center;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
