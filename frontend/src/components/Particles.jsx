@@ -12,9 +12,14 @@ const ParticleBackground = () => {
     <Particles
       id="tsparticles"
       init={particlesInit}
-      className="particles-bg"
       options={{
-        fullScreen: { enable: false },
+        fullScreen: {
+          enable: true,   // particles handle fullscreen
+          zIndex: 0,      // background layer
+        },
+        background: {
+          color: "#000000", // ONLY background
+        },
         particles: {
           number: { value: 200, density: { enable: true, area: 1200 } },
           color: { value: "#00bfff" },
@@ -40,14 +45,6 @@ const ParticleBackground = () => {
             push: { quantity: 5 },
           },
         },
-      }}
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: 0,
       }}
     />
   );

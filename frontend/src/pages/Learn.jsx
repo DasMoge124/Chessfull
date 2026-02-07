@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ParticleBackground from "../components/Particles";
-import "./Home.css"; // Reusing container styles
+import "./Learn.css"; // We'll create this new CSS file for Learn page styles
 
 function Learn() {
   const navigate = useNavigate();
@@ -22,27 +22,28 @@ function Learn() {
           Select Your Level
         </h2>
 
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "30px",
-            justifyContent: "center",
-            width: "100%",
-          }}
-        >
-          <div className="ButtonElements">
-            <button className="neon-button" onClick={() => navigate("/learn/beginner")}>Beginner</button>
-          </div>
-          <div className="ButtonElements">
-            <button className="neon-button" onClick={() => navigate("/learn/intermediate")}>Intermediate</button>
-          </div>
-          <div className="ButtonElements">
-            <button className="neon-button" onClick={() => navigate("/learn/advanced")}>Advanced</button>
-          </div>
-          <div className="ButtonElements">
-            <button className="neon-button" onClick={() => navigate("/lessons")}>Lessons</button>
-          </div>
+        <div className="ButtonElements">
+          <button
+            className="neon-button"
+            onClick={() => navigate("/learn/beginner")}
+          >
+            Beginner
+          </button>
+          <button
+            className="neon-button"
+            onClick={() => navigate("/learn/intermediate")}
+          >
+            Intermediate
+          </button>
+          <button
+            className="neon-button"
+            onClick={() => navigate("/learn/advanced")}
+          >
+            Advanced
+          </button>
+          <button className="neon-button" onClick={() => navigate("/lessons")}>
+            Lessons
+          </button>
         </div>
       </div>
     </div>
