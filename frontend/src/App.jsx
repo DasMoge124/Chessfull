@@ -110,7 +110,7 @@ function App() {
             element={<MagnusVBardiya />}
           />
           <Route
-            path="/lessons/grandmaster/CantyVNarayan"
+            path="/lessons/grandmaster/CantyVNarayanan"
             element={<CantyVNarayan />}
           />
           <Route

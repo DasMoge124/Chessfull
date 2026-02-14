@@ -48,8 +48,8 @@ function Lessons() {
 
         {/* Lesson 1 */}
         <div className="ButtonElements">
-          <button onClick={() => navigate("/lessons/grandmaster/CantyVNarayan")}>
-            FM James Canty vs FM Narayan {isCompleted("canty_v_narayan") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
+          <button onClick={() => navigate("/lessons/grandmaster/CantyVNarayanan")}>
+            FM James Canty vs CM Narayan {isCompleted("canty_v_narayan") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
           </button>
         </div>
 {/*hikaru_v_andrey */}
