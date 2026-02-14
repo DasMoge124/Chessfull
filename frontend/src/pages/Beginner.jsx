@@ -96,11 +96,15 @@ function Beginner() {
           >
             Checkmates and Stalemates
           </button>
+        </div>
+        <div className="ButtonElements">
           <button onClick={() => navigate("/lessons/beginner/chess_notation")}>
             Chess Notation
           </button>
-          <button onClick={() => navigate("/lessons/beginner/how_to_calculate")}>
-              How to Calculate
+          <button
+            onClick={() => navigate("/lessons/beginner/how_to_calculate")}
+          >
+            How to Calculate
           </button>
         </div>
 
@@ -145,10 +149,25 @@ function Beginner() {
         </div>
         <h2>More advanced Tactics</h2>
         <div className="ButtonElements">
-          <button onClick={() => navigate("/lessons/beginner/attraction_vs_deflection")}>
+          <button
+            onClick={() =>
+              navigate("/lessons/beginner/attraction_vs_deflection")
+            }
+          >
             Attraction vs. Deflection
           </button>
         </div>
+        <h2>Endgames</h2>
+        <button
+          onClick={() => navigate("/lessons/beginner/checkmate_with_queen")}
+        >
+          Checkmates with a Queen
+        </button>
+        <button
+          onClick={() => navigate("/lessons/beginner/checkmate_with_rook")}
+        >
+          Checkmates with a Rook
+        </button>
         <h2>Practice Games</h2>
         <div className="ButtonElements">
           <button

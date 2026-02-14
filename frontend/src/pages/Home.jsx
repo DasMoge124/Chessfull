@@ -11,7 +11,10 @@ function Home() {
 
       {/* Page content */}
       <div className="hero-content">
-        <h1>Welcome to Chesscrash</h1>
+        <h1>
+          <br />
+          Welcome to Chesscrash
+        </h1>
         <p>Your journey to mastering chess starts here!</p>
         <div className="hero-image">
           <img src={chessImage} alt="Chess players" />
