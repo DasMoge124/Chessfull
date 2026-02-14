@@ -10,11 +10,15 @@ const Tactical_Sacrifices = () => {
 
   return (
     <div className="lesson-container">
-      <h1><br/><br/>Tactical Sacrifices</h1>
+      <h1>
+        <br />
+        <br />
+        Tactical Sacrifices
+      </h1>
       <h2>What is a Tactical Sacrifice?</h2>
       <p>
-        A tactical sacrifice involves temporarily giving up material in the short-term, to gain an
-        advantage again after a forced sequence of moves.
+        A tactical sacrifice involves temporarily giving up material in the
+        short-term, to gain an advantage again after a forced sequence of moves.
       </p>
       <h2>Example</h2>
       <img src={Sacrifice0} alt="Chess players" />
