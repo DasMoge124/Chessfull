@@ -282,8 +282,8 @@ function App() {
           />
           <Route path="/learn/intermediate/zugzwang" element={<Zugzwang />} />
           <Route
-            path="/learn/intermediate/sacrifices"
-            element={<Sacrifices />}
+            path="/learn/intermediate/Tactical_Sacrifices"
+            element={<Tactical_Sacrifices />}
           />
           {/* Add more intermediate lessons here */}
         </Routes>
