@@ -99,6 +99,9 @@ function Beginner() {
           <button onClick={() => navigate("/lessons/beginner/chess_notation")}>
             Chess Notation
           </button>
+          <button onClick={() => navigate("/lessons/beginner/how_to_calculate")}>
+              How to Calculate
+          </button>
         </div>
 
         <h2>Basic Tactics</h2>

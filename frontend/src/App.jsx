@@ -41,6 +41,7 @@ import HowToSetUpChessBoard from "./pages/lessons/beginner_lessons/chessboard_se
 import HowPiecesMove from "./pages/lessons/beginner_lessons/how_pieces_move";
 import ChessNotation from "./pages/lessons/beginner_lessons/chessnotation";
 import OpeningPrinciples from "./pages/lessons/beginner_lessons/opening_principles";
+import HowToCalculate from "./pages/lessons/beginner_lessons/How_To_Calculate";
 import CheckmatesAndStalemates from "./pages/lessons/beginner_lessons/checkmates";
 import TwoRookCheckmate from "./pages/lessons/white/tworookmate";
 import QueenCheckmateLesson from "./pages/lessons/white/QueenMateLesson";
@@ -102,6 +103,7 @@ function App() {
           <Route path="/lessons/beginner/two_rook_checkmate" element={<TwoRookCheckmate />} />
           <Route path="/lessons/beginner/queen_checkmate_lesson" element={<QueenCheckmateLesson />} />
           <Route path="/lessons/beginner/forks" element={<Forks />} />
+          <Route path="/lessons/beginner/how_to_calculate" element={<HowToCalculate />} />
           <Route path="/lessons/beginner/forks_practice" element={<ForksPractice />} />
           <Route path="/lessons/beginner/forks_practice_2" element={<ForksPractice2 />} />
           <Route path="/lessons/beginner/forks_practice_3" element={<ForksPractice3 />} />

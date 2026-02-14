@@ -24,7 +24,7 @@ const GAME_LESSON_MOVES = [
   {
     move: "8. Nxc3",
     player: "White",
-    explanation: "Later in the game, Magnus and Parham traded the pawns via cxd5 Nxd5, followed by Bardiya creating an absolute pin by playing Bb5. In this position, Magnus decided to simplify the position to ease his attacking chances. How did he do so?"// explains the new chess map and what the player should do.
+    explanation: "Later in the game, Magnus and Parham traded the pawns via cxd5 Nxd5, followed by Bardiya creating an absolute pin by playing Bb5. In this position, Magnus decided to simplify the position to ease his attacking chances. How did he do so?",// explains the new chess map and what the player should do.
     fen: "r1bqkb1r/ppp2ppp/2n2n2/1B1np3/8/2N1PN2/PP1P1PPP/R1BQK2R b K", // FEN needs correction for White's move to be shown
     hint: "...",
     solution: "Nxc3",
