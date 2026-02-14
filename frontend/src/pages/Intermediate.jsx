@@ -10,40 +10,75 @@ import "../App.css";
 function Intermediate() {
   const navigate = useNavigate();
   return (
-  <div>
-    <h1>Intermediate</h1>
-    <h2>Openings</h2>
-    <div className="ButtonElements">
-      <button onClick={() => navigate("/lessons/beginner/pins_and_skewers")}>
-        Italian Opening
-      </button>
+    <div>
+      <h1>
+        <br />
+        <br />
+        Intermediate
+      </h1>
+      <h2>Openings</h2>
+      <div className="ButtonElements">
+        <button onClick={() => navigate("/learn/intermediate/italian_opening")}>
+          Italian Opening
+        </button>
+      </div>
+      <h2>Middlegame</h2>
+      <div className="ButtonElements">
+        <button onClick={() => navigate("/lessons/intermediate/space")}>
+          Space
+        </button>
+        <button onClick={() => navigate("/learn/intermediate/sacrifices")}>
+          Sacrifices
+        </button>
+      </div>
+      <div className="ButtonElements">
+        <button onClick={() => navigate("/lessons/intermediate/weak_squares")}>
+          Weak Squares
+        </button>
+      </div>
+      <div className="ButtonElements">
+        <button
+          onClick={() => navigate("/lessons/intermediate/your_opponents_ideas")}
+        >
+          Your Opponent's Ideas - Intermediate
+        </button>
+      </div>
+      <div className="ButtonElements">
+        <button
+          onClick={() => navigate("/lessons/intermediate/pairing_pieces")}
+        >
+          Pairing Pieces
+        </button>
+      </div>
+
+      <h2>Endgames</h2>
+      <div className="ButtonElements">
+        <button
+          onClick={() => navigate("/learn/intermediate/distant_opposition")}
+        >
+          Distant Opposition
+        </button>
+        <div className="ButtonElements">
+          <button onClick={() => navigate("/learn/intermediate/zugzwang")}>
+            Zugzwang
+          </button>
+        </div>
+        <button
+          onClick={() => navigate("/learn/intermediate/distant_opposition")}
+        >
+          Triangulation
+        </button>
+      </div>
+      <h2>Practice Games</h2>
+      <div className="ButtonElements">
+        <button
+          onClick={() => navigate("/learn/intermediate/distant_opposition")}
+        >
+          Practice Game 1
+        </button>
+      </div>
     </div>
-    <h2>Middlegame</h2>
-    <div className="ButtonElements">
-      <button onClick={() => navigate("/lessons/beginner/pins_and_skewers")}>
-        Space
-      </button>
-    </div>
-    <div className="ButtonElements">
-      <button onClick={() => navigate("/lessons/beginner/pins_and_skewers")}>
-        Italian Opening
-      </button>
-    </div>
-    <div className="ButtonElements">
-      <button onClick={() => navigate("/lessons/intermediate/your_opponents_ideas")}>
-        Your Opponent's Ideas - Intermediate
-      </button>
-    </div>
-    
-    <h2>Endgames</h2>
-    <div className="ButtonElements">
-      <button onClick={() => navigate("/lessons/beginner/pins_and_skewers")}>
-       Distant Opposition
-      </button>
-    </div>
-  </div>
-);
-  
+  );
 }
 
 export default Intermediate;

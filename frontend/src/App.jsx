@@ -61,9 +61,20 @@ import Pins_Skewers_Practice_3 from "./pages/lessons/white/pins_and_skewers_3";
 import Pins_Skewers_Practice_4 from "./pages/lessons/white/pins_and_skewers_4";
 import Discovered_Attack from "./pages/lessons/beginner_lessons/discovered_attack";
 import Discovered_Attack_Practice from "./pages/lessons/black/discovered_attacks";
+import AttractionVDeflection from "./pages/lessons/beginner_lessons/attraction_v_deflection";
+// Pawn Chains
 import DoubledPawns from "./pages/lessons/beginner_lessons/doubled_pawns";
+import PawnChains from "./pages/lessons/beginner_lessons/Pawn_Chains";
 import OpponentsIdeas from "./pages/lessons/intermediate_lessons/opponent_idea";
 import OpponentsIdeasPractice from "./pages/lessons/black/your_opponents_ideas_practice";
+import DistantOpposition from "./pages/lessons/intermediate_lessons/Distant_Opposition";
+import Space from "./pages/lessons/intermediate_lessons/Space";
+import WeakSquares from "./pages/lessons/intermediate_lessons/Weak_Squares";
+//Intermediate Lessons
+import PairingPieces from "./pages/lessons/intermediate_lessons/pairing_pieces";
+import ItalianGame from "./pages/lessons/intermediate_lessons/ItalianGame";
+import Zugzwang from "./pages/lessons/intermediate_lessons/Zugzwang";
+import Sacrifices from "./pages/lessons/intermediate_lessons/sacrifices";
 
 function App() {
   return (
@@ -86,46 +97,186 @@ function App() {
           <Route path="/chessboard" element={<Chessboard />} />
 
           {/* Grandmaster lessons */}
-          <Route path="/lessons/international_master/EricVEmilia" element={<EricVEmilia />} />
-          <Route path="/lessons/grandmaster/MagnusVRainn" element={<MagnusVRainn />} />
-          <Route path="/lessons/grandmaster/MagnusVBardiya" element={<MagnusVBardiya />} />
-          <Route path="/lessons/grandmaster/CantyVNarayan" element={<CantyVNarayan />} />
-          <Route path="/lessons/grandmaster/MagnusVSina" element={<MagnusVSina />} />
-          <Route path="/lessons/grandmaster/AndreyVHikaru" element={<AndreyVHikaru />} />
-          <Route path="/lessons/grandmaster/TerryVRozman" element={<Terry_V_Rozman />} />
+          <Route
+            path="/lessons/international_master/EricVEmilia"
+            element={<EricVEmilia />}
+          />
+          <Route
+            path="/lessons/grandmaster/MagnusVRainn"
+            element={<MagnusVRainn />}
+          />
+          <Route
+            path="/lessons/grandmaster/MagnusVBardiya"
+            element={<MagnusVBardiya />}
+          />
+          <Route
+            path="/lessons/grandmaster/CantyVNarayan"
+            element={<CantyVNarayan />}
+          />
+          <Route
+            path="/lessons/grandmaster/MagnusVSina"
+            element={<MagnusVSina />}
+          />
+          <Route
+            path="/lessons/grandmaster/AndreyVHikaru"
+            element={<AndreyVHikaru />}
+          />
+          <Route
+            path="/lessons/grandmaster/TerryVRozman"
+            element={<Terry_V_Rozman />}
+          />
 
           {/* Beginner lessons */}
-          <Route path="/lessons/beginner/how_to_setup_chessboard" element={<HowToSetUpChessBoard />} />
-          <Route path="/lessons/beginner/how_pieces_move" element={<HowPiecesMove />} />
-          <Route path="/lessons/beginner/opening_principles" element={<OpeningPrinciples />} />
-          <Route path="/lessons/beginner/chess_notation" element={<ChessNotation />} />
-          <Route path="/lessons/beginner/checkmates_and_stalemates" element={<CheckmatesAndStalemates />} />
-          <Route path="/lessons/beginner/two_rook_checkmate" element={<TwoRookCheckmate />} />
-          <Route path="/lessons/beginner/queen_checkmate_lesson" element={<QueenCheckmateLesson />} />
+          <Route
+            path="/lessons/beginner/how_to_setup_chessboard"
+            element={<HowToSetUpChessBoard />}
+          />
+          <Route
+            path="/lessons/beginner/how_pieces_move"
+            element={<HowPiecesMove />}
+          />
+          <Route
+            path="/lessons/beginner/opening_principles"
+            element={<OpeningPrinciples />}
+          />
+          <Route
+            path="/lessons/beginner/chess_notation"
+            element={<ChessNotation />}
+          />
+          <Route
+            path="/lessons/beginner/checkmates_and_stalemates"
+            element={<CheckmatesAndStalemates />}
+          />
+          <Route
+            path="/lessons/beginner/two_rook_checkmate"
+            element={<TwoRookCheckmate />}
+          />
+          <Route
+            path="/lessons/beginner/queen_checkmate_lesson"
+            element={<QueenCheckmateLesson />}
+          />
           <Route path="/lessons/beginner/forks" element={<Forks />} />
-          <Route path="/lessons/beginner/how_to_calculate" element={<HowToCalculate />} />
-          <Route path="/lessons/beginner/forks_practice" element={<ForksPractice />} />
-          <Route path="/lessons/beginner/forks_practice_2" element={<ForksPractice2 />} />
-          <Route path="/lessons/beginner/forks_practice_3" element={<ForksPractice3 />} />
-          <Route path="/lessons/beginner/forks_practice_4" element={<ForksPractice4 />} />
-          <Route path="/lessons/beginner/hanging_pieces" element={<Hanging_Pieces />} />
-          <Route path="/lessons/beginner/hanging_pieces_practice" element={<Hanging_Pieces_Practice />} />
-          <Route path="/lessons/beginner/hanging_pieces_practice_2" element={<Hanging_Pieces_Practice_2 />} />
-          <Route path="/lessons/beginner/hanging_pieces_practice_3" element={<Hanging_Pieces_Practice_3 />} />
-          <Route path="/lessons/beginner/pins_and_skewers" element={<Pins_Skewers />} />
-          <Route path="/lessons/beginner/pins_and_skewers_practice" element={<Pins_Skewers_Practice />} />
-          <Route path="/lessons/beginner/pins_and_skewers_practice_2" element={<Pins_Skewers_Practice_2 />} />
-          <Route path="/lessons/beginner/pins_and_skewers_practice_3" element={<Pins_Skewers_Practice_3 />} />
-          <Route path="/lessons/beginner/pins_and_skewers_practice_4" element={<Pins_Skewers_Practice_4 />} />
-          <Route path="/lessons/beginner/discovered_attacks" element={<Discovered_Attack />} />
-          <Route path="/lessons/beginner/discovered_attacks_practice" element={<Discovered_Attack_Practice />} />
-          <Route path="/lessons/beginner/pawn_structure_doubled_pawns" element={<DoubledPawns />} />
-          <Route path="/lessons/beginner/beginner_lesson_one" element={<BeginnerLessonOne />} />
-          <Route path="/lessons/beginner/beginner_lesson_two" element={<BeginnerLessonTwo />} />
-          <Route path="/lessons/beginner/beginner_lesson_three" element={<BeginnerLessonThree />} />
+          <Route
+            path="/lessons/beginner/how_to_calculate"
+            element={<HowToCalculate />}
+          />
+          <Route
+            path="/lessons/beginner/forks_practice"
+            element={<ForksPractice />}
+          />
+          <Route
+            path="/lessons/beginner/forks_practice_2"
+            element={<ForksPractice2 />}
+          />
+          <Route
+            path="/lessons/beginner/forks_practice_3"
+            element={<ForksPractice3 />}
+          />
+          <Route
+            path="/lessons/beginner/forks_practice_4"
+            element={<ForksPractice4 />}
+          />
+          <Route
+            path="/lessons/beginner/hanging_pieces"
+            element={<Hanging_Pieces />}
+          />
+          <Route
+            path="/lessons/beginner/hanging_pieces_practice"
+            element={<Hanging_Pieces_Practice />}
+          />
+          <Route
+            path="/lessons/beginner/hanging_pieces_practice_2"
+            element={<Hanging_Pieces_Practice_2 />}
+          />
+          <Route
+            path="/lessons/beginner/hanging_pieces_practice_3"
+            element={<Hanging_Pieces_Practice_3 />}
+          />
+          <Route
+            path="/lessons/beginner/pins_and_skewers"
+            element={<Pins_Skewers />}
+          />
+          <Route
+            path="/lessons/beginner/pins_and_skewers_practice"
+            element={<Pins_Skewers_Practice />}
+          />
+          <Route
+            path="/lessons/beginner/pins_and_skewers_practice_2"
+            element={<Pins_Skewers_Practice_2 />}
+          />
+          <Route
+            path="/lessons/beginner/pins_and_skewers_practice_3"
+            element={<Pins_Skewers_Practice_3 />}
+          />
+          <Route
+            path="/lessons/beginner/pins_and_skewers_practice_4"
+            element={<Pins_Skewers_Practice_4 />}
+          />
+          <Route
+            path="/lessons/beginner/discovered_attacks"
+            element={<Discovered_Attack />}
+          />
+          <Route
+            path="/lessons/beginner/discovered_attacks_practice"
+            element={<Discovered_Attack_Practice />}
+          />
+          <Route
+            path="/lessons/beginner/attraction_vs_deflection"
+            element={<AttractionVDeflection />}
+          />
+          {/* Pawn structure lessons */}
+          <Route
+            path="/lessons/beginner/pawn_structure_doubled_pawns"
+            element={<DoubledPawns />}
+          />
+          <Route
+            path="/lessons/beginner/pawn_chains"
+            element={<PawnChains />}
+          />
+          {/* Interactive Beginner Lessons */}
+          <Route
+            path="/lessons/beginner/beginner_lesson_one"
+            element={<BeginnerLessonOne />}
+          />
+          <Route
+            path="/lessons/beginner/beginner_lesson_two"
+            element={<BeginnerLessonTwo />}
+          />
+          <Route
+            path="/lessons/beginner/beginner_lesson_three"
+            element={<BeginnerLessonThree />}
+          />
           {/* Intermediate lessons */}
-          <Route path="/lessons/intermediate/your_opponents_ideas" element={<OpponentsIdeas />} />
-          <Route path="/lessons/intermediate/your_opponents_ideas_practice" element={<OpponentsIdeasPractice />} />
+          <Route
+            path="/lessons/intermediate/your_opponents_ideas"
+            element={<OpponentsIdeas />}
+          />
+          <Route
+            path="/lessons/intermediate/your_opponents_ideas_practice"
+            element={<OpponentsIdeasPractice />}
+          />
+          <Route
+            path="/learn/intermediate/distant_opposition"
+            element={<DistantOpposition />}
+          />
+          <Route path="/lessons/intermediate/space" element={<Space />} />
+          <Route
+            path="/lessons/intermediate/weak_squares"
+            element={<WeakSquares />}
+          />
+          <Route
+            path="/lessons/intermediate/pairing_pieces"
+            element={<PairingPieces />}
+          />
+          <Route
+            path="/learn/intermediate/italian_opening"
+            element={<ItalianGame />}
+          />
+          <Route path="/learn/intermediate/zugzwang" element={<Zugzwang />} />
+          <Route
+            path="/learn/intermediate/sacrifices"
+            element={<Sacrifices />}
+          />
           {/* Add more intermediate lessons here */}
         </Routes>
       </main>

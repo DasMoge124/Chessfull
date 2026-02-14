@@ -139,8 +139,16 @@ function Beginner() {
           >
             Doubled Pawns
           </button>
+          <button onClick={() => navigate("/lessons/beginner/pawn_chains")}>
+            Pawn Chains
+          </button>
         </div>
-
+        <h2>More advanced Tactics</h2>
+        <div className="ButtonElements">
+          <button onClick={() => navigate("/lessons/beginner/attraction_vs_deflection")}>
+            Attraction vs. Deflection
+          </button>
+        </div>
         <h2>Practice Games</h2>
         <div className="ButtonElements">
           <button

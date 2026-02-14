@@ -10,7 +10,8 @@ import "./GameLesson.css";
 
 const STARTING_FEN = "r4b1r/1n3ppp/4p3/kP2Pb2/3N4/2N2P2/1K3BPP/8 b - - 1 27";
 
-const INITIAL_SCENARIO =  "In this position, White played the move Nd4, which may seem like a meaningless move. However, notice how the knights are taking close to the king, and the bishop is on f2, allowing it to occupy the g1-a7 diagonal. Furthermore, with that setup, White has a serious threat Black needs to avoid. How should White react to this? (Note: look for checks, captures, and attacks on both sides)";
+const INITIAL_SCENARIO =
+  "In this position, White played the move Nd4, which may seem like a meaningless move. However, notice how the knights are taking close to the king, and the bishop is on f2, allowing it to occupy the g1-a7 diagonal. Furthermore, with that setup, White has a serious threat Black needs to avoid. How should White react to this? (Note: look for checks, captures, and attacks on both sides)";
 const GAME_LESSON_MOVES = [
   {
     move: "1... Bc5",
@@ -20,11 +21,13 @@ const GAME_LESSON_MOVES = [
     hint: "Beware of the Knight on d4 moving to c6. The knight controls squares in L shapes. It might put your king in massive danger (maybe even checkmate)",
     solution: "Bc5",
     customIncorrectFeedback: {
-            "Na3": "That move works. But there is a better way to block with the piece. Note: that better move adds an additional tactic.",
-            "Rc8":"That move works, though you do lose a full rook after Nc5+ (Rxc5 is forced after Nc5+), meaning more material lost compared to the best move.",
-            "Ba3":"This loses a bishop after Kxa3",
-            "default": "By playing this move, you allow White to checkmate you after Nc5#. Remember that the bishop on f2 is controlling the g1-a7 diagonal."
-        }
+      Nc5: "That move works. But there is a better way to block with the piece. Note: that better move adds an additional tactic.",
+      Rc8: "That move works, though you do lose a full rook after Nc5+ (Rxc5 is forced after Nc5+), meaning more material lost compared to the best move.",
+      Ba3: "This loses a bishop after Kxa3",
+      Kb6: "This move also works.  But there is a better way to block with the piece. Note: that better move adds an additional tactic.",
+      default:
+        "By playing this move, you allow White to checkmate you after Nc5#. Remember that the bishop on f2 is controlling the g1-a7 diagonal.",
+    },
   },
   {
     move: "2. Nc5+",
@@ -38,14 +41,16 @@ const GAME_LESSON_MOVES = [
   {
     move: "2... Kb6",
     player: "Black",
-    explanation: "This is the only move that works and moves the king to safety. If the bishops trade, you can take back with either the knight or the king (though the knight is preferred over an exposed king).",
+    explanation:
+      "This is the only move that works and moves the king to safety. If the bishops trade, you can take back with either the knight or the king (though the knight is preferred over an exposed king).",
     hint: "Bishops are not the only squares that control diagonal squares. Pawns can also control diagonal adjacent squares (meaning a diagonal square right next to the pawn).",
     solution: "Kb6",
     customIncorrectFeedback: {
-        "Ka6": "This is an illegal move. The Black king still remains in check. Don’t forget that pawns control diagonal adjacent squares in front of them.",
-        "default": "This is an illegal move. The Black king still remains in check."
-    }
-  }
+      Ka6: "This is an illegal move. The Black king still remains in check. Don’t forget that pawns control diagonal adjacent squares in front of them.",
+      default:
+        "This is an illegal move. The Black king still remains in check.",
+    },
+  },
 ];
 
 // =========================================================
@@ -84,7 +89,7 @@ function CantyvNarayan() {
       setShowContinue(true);
       // Note: Do NOT set isAwaitingUserClick here. That is set only after White's move is processed.
     },
-    [lesson]
+    [lesson],
   );
 
   useEffect(() => {
@@ -172,13 +177,16 @@ function CantyvNarayan() {
 
     if (token) {
       try {
-        const response = await fetch(`${url}api/progress/complete/${lessonId}`, {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
-          }
-        });
+        const response = await fetch(
+          `${url}api/progress/complete/${lessonId}`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          },
+        );
 
         if (response.ok) {
           console.log("Progress saved successfully!");

@@ -134,7 +134,7 @@ const GAME_LESSON_MOVES = [
     {
         move: "10. dxc4",
         player: "White",
-        explanation:"Eventually, White played dxc4, resulting in doubled pawns. Additionally, this allows Black to win a hanging piece. What move did Black play to win that hanging piece?",
+        explanation:"Eventually, White played dxc4, resulting in doubled pawns and destroying a pawn chain. Additionally, this allows Black to win a hanging piece. What move did Black play to win that hanging piece?",
         fen: "r1bqk2r/ppp2pp1/1b1p1n1p/1P2p3/P1P1P3/2P2N2/5PPP/RNBQ1RK1 b kq - 0 10",
     },
     {
