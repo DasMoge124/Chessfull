@@ -153,8 +153,8 @@ const Imbalances = () => {
         <br/>
         Finally, White has one passed pawn, but Black has zero.
         <br/>
-        Therefore, we conclude that White is better in this position.
-        
+        Therefore, we conclude that White is better in this position. 
+
 
         </p>
       <div className="ButtonElements">
