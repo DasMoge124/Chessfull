@@ -131,7 +131,10 @@ p:first-of-type {
   display: inline-block;
   margin: 0 1%;
 }
-
+.najdorf{
+  width: 30%;
+  height: 30%;
+}
 /* --- Button Styling --- */
 .ButtonElements {
   text-align: center;

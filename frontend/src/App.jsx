@@ -74,7 +74,8 @@ import WeakSquares from "./pages/lessons/intermediate_lessons/Weak_Squares";
 import PairingPieces from "./pages/lessons/intermediate_lessons/pairing_pieces";
 import ItalianGame from "./pages/lessons/intermediate_lessons/ItalianGame";
 import Zugzwang from "./pages/lessons/intermediate_lessons/Zugzwang";
-import Sacrifices from "./pages/lessons/intermediate_lessons/sacrifices";
+import Tactical_Sacrifices from "./pages/lessons/intermediate_lessons/Tactical_Sacrifices";
+import Positional_Sacrifices from "./pages/lessons/intermediate_lessons/Positional_Sacrifices";
 
 function App() {
   return (
@@ -265,6 +266,10 @@ function App() {
             element={<WeakSquares />}
           />
           <Route
+            path="/learn/intermediate/Positional_Sacrifices"
+            element={<Positional_Sacrifices />}
+          />
+          <Route
             path="/lessons/intermediate/pairing_pieces"
             element={<PairingPieces />}
           />
@@ -274,8 +279,8 @@ function App() {
           />
           <Route path="/learn/intermediate/zugzwang" element={<Zugzwang />} />
           <Route
-            path="/learn/intermediate/sacrifices"
-            element={<Sacrifices />}
+            path="/learn/intermediate/Tactical_Sacrifices"
+            element={<Tactical_Sacrifices />}
           />
           {/* Add more intermediate lessons here */}
         </Routes>

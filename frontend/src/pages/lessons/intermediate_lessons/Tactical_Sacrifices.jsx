@@ -5,15 +5,15 @@ import Sacrifice1 from "./Images/sacrifice1.png";
 import Sacrifice2 from "./Images/sacrifice2.png";
 import "./lesson.css";
 
-const Sacrifice = () => {
+const Tactical_Sacrifices = () => {
   const navigate = useNavigate();
 
   return (
     <div className="lesson-container">
-      <h1>Sacrifices</h1>
-      <h2>What is a sacrifice?</h2>
+      <h1><br/><br/>Tactical Sacrifices</h1>
+      <h2>What is a Tactical Sacrifice?</h2>
       <p>
-        A tactic involving giving up material in the short-term, to gain an
+        A tactical sacrifice involves temporarily giving up material in the short-term, to gain an
         advantage again after a forced sequence of moves.
       </p>
       <h2>Example</h2>
@@ -54,4 +54,4 @@ const Sacrifice = () => {
   );
 };
 
-export default Sacrifice;
+export default Tactical_Sacrifices;
