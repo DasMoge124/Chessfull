@@ -84,15 +84,12 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-
-  /* FINAL vertical alignment */
   transform: translateY(0px);
 }
 
-/* Feedback */
+/* Feedback box - LIGHTER BLUE */
 .feedback-box {
-  background: rgba(25, 118, 210, 0.9);
-  backdrop-filter: blur(4px);
+  background-color: #0059b3; /* lighter blue (~15% lighter than #004080) */
   color: #fff;
   padding: 24px;
   border-radius: 12px;
@@ -100,9 +97,10 @@
   font-size: 1.05rem;
   line-height: 1.6;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: none;
 }
 
-/* Messages */
+/* Lesson messages */
 .lesson-message {
   padding: 16px;
   border-radius: 8px;
@@ -110,14 +108,18 @@
   animation: fadeIn 0.4s ease-out;
 }
 
+/* Lesson messages - INFO - LIGHTER BLUE */
 .lesson-message.info {
-  background-color: rgba(0, 64, 128, 0.85);
+  background-color: #0059b3; /* lighter blue (~15% lighter) */
   border: 1px solid #0055cc;
+  color: #fff;
 }
 
+/* Lesson messages - ERROR */
 .lesson-message.error {
-  background-color: rgba(139, 0, 0, 0.85);
+  background-color: #8b0000; /* solid red */
   border: 1px solid #ff4444;
+  color: #fff;
 }
 
 /* Hint / solution buttons */
@@ -170,14 +172,14 @@
   transform: scale(1.02);
 }
 
-/* End message */
+/* End message - DARKER GREEN */
 .game-ended-message {
   font-size: 1.4rem;
   font-weight: bold;
   color: #aaffaa;
   text-align: center;
   padding: 20px;
-  background: rgba(0, 255, 0, 0.1);
+  background-color: #00e600; /* slightly darker green (~10% darker) */
   border-radius: 10px;
 }
 

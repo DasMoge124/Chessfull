@@ -29,7 +29,7 @@ const GAME_LESSON_MOVES = [
     explanation: "Strong tactical Bd4 hits the queen, knight, and rook via a three-piece pin.",
     fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R b - - 2 17",
     hint: "Look for pins/skewers and attacks on high-value pieces.",
-    solution: "Bd4 is a strong move pinning Black’s queen to the rook.",
+    solution: "Bd4 is a strong move pinning Black's queen to the rook.",
   },
   {
     move: "16. Qg5",
@@ -37,7 +37,7 @@ const GAME_LESSON_MOVES = [
     explanation: "Black played Qg5. Find the final blow to end the game.",
     fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2P1/2P2Q2/PP1N1P1P/2KR3R w - - 2 17",
     hint: "Push pawns to open lines for attack.",
-    solution: "h4 threatens to open lines and forces Black’s resignation.",
+    solution: "h4 threatens to open lines and forces Black's resignation.",
   },
   {
     move: "18. h4",
@@ -45,7 +45,7 @@ const GAME_LESSON_MOVES = [
     explanation: "The final blow! This threatens the queen, rook, knight. Black resigned.",
     fen: "r1b4r/p3kp1p/2p1pnp1/3p2q1/3B2PP/2P2Q2/PP1N1P2/2KR3R b - h3 0 17",
     hint: "Push pawns to open lines for attack.",
-    solution: "h4 threatens to open lines and forces Black’s resignation.",
+    solution: "h4 threatens to open lines and forces Black's resignation.",
   },
 ];
 
@@ -67,22 +67,20 @@ function EricVEmilia() {
 
   useEffect(() => {
     if (lesson && lesson.player === "Black" && !gameEnded) {
-      const timer = setTimeout(() => {
-        setLessonMessage({
-          type: "info",
-          text: `Black played ${lesson.move.split(" ")[1]}.`,
-          explanation: lesson.explanation,
-        });
-        setGame(new Chess(lesson.fen));
-        setFeedback(lesson.explanation); 
-        setShowContinue(false);
-        setShowHint(false);
-        setShowSolution(false);
-        if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
-          setCurrentLessonIndex((i) => i + 1);
-        }
-      }, 600);
-      return () => clearTimeout(timer);
+      // Show Black's move immediately without delay
+      setLessonMessage({
+        type: "info",
+        text: `Black played ${lesson.move.split(" ")[1]}.`,
+        explanation: lesson.explanation,
+      });
+      setGame(new Chess(lesson.fen));
+      setFeedback(""); // Clear feedback to avoid duplicate display
+      setShowContinue(false);
+      setShowHint(false);
+      setShowSolution(false);
+      if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
+        setCurrentLessonIndex((i) => i + 1);
+      }
     }
   }, [currentLessonIndex, gameEnded, lesson]);
 
@@ -90,7 +88,13 @@ function EricVEmilia() {
     if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
       const nextIndex = currentLessonIndex + 1;
       setCurrentLessonIndex(nextIndex);
-      setFeedback(GAME_LESSON_MOVES[nextIndex].explanation); 
+      // Only set feedback if the next move is a White move (player's turn)
+      // Don't set it for Black moves since they'll show in lessonMessage
+      if (GAME_LESSON_MOVES[nextIndex].player === "White") {
+        setFeedback(GAME_LESSON_MOVES[nextIndex].explanation);
+      } else {
+        setFeedback(""); // Clear feedback for Black moves
+      }
       setLessonMessage(null);
       setShowContinue(false);
       setShowHint(false);
