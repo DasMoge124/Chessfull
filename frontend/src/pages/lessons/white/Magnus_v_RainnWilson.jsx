@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
-import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
-import Chessboard from "./components/Chessboard"; // Ensure path is correct
+import "./Lesson.css";
+import Chessboard from "./components/Chessboard";
+import ParticleBackground from "../../../components/Particles"; 
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
 
 const STARTING_FEN =
-  "rn1qk1nr/ppp1ppbp/3p2p1/8/2BPP1b1/5N2/PPP2PPP/RNBQK2R w KQkq - 2 5"; //1
+  "rn1qk1nr/ppp1ppbp/3p2p1/8/2BPP1b1/5N2/PPP2PPP/RNBQK2R w KQkq - 2 5";
 
 const GAME_LESSON_MOVES = [
   {
@@ -16,15 +17,15 @@ const GAME_LESSON_MOVES = [
     player: "White",
     explanation:
       "Congrats. You are on the right track. Lets continue to the next move.",
-    fen: "rn1qk1nr/ppp1ppbp/3p2p1/8/2BPP1b1/5N2/PPP2PPP/RNBQK2R b KQkq - 0 1", // 2
+    fen: "rn1qk1nr/ppp1ppbp/3p2p1/8/2BPP1b1/5N2/PPP2PPP/RNBQK2R b KQkq - 0 1",
     hint: "Look for checks, captures and attacks. After looking for these moves, try to calculate a few moves ahead to see what can happen next",
     solution:
       "The correct move is Bf7, attacking the pawn and creating a checkmate.",
   },
   {
-    move: "5... Kxf7", // current scneario before
+    move: "5... Kxf7",
     player: "Black",
-    explanation: "Black plays 2...Kf7 killing the Magnus's bishop.", // describes current situation
+    explanation: "Black plays 2...Kf7 killing the Magnus's bishop.",
     fen: "rn1q2nr/ppp1pkbp/3p2p1/8/3PP1b1/5N2/PPP2PPP/RNBQK2R w KQ - 0 6",
     hint: "Look for checks, captures, and attacks. After looking for these moves, try to calculate a few moves ahead to see what can happen next",
     solution: "Black played Kf7 to capture the bishop on f7.",
@@ -52,7 +53,7 @@ const GAME_LESSON_MOVES = [
     move: "4. Qxg4",
     player: "White",
     explanation:
-      "This may seem confusing at first but let’s go through this step by step. After Bxf7+, the f7 square eventually weakens, hindering Rainn’s king’s safety. Additionally, since Rainn’s king is in check, Rainn must move his king away. If Rainn plays either Kd7 or Kf8, Magnus could simply retreat his bishop to a square like b3 or c4 and potentially kick the black bishop on g4 and create more attacks on the kingside.  Now Magnus is up a pawn, and Rainn’s king's safety worsened. Additionally, most of Rainn’s pieces are passive compared to White’s pieces.",
+      "This may seem confusing at first but let's go through this step by step. After Bxf7+, the f7 square eventually weakens, hindering Rainn's king's safety. Additionally, since Rainn's king is in check, Rainn must move his king away. If Rainn plays either Kd7 or Kf8, Magnus could simply retreat his bishop to a square like b3 or c4 and potentially kick the black bishop on g4 and create more attacks on the kingside.  Now Magnus is up a pawn, and Rainn's king's safety worsened. Additionally, most of Rainn's pieces are passive compared to White's pieces.",
     fen: "rnbqk1nr/ppp1p1bp/3p2p1/6N1/3PP3/8/PPP2PPP/RNBQK2R w KQkq - 0 1",
     hint: "Look for checks, captures, and attacks. You could achieve the following: capturing a hanging piece or fork two pieces. But there is only one best move in this position. Also, don't forget about what your opponent could do in response to your move.",
     solution: "Black moved Ke8 to escape the check.",
@@ -88,7 +89,7 @@ const GAME_LESSON_MOVES = [
     move: "8. Ne6",
     player: "White",
     explanation:
-      "After Ne6, Magnus managed to fork both Rainn’s queen and bishop.",
+      "After Ne6, Magnus managed to fork both Rainn's queen and bishop.",
     fen: "r2qk2r/pppnp1bp/3p2pn/6N1/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 3 9",
     hint: "Notice any two pieces placed in a certain manner, specifically in a way that a piece can control the squares of both pieces?",
     solution: "Black moved Ke8 to escape the check.",
@@ -97,7 +98,7 @@ const GAME_LESSON_MOVES = [
     move: "9. Qc8",
     player: "Black",
     explanation:
-      "Since the knight on h6 had no defenders, Magnus simply takes that knight with his bishop. Furthermore, there were no meaningful checks or threats in that position for Rainn or Magnus, AND Rainn’s pieces are still passive since most are either on the 7th or 8th rank.",
+      "Since the knight on h6 had no defenders, Magnus simply takes that knight with his bishop. Furthermore, there were no meaningful checks or threats in that position for Rainn or Magnus, AND Rainn's pieces are still passive since most are either on the 7th or 8th rank.",
     fen: "r1q1k2r/pppnp1bp/3pN1pn/8/3PP3/7Q/PPP2PPP/RNB1K2R w KQ - 5 10",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -106,7 +107,7 @@ const GAME_LESSON_MOVES = [
     move: "10. Nxg7+",
     player: "White",
     explanation:
-      "Magnus moves his pawn from d4 to d5 to provide an extra defender for the knight on e6. Notice how the knight on e6 has two defenders while being attacked by two of Rainn’s pieces. A general rule of thumb for whether a defended piece can be captured is: </br>• If a piece has more or the same number of defenders than attackers AND holds lower or equal value compared to its attackers, that piece cannot be captured. </br>• If a piece has fewer defenders than attackers OR holds a higher value compared to its attackers, the piece can be captured.",
+      "Magnus moves his pawn from d4 to d5 to provide an extra defender for the knight on e6. Notice how the knight on e6 has two defenders while being attacked by two of Rainn's pieces. A general rule of thumb for whether a defended piece can be captured is: </br>• If a piece has more or the same number of defenders than attackers AND holds lower or equal value compared to its attackers, that piece cannot be captured. </br>• If a piece has fewer defenders than attackers OR holds a higher value compared to its attackers, the piece can be captured.",
     fen: "r1q4r/ppp1pk1p/3pNnpB/3P4/4P3/2N4Q/PPP2PPP/R3K2R b KQ - 0 1",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -141,7 +142,7 @@ const GAME_LESSON_MOVES = [
     move: "10. Bxh6",
     player: "White",
     explanation:
-      "Since the knight on h6 had no defenders, Magnus simply takes that knight with his bishop. Furthermore, there were no meaningful checks or threats in that position for Rainn or Magnus, AND Rainn’s pieces are still passive since most are either on the 7th or 8th rank.",
+      "Since the knight on h6 had no defenders, Magnus simply takes that knight with his bishop. Furthermore, there were no meaningful checks or threats in that position for Rainn or Magnus, AND Rainn's pieces are still passive since most are either on the 7th or 8th rank.",
     fen: "r1q1k2r/pppnp2p/3pN1pB/8/3PP3/7Q/PPP2PPP/RN2K2R b KQ - 0 12",
     hint: "Look for all checks, captures, and attacks. It'll be helpful if you know how long-range pieces move.",
     solution: "Black moved Ke8 to escape the check.",
@@ -176,7 +177,7 @@ const GAME_LESSON_MOVES = [
     move: "10. d5",
     player: "White",
     explanation:
-      "Magnus moves his pawn from d4 to d5 to provide an extra defender for the knight on e6. Notice how the knight on e6 has two defenders while being attacked by two of Rainn’s pieces. A general rule of thumb for whether a defended piece can be captured is: </br>• If a piece has more or the same number of defenders than attackers AND holds lower or equal value compared to its attackers, that piece cannot be captured. </br>• If a piece has fewer defenders than attackers OR holds a higher value compared to its attackers, the piece can be captured.",
+      "Magnus moves his pawn from d4 to d5 to provide an extra defender for the knight on e6. Notice how the knight on e6 has two defenders while being attacked by two of Rainn's pieces. A general rule of thumb for whether a defended piece can be captured is: </br>• If a piece has more or the same number of defenders than attackers AND holds lower or equal value compared to its attackers, that piece cannot be captured. </br>• If a piece has fewer defenders than attackers OR holds a higher value compared to its attackers, the piece can be captured.",
     fen: "r1q4r/ppp1pk1p/3pNnpB/8/3PP3/2N4Q/PPP2PPP/R3K2R w KQ - 3 14",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -233,12 +234,11 @@ const GAME_LESSON_MOVES = [
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
   },
-
   {
     move: "22. Ke8",
     player: "Black",
     explanation:
-      "Ke8 is a better option since it avoids a square that Magnus’s queen could control. If Rainn played Kg8, Rainn would lose via checkmate after Qe6# since Magnus’s bishop controls the f8 and g7 squares while Magnus’s queen controls the f7 and g8 squares.",
+      "Ke8 is a better option since it avoids a square that Magnus's queen could control. If Rainn played Kg8, Rainn would lose via checkmate after Qe6# since Magnus's bishop controls the f8 and g7 squares while Magnus's queen controls the f7 and g8 squares.",
     fen: "r3k2r/pp2p2p/3p1npB/3P2N1/2q5/2N4Q/PPP2PPP/R4RK1 w - - 3 18",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -247,7 +247,7 @@ const GAME_LESSON_MOVES = [
     move: "23. Qe6",
     player: "White",
     explanation:
-      "After Ke8, Magnus plays Qe6, which puts Rainn’s king in a dangerous situation considering the number of white pieces near the king AND puts pressure on the e7 pawn, which will be important later in the game. Additionally, since both of the rooks are connected and have more squares to move around, Magnus could eventually bring his rooks out to join the attack. Now let's continue.",
+      "After Ke8, Magnus plays Qe6, which puts Rainn's king in a dangerous situation considering the number of white pieces near the king AND puts pressure on the e7 pawn, which will be important later in the game. Additionally, since both of the rooks are connected and have more squares to move around, Magnus could eventually bring his rooks out to join the attack. Now let's continue.",
     fen: "r3k2r/pp2p2p/3pQnpB/3P2N1/2q5/2N5/PPP2PPP/R4RK1 b - - 4 18",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -314,7 +314,7 @@ const GAME_LESSON_MOVES = [
     move: "30. Rfe1",
     player: "White",
     explanation:
-      "Now we can see that the e-7 pawn has 3 attackers (the 2-rook battery on the e file and the Queen on f7) AND 2 defenders (the king on d7 and the rook on e8). In this position, Rainn will lose his pawn considering that there are more attackers than defenders. Furthermore, since the king is one of the defenders, White may have an easier time attacking the king after the e7 pawn is captured. </br>IMPORTANT NOTE: the tail of a pawn chain is a similar pawn weakness to an isolated pawn, considering that the tail’s primary function is defending other pawns and has no other defenders.",
+      "Now we can see that the e-7 pawn has 3 attackers (the 2-rook battery on the e file and the Queen on f7) AND 2 defenders (the king on d7 and the rook on e8). In this position, Rainn will lose his pawn considering that there are more attackers than defenders. Furthermore, since the king is one of the defenders, White may have an easier time attacking the king after the e7 pawn is captured. </br>IMPORTANT NOTE: the tail of a pawn chain is a similar pawn weakness to an isolated pawn, considering that the tail's primary function is defending other pawns and has no other defenders.",
     fen: "4r2r/pp1kpQ1p/3pRnpB/3P2N1/3q4/2N5/PPP2PPP/4R1K1 b - - 12 22",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -331,7 +331,7 @@ const GAME_LESSON_MOVES = [
     move: "33. Rxe7+",
     player: "White",
     explanation:
-      "Firstly, since the pawn had more attackers than defenders, Magnus captures the pawn with his rook, which eventually forces a rook exchange as shown. Since Rainn’s king is in check, Rainn had to move his king, which he did by playing Kc8.",
+      "Firstly, since the pawn had more attackers than defenders, Magnus captures the pawn with his rook, which eventually forces a rook exchange as shown. Since Rainn's king is in check, Rainn had to move his king, which he did by playing Kc8.",
     fen: "4r2r/pp1kRQ1p/3p2pB/3P2N1/3q2n1/2N5/PPP2PPP/4R1K1 b - - 0 23",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -380,7 +380,7 @@ const GAME_LESSON_MOVES = [
     move: "37. Qxe8+",
     player: "White",
     explanation:
-      "After Rainn played Kc8, Magnus decided to exchange the rooks again, while also checking Rainn’s king.",
+      "After Rainn played Kc8, Magnus decided to exchange the rooks again, while also checking Rainn's king.",
     fen: "2k1Q3/pp5p/3p2pB/3P2N1/3q2n1/2N5/PPP2PPP/6K1 b - - 0 26",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -389,7 +389,7 @@ const GAME_LESSON_MOVES = [
     move: "37. Kc7",
     player: "Black",
     explanation:
-      "Now Rainn must move his king; since Magnus’s queen is controlling the d7 and d8 squares, Rainn’s only move is Kc7.",
+      "Now Rainn must move his king; since Magnus's queen is controlling the d7 and d8 squares, Rainn's only move is Kc7.",
     fen: "4Q3/ppk4p/3p2pB/3P2N1/3q2n1/2N5/PPP2PPP/6K1 w - - 1 27",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -407,7 +407,7 @@ const GAME_LESSON_MOVES = [
     move: "39. Kb6",
     player: "Black",
     explanation:
-      "Rainn’s king had no other square to move other than b6 since that is the only adjacent square not controlled by a white piece.",
+      "Rainn's king had no other square to move other than b6 since that is the only adjacent square not controlled by a white piece.",
     fen: "4Q3/pp5p/1k1pN1pB/3P4/3q2n1/2N5/PPP2PPP/6K1 w - - 3 28",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
@@ -416,13 +416,12 @@ const GAME_LESSON_MOVES = [
     move: "41. Qb5#",
     player: "White",
     explanation:
-      "Most people may just take the queen, however Magnus finishes Rainn off with Qb5#. <br>Notice that the king has no more squares to move to. The white queen checks the king and controls the a6, a5, c6, and c5 squares. Additionally, the knight controls the c5 and c7 squares. </br>Furthermore, when finding a mate in 5 or more moves, a general pattern to consider is to always look for checks, especially checks after the first check move you calculate, and how exposed your king is. If your opponent’s king is exposed and many of your pieces are surrounding it, then it might be easier to find mate in 5 or more. That also applies to finding mate in any number of moves. So remember, always look for checks!",
+      "Most people may just take the queen, however Magnus finishes Rainn off with Qb5#. <br>Notice that the king has no more squares to move to. The white queen checks the king and controls the a6, a5, c6, and c5 squares. Additionally, the knight controls the c5 and c7 squares. </br>Furthermore, when finding a mate in 5 or more moves, a general pattern to consider is to always look for checks, especially checks after the first check move you calculate, and how exposed your king is. If your opponent's king is exposed and many of your pieces are surrounding it, then it might be easier to find mate in 5 or more. That also applies to finding mate in any number of moves. So remember, always look for checks!",
     fen: "8/pp5p/1k1pN1pB/1Q1P4/3q2n1/2N5/PPP2PPP/6K1 b - - 4 28",
     hint: "Push pawns to open lines for attack.",
     solution: "Black moved Ke8 to escape the check.",
   },
 ];
-
 
 // =========================================================
 // 3. MAIN LESSON COMPONENT
@@ -436,71 +435,64 @@ function MagnusVRainn() {
   const [showContinue, setShowContinue] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
-  // Feedback box state
+  
   const [feedback, setFeedback] = useState(
     "The game starts with the sequence: 1. e4 g6 2. Nf3 d6 3. d4 Bg7 4. Bc4 </br>Both sides are doing well as of right now and the position is essentially even. However, Magnus does have a slightly better advantage since both the e-pawn and d-pawn are controlling the center with the help of the light-squared bishop  - which is also eyeing the f7 square - and the knight on f3; Magnus can potentially castle early, activate his knight on b1 and activate his dark-squared bishop. On the other hand, Rainn does have a fianchettoed bishop on g7 and has advanced his d-pawn to d6. Its really important to activate most of your pieces and control the center in the opening phase since it will be easier to attack your opponent</br></br>Rainn made a vital mistake by playing Bg4. At first, this may seem like an annoying pin that White must respond to immediately by playing a move like h3. However, Magnus found it as an opportunity to temporarily be up in material and potentially create a threat that could win even more material. How does he do it?</br>"
   );
+
   const localUrl = "http://localhost:8085/";
   const url = localUrl;
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
 
   useEffect(() => {
     if (lesson && lesson.player === "Black" && !gameEnded) {
+      // Show Black's move immediately without delay
       setLessonMessage({
         type: "info",
         text: `Black played ${lesson.move.split(" ")[1]}.`,
         explanation: lesson.explanation,
       });
-      const tempGame = new Chess(lesson.fen);
-      setGame(tempGame);
+      setGame(new Chess(lesson.fen));
+      setFeedback(""); // Clear feedback to avoid duplicate display
       setShowContinue(false);
       setShowHint(false);
       setShowSolution(false);
-      // Instantly advance to next move (no cooldown)
       if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
         setCurrentLessonIndex((i) => i + 1);
       }
     }
   }, [currentLessonIndex, gameEnded, lesson]);
 
-  const advanceLesson = async() => {
+  const advanceLesson = async () => {
     if (currentLessonIndex < GAME_LESSON_MOVES.length - 1) {
-      setCurrentLessonIndex((i) => i + 1);
+      const nextIndex = currentLessonIndex + 1;
+      setCurrentLessonIndex(nextIndex);
+      // Only set feedback if the next move is a White move (player's turn)
+      // Don't set it for Black moves since they'll show in lessonMessage
+      if (GAME_LESSON_MOVES[nextIndex].player === "White") {
+        setFeedback(GAME_LESSON_MOVES[nextIndex].explanation);
+      } else {
+        setFeedback(""); // Clear feedback for Black moves
+      }
       setLessonMessage(null);
       setShowContinue(false);
       setShowHint(false);
       setShowSolution(false);
     } else {
       setGameEnded(true);
-      setLessonMessage({
-        type: "info",
-        text: "Lesson Complete! Black resigned after 17. h4.",
-      });
-       // 2. Define the Lesson ID and get the Token
-      const lessonId = "magnus_v_rainn_002"; // Unique ID for this specific page
+      setLessonMessage({ type: "info", text: "Lesson Complete!" });
+      const lessonId = "magnus_v_rainn_002";
       const token = localStorage.getItem("token")?.trim();
-
-      // 3. Send to Backend
       if (token) {
         try {
-          const response = await fetch(url + `api/progress/complete/${lessonId}`, {
+          await fetch(url + `api/progress/complete/${lessonId}`, {
             method: "POST",
             headers: { 
               "Authorization": `Bearer ${token}`,
               "Content-Type": "application/json"
             }
           });
-
-          if (response.ok) {
-            console.log("Progress saved successfully!");
-          } else {
-            console.error("Failed to save progress. Status:", response.status);
-          }
-        } catch (err) {
-          console.error("Error connecting to progress API:", err);
-        }
-      } else {
-        console.warn("No token found. Progress not saved. (User might be a guest)");
+        } catch (err) { console.error(err); }
       }
     }
   };
@@ -516,213 +508,63 @@ function MagnusVRainn() {
   };
 
   return (
-    <div
-      className="page-container"
-      style={{
-        margin: 0,
-        padding: 20,
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-        backgroundColor: "#1e1e1e",
-        color: "#eee",
-      }}
-    >
-      {/* HEADER */}
-      <div
-        className="header-content"
-        style={{
-          display: "flex",
-          width: 800,
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          marginTop: 40,
-          marginBottom: 20,
-        }}
-      >
-        <div
-          className="main-title"
-          style={{
-            fontSize: 36,
-            fontWeight: "bold",
-            width: 320,
-            lineHeight: 1.2,
-          }}
-        >
-          Magnus Carlsen vs.
-          <br />
-          Rainn Wilson
-          <br />
-          (Interactive Lesson)
+    <div className="page-container">
+      <ParticleBackground />
+      
+      {/* Content Container keeps everything in the center/side-by-side */}
+      <div className="main-content-wrapper">
+        <h1 className="advanced-page-title">Advanced Page</h1>
+
+        <div className="header-content">
+          <div className="main-title">
+            Magnus Carlsen vs. Rainn Wilson<br />
+            (Interactive Lesson)
+          </div>
+          <div className="lesson-info-box">
+            <p>This is a real game from 2014. You'll follow the moves, get hints, and solutions along the way. Play the moves as White.</p>
+            <p>Click on a piece, then the square you want to move to.</p>
+          </div>
         </div>
-        <div
-          className="lesson-info-box"
-          style={{ fontSize: 14, lineHeight: 1.4, width: 400, marginTop: 10 }}
-        >
-          <p>
-            This is a real game from 2014. You'll follow the moves, get hints,
-            and solutions along the way. Play the moves as White.
-          </p>
-          <p>Click on a piece, then the square you want to move to.</p>
+
+        <div className="lesson-area">
+          <div className="chessboard-container">
+            <Chessboard
+              game={game}
+              setGame={setGame}
+              currentLessonIndex={currentLessonIndex}
+              lessonMoves={GAME_LESSON_MOVES}
+              setLessonMessage={setLessonMessage}
+              setShowContinue={setShowContinue}
+              showContinue={showContinue}
+              clearFeedback={() => setFeedback("")}
+            />
+          </div>
+
+          <div className="lesson-content">
+            {feedback && !lessonMessage && <div className="feedback-box" dangerouslySetInnerHTML={{ __html: feedback }} />}
+            
+            {lessonMessage && (
+              <div className={`lesson-message ${lessonMessage.type}`}>
+                <strong>{lessonMessage.text}</strong>
+                {lessonMessage.explanation && <p>{lessonMessage.explanation}</p>}
+              </div>
+            )}
+
+            {lessonMessage?.type === "error" && (
+              <div className="hint-solution-buttons">
+                <button className="btn-hint" onClick={toggleHint}>{showHint ? "Hide Hint" : "Show Hint"}</button>
+                <button className="btn-solution" onClick={toggleSolution}>{showSolution ? "Hide Solution" : "Show Solution"}</button>
+              </div>
+            )}
+
+            {showHint && lessonMessage?.type === "error" && <div className="hint-text"><strong>Hint:</strong> {lesson.hint}</div>}
+            {showSolution && lessonMessage?.type === "error" && <div className="solution-text"><strong>Solution:</strong> {lesson.solution}</div>}
+
+            {showContinue && !gameEnded && <button className="next-move-button" onClick={advanceLesson}>Next Move</button>}
+            {gameEnded && <div className="game-ended-message">Lesson Complete! Black resigned after Qb5#.</div>}
+          </div>
         </div>
       </div>
-
-      {/* CHESSBOARD */}
-      <Chessboard
-        game={game}
-        setGame={setGame}
-        currentLessonIndex={currentLessonIndex}
-        lessonMoves={GAME_LESSON_MOVES}
-        setLessonMessage={setLessonMessage}
-        setShowContinue={setShowContinue}
-        showContinue={showContinue}
-        clearFeedback={() => setFeedback("")}
-      />
-
-      {/* FEEDBACK BOX (blue, temporary) */}
-      {feedback && (
-        <div
-          className="feedback-box"
-          style={{
-            background: "#1976d2",
-            color: "#fff",
-            padding: "16px",
-            borderRadius: "8px",
-            marginTop: "16px",
-            fontSize: "1.1em",
-            boxShadow: "0 2px 8px rgba(25, 118, 210, 0.15)",
-            maxWidth: "400px",
-            textAlign: "left",
-          }}
-          dangerouslySetInnerHTML={{ __html: feedback }}
-        />
-      )}
-
-      {/* LESSON MESSAGE */}
-      {lessonMessage && (
-        <div
-          className={`lesson-message ${lessonMessage.type}`}
-          style={{
-            marginTop: 20,
-            maxWidth: 700,
-            padding: 12,
-            backgroundColor:
-              lessonMessage.type === "error"
-                ? "#8b0000"
-                : lessonMessage.type === "success"
-                  ? "#006400"
-                  : "#004080",
-            borderRadius: 8,
-          }}
-        >
-          <strong>{lessonMessage.text}</strong>
-          {lessonMessage.explanation && (
-            <p style={{ marginTop: 8 }}>{lessonMessage.explanation}</p>
-          )}
-        </div>
-      )}
-
-      {/* HINT & SOLUTION BUTTONS */}
-      {lessonMessage?.type === "error" && (
-        <div
-          className="hint-solution-buttons"
-          style={{ marginTop: 10, display: "flex", gap: 10 }}
-        >
-          <button
-            onClick={toggleHint}
-            style={{
-              backgroundColor: showHint ? "#646401ff" : "#646401ff",
-              color: "#eee",
-              padding: "8px 12px",
-              borderRadius: 5,
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            {showHint ? "Hide Hint" : "Show Hint"}
-          </button>
-          <button
-            onClick={toggleSolution}
-            style={{
-              backgroundColor: showSolution ? "#009b39ff" : "#009b39ff",
-              color: "#eee",
-              padding: "8px 12px",
-              borderRadius: 5,
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            {showSolution ? "Hide Solution" : "Show Solution"}
-          </button>
-        </div>
-      )}
-
-      {/* HINT & SOLUTION TEXT */}
-      {showHint && lessonMessage?.type === "error" && (
-        <div
-          className="hint-text"
-          style={{
-            marginTop: 10,
-            maxWidth: 700,
-            padding: 12,
-            backgroundColor: "#646401ff",
-            borderRadius: 8,
-            fontStyle: "italic",
-          }}
-        >
-          <strong>Hint:</strong> {lesson.hint}
-        </div>
-      )}
-      {showSolution && lessonMessage?.type === "error" && (
-        <div
-          className="solution-text"
-          style={{
-            marginTop: 10,
-            maxWidth: 700,
-            padding: 12,
-            backgroundColor: "#009b39ff",
-            borderRadius: 8,
-            fontStyle: "italic",
-          }}
-        >
-          <strong>Solution:</strong> {lesson.solution}
-        </div>
-      )}
-
-      {/* CONTINUE / NEXT MOVE BUTTON */}
-      {showContinue && !gameEnded && (
-        <button
-          onClick={advanceLesson}
-          style={{
-            marginTop: 20,
-            backgroundColor: "#0055cc",
-            color: "#fff",
-            borderRadius: 6,
-            padding: "10px 20px",
-            border: "none",
-            cursor: "pointer",
-            fontSize: 16,
-          }}
-        >
-          Next Move
-        </button>
-      )}
-
-      {/* GAME END MESSAGE */}
-      {gameEnded && (
-        <div
-          style={{
-            marginTop: 30,
-            fontSize: 18,
-            fontWeight: "bold",
-            color: "#aaffaa",
-          }}
-        >
-          Lesson Complete! Black resigned after 17. h4.
-        </div>
-      )}
     </div>
   );
 }

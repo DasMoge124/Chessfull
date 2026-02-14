@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
-import "./Lesson.css"; 
+import "./Lesson.css";
 import Chessboard from "./components/Chessboard";
 import ParticleBackground from "../../../components/Particles"; 
 
