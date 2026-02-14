@@ -47,9 +47,7 @@ function checkmatesandstalemates() {
         <img src={queenmate} alt="Chess players" />
       </div>
       <div className="ButtonElements">
-        <button
-          onClick={() => navigate("/lessons/beginner/two_rook_checkmate")}
-        >
+        <button onClick={() => navigate("/lessons/black/mate_in_one")}>
           Start Practicing
         </button>
       </div>

@@ -70,6 +70,9 @@ import OpponentsIdeasPractice from "./pages/lessons/black/your_opponents_ideas_p
 import DistantOpposition from "./pages/lessons/intermediate_lessons/Distant_Opposition";
 import Space from "./pages/lessons/intermediate_lessons/Space";
 import WeakSquares from "./pages/lessons/intermediate_lessons/Weak_Squares";
+//More Beginner Lessons
+import CheckmateWithQueen from "./pages/lessons/beginner_lessons/checkmate_wtih_queen";
+import Mateinone from "./pages/lessons/black/mate_in_one";
 //Intermediate Lessons
 import PairingPieces from "./pages/lessons/intermediate_lessons/pairing_pieces";
 import ItalianGame from "./pages/lessons/intermediate_lessons/ItalianGame";
@@ -226,6 +229,11 @@ function App() {
             path="/lessons/beginner/attraction_vs_deflection"
             element={<AttractionVDeflection />}
           />
+          <Route
+            path="/lessons/beginner/checkmate_with_queen"
+            element={<CheckmateWithQueen />}
+          />
+          <Route path="/lessons/black/mate_in_one" element={<Mateinone />} />
           {/* Pawn structure lessons */}
           <Route
             path="/lessons/beginner/pawn_structure_doubled_pawns"
