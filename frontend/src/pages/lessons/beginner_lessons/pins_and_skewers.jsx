@@ -8,7 +8,7 @@ function pins_and_skewers() {
   const navigate = useNavigate();
   return (
     <div>
-      <h1>Pins</h1>
+      <h1><br/><br/>Pins</h1>
       <p>
         A pin is where a defending piece cannot move out of an attacking piece's
         line of attack without exposing a more valuable or equally valued

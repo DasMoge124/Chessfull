@@ -27,15 +27,22 @@ function Intermediate() {
         <button onClick={() => navigate("/lessons/intermediate/space")}>
           Space
         </button>
-        <button onClick={() => navigate("/learn/intermediate/sacrifices")}>
-          Sacrifices
+        <button onClick={() => navigate("/learn/intermediate/Tactical_Sacrifices")}>
+          Tactical Sacrifices
+        </button>
+        <button onClick={() => navigate("/learn/intermediate/Positional_Sacrifices")}>
+          Positional Sacrifices
         </button>
       </div>
       <div className="ButtonElements">
         <button onClick={() => navigate("/lessons/intermediate/weak_squares")}>
           Weak Squares
         </button>
+        <button onClick={() => navigate("/learn/intermediate/Imbalances")}>
+          Imbalances
+        </button>
       </div>
+      
       <div className="ButtonElements">
         <button
           onClick={() => navigate("/lessons/intermediate/your_opponents_ideas")}

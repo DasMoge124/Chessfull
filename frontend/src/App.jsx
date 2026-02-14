@@ -77,7 +77,9 @@ import Mateinone from "./pages/lessons/black/mate_in_one";
 import PairingPieces from "./pages/lessons/intermediate_lessons/pairing_pieces";
 import ItalianGame from "./pages/lessons/intermediate_lessons/ItalianGame";
 import Zugzwang from "./pages/lessons/intermediate_lessons/Zugzwang";
-import Sacrifices from "./pages/lessons/intermediate_lessons/sacrifices";
+import Tactical_Sacrifices from "./pages/lessons/intermediate_lessons/Tactical_Sacrifices";
+import Positional_Sacrifices from "./pages/lessons/intermediate_lessons/Positional_Sacrifices";
+import Imbalances from "./pages/lessons/intermediate_lessons/Imbalances";
 
 function App() {
   return (
@@ -273,12 +275,20 @@ function App() {
             element={<WeakSquares />}
           />
           <Route
+            path="/learn/intermediate/Positional_Sacrifices"
+            element={<Positional_Sacrifices />}
+          />
+          <Route
             path="/lessons/intermediate/pairing_pieces"
             element={<PairingPieces />}
           />
           <Route
             path="/learn/intermediate/italian_opening"
             element={<ItalianGame />}
+          />
+          <Route
+            path="/learn/intermediate/Imbalances"
+            element={<Imbalances />}
           />
           <Route path="/learn/intermediate/zugzwang" element={<Zugzwang />} />
           <Route
