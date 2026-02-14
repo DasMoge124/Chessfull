@@ -146,7 +146,7 @@ function pins_and_skewers_practice() {
   const [showSolution, setShowSolution] = useState(false);
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "Practice: Let's see if you can checkmate with a king and a queen given this position."
+    "Practice: Let's see if you can checkmate with a king and a queen given this position.",
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];
@@ -401,11 +401,7 @@ function pins_and_skewers_practice() {
         >
           Checkmate Lesson Complete
           <div className="ButtonElements">
-            <button
-              onClick={() =>
-                navigate("/lessons/beginner/queen_checkmate_lesson")
-              }
-            >
+            <button onClick={() => navigate("/learn/beginner/")}>
               Continue
             </button>
           </div>
