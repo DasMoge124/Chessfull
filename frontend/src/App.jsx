@@ -76,6 +76,7 @@ import ItalianGame from "./pages/lessons/intermediate_lessons/ItalianGame";
 import Zugzwang from "./pages/lessons/intermediate_lessons/Zugzwang";
 import Tactical_Sacrifices from "./pages/lessons/intermediate_lessons/Tactical_Sacrifices";
 import Positional_Sacrifices from "./pages/lessons/intermediate_lessons/Positional_Sacrifices";
+import Imbalances from "./pages/lessons/intermediate_lessons/Imbalances";
 
 function App() {
   return (
@@ -276,6 +277,10 @@ function App() {
           <Route
             path="/learn/intermediate/italian_opening"
             element={<ItalianGame />}
+          />
+          <Route
+            path="/learn/intermediate/Imbalances"
+            element={<Imbalances />}
           />
           <Route path="/learn/intermediate/zugzwang" element={<Zugzwang />} />
           <Route

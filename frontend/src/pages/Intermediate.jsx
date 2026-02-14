@@ -38,7 +38,11 @@ function Intermediate() {
         <button onClick={() => navigate("/lessons/intermediate/weak_squares")}>
           Weak Squares
         </button>
+        <button onClick={() => navigate("/learn/intermediate/Imbalances")}>
+          Imbalances
+        </button>
       </div>
+      
       <div className="ButtonElements">
         <button
           onClick={() => navigate("/lessons/intermediate/your_opponents_ideas")}
