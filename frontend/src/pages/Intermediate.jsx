@@ -49,6 +49,9 @@ function Intermediate() {
         >
           Your Opponent's Ideas - Intermediate
         </button>
+        <button onClick={() => navigate("/learn/intermediate/improve_worst_piece")}>
+          Improve Worst Piece
+        </button>
       </div>
       <div className="ButtonElements">
         <button
