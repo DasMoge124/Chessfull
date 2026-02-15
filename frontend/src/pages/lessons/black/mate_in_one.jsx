@@ -20,7 +20,7 @@ const GAME_LESSON_MOVES = [
     player: "Black",
     explanation:
       "Congratulations. Regardless of where it moves, White's king is stuck in the corner and cannot escape the queen's attack. This is a checkmate.",
-    hint: "Beware of the Knight on d4 moving to c6. The knight controls squares in L shapes. It might put your king in massive danger (maybe even checkmate)",
+    hint: "Seems like a king is stuck on the corner. Additionally, the queen is attacking the king on the diagonal near the king and the bishop is on the same diagonal as the queen, providing support. Can you find the move that delivers checkmate in one move?",
     solution: "Qh2#",
     customIncorrectFeedback: {
       default:
@@ -388,8 +388,8 @@ function CantyvNarayan() {
         >
           Lesson Complete!
           <div className="ButtonElements">
-            <button onClick={() => navigate("/learn/beginner")}>
-              Return to Home
+            <button onClick={() => navigate("/lessons/beginner/backrank_mate")}>
+              Continue
             </button>
           </div>
         </div>

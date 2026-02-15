@@ -62,6 +62,8 @@ import Pins_Skewers_Practice_4 from "./pages/lessons/white/pins_and_skewers_4";
 import Discovered_Attack from "./pages/lessons/beginner_lessons/discovered_attack";
 import Discovered_Attack_Practice from "./pages/lessons/black/discovered_attacks";
 import AttractionVDeflection from "./pages/lessons/beginner_lessons/attraction_v_deflection";
+import BackRankMate from "./pages/lessons/white/backrank_mate";
+
 // Pawn Chains
 import DoubledPawns from "./pages/lessons/beginner_lessons/doubled_pawns";
 import PawnChains from "./pages/lessons/beginner_lessons/Pawn_Chains";
@@ -73,6 +75,7 @@ import WeakSquares from "./pages/lessons/intermediate_lessons/Weak_Squares";
 //More Beginner Lessons
 import CheckmateWithQueen from "./pages/lessons/beginner_lessons/checkmate_wtih_queen";
 import Mateinone from "./pages/lessons/black/mate_in_one";
+import RuleOfSquare from "./pages/lessons/beginner_lessons/rule_of_square";
 //Intermediate Lessons
 import PairingPieces from "./pages/lessons/intermediate_lessons/pairing_pieces";
 import ItalianGame from "./pages/lessons/intermediate_lessons/ItalianGame";
@@ -81,6 +84,7 @@ import Tactical_Sacrifices from "./pages/lessons/intermediate_lessons/Tactical_S
 import Positional_Sacrifices from "./pages/lessons/intermediate_lessons/Positional_Sacrifices";
 import Imbalances from "./pages/lessons/intermediate_lessons/Imbalances";
 import Improve_Worst_Piece from "./pages/lessons/intermediate_lessons/Improve_Worst_Piece";
+
 function App() {
   return (
     <BrowserRouter>
@@ -233,6 +237,10 @@ function App() {
             path="/lessons/beginner/checkmate_with_queen"
             element={<CheckmateWithQueen />}
           />
+          <Route
+            path="/lessons/beginner/backrank_mate"
+            element={<BackRankMate />}
+          />
           <Route path="/lessons/black/mate_in_one" element={<Mateinone />} />
           {/* Pawn structure lessons */}
           <Route
@@ -298,6 +306,10 @@ function App() {
           <Route
             path="/learn/intermediate/Tactical_Sacrifices"
             element={<Tactical_Sacrifices />}
+          />
+          <Route
+            path="/learn/beginner/Rule_of_Square"
+            element={<RuleOfSquare />}
           />
           {/* Add more intermediate lessons here */}
         </Routes>

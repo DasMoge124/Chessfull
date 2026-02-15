@@ -168,6 +168,9 @@ function Beginner() {
         >
           Checkmates with a Rook
         </button>
+        <button onClick={() => navigate("/learn/beginner/Rule_of_Square")}>
+          Rule of the Square
+        </button>
         <h2>Practice Games</h2>
         <div className="ButtonElements">
           <button
