@@ -79,8 +79,10 @@ import ItalianGame from "./pages/lessons/intermediate_lessons/ItalianGame";
 import Zugzwang from "./pages/lessons/intermediate_lessons/Zugzwang";
 import Tactical_Sacrifices from "./pages/lessons/intermediate_lessons/Tactical_Sacrifices";
 import Positional_Sacrifices from "./pages/lessons/intermediate_lessons/Positional_Sacrifices";
+
 import Imbalances from "./pages/lessons/intermediate_lessons/Imbalances";
 import Improve_Worst_Piece from "./pages/lessons/intermediate_lessons/Improve_Worst_Piece";
+import Outposts from "./pages/lessons/intermediate_lessons/Outposts";
 function App() {
   return (
     <BrowserRouter>
@@ -281,6 +283,10 @@ function App() {
           <Route
             path="/lessons/intermediate/pairing_pieces"
             element={<PairingPieces />}
+          />
+          <Route
+            path="/lessons/intermediate/Outposts"
+            element={<Outposts />}
           />
           <Route
             path="/learn/intermediate/italian_opening"
