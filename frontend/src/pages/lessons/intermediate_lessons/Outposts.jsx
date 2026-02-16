@@ -38,6 +38,12 @@ const Outposts = () => {
         <br/>
         No matter how the Black pawns move, they cannot attack the square on d5!
         <br/>
+        Now, this outpost significantly changes the style of the game. Because Black has an outpost on d5, White will try to control it with their pieces, specifically their Knight.
+        <br/>
+        However, Black won't allow that to happen while he does nothing; instead, he will try to launch a counterattack with moves like f5, undermining White's outpost and attempting to launch a Kingside attack.
+        <br/>
+        An important note: Bxe6 looks tempting in this position. However, its an awful move! That's because Black can capture with fxe6, and White no longer has an outpost on d5! Watch out for pawn captures which can remove outposts!
+        <br/>
         Great job! Up for the next example?
        
     
@@ -60,6 +66,10 @@ const Outposts = () => {
         No matter how the Black pawns move, they cannot attack the square on d5!
         <br/>
         Now, the best move for White in this position is to go Nd6, occupying the outpost with a Knight. As we have said before, that is the best thing to do when you have an outpost.
+        <br/>
+        Because of White's outpost on d6, White has a lot more space and is more active than Black, leading to the conclusion that White is better in this position.
+      <br/>
+      However, that doesn't mean White should relax - Black still has many tricky ideas, such as f6, undermining White's outpost and attempting to open up the Kingside for Black's rook.
       </p>
          
       <div className="ButtonElements">
