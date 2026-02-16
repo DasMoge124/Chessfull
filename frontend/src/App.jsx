@@ -86,6 +86,8 @@ import Positional_Sacrifices from "./pages/lessons/intermediate_lessons/Position
 import Imbalances from "./pages/lessons/intermediate_lessons/Imbalances";
 import Improve_Worst_Piece from "./pages/lessons/intermediate_lessons/Improve_Worst_Piece";
 import Outposts from "./pages/lessons/intermediate_lessons/Outposts";
+import Intermezzo from "./pages/lessons/intermediate_lessons/Intermezzo";
+
 function App() {
   return (
     <BrowserRouter>
@@ -277,6 +279,10 @@ function App() {
           <Route
             path="/learn/intermediate/distant_opposition"
             element={<DistantOpposition />}
+          />
+           <Route
+            path="/learn/intermediate/Intermezzo"
+            element={<Intermezzo />}
           />
           <Route path="/lessons/intermediate/space" element={<Space />} />
           <Route
