@@ -59,6 +59,11 @@ function Intermediate() {
         >
           Pairing Pieces
         </button>
+        <button
+          onClick={() => navigate("/lessons/intermediate/Outposts")}
+        >
+          Outposts
+        </button>
       </div>
 
       <h2>Endgames</h2>
