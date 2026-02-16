@@ -138,6 +138,13 @@ function Beginner() {
         <div className="ButtonElements">
           <button
             onClick={() =>
+              navigate("/lessons/beginner/pawn_structure_isolated_pawns")
+            }
+          >
+            Isolated Pawns
+          </button>
+          <button
+            onClick={() =>
               navigate("/lessons/beginner/pawn_structure_doubled_pawns")
             }
           >

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Chess } from "chess.js";
 import "./GameLesson.css"; // Make sure you create this CSS file or adjust pat
 import Chessboard from "./components/Chessboard";
-import LessonControls from "./components/LessonControls";
+import "./Lesson.css";
 
 // =========================================================
 // 1. GAME DATA & UTILITIES
@@ -44,7 +44,7 @@ function pins_and_skewers_practice() {
   const [showSolution, setShowSolution] = useState(false);
   // Feedback box state
   const [feedback, setFeedback] = useState(
-    "Practice: In this position, white can use a piece to fork two of black's pieces. Which piece did black use?"
+    "Practice: In this position, white can use a piece to fork two of black's pieces. Which piece did black use?",
   );
 
   const lesson = GAME_LESSON_MOVES[currentLessonIndex];

@@ -76,6 +76,7 @@ import WeakSquares from "./pages/lessons/intermediate_lessons/Weak_Squares";
 import CheckmateWithQueen from "./pages/lessons/beginner_lessons/checkmate_wtih_queen";
 import Mateinone from "./pages/lessons/black/mate_in_one";
 import RuleOfSquare from "./pages/lessons/beginner_lessons/rule_of_square";
+import Isolated_pawns from "./pages/lessons/beginner_lessons/Isolated_Pawns";
 //Intermediate Lessons
 import PairingPieces from "./pages/lessons/intermediate_lessons/pairing_pieces";
 import ItalianGame from "./pages/lessons/intermediate_lessons/ItalianGame";
@@ -249,6 +250,10 @@ function App() {
           <Route path="/lessons/black/mate_in_one" element={<Mateinone />} />
           {/* Pawn structure lessons */}
           <Route
+            path="/lessons/beginner/pawn_structure_isolated_pawns"
+            element={<Isolated_pawns />}
+          />
+          <Route
             path="/lessons/beginner/pawn_structure_doubled_pawns"
             element={<DoubledPawns />}
           />
@@ -282,7 +287,7 @@ function App() {
             path="/learn/intermediate/distant_opposition"
             element={<DistantOpposition />}
           />
-           <Route
+          <Route
             path="/learn/intermediate/Intermezzo"
             element={<Intermezzo />}
           />

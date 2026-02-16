@@ -9,6 +9,11 @@ const SpaceLesson = () => {
   return (
     <div>
       <h1>Space</h1>
+      <h2>What do we mean by space?</h2>
+      <p>
+        Space is essentially the number of squares one controls. The more
+        squares you control, the more space you have.
+      </p>
       <p>
         With a lot of space:
         <br />
