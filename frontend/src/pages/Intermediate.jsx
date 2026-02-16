@@ -85,7 +85,7 @@ function Intermediate() {
           </button>
         </div>
         <button
-          onClick={() => navigate("/learn/intermediate/distant_opposition")}
+          onClick={() => navigate("/learn/intermediate/Triangulation")}
         >
           Triangulation
         </button>

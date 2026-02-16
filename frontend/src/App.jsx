@@ -88,6 +88,7 @@ import Improve_Worst_Piece from "./pages/lessons/intermediate_lessons/Improve_Wo
 import Outposts from "./pages/lessons/intermediate_lessons/Outposts";
 import Intermezzo from "./pages/lessons/intermediate_lessons/Intermezzo";
 import Attacking_The_King from "./pages/lessons/intermediate_lessons/Attacking_The_King";
+import Triangulation from "./pages/lessons/intermediate_lessons/Triangulation";
 
 function App() {
   return (
@@ -297,6 +298,10 @@ function App() {
           <Route
             path="/learn/intermediate/Positional_Sacrifices"
             element={<Positional_Sacrifices />}
+          />
+          <Route
+            path="/learn/intermediate/Triangulation"
+            element={<Triangulation />}
           />
           <Route
             path="/lessons/intermediate/pairing_pieces"
