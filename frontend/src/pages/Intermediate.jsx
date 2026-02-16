@@ -55,6 +55,9 @@ function Intermediate() {
         <button onClick={() => navigate("/learn/intermediate/improve_worst_piece")}>
           Improve Worst Piece
         </button>
+        <button onClick={() => navigate("/learn/intermediate/Attacking_The_King")}>
+          Attacking The King
+        </button>
       </div>
       <div className="ButtonElements">
         <button

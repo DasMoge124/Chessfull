@@ -87,6 +87,7 @@ import Imbalances from "./pages/lessons/intermediate_lessons/Imbalances";
 import Improve_Worst_Piece from "./pages/lessons/intermediate_lessons/Improve_Worst_Piece";
 import Outposts from "./pages/lessons/intermediate_lessons/Outposts";
 import Intermezzo from "./pages/lessons/intermediate_lessons/Intermezzo";
+import Attacking_The_King from "./pages/lessons/intermediate_lessons/Attacking_The_King";
 
 function App() {
   return (
@@ -288,6 +289,10 @@ function App() {
           <Route
             path="/lessons/intermediate/weak_squares"
             element={<WeakSquares />}
+          />
+          <Route
+            path="/learn/intermediate/Attacking_The_King"
+            element={<Attacking_The_King />}
           />
           <Route
             path="/learn/intermediate/Positional_Sacrifices"
