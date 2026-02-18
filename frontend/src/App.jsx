@@ -90,6 +90,10 @@ import Outposts from "./pages/lessons/intermediate_lessons/Outposts";
 import Intermezzo from "./pages/lessons/intermediate_lessons/Intermezzo";
 import Attacking_The_King from "./pages/lessons/intermediate_lessons/Attacking_The_King";
 import Triangulation from "./pages/lessons/intermediate_lessons/Triangulation";
+import Converting_A_Winning_Position from "./pages/lessons/intermediate_lessons/Converting_A_Winning_Position";
+import Underpromotion from "./pages/lessons/intermediate_lessons/Underpromotion";
+import Overloading from "./pages/lessons/intermediate_lessons/Overloading";
+import Interference from "./pages/lessons/intermediate_lessons/Interference";
 
 function App() {
   return (
@@ -290,6 +294,22 @@ function App() {
           <Route
             path="/learn/intermediate/Intermezzo"
             element={<Intermezzo />}
+          />
+          <Route
+            path="/learn/intermediate/Underpromotion"
+            element={<Underpromotion />}
+          />
+          <Route
+            path="/lessons/intermediate/Converting_A_Winning_Position"
+            element={<Converting_A_Winning_Position />}
+          />
+          <Route
+            path="/lessons/intermediate/Overloading"
+            element={<Overloading />}
+          />
+          <Route
+            path="/lessons/intermediate/Interference"
+            element={<Interference />}
           />
           <Route path="/lessons/intermediate/space" element={<Space />} />
           <Route
