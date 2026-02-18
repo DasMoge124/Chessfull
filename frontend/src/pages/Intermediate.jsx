@@ -84,6 +84,11 @@ function Intermediate() {
         >
           Overloading
         </button>
+        <button
+          onClick={() => navigate("/lessons/intermediate/Interference")}
+        >
+          Interference
+        </button>
       </div>
 
       <h2>Endgames</h2>

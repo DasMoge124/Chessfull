@@ -92,6 +92,7 @@ import Triangulation from "./pages/lessons/intermediate_lessons/Triangulation";
 import Converting_A_Winning_Position from "./pages/lessons/intermediate_lessons/Converting_A_Winning_Position";
 import Underpromotion from "./pages/lessons/intermediate_lessons/Underpromotion";
 import Overloading from "./pages/lessons/intermediate_lessons/Overloading";
+import Interference from "./pages/lessons/intermediate_lessons/Interference";
 
 function App() {
   return (
@@ -301,7 +302,10 @@ function App() {
             path="/lessons/intermediate/Overloading"
             element={<Overloading />}
           />
-          
+          <Route
+            path="/lessons/intermediate/Interference"
+            element={<Interference />}
+          />
           <Route path="/lessons/intermediate/space" element={<Space />} />
           <Route
             path="/lessons/intermediate/weak_squares"
