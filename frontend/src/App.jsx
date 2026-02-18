@@ -90,6 +90,8 @@ import Intermezzo from "./pages/lessons/intermediate_lessons/Intermezzo";
 import Attacking_The_King from "./pages/lessons/intermediate_lessons/Attacking_The_King";
 import Triangulation from "./pages/lessons/intermediate_lessons/Triangulation";
 import Converting_A_Winning_Position from "./pages/lessons/intermediate_lessons/Converting_A_Winning_Position";
+import Underpromotion from "./pages/lessons/intermediate_lessons/Underpromotion";
+
 function App() {
   return (
     <BrowserRouter>
@@ -285,6 +287,10 @@ function App() {
            <Route
             path="/learn/intermediate/Intermezzo"
             element={<Intermezzo />}
+          />
+          <Route
+            path="/learn/intermediate/Underpromotion"
+            element={<Underpromotion />}
           />
           <Route
             path="/lessons/intermediate/Converting_A_Winning_Position"

@@ -44,6 +44,9 @@ function Intermediate() {
         <button onClick={() => navigate("/learn/intermediate/Intermezzo")}>
           Intermezzo
         </button>
+        <button onClick={() => navigate("/learn/intermediate/Underpromotion")}>
+          Underpromotion
+        </button>
       </div>
       
       <div className="ButtonElements">
@@ -58,6 +61,7 @@ function Intermediate() {
         <button onClick={() => navigate("/learn/intermediate/Attacking_The_King")}>
           Attacking The King
         </button>
+        
       </div>
       <div className="ButtonElements">
         <button
