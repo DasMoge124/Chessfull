@@ -89,7 +89,7 @@ import Outposts from "./pages/lessons/intermediate_lessons/Outposts";
 import Intermezzo from "./pages/lessons/intermediate_lessons/Intermezzo";
 import Attacking_The_King from "./pages/lessons/intermediate_lessons/Attacking_The_King";
 import Triangulation from "./pages/lessons/intermediate_lessons/Triangulation";
-
+import Converting_A_Winning_Position from "./pages/lessons/intermediate_lessons/Converting_A_Winning_Position";
 function App() {
   return (
     <BrowserRouter>
@@ -286,6 +286,11 @@ function App() {
             path="/learn/intermediate/Intermezzo"
             element={<Intermezzo />}
           />
+          <Route
+            path="/lessons/intermediate/Converting_A_Winning_Position"
+            element={<Converting_A_Winning_Position />}
+          />
+          
           <Route path="/lessons/intermediate/space" element={<Space />} />
           <Route
             path="/lessons/intermediate/weak_squares"

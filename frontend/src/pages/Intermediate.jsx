@@ -70,6 +70,11 @@ function Intermediate() {
         >
           Outposts
         </button>
+        <button
+          onClick={() => navigate("/lessons/intermediate/Converting_A_Winning_Position")}
+        >
+          Converting A Winning Position
+        </button>
       </div>
 
       <h2>Endgames</h2>
