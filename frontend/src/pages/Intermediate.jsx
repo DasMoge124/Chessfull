@@ -79,6 +79,11 @@ function Intermediate() {
         >
           Converting A Winning Position
         </button>
+        <button
+          onClick={() => navigate("/lessons/intermediate/Overloading")}
+        >
+          Overloading
+        </button>
       </div>
 
       <h2>Endgames</h2>
