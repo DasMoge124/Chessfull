@@ -58,7 +58,7 @@ const Interference = () => {
         Black can then play Qxg2 checkmate, winning the game
 
         <br/>
-        This is the power of overloading!!!
+        This is the power of interference!!!
       </p>
            
       <div className="ButtonElements">
