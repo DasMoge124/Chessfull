@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
-import "./Intermediate.css";
+import "./LessonCards.css";
+import ParticleBackground from "../components/Particles";
 
 const topics = {
   Openings: [
@@ -118,34 +119,38 @@ function Intermediate() {
   const navigate = useNavigate();
 
   return (
-    <div className="intermediate-container">
-      <div className="intermediate-header">
-        <h1>Intermediate Lessons</h1>
-        <p>Elevate your game with advanced strategies and tactics.</p>
-      </div>
-
-      {Object.entries(topics).map(([category, lessons]) => (
-        <div key={category} className="topic-section">
-          <h2>{category}</h2>
-          <div className="cards-grid">
-            {lessons.map((lesson, index) => (
-              <div
-                key={index}
-                className="lesson-card"
-                onClick={() => navigate(lesson.path)}
-              >
-                <div className="card-content">
-                  <h3>{lesson.title}</h3>
-                  <p>{lesson.description}</p>
-                </div>
-                <div className="card-action">
-                  <span className="start-btn">Start Lesson →</span>
-                </div>
-              </div>
-            ))}
-          </div>
+    <div className="intermediate-page" style={{ position: "relative", minHeight: "100vh" }}>
+      <ParticleBackground />
+      
+      <div className="lesson-container">
+        <div className="lesson-header">
+          <h1>Intermediate Lessons</h1>
+          <p>Elevate your game with advanced strategies and tactics.</p>
         </div>
-      ))}
+
+        {Object.entries(topics).map(([category, lessons]) => (
+          <div key={category} className="topic-section">
+            <h2>{category}</h2>
+            <div className="cards-grid">
+              {lessons.map((lesson, index) => (
+                <div
+                  key={index}
+                  className="lesson-card"
+                  onClick={() => navigate(lesson.path)}
+                >
+                  <div className="card-content">
+                    <h3>{lesson.title}</h3>
+                    <p>{lesson.description}</p>
+                  </div>
+                  <div className="card-action">
+                    <span className="start-btn">Start Lesson →</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

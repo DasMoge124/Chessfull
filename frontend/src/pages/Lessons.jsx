@@ -8,6 +8,53 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import "./LessonCards.css";
+import ParticleBackground from "../components/Particles";
+
+const lessonGames = [
+  {
+    title: "FM James Canty vs CM Narayan",
+    description: "Analyze this rapid battle featuring sharp tactical play and aggressive attacks.",
+    path: "/lessons/grandmaster/CantyVNarayanan",
+    id: "canty_v_narayan",
+  },
+  {
+    title: "IM Eric Rosen vs. WFM Emilia Sprzęczka",
+    description: "Study the precision and trap-setting abilities of the famous IM Eric Rosen.",
+    path: "/lessons/international_master/EricVEmilia",
+    id: "eric_v_emilia_003",
+  },
+  {
+    title: "GM Magnus Carlsen vs Rainn Wilson",
+    description: "Witness the World Champion take on 'Dwight Schrute' in this entertaining encounter.",
+    path: "/lessons/grandmaster/MagnusVRainn",
+    id: "magnus_v_rainn",
+  },
+  {
+    title: "GM Magnus Carlsen vs Bardiya",
+    description: "Magnus demonstrates exceptional positional understanding in this game.",
+    path: "/lessons/grandmaster/MagnusVBardiya",
+    id: "magnus_v_bardiya_001",
+  },
+  {
+    title: "GM Magnus Carlsen vs Sina",
+    description: "Another masterclass from Carlsen, showing how to convert small advantages.",
+    path: "/lessons/grandmaster/MagnusVSina",
+    id: "magnus_v_sina",
+  },
+  {
+    title: "GM Hikaru Nakamura vs Andrey Esipenko",
+    description: "A high-level clash between two speed chess titans and calculation machines.",
+    path: "/lessons/grandmaster/AndreyVHikaru",
+    id: "hikaru_v_andrey",
+  },
+  {
+    title: "IM Renato Terry vs IM Rozman",
+    description: "GothamChess (IM Levy Rozman) fights in a complex strategic battle.",
+    path: "/lessons/grandmaster/TerryVRozman",
+    id: "terry_v_rozman",
+  },
+];
 
 function Lessons() {
   const navigate = useNavigate();
@@ -41,54 +88,39 @@ function Lessons() {
   const isCompleted = (id) => completedLessonIds.includes(id);
 
   return (
-    <div className="page-container">
-      <div className="page-content">
-        <h2>Chess Lessons</h2>
-        <p>Master the board by studying the greats.</p>
+    <div className="lessons-page" style={{ position: "relative", minHeight: "100vh" }}>
+       <ParticleBackground />
 
-        {/* Lesson 1 */}
-        <div className="ButtonElements">
-          <button onClick={() => navigate("/lessons/grandmaster/CantyVNarayanan")}>
-            FM James Canty vs CM Narayan {isCompleted("canty_v_narayan") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
-          </button>
-        </div>
-{/*hikaru_v_andrey */}
-        {/* Lesson 2 */}
-        <div className="ButtonElements">
-          <button onClick={() => navigate("/lessons/international_master/EricVEmilia")}>
-            IM Eric Rosen vs. WFM Emilia Sprzęczka {isCompleted("eric_v_emilia_003") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
-          </button>
+       <div className="lesson-container">
+        <div className="lesson-header">
+          <h1>Chess Lessons</h1>
+          <p>Master the board by studying the greats.</p>
         </div>
 
-        {/* Lesson 3 */}
-        <div className="ButtonElements">
-          <button onClick={() => navigate("/lessons/grandmaster/MagnusVRainn")}>
-            GM Magnus Carlsen vs Rainn Wilson {isCompleted("magnus_v_rainn") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
-          </button>
-        </div>
-
-        {/* Lesson 4 (The one we just worked on) */}
-        <div className="ButtonElements">
-          <button onClick={() => navigate("/lessons/grandmaster/MagnusVBardiya")}>
-            GM Magnus Carlsen vs Bardiya {isCompleted("magnus_v_bardiya_001") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
-          </button>
-        </div>
-
-        {/* Lesson 5 */}
-        <div className="ButtonElements">
-          <button onClick={() => navigate("/lessons/grandmaster/MagnusVSina")}>
-            GM Magnus Carlsen vs Sina {isCompleted("magnus_v_sina") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
-          </button>
-        </div>
-        <div className="ButtonElements">
-          <button onClick={() => navigate("/lessons/grandmaster/AndreyVHikaru")}>
-            GM Hikaru Nakamura vs Andrey Esipenko {isCompleted("hikaru_v_andrey") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
-          </button>
-        </div>
-        <div className="ButtonElements">
-          <button onClick={() => navigate("/lessons/grandmaster/TerryVRozman")}>
-            IM Renato Terry vs IM Rozman {isCompleted("terry_v_rozman") && <span style={{color: "#1e6a21ff"}}> (complete)</span>}
-          </button>
+        <div className="topic-section">
+          <h2>Grandmaster Games</h2>
+          <div className="cards-grid">
+            {lessonGames.map((game, index) => (
+              <div
+                key={index}
+                className="lesson-card"
+                onClick={() => navigate(game.path)}
+              >
+                <div className="card-content">
+                  <h3>{game.title}</h3>
+                  <p>{game.description}</p>
+                </div>
+                <div className="card-action">
+                  <span className="start-btn">Start Analysis →</span>
+                  {game.id && isCompleted(game.id) && (
+                    <span className="completed-status">
+                         ✓ Complete
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
