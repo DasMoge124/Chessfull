@@ -1,0 +1,132 @@
+/* Intermediate Page Styles */
+
+/* Main Container Override/Adjustment */
+.intermediate-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 20px;
+  color: #fff;
+}
+
+.intermediate-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.intermediate-header h1 {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.intermediate-header p {
+  color: #94a3b8;
+  font-size: 1.2rem;
+}
+
+/* Section Styles */
+.topic-section {
+  margin-bottom: 60px;
+}
+
+.topic-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+  color: #e2e8f0;
+}
+
+/* Grid Layout */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/* Card Styles */
+.lesson-card {
+  background: rgba(30, 41, 59, 0.7); /* Dark semi-transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 25px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-card:hover {
+  transform: translateY(-5px);
+  background: rgba(30, 41, 59, 0.9);
+  border-color: rgba(56, 189, 248, 0.5); /* Light blue border on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.lesson-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lesson-card:hover::before {
+  opacity: 1;
+}
+
+.card-content h3 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: #f8fafc;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.card-action {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.start-btn {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #38bdf8;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.lesson-card:hover .start-btn {
+  color: #7dd3fc;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .intermediate-header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
