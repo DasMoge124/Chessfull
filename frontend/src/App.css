@@ -60,7 +60,7 @@ body {
 .page-content {
   position: relative;
   z-index: 1;
-  padding-top: 120px;
+  padding-top: 140px; /* Ensure this is enough for the fixed navbar */
   padding-left: 20px;
   padding-right: 20px;
 }

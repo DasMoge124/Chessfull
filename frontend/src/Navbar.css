@@ -1,26 +1,22 @@
-/* Floating glass navbar */
+/* Fixed Matte Black Navbar */
 .nav-container {
   position: fixed;
-  top: 20px; /* floats below top */
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 60px); /* leave margin sides */
-  max-width: 1400px;
-  padding: 18px 30px;
-  background: rgba(0, 0, 0, 0.15); /* semi-transparent */
-  backdrop-filter: blur(15px);
-  border-radius: 16px;
-  border: 1px solid rgba(0, 224, 255, 0.1);
-  box-shadow: 0 5px 25px rgba(0, 224, 255, 0.1);
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 40px;
+  background: transparent;
   transition: all 0.4s ease;
-  z-index: 100;
+  z-index: 1000;
+  border-bottom: 1px solid transparent;
 }
 
 .nav-container.scrolled {
-  background: rgba(0, 0, 0, 0.65);
-  padding: 12px 30px;
-  box-shadow: 0 5px 25px rgba(0, 224, 255, 0.25);
-  border: 1px solid rgba(0, 224, 255, 0.2);
+  background: rgba(11, 11, 15, 0.95); /* Matte black */
+  padding: 15px 40px;
+  border-bottom: 1px solid rgba(0, 174, 239, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Flex container for content */
@@ -34,67 +30,73 @@
 
 /* Logo styling */
 .nav-logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--primary-electric);
-  text-shadow: 0 0 6px var(--primary-electric);
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 174, 239, 0.3);
   white-space: nowrap;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* Links container */
 nav {
   display: flex;
   align-items: center;
+  gap: 30px;
 }
 
 /* Individual links */
-nav a {
-  color: #d9e8ff;
-  margin-left: 35px;
-  font-size: 1.1rem;
+nav a.nav-item {
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
   font-weight: 500;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
   position: relative;
   text-decoration: none;
-  white-space: nowrap;
 }
 
 /* Hover effects for links */
-nav a:hover {
+nav a.nav-item:hover {
   color: var(--primary-electric);
-  text-shadow: 0 0 8px var(--primary-electric);
+  text-shadow: 0 0 10px var(--neon-glow);
 }
 
-nav a:after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  display: block;
-  margin-top: 5px;
-  right: 0;
+/* Outlined Button (Sign In) */
+.nav-btn-outline {
+  border: 1px solid var(--text-secondary);
+  padding: 8px 24px;
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-btn-outline:hover {
+  border-color: var(--primary-electric);
+  color: var(--primary-electric);
+  box-shadow: var(--neon-glow);
+}
+
+/* Solid Button (Play Now) */
+.nav-btn-solid {
   background: var(--primary-electric);
-  transition: width 0.3s ease;
-}
-
-nav a:hover:after {
-  width: 100%;
-  left: 0;
-  background: var(--primary-electric);
-  box-shadow: 0 0 5px var(--primary-electric);
-}
-
-/* CTA button (Sign Up) */
-.nav-cta {
-  padding: 6px 18px;
-  border-radius: 12px;
   border: 1px solid var(--primary-electric);
-  box-shadow: 0 0 8px var(--primary-electric);
-  transition: 0.3s ease;
+  padding: 8px 24px;
+  border-radius: 8px;
+  color: #000; /* Black text on bright blue */
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 174, 239, 0.3);
 }
 
-.nav-cta:hover {
-  background: var(--primary-electric);
-  color: #000;
-  box-shadow: 0 0 15px var(--primary-electric);
+.nav-btn-solid:hover {
+  background: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
 }

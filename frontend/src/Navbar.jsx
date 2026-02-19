@@ -17,24 +17,31 @@ const Navbar = () => {
     <header className={`nav-container ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-content">
         <Link to="/" className="nav-logo">
-          ⚡ CHESSFLEX
+          ♟️ Shadow Monarch
         </Link>
 
         <nav className="nav-links-list">
           <Link to="/" className="nav-item">
             Home
           </Link>
+          <Link to="/chessboard" className="nav-item">
+            Play
+          </Link>
+          <Link to="/" className="nav-item">
+            Tournaments
+          </Link>
           <Link to="/learn" className="nav-item">
             Learn
           </Link>
-          <Link to="/login" className="nav-item">
-            Login
+          <Link to="/" className="nav-item">
+            Community
           </Link>
-          <Link to="/signup" className="nav-item nav-cta">
-            Sign Up
+          
+          <Link to="/login" className="nav-btn-outline">
+            Sign In
           </Link>
-          <Link to="/chessboard" className="nav-item">
-            Chessboard
+          <Link to="/signup" className="nav-btn-solid">
+            Play Now
           </Link>
         </nav>
       </div>
