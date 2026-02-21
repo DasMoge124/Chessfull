@@ -7,148 +7,128 @@ import "./GameLesson.css";
 // =========================================================
 // 1. GAME DATA & UTILITIES
 // =========================================================
-
+/*
+--------------------ALL COMPLETE-------------------
+*/
 const STARTING_FEN =
   "r1bqkb1r/pppp1ppp/2n2n2/4p3/2P5/2N1PN2/PP1P1PPP/R1BQKB1R"; 
 const INITIAL_SCENARIO = "Both players end up in a solid positional foundation. In this position, Magnus decided to fight for the center against Grandmaster Parham. How did he do so?";
-const GAME_LESSON_MOVES = [
-  {
+const GAME_LESSON_MOVES = [ // done
+  { // puzzle 1
     move: "1... d5",
     player: "Black",
+    explanation: "Magnus challenges the center by playing d5, directly fighting White’s c4 pawn.",
+    fen: "r1bqkb1r/pppp1ppp/2n2n2/4p3/2P5/2N1PN2/PP1P1PPP/R1BQKB1R w KQkq - 0 1", 
+    hint: "Fight for the center.",
+    solution: "d5"
+  },
+  { // puzzle 2
+    move: "Nxc3",
+    player: "Black",
+    explanation:"Magnus simplifies the position by exchanging active knights, reducing complexity.",
+    fen: "1r/ppp2ppp/2n5/1B1np3/8/2N1PN2/PP1P1PPP/R1BQK2R w KQkq - 0 1",
+    hint: "Simplify the position.",
+    solution: "Nxc3"
+  },
+  { // puzzle 3
+    move: "Bd6",
+    player: "Black",
     explanation:
-      "If your answer was Pd5, great job!.",
-    fen: "r1bqkb1r/ppp2ppp/2n2n2/3pp3/2P5/2N1PN2/PP1P1PPP/R1BQKB1R",
-    hint: "try challenging the center where white both you and white have equal control",
-    solution: "d5",
+      "Bd6 defends the e5 pawn, which was vulnerable due to the absolute pin on the c6 knight.",
+    fen: "kb1r/ppp2ppp/2n5/1B2p3/8/2P1PN2/P2P1PPP/R1BQK2R w KQkq - 0 1",
+    hint: "Defend the e5 pawn.",
+    solution: "Bd6"
   },
-  {
-    move: "8. Nxc3",
-    player: "White",
-    explanation: "Later in the game, Magnus and Parham traded the pawns via cxd5 Nxd5, followed by Bardiya creating an absolute pin by playing Bb5. In this position, Magnus decided to simplify the position to ease his attacking chances. How did he do so?",// explains the new chess map and what the player should do.
-    fen: "r1bqkb1r/ppp2ppp/2n2n2/1B1np3/8/2N1PN2/PP1P1PPP/R1BQK2R b K", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "Nxc3",
-  },
-  {
-    move: "8... Nf5",
+  { // puzzle 3 part 2
+     move: "Qf6",
     player: "Black",
-    explanation: "Find a more active square for your knight.",
-    fen: "r2qkb1r/pp1bnppp/2n1p3/3pPn2/3P4/2N2N2/PP2BPPP/R1BQK2R w KQkq - 0 9",
-    hint: "The knight is seeking to control d4.",
-    solution: "Nf5", //r3k2r/pp1b1ppp/2n1p3/q1NpPn2/1b1P3P/5N2/PP1BBPP1/R2QK2R b KQkq - 6 12
+    explanation:
+      "Qf6 adds a second defender to the e5 pawn, equalizing attackers and defenders.",
+    fen: "k2r/ppp2ppp/2nb4/1B2p3/3P4/2P1PN2/P4PPP/R1BQK2R w KQkq - 0 1",
+    hint: "Add more support to e5.",
+    solution: "Qf6"
   },
-  {
-    move: "9. h4 Qb6 Na4 Qa5+ Bd2",
-    player: "White",
-    explanation: "Later in the game, the following sequence was played: h4 Qb6 Na4 Qa5+ Bd2. In the resulting position, Magnus found a way to protect his queen AND eventually win material. How did he do so?",
-    fen: "r3kb1r/pp1b1ppp/2n1p3/q2pPn2/N2P3P/5N2/PP1BBPP1/R2QK2R b KQkq - 4 11", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "...",
-  },
-  {
-    move: "10. Bb4",
+  {// puzzle 4
+    move: "O-O",
     player: "Black",
-    explanation: "If you found Bb4, great job! This defends the Queen on a5 AND creates an absolute pin. Now the bishop on d4 is stuck due to the Bishop and Queen battery. Now Magnus is guaranteed to win material. If you’re wondering, Bxb4 leads to Qxb4+ Qd2 Qxa5, winning a knight.",
-    fen: "r3kb1r/pp1b1ppp/2n1p3/q2pPn2/N2P4/5N2/PP1BBPPP/R2QK2R b KQkq - 0 1", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "Bb4", //You must change both move and Solution
+    explanation:
+      "Magnus castles kingside, matching Parham and entering a stable positional setup.",
+    fen: "b2rk1/ppp2ppp/2nb1q2/1B2p3/3P4/2P1PN2/P4PPP/R1BQ1RK1 w - - 0 1",
+    hint: "Improve king safety.",
+    solution: "O-O"
   },
-  {
-    move: "12. Nc5",
-    player: "White",
-    explanation: "Later in the game, Sina played Nc5. Then Magnus continued to win more material. How did he do so?",
-    fen: "r3k2r/pp1b1ppp/2n1p3/q1NpPn2/1b1P3P/5N2/PP1BBPP1/R2QK2R b KQkq - 6 12", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "...",
-  },
-  {
-    move: "12... Ncxd4",
+  {// puzzle 5
+     move: "Re8",
     player: "Black",
-    explanation: "Good job! You are on the right track.",
-    fen: "r3kb1r/pp1b1ppp/2n1p3/q2pPn2/N2P4/5N2/PP1BBPPP/R2QK2R b KQkq - 0 1", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "Ncxd4", //You must change both move and Solution
+    explanation:
+      "Re8 centralizes the rook, increasing its activity and future attacking potential.",
+    fen: "b2rk1/ppp2ppp/2nb1q2/1B2p3/3P4/2P1PN2/P4PPP/R1BQ1RK1 w - - 0 1",
+    hint: "Activate another piece.",
+    solution: "Re8"
   },
-  {
-    move: "13. Nxd4",
-    player: "White",
-    explanation: "Magnus continued to win more material. How did he do so?",
-    fen: "r3k2r/pp1b1ppp/4p3/q1NpPn2/1b1N3P/8/PP1BBPP1/R2QK2R b KQkq - 0 13", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "...",
-  },
-  {
-    move: "13... Nxd4",
+  {// puzzle 6
+    move: "Bxf3",
     player: "Black",
-    explanation: "Previously, two knights were attacking the pawn on d4 which was defended by only one knight. Since there were more attackers than defenders, Magnus is guaranteed to win a pawn. After Magnus plays Ncxd4 followed by a knight exchange via Nxd4 Nxd4, Magnus is up in material by a pawn.",
-    fen: "r3kb1r/pp1b1ppp/2n1p3/q2pPn2/N2P4/5N2/PP1BBPPP/R2QK2R b KQkq - 0 1", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "Nxd4", //You must change both move and Solution
+    explanation:
+      "Magnus exploits the weakness created by h3, removing a key defender and exposing the king.",
+    fen: "k1/1pp2pp1/p1nb1q1p/4p3/P2P2b1/B1P1PN1P/5PP1/R2QRBK1 w - - 0 1",
+    hint: "Punish the weakening move h3.",
+    solution: "Bxf3"
   },
-  {
-    move: "14. Nxb7",
-    player: "White",
-    explanation: "Later in the game, Sina played Nxb7, winning back a pawn. However, this only allowed Magnus to utilize a deadly sequence to win more material, ultimately allowing him to win the game. How did Magnus win more material?",
-    fen: "r3k2r/pN1b1ppp/4p3/q2pP3/1b1n3P/8/PP1BBPP1/R2QK2R b KQkq - 0 14", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "...",
-  },
-  {
-    move: "14... Bxd2+",
+  { // puzzle 7
+    move: "Nxd4",
     player: "Black",
-    explanation: "Firstly, Magnus played Bxd2+. Since Sina is in check, he has to respond to that move, which he does so by playing Qxd2.",
-    fen: "r3kb1r/pp1b1ppp/2n1p3/q2pPn2/N2P4/5N2/PP1BBPPP/R2QK2R b KQkq - 0 1", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "Bxd2+", //You must change both move and Solution
+    explanation:
+      "The pawn on d4 was free because the e3 pawn was pinned. Nxd4 wins material and creates threats.",
+    fen: "r3r1k1/1pp2pp1/p1n4p/8/P2P4/R3PP1P/5P2/4RBK1 w - - 0 1",
+    hint: "Look for loose pawns.",
+    solution: "Nxd4"
   },
-  {
-    move: "15. Qxd2",
-    player: "White",
-    explanation: "After Qxd2, what does Magnus do in this position?",
-    fen: "r3k2r/pN1b1ppp/4p3/q2pP3/3n3P/8/PP1QBPP1/R3K2R b KQkq - 0 15", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "...",
-  },
-  {
-    move: "15... Nc2+",
+  {// puzzle 8
+    move: "Nxf3+",
     player: "Black",
-    explanation: "Notice how Magnus’s queen creates an absolute pin - consisting of Sina’s king and queen. Magnus takes advantage of it by playing Nc2+, forking the king and rook. Since Sina’s king is in check again, Sina has to move his king, which he does so by playing Kd1.",
-    fen: "r3kb1r/pp1b1ppp/2n1p3/q2pPn2/N2P4/5N2/PP1BBPPP/R2QK2R b KQkq - 0 1", // FEN needs correction for White's move to be shown
-    hint: "How do you take advantage of the absolute pin caused by Magnus's queen? Don't forget tactics like forks, pins, and skewers",
-    solution: "Nc2+", //You must change both move and Solution
+    explanation:
+      "Magnus checks the king and wins a pawn. The king must move.",
+    fen: "r3r1k1/1pp2pp1/p6p/8/P2n4/R3PP1P/5P2/2R2BK1 w - - 0 1",
+    hint: "Check the king and win material.",
+    solution: "Nxf3+"
   },
-  {
-    move: "16. Kd1",
-    player: "White",
-    explanation: "Since Sina’s king is in check again, Sina has to move his king, which he does so by playing Kd1. Magnus did not immediately take the rook since it would hang his queen. What does Magnus do instead?",
-    fen: "r3k2r/pN1b1ppp/4p3/q2pP3/7P/8/PPnQBPP1/R2K3R b kq - 2 16", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "...",
-  },
-  {
-    move: "16... Qxd2+",
+  { // puzzle 9
+    move: "Ne7",
     player: "Black",
-    explanation: "Once again, Magnus did not immediately take the rook since it would hang his queen. Instead, Magnus played Qxd2+, exchanging the queens. That way, Magnus didn't have to worry about being down a queen eventually. Since Sina was in check, Sina had to play Kxd2.",
-    fen: "r3k2r/pN1b1ppp/4p3/3pP3/7P/8/PPnqBPP1/R2K3R w kq - 0 17", // FEN needs correction for White's move to be shown
-    hint: "Since the queen is hanging, due to Sina's queen on c2, what does Magnus do about it?",
-    solution: "Qxd2+", //You must change both move and Solution
+    explanation:
+      "Ne7 keeps the knight safe while preparing Nd5+, a powerful fork if Rxc7 is played.",
+    fen: "r3r1k1/1pp2pp1/p6p/5n2/P4K2/R3P2P/5P2/2R2B2 w - - 0 1",
+    hint: "Choose the square that creates future tactics.",
+    solution: "Ne7"
   },
-  {
-    move: "16. Kd1",
-    player: "White",
-    explanation: "After the exchange, how does Magnus continue to win more material?",
-    fen: "r3k2r/pN1b1ppp/4p3/3pP3/7P/8/PPnKBPP1/R6R b kq - 0 17", // FEN needs correction for White's move to be shown
-    hint: "...",
-    solution: "...",
-  },
-  {
-    move: "16... Nxa1",
+  {// puzzle 10
+     move: "c6",
     player: "Black",
-    explanation: "Since his knight was attacking the rook on a1, Magnus played Nxa1, giving Magnus a materialistic advantage. Notice how every move Magnus played was a check. This is why you need to ALWAYS look for checks: you may eventually win material or force checkmate or get a better position.",
-    fen: "r3k2r/pN1b1ppp/4p3/3pP3/7P/8/PPnqBPP1/R2K3R w kq - 0 17", // FEN needs correction for White's move to be shown
-    hint: "Remember the fork earlier?",
-    solution: "Nxa1", //You must change both move and Solution
+    explanation:
+      "c6 defends the c-pawn with the b-pawn, stopping both Bxb7 and Rxc7 threats.",
+    fen: "r3r1k1/1pp1npp1/p6p/8/P4K2/R3P2P/5PB1/2R5 w - - 0 1",
+    hint: "Defend both weaknesses at once.",
+    solution: "c6"
   },
+  {// puzzle 11 part 1
+    move: "Rd2",
+    player: "Black",
+    explanation:
+      "Rd2 threatens Rxb2 and creates unavoidable pressure on Parham’s rook.",
+    fen: "3r4/1p3p2/p1p2k2/P5pP/2R1n3/4P3/1R6/4KB1r w - - 0 1",
+    hint: "Target the rook on b2.",
+    solution: "Rd2"
+  },
+  { // part 11 part 2
+    move: "Rxf1",
+    player: "Black",
+    explanation:
+      "Rxf1!! wins all of Parham’s pieces. After Kxf1, Nxd2+ forks the king and rook.",
+    fen: "3r4/1p3p2/p1p2k2/P5pP/2R1n3/4P3/3R4/4KB1r w - - 0 1",
+    hint: "Look for forcing moves that win everything.",
+    solution: "Rxf1"
+  }
 ];
 
 // =========================================================
