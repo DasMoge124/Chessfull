@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping("/addUser")
-    public ResponseEntity<?> registerUser(@RequestBody RegistrationRequest request) {
+    public ResponseEntity<?> registerUser(@jakarta.validation.Valid @RequestBody RegistrationRequest request) {
         if (userRepo.existsByUsername(request.getUsername()) || userRepo.existsByEmail(request.getEmail())) {
             return ResponseEntity.badRequest().body("Username or email already taken");
         }
