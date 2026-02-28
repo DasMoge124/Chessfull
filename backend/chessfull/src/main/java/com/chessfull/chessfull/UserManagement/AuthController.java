@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Authentication controller that handles user login and JWT token generation.
- * Validates user credentials against the database and generates a JWT token if credentials are valid.
+ * Validates user credentials against the database and generates a JWT token if
+ * credentials are valid.
  * Clients use the returned token to authenticate subsequent API requests.
  */
 @RestController
@@ -29,7 +30,7 @@ public class AuthController {
     private UserDetailsService userDetailsService;
 
     @PostMapping("/login")
-    public AuthResponse login(@jakarta.validation.Valid @RequestBody LoginRequest request) {
+    public AuthResponse login(@RequestBody LoginRequest request) {
         // 1. Authenticate the user
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));

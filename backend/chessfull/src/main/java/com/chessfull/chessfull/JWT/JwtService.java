@@ -16,14 +16,14 @@ import io.jsonwebtoken.security.Keys;
 /**
  * JWT (JSON Web Token) service for handling token generation and validation.
  * Generates secure tokens for authenticated users that expire after 24 hours.
- * Validates tokens to ensure they are authentic and not expired before granting access.
+ * Validates tokens to ensure they are authentic and not expired before granting
+ * access.
  * Used throughout the application to maintain stateless authentication.
  */
 @Service
 public class JwtService {
 
-    @org.springframework.beans.factory.annotation.Value("${jwt.secret}")
-    private String secretKey;
+    private static final String SECRET_KEY = "wyLFQZX1pWuXvEJ81SHlPdpsbdmzpGv3SLyvJvu4Q7A";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -61,7 +61,7 @@ public class JwtService {
     }
 
     private Key getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(this.secretKey);
+        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }
