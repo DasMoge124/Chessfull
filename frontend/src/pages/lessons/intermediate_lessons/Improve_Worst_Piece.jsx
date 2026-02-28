@@ -29,12 +29,15 @@ const Improve_Worst_Piece = () => {
         In this position, White's Bishop on g1 is absolute garbage, in addition to White's Rook on h1. Even worse, Black is about to play f4, making White's Bishop on g1 passive for good.
         <br/>
         What should White do?
-        <br/>
-        White should play f4! Although this sacrifices a pawn, after Black takes the pawn, White can go f3! Then, White's Bishop on g1 will finally be activated.
-        <br/>
-        In addition, once White plays f3 and activates their Bishop, they can move their Bishop and get their Rook on h1 back in the game. Although doing this loses a pawn, activating your pieces is a lot more important!
-        
       </p>
+      <details className="solution-dropdown">
+        <summary>Solution</summary>
+        <p>
+          White should play f4! Although this sacrifices a pawn, after Black takes the pawn, White can go f3! Then, White's Bishop on g1 will finally be activated.
+          <br/>
+          In addition, once White plays f3 and activates their Bishop, they can move their Bishop and get their Rook on h1 back in the game. Although doing this loses a pawn, activating your pieces is a lot more important!
+        </p>
+      </details>
       <div className="ButtonElements">
         <button onClick={() => navigate("/learn/intermediate")}>
           Return to Lessons

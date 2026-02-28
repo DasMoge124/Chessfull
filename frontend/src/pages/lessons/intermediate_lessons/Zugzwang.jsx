@@ -39,29 +39,32 @@ const Zugzwang = () => {
         <br />
         Let’s take a quick look at Kb4.
       </p>
-      <img src={zugzwang2} alt="Zugzwang Example 2" className="lesson-image" />
-      <p>
-        Now notice how black’s king only has two options left, both of which are
-        bad None of black’s pawns can push
-        <br />
-        If black moves King c6, white moves to a5 and can potentially take the
-        b5 and a4 pawns, creating two passed pawns eventually
-        <br />
-        If black moves to the 6th rank, white can just take the b5 pawn Let’s
-        look at the option if Black plays king c6
-      </p>
-      <img src={zugzwang3} alt="Zugzwang Example 2" className="lesson-image" />
-      <p>
-        After black plays king a6, white moves to c6. Now Black is in zugzwang,
-        as no matter what move black plays, its a bad move.
-        <br /> If pawn b4, king takes b4.
-        <br />
-        If king moves to the 7th rank, you can take either b5 or d5 pawn (taking
-        b5 is better according to stockfish)
-        <br />
-        If pawn king a5, king takes d5 The engine will say that white is in a
-        huge advantage. <br /> Now lets practice a bit of zugzwang.
-      </p>
+      <details className="solution-dropdown">
+        <summary>Solution</summary>
+        <img src={zugzwang2} alt="Zugzwang Example 2" className="lesson-image" />
+        <p>
+          Now notice how black’s king only has two options left, both of which are
+          bad None of black’s pawns can push
+          <br />
+          If black moves King c6, white moves to a5 and can potentially take the
+          b5 and a4 pawns, creating two passed pawns eventually
+          <br />
+          If black moves to the 6th rank, white can just take the b5 pawn Let’s
+          look at the option if Black plays king c6
+        </p>
+        <img src={zugzwang3} alt="Zugzwang Example 2" className="lesson-image" />
+        <p>
+          After black plays king a6, white moves to c6. Now Black is in zugzwang,
+          as no matter what move black plays, its a bad move.
+          <br /> If pawn b4, king takes b4.
+          <br />
+          If king moves to the 7th rank, you can take either b5 or d5 pawn (taking
+          b5 is better according to stockfish)
+          <br />
+          If pawn king a5, king takes d5 The engine will say that white is in a
+          huge advantage. <br /> Now lets practice a bit of zugzwang.
+        </p>
+      </details>
       <div className="ButtonElements">
         <button onClick={() => navigate("/learn/intermediate")}>
           Return to Home

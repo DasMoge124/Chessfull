@@ -26,18 +26,22 @@ const Interference = () => {
       <p>
         In this position, it is Black to move. White's Queen is defended by White's Rook. So it looks like this position is fine for White. However, Black
         currently has a tactic that involves interference. What is it?
-         <br/> <br/> <br/>
-        <br/>
-        Black can go Bd4!. Why is this winning? Let's see...
-        <br/>
-        If White moves their King on autopilot, then who's guarding White's Queen? Nobody! Black can just take it!
-        <br/>
-        Alternatively, if White takes Black's Bishop with their Queen, then Black can take White's Queen with their Knight.
-        <br/>
-        Even more, if White takes Black's Bishop with their Rook, Black can take White's Rook with their Knight.
-        <br/>
-        So White loses material either way. Wow, interference is powerful!
+        <br />
       </p>
+      <details className="solution-dropdown">
+        <summary>Solution</summary>
+        <p>
+          Black can go Bd4!. Why is this winning? Let's see...
+          <br/>
+          If White moves their King on autopilot, then who's guarding White's Queen? Nobody! Black can just take it!
+          <br/>
+          Alternatively, if White takes Black's Bishop with their Queen, then Black can take White's Queen with their Knight.
+          <br/>
+          Even more, if White takes Black's Bishop with their Rook, Black can take White's Rook with their Knight.
+          <br/>
+          So White loses material either way. Wow, interference is powerful!
+        </p>
+      </details>
             <h2>Example 2</h2>
         <img className="najdorf" src={Interfere2} alt="Chess players" />
 
@@ -47,19 +51,21 @@ const Interference = () => {
         The answer is NO! Black has a tactic here involving interference. What is it?
         <br/>
         Hint: White's Queen is defending against Black's threat of Qxg2 checkmate.
-<br/><br/><br/>
-        <br/>
-        The answer is Rc2!!! This is tricky, good job if you found it!
-        <br/>
-        If Black goes Rc2, it looks odd. Why can't White just go Nxc2, winning the rook?
-        <br/>
-        Because ... now who's guarding g2? Nobody!
-        <br/>
-        Black can then play Qxg2 checkmate, winning the game
-
-        <br/>
-        This is the power of interference!!!
       </p>
+      <details className="solution-dropdown">
+        <summary>Solution</summary>
+        <p>
+          The answer is Rc2!!! This is tricky, good job if you found it!
+          <br/>
+          If Black goes Rc2, it looks odd. Why can't White just go Nxc2, winning the rook?
+          <br/>
+          Because ... now who's guarding g2? Nobody!
+          <br/>
+          Black can then play Qxg2 checkmate, winning the game
+          <br/>
+          This is the power of interference!!!
+        </p>
+      </details>
            
       <div className="ButtonElements">
         <button onClick={() => navigate("/learn/intermediate")}>

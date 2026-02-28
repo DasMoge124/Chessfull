@@ -27,21 +27,19 @@ const Overloading = () => {
         <br />
         <br />
         <br />
-        White should go Bxc6! Congrats if you found it! But isn't this just a trade of pieces? What happens after Black goes Qxc6?
         <br/>
-        The answer is, the Black queen was OVERLOADED. It was too busy defending the Black Knight and Black Bishop. After Black goes Qxc6, this leaves
-        Black's Bishop on e7 unguarded, and we can proceed to go Qxe7, getting to a winning position :D
-        <br/>
-        Ready for the next example?
-       
-
       </p>
-
-      <p>
-         Black should play Rxc3!!, sacrificing the exchange. Even though Black loses material, Black stops White from going Nd5, weakens White's King, and also messes up White's pawn structure.
-        <br/>
-        Afterward, Black can go Qc7, Nb6-Nc4, fixing a Knight on c4 and taking advantage of White's weak double pawns. Even though Black is down an exchange, they are in a better position.
-      </p>
+      <details className="solution-dropdown">
+        <summary>Solution</summary>
+        <p>
+          White should go Bxc6! Congrats if you found it! But isn't this just a trade of pieces? What happens after Black goes Qxc6?
+          <br/>
+          The answer is, the Black queen was OVERLOADED. It was too busy defending the Black Knight and Black Bishop. After Black goes Qxc6, this leaves
+          Black's Bishop on e7 unguarded, and we can proceed to go Qxe7, getting to a winning position :D
+          <br/>
+          Ready for the next example?
+        </p>
+      </details>
             <h2>Example 2</h2>
       <img className="najdorf" src={Overload2} alt="Chess players" />
 
@@ -51,18 +49,24 @@ const Overloading = () => {
         <br />
         <br />
         <br /> 
-        The answer is Rxc6! Congratulations if you found it, it was a rather tricky one!
-        <br/>
-        Now, you might be wondering, don't you just lose an exchange (a rook for a minor piece)?
-        <br/>
-        Well, after Black goes Rxc6, yes. However, Black's Rook was OVERLOADED initially.
-        <br/>
-        It was defending both c6 and f7. After Black goes Rxc6, the f7 pawn is hanging, and White can go Qxf7+
-        <br/>
-        Then, Black will be forced to move their King, and we can go Qxe8, winning the rook!
-        <br/>
-        These two examples demonstrate the power of overloading tactics. In the future, whenever you see a piece doing too much "work", always think overloading!
+        <br />
       </p>
+      <details className="solution-dropdown">
+        <summary>Solution</summary>
+        <p>
+          The answer is Rxc6! Congratulations if you found it, it was a rather tricky one!
+          <br/>
+          Now, you might be wondering, don't you just lose an exchange (a rook for a minor piece)?
+          <br/>
+          Well, after Black goes Rxc6, yes. However, Black's Rook was OVERLOADED initially.
+          <br/>
+          It was defending both c6 and f7. After Black goes Rxc6, the f7 pawn is hanging, and White can go Qxf7+
+          <br/>
+          Then, Black will be forced to move their King, and we can go Qxe8, winning the rook!
+          <br/>
+          These two examples demonstrate the power of overloading tactics. In the future, whenever you see a piece doing too much "work", always think overloading!
+        </p>
+      </details>
       
       <div className="ButtonElements">
         <button onClick={() => navigate("/learn/intermediate")}>

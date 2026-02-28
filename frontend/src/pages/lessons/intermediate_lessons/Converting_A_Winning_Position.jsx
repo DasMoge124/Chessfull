@@ -45,7 +45,12 @@ const Converting_A_Winning_Position = () => {
         <br/>
         <br/>
         <br/>
-        The answer is Qc3! You "pin" Black's Queen, so it can't move to h2, and thus you force a trade of Queens. Because you are up a piece and have gotten rid of Black's main attacker, you are completely winning :D
+        <details className="solution-dropdown">
+          <summary>Solution</summary>
+          <p>
+            The answer is Qc3! You "pin" Black's Queen, so it can't move to h2, and thus you force a trade of Queens. Because you are up a piece and have gotten rid of Black's main attacker, you are completely winning :D
+          </p>
+        </details>
         
         <br/>
         
@@ -71,10 +76,15 @@ const Converting_A_Winning_Position = () => {
         <br/>
         <br/>
         <br/>
-        The answer is Rxc6! Although you lose an exchange (Rook for Bishop), you are still up material afterward, and 
-        you have gotten rid of Black's main piece in attacking your King.
-        <br/>
-        As such, you are completely winning.        
+        <details className="solution-dropdown">
+          <summary>Solution</summary>
+          <p>
+            The answer is Rxc6! Although you lose an exchange (Rook for Bishop), you are still up material afterward, and 
+            you have gotten rid of Black's main piece in attacking your King.
+            <br/>
+            As such, you are completely winning.
+          </p>
+        </details>        
         <br/>
         
         This is an important skill to have! Make sure you understand!

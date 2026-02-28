@@ -33,17 +33,15 @@ const Underpromotion = () => {
         So, what should white do?
         <br/>
         <br />
-        <br />
-        <br />
-        There are many moves to win, but the cleanest way is to promote to a rook! That way, Black is forced to go Kh6, and you can proceed to checkmate with Rh8!
-
-        <br/>
-        Onto the next example?
-
-
-       
-
       </p>
+      <details className="solution-dropdown">
+        <summary>Solution</summary>
+        <p>
+          There are many moves to win, but the cleanest way is to promote to a rook! That way, Black is forced to go Kh6, and you can proceed to checkmate with Rh8!
+          <br/>
+          Onto the next example?
+        </p>
+      </details>
       <h2>Example 2</h2>
       <img className="najdorf" src={Under2} alt="Chess players" />
 
@@ -52,14 +50,16 @@ const Underpromotion = () => {
         position would actually be a draw. So what should White do?
 
          <br/>
-         <br/>
-         <br/>
-         <br/>
-            White should promote their pawn to a Knight! Why? Because White forks Black's King and Queen, and after Black moves their Queen,
-            White can proceed to take Black's Queen. Then, its a King, Knight, and Bishop vs a King, which is a win for White!
-            <br/>
-In fact, this is the only way to win the position for White. As we can see, underpromotion is pretty important!
       </p>
+      <details className="solution-dropdown">
+        <summary>Solution</summary>
+        <p>
+          White should promote their pawn to a Knight! Why? Because White forks Black's King and Queen, and after Black moves their Queen,
+          White can proceed to take Black's Queen. Then, its a King, Knight, and Bishop vs a King, which is a win for White!
+          <br/>
+          In fact, this is the only way to win the position for White. As we can see, underpromotion is pretty important!
+        </p>
+      </details>
 
       <div className="ButtonElements">
         <button onClick={() => navigate("/learn/intermediate")}>

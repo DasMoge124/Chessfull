@@ -169,3 +169,55 @@ p:first-of-type {
 .ButtonElements button:active {
   transform: translateY(0); /* Press down effect */
 }
+
+/* --- Solution Dropdown --- */
+.solution-dropdown {
+  background-color: #1f2833;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin: 15px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border-left: 4px solid #66fcf1;
+}
+
+.solution-dropdown summary {
+  font-weight: 700;
+  color: #66fcf1;
+  cursor: pointer;
+  list-style: none; /* Make standard list styling invisible */
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+.solution-dropdown summary:hover {
+  color: #fff;
+}
+
+/* Hide default marker for webkit */
+.solution-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Add custom arrow */
+.solution-dropdown summary::before {
+  content: '▶';
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 0.8em;
+  transition: transform 0.3s ease;
+  color: inherit; /* inherit from summary to get hover color */
+}
+
+.solution-dropdown[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.solution-dropdown p {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #c5c6c7;
+  font-size: 1em;
+}

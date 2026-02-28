@@ -29,26 +29,29 @@ const Tactical_Sacrifices = () => {
         <br />
         In this position, you can just sacrifice, THE QUEEN!
       </p>
-      <img src={Sacrifice1} alt="Chess players" />
-      <p>
-        This is the critical move. By Qxg5, Black forces White into a difficult
-        dilemma. The move effectively paralyzes White's offensive momentum.
-        <br /> If White accepts the sacrifice with Qxg5, they fall directly into
-        Black’s tactical trap.
-      </p>
-      <img src={Sacrifice2} alt="Chess players" />
-      <p>
-        Following the capture, Black delivers a forceful knight check.
-        <br /> Depending on the specific geometry of the board, this move
-        functions as a royal fork, simultaneously attacking the King and the
-        newly placed Queen on g5.
-      </p>
-      <p>
-        Regardless of the King’s escape square, Black proceeds to recapture the
-        Queen via Nxg5. <br /> By trading the Queen for the opponent’s most
-        active piece and disrupting White's coordination, Black transitions from
-        a defensive struggle into a statistically winning endgame.
-      </p>
+      <details className="solution-dropdown">
+        <summary>Solution</summary>
+        <img src={Sacrifice1} alt="Chess players" />
+        <p>
+          This is the critical move. By Qxg5, Black forces White into a difficult
+          dilemma. The move effectively paralyzes White's offensive momentum.
+          <br /> If White accepts the sacrifice with Qxg5, they fall directly into
+          Black’s tactical trap.
+        </p>
+        <img src={Sacrifice2} alt="Chess players" />
+        <p>
+          Following the capture, Black delivers a forceful knight check.
+          <br /> Depending on the specific geometry of the board, this move
+          functions as a royal fork, simultaneously attacking the King and the
+          newly placed Queen on g5.
+        </p>
+        <p>
+          Regardless of the King’s escape square, Black proceeds to recapture the
+          Queen via Nxg5. <br /> By trading the Queen for the opponent’s most
+          active piece and disrupting White's coordination, Black transitions from
+          a defensive struggle into a statistically winning endgame.
+        </p>
+      </details>
       <div className="ButtonElements">
         <button onClick={() => navigate("/learn/intermediate")}>
           Return to Lessons
