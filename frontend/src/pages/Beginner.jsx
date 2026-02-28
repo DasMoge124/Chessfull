@@ -20,24 +20,28 @@ const topics = {
   "How to Play Chess": [
     {
       title: "How to Set up a Chessboard",
-      description: "Learn the correct way to arrange the pieces on the board to start a game.",
+      description:
+        "Learn the correct way to arrange the pieces on the board to start a game.",
       path: "/lessons/beginner/how_to_setup_chessboard",
     },
     {
       title: "How each chess piece Moves",
-      description: "Master the movement of Kings, Queens, Rooks, Bishops, Knights, and Pawns.",
+      description:
+        "Master the movement of Kings, Queens, Rooks, Bishops, Knights, and Pawns.",
       path: "/lessons/beginner/how_pieces_move",
     },
   ],
   "Basic Chess Principles": [
     {
       title: "Opening Principles",
-      description: "Control the center, develop your pieces, and get your King to safety.",
+      description:
+        "Control the center, develop your pieces, and get your King to safety.",
       path: "/lessons/beginner/opening_principles",
     },
     {
       title: "Checkmates and Stalemates",
-      description: "Understand the difference between winning the game and a draw.",
+      description:
+        "Understand the difference between winning the game and a draw.",
       path: "/lessons/beginner/checkmates_and_stalemates",
     },
     {
@@ -47,7 +51,8 @@ const topics = {
     },
     {
       title: "How to Calculate",
-      description: "Visualize moves ahead to avoid blunders and find winning sequences.",
+      description:
+        "Visualize moves ahead to avoid blunders and find winning sequences.",
       path: "/lessons/beginner/how_to_calculate",
     },
   ],
@@ -64,7 +69,8 @@ const topics = {
     },
     {
       title: "Pins and Skewers",
-      description: "Restrict enemy piece movement and win material with these powerful tactics.",
+      description:
+        "Restrict enemy piece movement and win material with these powerful tactics.",
       path: "/lessons/beginner/pins_and_skewers",
     },
     {
@@ -72,35 +78,45 @@ const topics = {
       description: "Unleash hidden threats by moving a piece out of the way.",
       path: "/lessons/beginner/discovered_attacks",
     },
+    {
+      title: "Capture the Defender",
+      description: "Remove a defending piece to win an enemy piece.",
+      path: "/lessons/beginner/capture_the_defender",
+    },
   ],
   "Pawn Structures": [
     {
       title: "Isolated Pawns",
-      description: "Learn the strengths and weaknesses of having a pawn with no friendly neighbors.",
+      description:
+        "Learn the strengths and weaknesses of having a pawn with no friendly neighbors.",
       path: "/lessons/beginner/pawn_structure_isolated_pawns",
     },
     {
       title: "Doubled Pawns",
-      description: "Understand when stacked pawns are a weakness and when they can be a strength.",
+      description:
+        "Understand when stacked pawns are a weakness and when they can be a strength.",
       path: "/lessons/beginner/pawn_structure_doubled_pawns",
     },
     {
       title: "Pawn Chains",
-      description: "Use connected pawns to control space and block enemy pieces.",
+      description:
+        "Use connected pawns to control space and block enemy pieces.",
       path: "/lessons/beginner/pawn_chains",
     },
   ],
   "More advanced Tactics": [
     {
       title: "Attraction vs. Deflection",
-      description: "Lure enemy pieces into bad squares or force them away from defense.",
+      description:
+        "Lure enemy pieces into bad squares or force them away from defense.",
       path: "/lessons/beginner/attraction_vs_deflection",
     },
   ],
   Endgames: [
     {
       title: "Checkmates with a Queen",
-      description: "Learn the technique to force checkmate with just a King and Queen.",
+      description:
+        "Learn the technique to force checkmate with just a King and Queen.",
       path: "/lessons/beginner/checkmate_with_queen",
     },
     {
@@ -110,7 +126,8 @@ const topics = {
     },
     {
       title: "Rule of the Square",
-      description: "A quick way to calculate if your King can catch an enemy passed pawn.",
+      description:
+        "A quick way to calculate if your King can catch an enemy passed pawn.",
       path: "/learn/beginner/Rule_of_Square",
     },
   ],
@@ -129,7 +146,8 @@ const topics = {
     },
     {
       title: "Game 3",
-      description: "Apply all the principles you've learned in this final practice game.",
+      description:
+        "Apply all the principles you've learned in this final practice game.",
       path: "/lessons/beginner/beginner_lesson_three",
       id: "beginner_game_3",
     },
@@ -164,17 +182,20 @@ function Beginner() {
   }, []);
 
   return (
-    <div className="beginner-page" style={{ position: "relative", minHeight: "100vh" }}>
+    <div
+      className="beginner-page"
+      style={{ position: "relative", minHeight: "100vh" }}
+    >
       <ParticleBackground />
 
       <div className="lesson-container">
         <div className="lesson-header">
           <h1>Beginner Page</h1>
           <p>
-            Welcome to the world of chess. If you are new to the game, this is an
-            excellent start for your chess journey. It is strongly recommended to
-            go through each module one by one, especially if you are new or not
-            familiar with most chess concepts.
+            Welcome to the world of chess. If you are new to the game, this is
+            an excellent start for your chess journey. It is strongly
+            recommended to go through each module one by one, especially if you
+            are new or not familiar with most chess concepts.
           </p>
         </div>
 
@@ -195,9 +216,7 @@ function Beginner() {
                   <div className="card-action">
                     <span className="start-btn">Start Lesson →</span>
                     {lesson.id && isCompleted(lesson.id) && (
-                      <span className="completed-status">
-                         ✓ Complete
-                      </span>
+                      <span className="completed-status">✓ Complete</span>
                     )}
                   </div>
                 </div>
@@ -205,15 +224,19 @@ function Beginner() {
             </div>
           </div>
         ))}
-        
+
         <div style={{ marginTop: "40px", textAlign: "center" }}>
-             <button 
-                className="lesson-card" 
-                style={{ display: "inline-block", padding: "15px 30px", fontWeight: "bold" }}
-                onClick={() => navigate("/learn")}
-            >
-                Return to Lessons Page
-            </button>
+          <button
+            className="lesson-card"
+            style={{
+              display: "inline-block",
+              padding: "15px 30px",
+              fontWeight: "bold",
+            }}
+            onClick={() => navigate("/learn")}
+          >
+            Return to Lessons Page
+          </button>
         </div>
       </div>
     </div>

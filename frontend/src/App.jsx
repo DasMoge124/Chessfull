@@ -49,6 +49,7 @@ import Hanging_Pieces from "./pages/lessons/beginner_lessons/hanging_pieces";
 import Hanging_Pieces_Practice from "./pages/lessons/white/hanging_pieces";
 import Hanging_Pieces_Practice_2 from "./pages/lessons/white/hanging_pieces_2";
 import Hanging_Pieces_Practice_3 from "./pages/lessons/white/hanging_pieces_3";
+import CaptureTheDefender from "./pages/lessons/beginner_lessons/capture_the_defender";
 import Forks from "./pages/lessons/beginner_lessons/forks";
 import ForksPractice from "./pages/lessons/white/forks_practice";
 import ForksPractice2 from "./pages/lessons/white/forks_practice_2";
@@ -234,6 +235,10 @@ function App() {
           <Route
             path="/lessons/beginner/discovered_attacks"
             element={<Discovered_Attack />}
+          />
+          <Route
+            path="lessons/beginner/capture_the_defender"
+            element={<CaptureTheDefender />}
           />
           <Route
             path="/lessons/beginner/discovered_attacks_practice"
